@@ -93,5 +93,8 @@
     "bugs": {
         "email": "rradic@hotmail.com",
         "url": "https://github.com/robinradic/npm-packages/issues"
+    },
+    "devDependencies": {
+        "source-map-support": "^0.5.0"
     }
 }

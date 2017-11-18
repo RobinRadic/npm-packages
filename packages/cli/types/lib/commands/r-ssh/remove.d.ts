@@ -6,6 +6,6 @@ export declare class RcliConnectRemoveCmd {
     ask: InputHelper;
     config: RConfig;
     ssh: SshBashHelper;
-    handle(args: CommandArguments, ...argv: any[]): Promise<LoggerInstance>;
+    handle(args: CommandArguments, ...argv: any[]): Promise<any>;
 }
 export default RcliConnectRemoveCmd;

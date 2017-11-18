@@ -13,6 +13,6 @@ export declare class GitRepoCmd {
     gitRemoteName: string;
     gitRemoteHttp: boolean;
     options: any;
-    handle(args: CommandArguments, ...argv: any[]): Promise<boolean | void | LoggerInstance>;
+    handle(args: CommandArguments, ...argv: any[]): Promise<any>;
 }
 export default GitRepoCmd;

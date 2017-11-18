@@ -367,12 +367,7 @@ if ( c.idea ) {
 //endregion
 
 
-//region: TASKS: GHPAGES / TYPEDOC
-
-//endregion
-
-
-//region: TASKS: README / DOCS / GHPAGES
+//region: TASKS: README / TYPEDOCS / GHPAGES
 gulp.task('docs:templates', [ 'clean:docs:templates' ], (cb) => {
     // create index page / style
     r.template('docs/index.pug').applyParsers([ 'pug' ]).writeTo('docs/index.html', true);
@@ -473,6 +468,7 @@ packages.filter(pkg => pkg.hasTests).forEach(pkg => {
     })
 })
 //endregion
+
 
 //region: MAIN TASKS
 gulp.task('clean', [ `clean:${c.ts.taskPrefix}`, `clean:${c.ts.taskPrefix}:test`, 'clean:docs' ])

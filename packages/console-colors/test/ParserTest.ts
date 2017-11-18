@@ -1,7 +1,7 @@
 import { context, suite, test } from 'mocha-typescript';
 import { bootstrap } from './_support/bootstrap';
 import { assert, should } from 'chai'
-import { Parser } from '../src';
+import { Parser } from '../';
 
 bootstrap();
 

@@ -6,6 +6,6 @@ export declare class AuthListCmd {
     log: LoggerInstance;
     config: RConfig;
     events: Dispatcher;
-    handle(args: CommandArguments, ...argv: any[]): Promise<void | LoggerInstance>;
+    handle(args: CommandArguments, ...argv: any[]): Promise<any>;
 }
 export default AuthListCmd;

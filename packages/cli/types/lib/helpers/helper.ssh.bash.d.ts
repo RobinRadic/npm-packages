@@ -29,7 +29,7 @@ export declare class SshBashHelper {
     has(name: any): boolean;
     validateImport(file: any): boolean;
     runImport(file: any): Promise<void>;
-    getName(oldName: any): Promise<string>;
+    getName(oldName: any): Promise<any>;
     simpleBackup(): Promise<void>;
     simpleRestore(): Promise<void>;
     password(msg?: string, def?: string): Promise<void>;

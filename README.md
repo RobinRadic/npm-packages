@@ -47,7 +47,6 @@ Development
 - `yarn scan` : Scans all node modules for security vulnerabilities.
 - `yarn test` : Tests all packages. Run `yarn build` or `yarn watch` first.
 - `yarn lerna`: Starts `lerna-wizard`, a interactive tool to execute Lerna commands.
-- `yarn test` : Test all packages that contain tests
 
 ### Gulp tasks
 - `gulp -T` for a complete useless overview.
