@@ -1,0 +1,648 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>cli</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<link rel="stylesheet" href="assets/css/radic.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<a href="../index.html" class="go-back">&lt;&lt; Go Back to NPM Packages List</a>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<!--<a href="index.html" class="title">cli</a>-->
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="globals.html">Globals</a>
+				</li>
+			</ul>
+			<h1> cli</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<h1 id="radical-cli">Radical CLI</h1>
+				<p>Cli utility for various personal purposes. Unless you&#39;d like to see how <code>@radic/console</code> can be implemented, you probably have no use for this.</p>
+				<pre><code class="lang-text">npm install -g @radic/cli
+</code></pre>
+				<h2 id="overview">Overview</h2>
+				<pre><code class="lang-text">
+Radic CLI                                                                                  
+---------                                                                                  
+
+Usage:                                                                                                        
+r &lt;command&gt;                                                                                                                                                  
+
+Arguments:                                                                                                                                                   
+&lt;command&gt;             any of the listed commands  [string]                                                                                                   
+
+Groups:                                                                                                                                                    
+auth         manage service authentication                                                                                                                      
+git          local git operations &amp; remote git services                                                                                                                                          
+google       remote google services                                                                                                                                                   
+jira         remote jira service
+ssh          ssh connection helper                                                                                                                                                                                 
+
+Commands:
+info         general information                                                                                                                                                           
+tree         show commands as tree structure                                                                                                                                                                       
+pmove        file mover
+
+Global options:                                                                                                                                                                                                    
+-q|--quiet             Disables all output                                  [boolean]                                                                                                                                                     
+-C|--no-colors         Disables color output                                [boolean]                                                                                                                                                     
+-h|--help              show help                                            [boolean]                                                                                                                                                     
+-v|--verbose           increase verbosity (1:verbose|2:data|3:debug|4:sil   [count]                                                                                                                                                       
+                       ly)                                                                        
+
+error :: Missing required argument &lt;command&gt;
+</code></pre>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="globals.html"><em>Globals</em></a>
+					</li>
+					<li class=" tsd-kind-module tsd-is-not-exported">
+						<a href="modules/data.html">data</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+					<li class=" tsd-kind-class">
+						<a href="classes/abstractgitservice.html" class="tsd-kind-icon">Abstract<wbr>Git<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/abstractinteractivemodel.html" class="tsd-kind-icon">Abstract<wbr>Interactive<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/abstractmodel.html" class="tsd-kind-icon">Abstract<wbr>Model</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/abstractservice.html" class="tsd-kind-icon">Abstract<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/authaddcmd.html" class="tsd-kind-icon">Auth<wbr>Add<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/authcmd.html" class="tsd-kind-icon">Auth<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/autheditcmd.html" class="tsd-kind-icon">Auth<wbr>Edit<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/authlistcmd.html" class="tsd-kind-icon">Auth<wbr>List<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/authmethod.html" class="tsd-kind-icon">Auth<wbr>Method</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/authremovecmd.html" class="tsd-kind-icon">Auth<wbr>Remove<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/authocmd.html" class="tsd-kind-icon">Autho<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/basecommand.html" class="tsd-kind-icon">Base<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/baseservicecommand.html" class="tsd-kind-icon">Base<wbr>Service<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/bitbucketservice.html" class="tsd-kind-icon">Bitbucket<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/cache.html" class="tsd-kind-icon">Cache</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/configbackupstore.html" class="tsd-kind-icon">Config<wbr>Backup<wbr>Store</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/configcmd.html" class="tsd-kind-icon">Config<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/configcrypto.html" class="tsd-kind-icon">Config<wbr>Crypto</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/connectcmd.html" class="tsd-kind-icon">Connect<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/connecthelper.html" class="tsd-kind-icon">Connect<wbr>Helper</a>
+					</li>
+					<li class=" tsd-kind-class tsd-has-type-parameter">
+						<a href="classes/credential.html" class="tsd-kind-icon">Credential</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/dbcmd.html" class="tsd-kind-icon">DBCmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/database.html" class="tsd-kind-icon">Database</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/devcachecmd.html" class="tsd-kind-icon">Dev<wbr>Cache<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/gitcmd.html" class="tsd-kind-icon">Git<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/gitinteractivecmd.html" class="tsd-kind-icon">Git<wbr>Interactive<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/gitpackagistcmd.html" class="tsd-kind-icon">Git<wbr>Packagist<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/gitrepocmd.html" class="tsd-kind-icon">Git<wbr>Repo<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/gittagcmd.html" class="tsd-kind-icon">Git<wbr>Tag<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/githubservice.html" class="tsd-kind-icon">Github<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/googlecmd.html" class="tsd-kind-icon">Google<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/googlecontactscmd.html" class="tsd-kind-icon">Google<wbr>Contacts<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/googlecontactsdeletecmd.html" class="tsd-kind-icon">Google<wbr>Contacts<wbr>Delete<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/googlecontactslistcmd.html" class="tsd-kind-icon">Google<wbr>Contacts<wbr>List<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/googlecontactssetcmd.html" class="tsd-kind-icon">Google<wbr>Contacts<wbr>Set<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/googleservice.html" class="tsd-kind-icon">Google<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/googleserviceauth.html" class="tsd-kind-icon">Google<wbr>Service<wbr>Auth</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/infocmd.html" class="tsd-kind-icon">Info<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/jiracmd.html" class="tsd-kind-icon">Jira<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/jiraissuescmd.html" class="tsd-kind-icon">Jira<wbr>Issues<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/jiraissueslistcmd.html" class="tsd-kind-icon">Jira<wbr>Issues<wbr>List<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/jiraprojectscmd.html" class="tsd-kind-icon">Jira<wbr>Projects<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/jiraservice.html" class="tsd-kind-icon">Jira<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/modelinteractor.html" class="tsd-kind-icon">Model<wbr>Interactor</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/pmovecmd.html" class="tsd-kind-icon">PMove<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/pathscmd.html" class="tsd-kind-icon">Paths<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/persistentfileconfig.html" class="tsd-kind-icon">Persistent<wbr>File<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rcfile.html" class="tsd-kind-icon">RCFile</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rtreecmd.html" class="tsd-kind-icon">RTree<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rclicmd.html" class="tsd-kind-icon">Rcli<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rcliconnectaddcmd.html" class="tsd-kind-icon">Rcli<wbr>Connect<wbr>Add<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rcliconnecteditcmd.html" class="tsd-kind-icon">Rcli<wbr>Connect<wbr>Edit<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rcliconnectlistcmd.html" class="tsd-kind-icon">Rcli<wbr>Connect<wbr>List<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rcliconnectremovecmd.html" class="tsd-kind-icon">Rcli<wbr>Connect<wbr>Remove<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rclifilesizecmd.html" class="tsd-kind-icon">Rcli<wbr>Filesize<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rclisshcmd.html" class="tsd-kind-icon">Rcli<wbr>Ssh<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rclisshconnect.html" class="tsd-kind-icon">Rcli<wbr>Ssh<wbr>Connect</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rclisshconsolecmd.html" class="tsd-kind-icon">Rcli<wbr>Ssh<wbr>Console<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rclisshmountcmd.html" class="tsd-kind-icon">Rcli<wbr>Ssh<wbr>Mount<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rclisshumountcmd.html" class="tsd-kind-icon">Rcli<wbr>SshUMount<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/rcliutilcmd.html" class="tsd-kind-icon">Rcli<wbr>Util<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sshconnection.html" class="tsd-kind-icon">SSHConnection</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sentrycmd.html" class="tsd-kind-icon">Sentry<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/servecmd.html" class="tsd-kind-icon">Servecmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/services.html" class="tsd-kind-icon">Services</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/socketcmd.html" class="tsd-kind-icon">Socket<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/sshbashhelper.html" class="tsd-kind-icon">Ssh<wbr>Bash<wbr>Helper</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/stepper.html" class="tsd-kind-icon">Stepper</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/stepperfactory.html" class="tsd-kind-icon">Stepper<wbr>Factory</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/testcmd.html" class="tsd-kind-icon">Test<wbr>Cmd</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/udpsocketfactory.html" class="tsd-kind-icon">UDPSocket<wbr>Factory</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/authmethodbasic.html" class="tsd-kind-icon">Auth<wbr>Method<wbr>Basic</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/authmethodkey.html" class="tsd-kind-icon">Auth<wbr>Method<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/authmethodoauth.html" class="tsd-kind-icon">Auth<wbr>MethodOAuth</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/authmethodoauth2.html" class="tsd-kind-icon">Auth<wbr>MethodOAuth2</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/authmethodtoken.html" class="tsd-kind-icon">Auth<wbr>Method<wbr>Token</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/baseauthmethod.html" class="tsd-kind-icon">Base<wbr>Auth<wbr>Method</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/connectaddarguments.html" class="tsd-kind-icon">Connect<wbr>Add<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/connecteditarguments.html" class="tsd-kind-icon">Connect<wbr>Edit<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/credentialsextrafield.html" class="tsd-kind-icon">Credentials<wbr>Extra<wbr>Field</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/dictionary.html" class="tsd-kind-icon">Dictionary</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/gitgroup.html" class="tsd-kind-icon">Git<wbr>Group</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/gitrepository.html" class="tsd-kind-icon">Git<wbr>Repository</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/gitserviceextrafields.html" class="tsd-kind-icon">Git<wbr>Service<wbr>Extra<wbr>Fields</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/gitserviceuser.html" class="tsd-kind-icon">Git<wbr>Service<wbr>User</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/gituser.html" class="tsd-kind-icon">Git<wbr>User</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/googleapiexchangedata.html" class="tsd-kind-icon">Google<wbr>Api<wbr>Exchange<wbr>Data</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/googleservicecontact.html" class="tsd-kind-icon">Google<wbr>Service<wbr>Contact</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/googleservicecontacts.html" class="tsd-kind-icon">Google<wbr>Service<wbr>Contacts</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/googleserviceextrafields.html" class="tsd-kind-icon">Google<wbr>Service<wbr>Extra<wbr>Fields</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/helpersoptionsconfig.html" class="tsd-kind-icon">Helpers<wbr>Options<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/icache.html" class="tsd-kind-icon">ICache</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/icredential.html" class="tsd-kind-icon">ICredential</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/igitservice.html" class="tsd-kind-icon">IGit<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/igittransformer.html" class="tsd-kind-icon">IGit<wbr>Transformer</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/isshconnection.html" class="tsd-kind-icon">ISSHConnection</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/iservice.html" class="tsd-kind-icon">IService</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iserviceconstructor.html" class="tsd-kind-icon">IService<wbr>Constructor</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/iuser.html" class="tsd-kind-icon">IUser</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/interactionschema.html" class="tsd-kind-icon">Interaction<wbr>Schema</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/interactionschemaproperty.html" class="tsd-kind-icon">Interaction<wbr>Schema<wbr>Property</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/jiraserviceextrafields.html" class="tsd-kind-icon">Jira<wbr>Service<wbr>Extra<wbr>Fields</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/list.html" class="tsd-kind-icon">List</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/logincredential.html" class="tsd-kind-icon">Login<wbr>Credential</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/numericdictionary.html" class="tsd-kind-icon">Numeric<wbr>Dictionary</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/paths.html" class="tsd-kind-icon">Paths</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/pathscommandarguments.html" class="tsd-kind-icon">Paths<wbr>Command<wbr>Arguments</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/rcfileconfig.html" class="tsd-kind-icon">RCFile<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/rconfig.html" class="tsd-kind-icon">RConfig</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="interfaces/serviceconfig.html" class="tsd-kind-icon">Service<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/serviceextrafieldconfig.html" class="tsd-kind-icon">Service<wbr>Extra<wbr>Field<wbr>Config</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/serviceextrafields.html" class="tsd-kind-icon">Service<wbr>Extra<wbr>Fields</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/socketfactorysocket.html" class="tsd-kind-icon">Socket<wbr>Factory<wbr>Socket</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/sshconnecthelperdataset.html" class="tsd-kind-icon">Ssh<wbr>Connect<wbr>Helper<wbr>Data<wbr>Set</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="interfaces/stringrepresentable.html" class="tsd-kind-icon">String<wbr>Representable</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#authservice" class="tsd-kind-icon">Auth<wbr>Service</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#interactionschemapropertytype" class="tsd-kind-icon">Interaction<wbr>Schema<wbr>Property<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#rcfilekey" class="tsd-kind-icon">RCFile<wbr>Key</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#sshconnectionmethod" class="tsd-kind-icon">SSHConnection<wbr>Method</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="globals.html#serviceextrafieldtype" class="tsd-kind-icon">Service<wbr>Extra<wbr>Field<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#day" class="tsd-kind-icon">DAY</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#hour" class="tsd-kind-icon">HOUR</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#milisecond" class="tsd-kind-icon">MILISECOND</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#minute" class="tsd-kind-icon">MINUTE</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#month" class="tsd-kind-icon">MONTH</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#second" class="tsd-kind-icon">SECOND</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#week" class="tsd-kind-icon">WEEK</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#year" class="tsd-kind-icon">YEAR</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#_config" class="tsd-kind-icon">_config</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#cache" class="tsd-kind-icon">cache</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#config" class="tsd-kind-icon">config</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#cwd" class="tsd-kind-icon">cwd</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#get" class="tsd-kind-icon">get</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#git" class="tsd-kind-icon">git</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#home" class="tsd-kind-icon">home</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#paths" class="tsd-kind-icon">paths</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#rcfile" class="tsd-kind-icon">rcfile</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#root" class="tsd-kind-icon">root</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-not-exported">
+						<a href="globals.html#set" class="tsd-kind-icon">set</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#pkg" class="tsd-kind-icon">PKG</a>
+					</li>
+					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+						<a href="globals.html#argtoarray" class="tsd-kind-icon">arg<wbr>ToArray</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#bin" class="tsd-kind-icon">bin</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#bootstrapraven" class="tsd-kind-icon">bootstrap<wbr>Raven</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#bootstraprcli" class="tsd-kind-icon">bootstrap<wbr>Rcli</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#createexecstring" class="tsd-kind-icon">create<wbr>Exec<wbr>String</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#debugtimelog" class="tsd-kind-icon">debug<wbr>Time<wbr>Log</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#foldersize" class="tsd-kind-icon">folder<wbr>Size</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#formatbytes" class="tsd-kind-icon">format<wbr>Bytes</a>
+					</li>
+					<li class=" tsd-kind-function tsd-is-not-exported">
+						<a href="globals.html#parseenvval" class="tsd-kind-icon">parse<wbr>Env<wbr>Val</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#service" class="tsd-kind-icon">service</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#setpaths" class="tsd-kind-icon">set<wbr>Paths</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#setpermissions" class="tsd-kind-icon">set<wbr>Permissions</a>
+					</li>
+					<li class=" tsd-kind-object-literal tsd-is-not-exported">
+						<a href="globals.html#defaultconfig" class="tsd-kind-icon">default<wbr>Config</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>
