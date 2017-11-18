@@ -1,11 +1,11 @@
 {
-	"id": 1270,
+	"id": 0,
 	"name": "console-colors",
 	"kind": 0,
 	"flags": {},
 	"children": [
 		{
-			"id": 1274,
+			"id": 4,
 			"name": "Colors",
 			"kind": 128,
 			"kindString": "Class",
@@ -14,7 +14,7 @@
 			},
 			"children": [
 				{
-					"id": 1275,
+					"id": 5,
 					"name": "palette",
 					"kind": 1024,
 					"kindString": "Property",
@@ -35,7 +35,7 @@
 					"defaultValue": " simple()"
 				},
 				{
-					"id": 1276,
+					"id": 6,
 					"name": "convert",
 					"kind": 262144,
 					"kindString": "Accessor",
@@ -44,7 +44,7 @@
 					},
 					"getSignature": [
 						{
-							"id": 1277,
+							"id": 7,
 							"name": "__get",
 							"kind": 524288,
 							"kindString": "Get signature",
@@ -64,7 +64,7 @@
 					]
 				},
 				{
-					"id": 1278,
+					"id": 8,
 					"name": "supports",
 					"kind": 262144,
 					"kindString": "Accessor",
@@ -73,7 +73,7 @@
 					},
 					"getSignature": [
 						{
-							"id": 1279,
+							"id": 9,
 							"name": "__get",
 							"kind": 524288,
 							"kindString": "Get signature",
@@ -93,7 +93,7 @@
 					]
 				},
 				{
-					"id": 1280,
+					"id": 10,
 					"name": "get",
 					"kind": 2048,
 					"kindString": "Method",
@@ -102,14 +102,14 @@
 					},
 					"signatures": [
 						{
-							"id": 1281,
+							"id": 11,
 							"name": "get",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 1282,
+									"id": 12,
 									"name": "color",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -120,7 +120,7 @@
 									}
 								},
 								{
-									"id": 1283,
+									"id": 13,
 									"name": "close",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -148,7 +148,7 @@
 					]
 				},
 				{
-					"id": 1287,
+					"id": 17,
 					"name": "getStyles",
 					"kind": 2048,
 					"kindString": "Method",
@@ -157,7 +157,7 @@
 					},
 					"signatures": [
 						{
-							"id": 1288,
+							"id": 18,
 							"name": "getStyles",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -177,7 +177,7 @@
 					]
 				},
 				{
-					"id": 1284,
+					"id": 14,
 					"name": "getTrucolorColor",
 					"kind": 2048,
 					"kindString": "Method",
@@ -186,14 +186,14 @@
 					},
 					"signatures": [
 						{
-							"id": 1285,
+							"id": 15,
 							"name": "getTrucolorColor",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 1286,
+									"id": 16,
 									"name": "color",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -219,7 +219,7 @@
 					]
 				},
 				{
-					"id": 1292,
+					"id": 22,
 					"name": "reset",
 					"kind": 2048,
 					"kindString": "Method",
@@ -228,7 +228,7 @@
 					},
 					"signatures": [
 						{
-							"id": 1293,
+							"id": 23,
 							"name": "reset",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -248,7 +248,7 @@
 					]
 				},
 				{
-					"id": 1289,
+					"id": 19,
 					"name": "styles",
 					"kind": 2048,
 					"kindString": "Method",
@@ -257,14 +257,14 @@
 					},
 					"signatures": [
 						{
-							"id": 1290,
+							"id": 20,
 							"name": "styles",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 1291,
+									"id": 21,
 									"name": "styles",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -295,26 +295,26 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						1275
+						5
 					]
 				},
 				{
 					"title": "Accessors",
 					"kind": 262144,
 					"children": [
-						1276,
-						1278
+						6,
+						8
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						1280,
-						1287,
-						1284,
-						1292,
-						1289
+						10,
+						17,
+						14,
+						22,
+						19
 					]
 				}
 			],
@@ -327,7 +327,7 @@
 			]
 		},
 		{
-			"id": 1317,
+			"id": 47,
 			"name": "Parser",
 			"kind": 128,
 			"kindString": "Class",
@@ -336,7 +336,7 @@
 			},
 			"children": [
 				{
-					"id": 1318,
+					"id": 48,
 					"name": "colors",
 					"kind": 1024,
 					"kindString": "Property",
@@ -353,12 +353,12 @@
 					"type": {
 						"type": "reference",
 						"name": "Colors",
-						"id": 1274
+						"id": 4
 					},
 					"defaultValue": " new Colors"
 				},
 				{
-					"id": 1322,
+					"id": 52,
 					"name": "clean",
 					"kind": 2048,
 					"kindString": "Method",
@@ -367,14 +367,14 @@
 					},
 					"signatures": [
 						{
-							"id": 1323,
+							"id": 53,
 							"name": "clean",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 1324,
+									"id": 54,
 									"name": "text",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -400,7 +400,7 @@
 					]
 				},
 				{
-					"id": 1325,
+					"id": 55,
 					"name": "getTagsExp",
 					"kind": 2048,
 					"kindString": "Method",
@@ -410,7 +410,7 @@
 					},
 					"signatures": [
 						{
-							"id": 1326,
+							"id": 56,
 							"name": "getTagsExp",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -430,7 +430,7 @@
 					]
 				},
 				{
-					"id": 1327,
+					"id": 57,
 					"name": "getTextTags",
 					"kind": 2048,
 					"kindString": "Method",
@@ -440,14 +440,14 @@
 					},
 					"signatures": [
 						{
-							"id": 1328,
+							"id": 58,
 							"name": "getTextTags",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 1329,
+									"id": 59,
 									"name": "text",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -458,7 +458,7 @@
 									}
 								},
 								{
-									"id": 1330,
+									"id": 60,
 									"name": "tagExp",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -493,7 +493,7 @@
 					]
 				},
 				{
-					"id": 1319,
+					"id": 49,
 					"name": "parse",
 					"kind": 2048,
 					"kindString": "Method",
@@ -502,14 +502,14 @@
 					},
 					"signatures": [
 						{
-							"id": 1320,
+							"id": 50,
 							"name": "parse",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 1321,
+									"id": 51,
 									"name": "text",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -535,7 +535,7 @@
 					]
 				},
 				{
-					"id": 1334,
+					"id": 64,
 					"name": "parseColor",
 					"kind": 2048,
 					"kindString": "Method",
@@ -545,14 +545,14 @@
 					},
 					"signatures": [
 						{
-							"id": 1335,
+							"id": 65,
 							"name": "parseColor",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 1336,
+									"id": 66,
 									"name": "color",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -578,7 +578,7 @@
 					]
 				},
 				{
-					"id": 1331,
+					"id": 61,
 					"name": "parseTag",
 					"kind": 2048,
 					"kindString": "Method",
@@ -588,14 +588,14 @@
 					},
 					"signatures": [
 						{
-							"id": 1332,
+							"id": 62,
 							"name": "parseTag",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 1333,
+									"id": 63,
 									"name": "tag",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -612,7 +612,7 @@
 							"type": {
 								"type": "reference",
 								"name": "ParserParsedTag",
-								"id": 1306
+								"id": 36
 							}
 						}
 					],
@@ -630,19 +630,19 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						1318
+						48
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						1322,
-						1325,
-						1327,
-						1319,
-						1334,
-						1331
+						52,
+						55,
+						57,
+						49,
+						64,
+						61
 					]
 				}
 			],
@@ -655,7 +655,7 @@
 			]
 		},
 		{
-			"id": 1271,
+			"id": 1,
 			"name": "AnsiRgbColors",
 			"kind": 256,
 			"kindString": "Interface",
@@ -664,7 +664,7 @@
 			},
 			"children": [
 				{
-					"id": 1273,
+					"id": 3,
 					"name": "bg",
 					"kind": 1024,
 					"kindString": "Property",
@@ -690,7 +690,7 @@
 					}
 				},
 				{
-					"id": 1272,
+					"id": 2,
 					"name": "fg",
 					"kind": 1024,
 					"kindString": "Property",
@@ -721,8 +721,8 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						1273,
-						1272
+						3,
+						2
 					]
 				}
 			],
@@ -735,7 +735,7 @@
 			]
 		},
 		{
-			"id": 1306,
+			"id": 36,
 			"name": "ParserParsedTag",
 			"kind": 256,
 			"kindString": "Interface",
@@ -744,7 +744,7 @@
 			},
 			"children": [
 				{
-					"id": 1307,
+					"id": 37,
 					"name": "colors",
 					"kind": 1024,
 					"kindString": "Property",
@@ -767,7 +767,7 @@
 					}
 				},
 				{
-					"id": 1313,
+					"id": 43,
 					"name": "replace",
 					"kind": 1024,
 					"kindString": "Property",
@@ -784,21 +784,21 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 1314,
+							"id": 44,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 1315,
+									"id": 45,
 									"name": "__call",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 1316,
+											"id": 46,
 											"name": "text",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -826,7 +826,7 @@
 					}
 				},
 				{
-					"id": 1308,
+					"id": 38,
 					"name": "replacements",
 					"kind": 1024,
 					"kindString": "Property",
@@ -843,21 +843,21 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 1309,
+							"id": 39,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"indexSignature": [
 								{
-									"id": 1310,
+									"id": 40,
 									"name": "__index",
 									"kind": 8192,
 									"kindString": "Index signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 1311,
+											"id": 41,
 											"name": "old",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -885,7 +885,7 @@
 					}
 				},
 				{
-					"id": 1312,
+					"id": 42,
 					"name": "string",
 					"kind": 1024,
 					"kindString": "Property",
@@ -910,10 +910,10 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						1307,
-						1313,
-						1308,
-						1312
+						37,
+						43,
+						38,
+						42
 					]
 				}
 			],
@@ -926,21 +926,21 @@
 			]
 		},
 		{
-			"id": 1302,
+			"id": 32,
 			"name": "isAllLength",
 			"kind": 64,
 			"kindString": "Function",
 			"flags": {},
 			"signatures": [
 				{
-					"id": 1303,
+					"id": 33,
 					"name": "isAllLength",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 1304,
+							"id": 34,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -951,7 +951,7 @@
 							}
 						},
 						{
-							"id": 1305,
+							"id": 35,
 							"name": "lengths",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -982,21 +982,21 @@
 			]
 		},
 		{
-			"id": 1298,
+			"id": 28,
 			"name": "isAnyLength",
 			"kind": 64,
 			"kindString": "Function",
 			"flags": {},
 			"signatures": [
 				{
-					"id": 1299,
+					"id": 29,
 					"name": "isAnyLength",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 1300,
+							"id": 30,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1007,7 +1007,7 @@
 							}
 						},
 						{
-							"id": 1301,
+							"id": 31,
 							"name": "lengths",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1038,21 +1038,21 @@
 			]
 		},
 		{
-			"id": 1294,
+			"id": 24,
 			"name": "isLength",
 			"kind": 64,
 			"kindString": "Function",
 			"flags": {},
 			"signatures": [
 				{
-					"id": 1295,
+					"id": 25,
 					"name": "isLength",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 1296,
+							"id": 26,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1063,7 +1063,7 @@
 							}
 						},
 						{
-							"id": 1297,
+							"id": 27,
 							"name": "lengths",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1100,25 +1100,25 @@
 			"title": "Classes",
 			"kind": 128,
 			"children": [
-				1274,
-				1317
+				4,
+				47
 			]
 		},
 		{
 			"title": "Interfaces",
 			"kind": 256,
 			"children": [
-				1271,
-				1306
+				1,
+				36
 			]
 		},
 		{
 			"title": "Functions",
 			"kind": 64,
 			"children": [
-				1302,
-				1298,
-				1294
+				32,
+				28,
+				24
 			]
 		}
 	]

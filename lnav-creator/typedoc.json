@@ -1,11 +1,11 @@
 {
-	"id": 1254,
+	"id": 1321,
 	"name": "lnav-creator",
 	"kind": 0,
 	"flags": {},
 	"children": [
 		{
-			"id": 1265,
+			"id": 1332,
 			"name": "mapper",
 			"kind": 64,
 			"kindString": "Function",
@@ -14,14 +14,14 @@
 			},
 			"signatures": [
 				{
-					"id": 1266,
+					"id": 1333,
 					"name": "mapper",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 1267,
+							"id": 1334,
 							"name": "names",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -35,7 +35,7 @@
 							}
 						},
 						{
-							"id": 1268,
+							"id": 1335,
 							"name": "prefix",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -47,7 +47,7 @@
 							"defaultValue": "\"/var/log/\""
 						},
 						{
-							"id": 1269,
+							"id": 1336,
 							"name": "postfix",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -77,14 +77,14 @@
 			]
 		},
 		{
-			"id": 1255,
+			"id": 1322,
 			"name": "logs",
 			"kind": 2097152,
 			"kindString": "Object literal",
 			"flags": {},
 			"children": [
 				{
-					"id": 1256,
+					"id": 1323,
 					"name": "atlassian",
 					"kind": 32,
 					"kindString": "Variable",
@@ -106,7 +106,7 @@
 					"defaultValue": " []"
 				},
 				{
-					"id": 1258,
+					"id": 1325,
 					"name": "server",
 					"kind": 32,
 					"kindString": "Variable",
@@ -128,7 +128,7 @@
 					"defaultValue": " []"
 				},
 				{
-					"id": 1259,
+					"id": 1326,
 					"name": "sonar",
 					"kind": 32,
 					"kindString": "Variable",
@@ -150,7 +150,7 @@
 					"defaultValue": " []"
 				},
 				{
-					"id": 1257,
+					"id": 1324,
 					"name": "system",
 					"kind": 32,
 					"kindString": "Variable",
@@ -177,10 +177,10 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						1256,
-						1258,
-						1259,
-						1257
+						1323,
+						1325,
+						1326,
+						1324
 					]
 				}
 			],
@@ -197,14 +197,14 @@
 			}
 		},
 		{
-			"id": 1260,
+			"id": 1327,
 			"name": "partials",
 			"kind": 2097152,
 			"kindString": "Object literal",
 			"flags": {},
 			"children": [
 				{
-					"id": 1261,
+					"id": 1328,
 					"name": "atlassian",
 					"kind": 32,
 					"kindString": "Variable",
@@ -226,7 +226,7 @@
 					"defaultValue": " [\n        '/opt/atlassian/jira/logs/catalina.out',\n        '/opt/atlassian/confluence/logs/catalina.out',\n        '/var/atlassian/application-data/bitbucket/log/launcher.log',\n        '/var/atlassian/application-data/bitbucket/log/atlassian-bitbucket.log',\n        '/var/atlassian/application-data/bitbucket/log/atlassian-bitbucket-access.log',\n        '/var/atlassian/application-data/jira/log/atlassian-greenhopper.log',\n        '/var/atlassian/application-data/jira/log/atlassian-jira.log',\n        '/var/atlassian/application-data/jira/log/atlassian-jira-security.log',\n        '/var/atlassian/application-data/confluence/log/atlassian-confluence.log',\n        '/var/atlassian/application-data/confluence/log/atlassian-synchrony.log'\n    ]"
 				},
 				{
-					"id": 1263,
+					"id": 1330,
 					"name": "server",
 					"kind": 32,
 					"kindString": "Variable",
@@ -248,7 +248,7 @@
 					"defaultValue": " [\n        'psa-horde/psa-horde',\n        'bacula/bacula',\n        'jenkins/jenkins',\n        'plesk-php*-fpm/error',\n        'postgresql/postgresql-*-main',\n        'redis/rediss-server',\n        'sw-cp-server/access',\n        'sw-cp-server/sw-engine',\n        'tomcat*/catalina.out',\n        'nginx/error',\n        'nginx/access',\n        'apache2/access',\n        'apache2/error',\n        'apache2/suexec',\n        'apache2/other_vhosts_access',\n        'cups/access_log',\n        'cups/error_log',\n        'mysql/error.log'\n    ]"
 				},
 				{
-					"id": 1264,
+					"id": 1331,
 					"name": "sonar",
 					"kind": 32,
 					"kindString": "Variable",
@@ -270,7 +270,7 @@
 					"defaultValue": " [\n        'access',\n        'ce',\n        'es',\n        'web',\n        'sonar'\n    ]"
 				},
 				{
-					"id": 1262,
+					"id": 1329,
 					"name": "system",
 					"kind": 32,
 					"kindString": "Variable",
@@ -297,10 +297,10 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						1261,
-						1263,
-						1264,
-						1262
+						1328,
+						1330,
+						1331,
+						1329
 					]
 				}
 			],
@@ -322,15 +322,15 @@
 			"title": "Functions",
 			"kind": 64,
 			"children": [
-				1265
+				1332
 			]
 		},
 		{
 			"title": "Object literals",
 			"kind": 2097152,
 			"children": [
-				1255,
-				1260
+				1322,
+				1327
 			]
 		}
 	]
