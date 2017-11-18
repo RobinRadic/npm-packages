@@ -13,12 +13,9 @@
         "connect": "bin/connect.sh"
     },
     "scripts": {
-        "build": "tsc",
-        "pretest": "tsc",
         "test": "nyc mocha",
-        "posttest": "rimraf test/**/*.js",
         "watch": "mocha-typescript-watch",
-        "clean": "rimraf types ./**/*.js"
+        "clean": "rimraf types .nyc_output ./**/*.js"
     },
     "radic": {
         "typedoc": {
@@ -32,8 +29,8 @@
             "includeDeclarations": false,
             "excludeExternals": true,
             "ignoreCompilerErrors": true,
-            "includes": "/mnt/fat/node/lerna-test-@radic/scripts/templates/typedoc/inc",
-            "theme": "/mnt/fat/node/lerna-test-@radic/scripts/templates/typedoc/theme",
+            "includes": "/mnt/fat/node/@radic/scripts/templates/typedoc/inc",
+            "theme": "/mnt/fat/node/@radic/scripts/templates/typedoc/theme",
             "plugins": [
                 "typedoc-plantuml"
             ],
@@ -43,7 +40,7 @@
         }
     },
     "dependencies": {
-        "@radic/console": "^0.0.18",
+        "@radic/console": "^0.0.22",
         "@radic/console-colors": "^2.0.3",
         "@radic/util": "^2.3.2",
         "Validator": "^1.0.4",

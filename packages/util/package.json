@@ -9,11 +9,8 @@
     "repository": "https://github.com/robinradic/npm-packages",
     "homepage": "http://robin.radic.nl/npm-packages/util",
     "scripts": {
-        "build": "tsc",
-        "pretest": "tsc",
         "test": "nyc mocha",
-        "posttest": "rimraf ./**/*.js",
-        "clean": "rimraf types ./**/*.js",
+        "clean": "rimraf types .nyc_output ./**/*.js",
         "watch": "mocha-typescript-watch"
     },
     "dependencies": {
@@ -31,8 +28,8 @@
             "includeDeclarations": false,
             "excludeExternals": true,
             "ignoreCompilerErrors": true,
-            "includes": "/mnt/fat/node/lerna-test-@radic/scripts/templates/typedoc/inc",
-            "theme": "/mnt/fat/node/lerna-test-@radic/scripts/templates/typedoc/theme",
+            "includes": "/mnt/fat/node/@radic/scripts/templates/typedoc/inc",
+            "theme": "/mnt/fat/node/@radic/scripts/templates/typedoc/theme",
             "plugins": [
                 "typedoc-plantuml"
             ],

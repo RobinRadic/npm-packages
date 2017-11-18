@@ -7,6 +7,7 @@ import { trucolor, palette, chalkish, simple, Trucolor, Palette } from 'trucolor
 //import {startsWith } from 'lodash'
 
 
+
 // import * as _ from "lodash";
 // _.isNumber()
 // let ansi256    = require('ansi-256-colors')

@@ -16,7 +16,7 @@ export declare class AuthoCmd {
     all: boolean;
     custom: string;
     protected actions: string[];
-    validate(args: CommandArguments): any;
-    handle(args: CommandArguments, ...argv: any[]): Promise<any>;
+    validate(args: CommandArguments): CommandArguments;
+    handle(args: CommandArguments, ...argv: any[]): Promise<void | LoggerInstance | OutputHelper>;
 }
 export default AuthoCmd;

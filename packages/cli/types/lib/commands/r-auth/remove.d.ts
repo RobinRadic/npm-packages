@@ -6,6 +6,6 @@ export declare class AuthRemoveCmd {
     log: LoggerInstance;
     config: RConfig;
     events: Dispatcher;
-    handle(args: CommandArguments, ...argv: any[]): Promise<any>;
+    handle(args: CommandArguments, ...argv: any[]): Promise<LoggerInstance>;
 }
 export default AuthRemoveCmd;

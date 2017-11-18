@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/lerna-test-@radic.iml" filepath="$PROJECT_DIR$/.idea/lerna-test-@radic.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/@radic.iml" filepath="$PROJECT_DIR$/.idea/@radic.iml" />
     </modules>
   </component>
 </project>

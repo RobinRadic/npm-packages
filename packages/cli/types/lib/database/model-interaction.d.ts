@@ -1,3 +1,4 @@
+/// <reference types="inquirer" />
 import { AbstractInteractiveModel } from "./Models/AbstractInteractiveModel";
 import { InputHelper } from "@radic/console";
 import { Answers, ChoiceType } from "inquirer";

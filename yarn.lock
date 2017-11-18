@@ -9,52 +9,6 @@
     normalize-path "^2.0.1"
     through2 "^2.0.3"
 
-"@radic/console-colors@^0.9.5":
-  version "0.9.6"
-  resolved "https://registry.yarnpkg.com/@radic/console-colors/-/console-colors-0.9.6.tgz#d131c89a8b3dce443793ac552bfbd92f7ad7964a"
-  dependencies:
-    "@radic/util" "^1.4.1"
-    color-convert "^1.5.0"
-    lodash "^4.15.0"
-    supports-color "^3.1.2"
-    trucolor "^0.6.6"
-
-"@radic/console@^0.0.18":
-  version "0.0.18"
-  resolved "https://registry.yarnpkg.com/@radic/console/-/console-0.0.18.tgz#fc94db8dc33c3ce4a1ad35c8ce93061e5faa229f"
-  dependencies:
-    "@radic/console-colors" "^0.9.5"
-    "@radic/util" "^1.7.3"
-    archy "^1.0.0"
-    async "^2.4.0"
-    axios "^0.16.1"
-    callsites "^2.0.0"
-    cli-table2 "^0.2.0"
-    columnify latest
-    dotenv "^4.0.0"
-    eventemitter2 "^4.0.0"
-    fs-extra "^3.0.1"
-    globule "^1.1.0"
-    inquirer "^3.0.6"
-    inversify "^3.1.0"
-    inversify-binding-decorators "^3.0.0"
-    inversify-inject-decorators "^3.0.1"
-    lodash "^4.17.4"
-    moment "^2.18.1"
-    reflect-metadata "^0.1.10"
-    shelljs "^0.7.7"
-    string "^3.3.3"
-    tmp "^0.0.31"
-    truwrap "^0.7.4"
-    winston "^2.3.1"
-    yargs-parser "^5.0.0"
-
-"@radic/util@^1.4.1", "@radic/util@^1.7.3":
-  version "1.7.5"
-  resolved "https://registry.yarnpkg.com/@radic/util/-/util-1.7.5.tgz#8e04d3bcf733e74936ab43e8d93e0bfa15d26dfa"
-  dependencies:
-    lodash "^4.15.0"
-
 "@thebespokepixel/es-tinycolor@^0.2.4":
   version "0.2.7"
   resolved "https://registry.yarnpkg.com/@thebespokepixel/es-tinycolor/-/es-tinycolor-0.2.7.tgz#283a709f57cdd5eec9af41b994a457e9ca9a9bf3"
@@ -5324,7 +5278,7 @@ gulp-util@^2.2.14, gulp-util@~2.2.0:
     through2 "^0.5.0"
     vinyl "^0.2.1"
 
-gulp@^3.9.1:
+gulp@*, gulp@^3.9.1:
   version "3.9.1"
   resolved "https://registry.yarnpkg.com/gulp/-/gulp-3.9.1.tgz#571ce45928dd40af6514fc4011866016c13845b4"
   dependencies:
@@ -5341,6 +5295,14 @@ gulp@^3.9.1:
     tildify "^1.0.0"
     v8flags "^2.0.2"
     vinyl-fs "^0.3.0"
+
+gulpfile.ts@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/gulpfile.ts/-/gulpfile.ts-0.0.2.tgz#f8f3184ce2f58006df5b74b9440a20540e49da05"
+  dependencies:
+    gulp "*"
+    merge2 "*"
+    run-sequence "*"
 
 gulplog@^1.0.0:
   version "1.0.0"
@@ -5994,7 +5956,7 @@ inversify-binding-decorators@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/inversify-binding-decorators/-/inversify-binding-decorators-3.0.0.tgz#3784d5ab9ea675915dfff4711434da4b27b78521"
 
-inversify-inject-decorators@^3.0.1, inversify-inject-decorators@^3.0.2:
+inversify-inject-decorators@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/inversify-inject-decorators/-/inversify-inject-decorators-3.0.2.tgz#9817e1f0212b9098d476d502449bd807305ca4e6"
 
@@ -6010,7 +5972,7 @@ inversify-vanillajs-helpers@^2.0.0:
   dependencies:
     inversify "^3.0.0"
 
-inversify@^3.0.0, inversify@^3.1.0:
+inversify@^3.0.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/inversify/-/inversify-3.3.0.tgz#57ca2e0aaac7b54aa5018ad69a10c5aba366e96e"
 
@@ -7714,6 +7676,10 @@ merge-stream@^1.0.0:
   resolved "https://registry.yarnpkg.com/merge-stream/-/merge-stream-1.0.1.tgz#4041202d508a342ba00174008df0c251b8c135e1"
   dependencies:
     readable-stream "^2.0.1"
+
+merge2@*:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.2.0.tgz#0f882151d988b1f3d0758945404fa73ee5923d3f"
 
 micromatch@2.3.11, micromatch@^2.1.5, micromatch@^2.3.11, micromatch@^2.3.7:
   version "2.3.11"
@@ -10372,7 +10338,7 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   dependencies:
     aproba "^1.1.1"
 
-run-sequence@^2.2.0:
+run-sequence@*, run-sequence@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/run-sequence/-/run-sequence-2.2.0.tgz#b3f8d42836db89d08b2fe704eaf0c93dfd8335e2"
   dependencies:
@@ -10793,6 +10759,12 @@ source-map-support@^0.4.0, source-map-support@^0.4.15:
   dependencies:
     source-map "^0.5.6"
 
+source-map-support@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.0.tgz#2018a7ad2bdf8faf2691e5fddab26bed5a2bacab"
+  dependencies:
+    source-map "^0.6.0"
+
 source-map-url@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/source-map-url/-/source-map-url-0.3.0.tgz#7ecaf13b57bcd09da8a40c5d269db33799d4aaf9"
@@ -10803,7 +10775,7 @@ source-map@0.4.x, source-map@^0.4.2, source-map@^0.4.4:
   dependencies:
     amdefine ">=0.0.4"
 
-source-map@0.X, source-map@~0.6.1:
+source-map@0.X, source-map@^0.6.0, source-map@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
 

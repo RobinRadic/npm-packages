@@ -472,13 +472,13 @@ packages.filter(pkg => pkg.hasTests).forEach(pkg => {
         cb();
     })
 })
-gulp.task('test', packages.filter(pkg => pkg.hasTests).map(pkg => 'test:' + pkg.directory))
 //endregion
 
 //region: MAIN TASKS
 gulp.task('clean', [ `clean:${c.ts.taskPrefix}`, `clean:${c.ts.taskPrefix}:test`, 'clean:docs' ])
 gulp.task('build', [ 'clean' ], (cb) => sequence('build:pkgjs', `build:${c.ts.taskPrefix}`, `build:${c.ts.taskPrefix}:test`, 'idea', cb))
 gulp.task('watch', [ 'build' ], () => gulp.start(`watch:${c.ts.taskPrefix}`, `watch:${c.ts.taskPrefix}:test`))
+gulp.task('test', packages.filter(pkg => pkg.hasTests).map(pkg => 'test:' + pkg.directory))
 gulp.task('default', [ 'build' ])
 gulp.task('list', (cb) => {
     let args = yargs

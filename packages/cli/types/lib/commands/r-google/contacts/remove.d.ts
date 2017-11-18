@@ -9,6 +9,6 @@ export declare class GoogleContactsDeleteCmd {
     log: LoggerInstance;
     type: string;
     pick: boolean;
-    handle(args: CommandArguments): Promise<any>;
+    handle(args: CommandArguments): Promise<void | LoggerInstance>;
 }
 export default GoogleContactsDeleteCmd;
