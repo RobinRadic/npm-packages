@@ -11,6 +11,7 @@ Go to [documentation](http://robin.radic.nl/npm-packages) for all packages,
     + [Primary toolset](#primary-toolset)
     + [Run Tasks](#run-tasks)
     + [Gulp tasks](#gulp-tasks)
+  * [Todo](#todo)
 
 Summary
 -------
@@ -47,9 +48,24 @@ Development
 - `yarn scan` : Scans all node modules for security vulnerabilities.
 - `yarn test` : Tests all packages. Run `yarn build` or `yarn watch` first.
 - `yarn lerna`: Starts `lerna-wizard`, a interactive tool to execute Lerna commands.
+- `yarn test` : Test all packages that contain tests
+
 
 ### Gulp tasks
 - `gulp -T` for a complete useless overview.
 - `gulp tasks` for a better overview.
 - `gulp idea` : If using any IntelliJ product (IDEA,php/webstorm). This adds all source, tests, exclusions paths. Fixes some anoyances and improves intellisence.
 - `gulp tasks -d 3` : The higher the number gives more tasks for fine picking of tasks. Its better not to use them directly.
+
+
+Todo
+----
+This project was initially created as hands-on-learning mono-repo management.
+There's a couple of things that:  require improvement | are useless | stupid | usefull | awesome | tiring
+
+- gulpfile rework, some of them i'd like to move to a seperate package
+- scripts/*.ts scripts are silly
+- Tests reports can be added to the generated docs
+- Jenkins integration
+- Better task naming & task dependency improvements
+- Reduce code, some stuff could have been done more easy and efficient
