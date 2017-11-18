@@ -1,6 +1,6 @@
 {
     "name": "@radic/console",
-    "version": "0.0.19",
+    "version": "0.0.20",
     "description": "Console library",
     "main": "index.js",
     "author": "Robin Radic",
@@ -37,8 +37,8 @@
         "postversion": "git push && git push --tags  && npm run docs:deploy"
     },
     "dependencies": {
-        "@radic/console-colors": "^2.0.0",
-        "@radic/util": "^2.2.0",
+        "@radic/console-colors": "^2.0.1",
+        "@radic/util": "^2.3.0",
         "archy": "^1.0.0",
         "async": "^2.4.0",
         "axios": "^0.16.1",

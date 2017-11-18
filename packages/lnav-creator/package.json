@@ -1,6 +1,6 @@
 {
     "name": "@radic/lnav-creator",
-    "version": "0.1.2",
+    "version": "0.1.3",
     "description": "Lnav log string creator",
     "main": "index.js",
     "types": "types",
