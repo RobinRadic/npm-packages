@@ -96,6 +96,7 @@ export interface GulpTypedocOptions {
     plugins?: string[]
     target?: string;
     includes?:string
+    ignoreCompilerErrors?:boolean
     theme?: string;
     name?: string;
     readme?: string;

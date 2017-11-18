@@ -101,6 +101,7 @@ const c: RGulpConfig = {
                 out                : 'docs',
                 includeDeclarations: false,
                 excludeExternals   : true,
+                ignoreCompilerErrors: true,
                 includes           : resolve('scripts/templates/typedoc/inc'),
                 theme              : resolve('scripts/templates/typedoc/theme'),
                 plugins            : [

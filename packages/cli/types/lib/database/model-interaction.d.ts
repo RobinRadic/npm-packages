@@ -95,7 +95,23 @@ export declare class ModelInteractor {
     constructor(model: AbstractInteractiveModel, cls: typeof AbstractInteractiveModel);
     protected initSchemaProperties(fieldNames?: string[]): void;
     readonly ask: InputHelper;
-    property(name: string): InteractionSchemaProperty;
+    property(name: string): number | ((...items: InteractionSchemaProperty[]) => number) | {
+        <S extends InteractionSchemaProperty>(callbackfn: (value: InteractionSchemaProperty, index: number, array: InteractionSchemaProperty[]) => value is S, thisArg?: any): S[];
+        (callbackfn: (value: InteractionSchemaProperty, index: number, array: InteractionSchemaProperty[]) => any, thisArg?: any): InteractionSchemaProperty[];
+    } | ((searchElement: InteractionSchemaProperty, fromIndex?: number) => boolean) | (() => string) | (() => InteractionSchemaProperty) | {
+        (...items: ReadonlyArray<InteractionSchemaProperty>[]): InteractionSchemaProperty[];
+        (...items: (InteractionSchemaProperty | ReadonlyArray<InteractionSchemaProperty>)[]): InteractionSchemaProperty[];
+    } | ((separator?: string) => string) | (() => InteractionSchemaProperty[]) | ((start?: number, end?: number) => InteractionSchemaProperty[]) | ((compareFn?: (a: InteractionSchemaProperty, b: InteractionSchemaProperty) => number) => InteractionSchemaProperty[]) | {
+        (start: number, deleteCount?: number): InteractionSchemaProperty[];
+        (start: number, deleteCount: number, ...items: InteractionSchemaProperty[]): InteractionSchemaProperty[];
+    } | ((searchElement: InteractionSchemaProperty, fromIndex?: number) => number) | ((callbackfn: (value: InteractionSchemaProperty, index: number, array: InteractionSchemaProperty[]) => boolean, thisArg?: any) => boolean) | ((callbackfn: (value: InteractionSchemaProperty, index: number, array: InteractionSchemaProperty[]) => void, thisArg?: any) => void) | (<U>(callbackfn: (value: InteractionSchemaProperty, index: number, array: InteractionSchemaProperty[]) => U, thisArg?: any) => U[]) | {
+        (callbackfn: (previousValue: InteractionSchemaProperty, currentValue: InteractionSchemaProperty, currentIndex: number, array: InteractionSchemaProperty[]) => InteractionSchemaProperty): InteractionSchemaProperty;
+        (callbackfn: (previousValue: InteractionSchemaProperty, currentValue: InteractionSchemaProperty, currentIndex: number, array: InteractionSchemaProperty[]) => InteractionSchemaProperty, initialValue: InteractionSchemaProperty): InteractionSchemaProperty;
+        <U>(callbackfn: (previousValue: U, currentValue: InteractionSchemaProperty, currentIndex: number, array: InteractionSchemaProperty[]) => U, initialValue: U): U;
+    } | (() => IterableIterator<[number, InteractionSchemaProperty]>) | (() => IterableIterator<number>) | (() => IterableIterator<InteractionSchemaProperty>) | {
+        <S extends InteractionSchemaProperty>(predicate: (this: void, value: InteractionSchemaProperty, index: number, obj: InteractionSchemaProperty[]) => value is S, thisArg?: any): S;
+        (predicate: (value: InteractionSchemaProperty, index: number, obj: InteractionSchemaProperty[]) => boolean, thisArg?: any): InteractionSchemaProperty;
+    } | ((predicate: (value: InteractionSchemaProperty, index: number, obj: InteractionSchemaProperty[]) => boolean, thisArg?: any) => number) | ((value: InteractionSchemaProperty, start?: number, end?: number) => InteractionSchemaProperty[]) | ((target: number, start: number, end?: number) => InteractionSchemaProperty[]);
     getPropertyArrayFor(fieldNames: string | string[], overrides?: {
         [key: string]: InteractionSchemaProperty;
     }): InteractionSchemaProperty[];
