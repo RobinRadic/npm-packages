@@ -1,11 +1,11 @@
 {
-	"id": 317,
+	"id": 301,
 	"name": "console-colors",
 	"kind": 0,
 	"flags": {},
 	"children": [
 		{
-			"id": 321,
+			"id": 305,
 			"name": "Colors",
 			"kind": 128,
 			"kindString": "Class",
@@ -14,7 +14,7 @@
 			},
 			"children": [
 				{
-					"id": 322,
+					"id": 306,
 					"name": "palette",
 					"kind": 1024,
 					"kindString": "Property",
@@ -24,7 +24,7 @@
 					"sources": [
 						{
 							"fileName": "lib/colors.ts",
-							"line": 40,
+							"line": 41,
 							"character": 11
 						}
 					],
@@ -35,7 +35,7 @@
 					"defaultValue": " simple()"
 				},
 				{
-					"id": 323,
+					"id": 307,
 					"name": "convert",
 					"kind": 262144,
 					"kindString": "Accessor",
@@ -44,7 +44,7 @@
 					},
 					"getSignature": [
 						{
-							"id": 324,
+							"id": 308,
 							"name": "__get",
 							"kind": 524288,
 							"kindString": "Get signature",
@@ -58,13 +58,13 @@
 					"sources": [
 						{
 							"fileName": "lib/colors.ts",
-							"line": 42,
+							"line": 43,
 							"character": 15
 						}
 					]
 				},
 				{
-					"id": 325,
+					"id": 309,
 					"name": "supports",
 					"kind": 262144,
 					"kindString": "Accessor",
@@ -73,7 +73,7 @@
 					},
 					"getSignature": [
 						{
-							"id": 326,
+							"id": 310,
 							"name": "__get",
 							"kind": 524288,
 							"kindString": "Get signature",
@@ -87,13 +87,13 @@
 					"sources": [
 						{
 							"fileName": "lib/colors.ts",
-							"line": 44,
+							"line": 45,
 							"character": 16
 						}
 					]
 				},
 				{
-					"id": 327,
+					"id": 311,
 					"name": "get",
 					"kind": 2048,
 					"kindString": "Method",
@@ -102,14 +102,14 @@
 					},
 					"signatures": [
 						{
-							"id": 328,
+							"id": 312,
 							"name": "get",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 329,
+									"id": 313,
 									"name": "color",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -120,7 +120,7 @@
 									}
 								},
 								{
-									"id": 330,
+									"id": 314,
 									"name": "close",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -142,13 +142,13 @@
 					"sources": [
 						{
 							"fileName": "lib/colors.ts",
-							"line": 47,
+							"line": 48,
 							"character": 7
 						}
 					]
 				},
 				{
-					"id": 334,
+					"id": 318,
 					"name": "getStyles",
 					"kind": 2048,
 					"kindString": "Method",
@@ -157,7 +157,7 @@
 					},
 					"signatures": [
 						{
-							"id": 335,
+							"id": 319,
 							"name": "getStyles",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -171,13 +171,13 @@
 					"sources": [
 						{
 							"fileName": "lib/colors.ts",
-							"line": 58,
+							"line": 59,
 							"character": 13
 						}
 					]
 				},
 				{
-					"id": 331,
+					"id": 315,
 					"name": "getTrucolorColor",
 					"kind": 2048,
 					"kindString": "Method",
@@ -186,14 +186,14 @@
 					},
 					"signatures": [
 						{
-							"id": 332,
+							"id": 316,
 							"name": "getTrucolorColor",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 333,
+									"id": 317,
 									"name": "color",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -213,13 +213,13 @@
 					"sources": [
 						{
 							"fileName": "lib/colors.ts",
-							"line": 52,
+							"line": 53,
 							"character": 20
 						}
 					]
 				},
 				{
-					"id": 339,
+					"id": 323,
 					"name": "reset",
 					"kind": 2048,
 					"kindString": "Method",
@@ -228,7 +228,7 @@
 					},
 					"signatures": [
 						{
-							"id": 340,
+							"id": 324,
 							"name": "reset",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -242,13 +242,13 @@
 					"sources": [
 						{
 							"fileName": "lib/colors.ts",
-							"line": 69,
+							"line": 70,
 							"character": 9
 						}
 					]
 				},
 				{
-					"id": 336,
+					"id": 320,
 					"name": "styles",
 					"kind": 2048,
 					"kindString": "Method",
@@ -257,14 +257,14 @@
 					},
 					"signatures": [
 						{
-							"id": 337,
+							"id": 321,
 							"name": "styles",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 338,
+									"id": 322,
 									"name": "styles",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -284,7 +284,7 @@
 					"sources": [
 						{
 							"fileName": "lib/colors.ts",
-							"line": 63,
+							"line": 64,
 							"character": 10
 						}
 					]
@@ -295,39 +295,39 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						322
+						306
 					]
 				},
 				{
 					"title": "Accessors",
 					"kind": 262144,
 					"children": [
-						323,
-						325
+						307,
+						309
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						327,
-						334,
-						331,
-						339,
-						336
+						311,
+						318,
+						315,
+						323,
+						320
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "lib/colors.ts",
-					"line": 37,
+					"line": 38,
 					"character": 19
 				}
 			]
 		},
 		{
-			"id": 364,
+			"id": 348,
 			"name": "Parser",
 			"kind": 128,
 			"kindString": "Class",
@@ -336,7 +336,7 @@
 			},
 			"children": [
 				{
-					"id": 365,
+					"id": 349,
 					"name": "colors",
 					"kind": 1024,
 					"kindString": "Property",
@@ -353,12 +353,12 @@
 					"type": {
 						"type": "reference",
 						"name": "Colors",
-						"id": 321
+						"id": 305
 					},
 					"defaultValue": " new Colors"
 				},
 				{
-					"id": 369,
+					"id": 353,
 					"name": "clean",
 					"kind": 2048,
 					"kindString": "Method",
@@ -367,14 +367,14 @@
 					},
 					"signatures": [
 						{
-							"id": 370,
+							"id": 354,
 							"name": "clean",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 371,
+									"id": 355,
 									"name": "text",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -400,7 +400,7 @@
 					]
 				},
 				{
-					"id": 372,
+					"id": 356,
 					"name": "getTagsExp",
 					"kind": 2048,
 					"kindString": "Method",
@@ -410,7 +410,7 @@
 					},
 					"signatures": [
 						{
-							"id": 373,
+							"id": 357,
 							"name": "getTagsExp",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -430,7 +430,7 @@
 					]
 				},
 				{
-					"id": 374,
+					"id": 358,
 					"name": "getTextTags",
 					"kind": 2048,
 					"kindString": "Method",
@@ -440,14 +440,14 @@
 					},
 					"signatures": [
 						{
-							"id": 375,
+							"id": 359,
 							"name": "getTextTags",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 376,
+									"id": 360,
 									"name": "text",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -458,7 +458,7 @@
 									}
 								},
 								{
-									"id": 377,
+									"id": 361,
 									"name": "tagExp",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -493,7 +493,7 @@
 					]
 				},
 				{
-					"id": 366,
+					"id": 350,
 					"name": "parse",
 					"kind": 2048,
 					"kindString": "Method",
@@ -502,14 +502,14 @@
 					},
 					"signatures": [
 						{
-							"id": 367,
+							"id": 351,
 							"name": "parse",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 368,
+									"id": 352,
 									"name": "text",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -535,7 +535,7 @@
 					]
 				},
 				{
-					"id": 381,
+					"id": 365,
 					"name": "parseColor",
 					"kind": 2048,
 					"kindString": "Method",
@@ -545,14 +545,14 @@
 					},
 					"signatures": [
 						{
-							"id": 382,
+							"id": 366,
 							"name": "parseColor",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 383,
+									"id": 367,
 									"name": "color",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -578,7 +578,7 @@
 					]
 				},
 				{
-					"id": 378,
+					"id": 362,
 					"name": "parseTag",
 					"kind": 2048,
 					"kindString": "Method",
@@ -588,14 +588,14 @@
 					},
 					"signatures": [
 						{
-							"id": 379,
+							"id": 363,
 							"name": "parseTag",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 380,
+									"id": 364,
 									"name": "tag",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -612,7 +612,7 @@
 							"type": {
 								"type": "reference",
 								"name": "ParserParsedTag",
-								"id": 353
+								"id": 337
 							}
 						}
 					],
@@ -630,19 +630,19 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						365
+						349
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						369,
-						372,
-						374,
-						366,
-						381,
-						378
+						353,
+						356,
+						358,
+						350,
+						365,
+						362
 					]
 				}
 			],
@@ -655,7 +655,7 @@
 			]
 		},
 		{
-			"id": 318,
+			"id": 302,
 			"name": "AnsiRgbColors",
 			"kind": 256,
 			"kindString": "Interface",
@@ -664,8 +664,34 @@
 			},
 			"children": [
 				{
-					"id": 320,
+					"id": 304,
 					"name": "bg",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "lib/colors.ts",
+							"line": 19,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Array",
+						"typeArguments": [
+							{
+								"type": "intrinsic",
+								"name": "number"
+							}
+						]
+					}
+				},
+				{
+					"id": 303,
+					"name": "fg",
 					"kind": 1024,
 					"kindString": "Property",
 					"flags": {
@@ -688,32 +714,6 @@
 							}
 						]
 					}
-				},
-				{
-					"id": 319,
-					"name": "fg",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isExported": true
-					},
-					"sources": [
-						{
-							"fileName": "lib/colors.ts",
-							"line": 17,
-							"character": 6
-						}
-					],
-					"type": {
-						"type": "reference",
-						"name": "Array",
-						"typeArguments": [
-							{
-								"type": "intrinsic",
-								"name": "number"
-							}
-						]
-					}
 				}
 			],
 			"groups": [
@@ -721,21 +721,21 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						320,
-						319
+						304,
+						303
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "lib/colors.ts",
-					"line": 15,
+					"line": 16,
 					"character": 30
 				}
 			]
 		},
 		{
-			"id": 353,
+			"id": 337,
 			"name": "ParserParsedTag",
 			"kind": 256,
 			"kindString": "Interface",
@@ -744,7 +744,7 @@
 			},
 			"children": [
 				{
-					"id": 354,
+					"id": 338,
 					"name": "colors",
 					"kind": 1024,
 					"kindString": "Property",
@@ -767,7 +767,7 @@
 					}
 				},
 				{
-					"id": 360,
+					"id": 344,
 					"name": "replace",
 					"kind": 1024,
 					"kindString": "Property",
@@ -784,21 +784,21 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 361,
+							"id": 345,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"signatures": [
 								{
-									"id": 362,
+									"id": 346,
 									"name": "__call",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 363,
+											"id": 347,
 											"name": "text",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -826,7 +826,7 @@
 					}
 				},
 				{
-					"id": 355,
+					"id": 339,
 					"name": "replacements",
 					"kind": 1024,
 					"kindString": "Property",
@@ -843,21 +843,21 @@
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 356,
+							"id": 340,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
 							"flags": {},
 							"indexSignature": [
 								{
-									"id": 357,
+									"id": 341,
 									"name": "__index",
 									"kind": 8192,
 									"kindString": "Index signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 358,
+											"id": 342,
 											"name": "old",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -885,7 +885,7 @@
 					}
 				},
 				{
-					"id": 359,
+					"id": 343,
 					"name": "string",
 					"kind": 1024,
 					"kindString": "Property",
@@ -910,10 +910,10 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						354,
-						360,
-						355,
-						359
+						338,
+						344,
+						339,
+						343
 					]
 				}
 			],
@@ -926,21 +926,21 @@
 			]
 		},
 		{
-			"id": 349,
+			"id": 333,
 			"name": "isAllLength",
 			"kind": 64,
 			"kindString": "Function",
 			"flags": {},
 			"signatures": [
 				{
-					"id": 350,
+					"id": 334,
 					"name": "isAllLength",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 351,
+							"id": 335,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -951,7 +951,63 @@
 							}
 						},
 						{
-							"id": 352,
+							"id": 336,
+							"name": "lengths",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {
+								"isRest": true
+							},
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "intrinsic",
+									"name": "any"
+								}
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "lib/colors.ts",
+					"line": 36,
+					"character": 15
+				}
+			]
+		},
+		{
+			"id": 329,
+			"name": "isAnyLength",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {},
+			"signatures": [
+				{
+					"id": 330,
+					"name": "isAnyLength",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"parameters": [
+						{
+							"id": 331,
+							"name": "value",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						},
+						{
+							"id": 332,
 							"name": "lengths",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -982,77 +1038,21 @@
 			]
 		},
 		{
-			"id": 345,
-			"name": "isAnyLength",
-			"kind": 64,
-			"kindString": "Function",
-			"flags": {},
-			"signatures": [
-				{
-					"id": 346,
-					"name": "isAnyLength",
-					"kind": 4096,
-					"kindString": "Call signature",
-					"flags": {},
-					"parameters": [
-						{
-							"id": 347,
-							"name": "value",
-							"kind": 32768,
-							"kindString": "Parameter",
-							"flags": {},
-							"type": {
-								"type": "intrinsic",
-								"name": "any"
-							}
-						},
-						{
-							"id": 348,
-							"name": "lengths",
-							"kind": 32768,
-							"kindString": "Parameter",
-							"flags": {
-								"isRest": true
-							},
-							"type": {
-								"type": "array",
-								"elementType": {
-									"type": "intrinsic",
-									"name": "any"
-								}
-							}
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "boolean"
-					}
-				}
-			],
-			"sources": [
-				{
-					"fileName": "lib/colors.ts",
-					"line": 34,
-					"character": 15
-				}
-			]
-		},
-		{
-			"id": 341,
+			"id": 325,
 			"name": "isLength",
 			"kind": 64,
 			"kindString": "Function",
 			"flags": {},
 			"signatures": [
 				{
-					"id": 342,
+					"id": 326,
 					"name": "isLength",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 343,
+							"id": 327,
 							"name": "value",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1063,7 +1063,7 @@
 							}
 						},
 						{
-							"id": 344,
+							"id": 328,
 							"name": "lengths",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -1089,7 +1089,7 @@
 			"sources": [
 				{
 					"fileName": "lib/colors.ts",
-					"line": 22,
+					"line": 23,
 					"character": 17
 				}
 			]
@@ -1100,25 +1100,25 @@
 			"title": "Classes",
 			"kind": 128,
 			"children": [
-				321,
-				364
+				305,
+				348
 			]
 		},
 		{
 			"title": "Interfaces",
 			"kind": 256,
 			"children": [
-				318,
-				353
+				302,
+				337
 			]
 		},
 		{
 			"title": "Functions",
 			"kind": 64,
 			"children": [
-				349,
-				345,
-				341
+				333,
+				329,
+				325
 			]
 		}
 	]

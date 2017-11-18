@@ -70,7 +70,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="../interfaces/errorbase.html" class="tsd-signature-type">ErrorBase</a>
+						<a href="baseerror.html" class="tsd-signature-type">BaseError</a>
 						<ul class="tsd-hierarchy">
 							<li>
 								<span class="target">ModuleNotFoundError</span>
@@ -86,17 +86,22 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="modulenotfounderror.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite"><a href="modulenotfounderror.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-class"><a href="modulenotfounderror.html#code" class="tsd-kind-icon">code</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><a href="modulenotfounderror.html#errorbase" class="tsd-kind-icon">Error<wbr>Base</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static"><a href="modulenotfounderror.html#message" class="tsd-kind-icon">message</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static"><a href="modulenotfounderror.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="modulenotfounderror.html#message" class="tsd-kind-icon">message</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="modulenotfounderror.html#name" class="tsd-kind-icon">name</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static"><a href="modulenotfounderror.html#stack" class="tsd-kind-icon">stack</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-inherited">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><a href="modulenotfounderror.html#sayhello" class="tsd-kind-icon">say<wbr>Hello</a></li>
 							</ul>
 						</section>
 					</div>
@@ -104,17 +109,18 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
+				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
+					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 						<li class="tsd-signature tsd-kind-icon">new <wbr>Module<wbr>Not<wbr>Found<wbr>Error<span class="tsd-signature-symbol">(</span>message<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="modulenotfounderror.html" class="tsd-signature-type">ModuleNotFoundError</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
+								<p>Overrides <a href="baseerror.html">BaseError</a>.<a href="baseerror.html#constructor">constructor</a></p>
 								<ul>
-									<li>Defined in <a href="https://github.com/robinradic/npm-packages/blob/5ab562d/packages/console/src/lib/errors.ts#L28">lib/errors.ts:28</a></li>
+									<li>Defined in <a href="https://github.com/robinradic/npm-packages/blob/1f2c70d/packages/console/src/lib/errors.ts#L15">lib/errors.ts:15</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -136,55 +142,64 @@
 					<div class="tsd-signature tsd-kind-icon">code<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;MODULE_NOT_FOUND&quot;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/robinradic/npm-packages/blob/5ab562d/packages/console/src/lib/errors.ts#L28">lib/errors.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/robinradic/npm-packages/blob/1f2c70d/packages/console/src/lib/errors.ts#L15">lib/errors.ts:15</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-static">
-					<a name="errorbase" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> Error<wbr>Base</h3>
-					<div class="tsd-signature tsd-kind-icon">Error<wbr>Base<span class="tsd-signature-symbol">:</span> <a href="../interfaces/errorbaseconstructor.html" class="tsd-signature-type">ErrorBaseConstructor</a><span class="tsd-signature-symbol"> =&nbsp;&lt;any&gt;class ErrorBase {public constructor(message: string) {Object.defineProperty(this, &#x27;name&#x27;, {get: () &#x3D;&gt; (this.constructor as any).name,});Object.defineProperty(this, &#x27;message&#x27;, {get: () &#x3D;&gt; message,});Error.captureStackTrace(this, this.constructor);}}</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/robinradic/npm-packages/blob/5ab562d/packages/console/src/lib/errors.ts#L13">lib/errors.ts:13</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 					<a name="message" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> message</h3>
 					<div class="tsd-signature tsd-kind-icon">message<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="../interfaces/errorbase.html">ErrorBase</a>.<a href="../interfaces/errorbase.html#message">message</a></p>
-						<p>Overrides Error.message</p>
+						<p>Inherited from Error.message</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/robinradic/npm-packages/blob/5ab562d/packages/console/src/lib/errors.ts#L3">lib/errors.ts:3</a></li>
+							<li>Defined in /mnt/fat/node/@radic/node_modules/typedoc/node_modules/typescript/lib/lib.es6.d.ts:874</li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 					<a name="name" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagStatic">Static</span> name</h3>
 					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="../interfaces/errorbase.html">ErrorBase</a>.<a href="../interfaces/errorbase.html#name">name</a></p>
-						<p>Overrides Error.name</p>
+						<p>Inherited from Error.name</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/robinradic/npm-packages/blob/5ab562d/packages/console/src/lib/errors.ts#L2">lib/errors.ts:2</a></li>
+							<li>Defined in /mnt/fat/node/@radic/node_modules/typedoc/node_modules/typescript/lib/lib.es6.d.ts:873</li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
 					<a name="stack" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagStatic">Static</span> stack</h3>
+					<h3><span class="tsd-flag ts-flagStatic">Static</span> <span class="tsd-flag ts-flagOptional">Optional</span> stack</h3>
 					<div class="tsd-signature tsd-kind-icon">stack<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Inherited from <a href="../interfaces/errorbase.html">ErrorBase</a>.<a href="../interfaces/errorbase.html#stack">stack</a></p>
+						<p>Inherited from Error.stack</p>
 						<p>Overrides Error.stack</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/robinradic/npm-packages/blob/5ab562d/packages/console/src/lib/errors.ts#L4">lib/errors.ts:4</a></li>
+							<li>Defined in /mnt/fat/node/@radic/node_modules/typedoc/node_modules/typescript/lib/lib.es6.d.ts:875</li>
 						</ul>
 					</aside>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+					<a name="sayhello" class="tsd-anchor"></a>
+					<h3>say<wbr>Hello</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">say<wbr>Hello<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="baseerror.html">BaseError</a>.<a href="baseerror.html#sayhello">sayHello</a></p>
+								<ul>
+									<li>Defined in <a href="https://github.com/robinradic/npm-packages/blob/1f2c70d/packages/console/src/lib/errors.ts#L9">lib/errors.ts:9</a></li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -203,23 +218,23 @@
 					<li class="current tsd-kind-class">
 						<a href="modulenotfounderror.html" class="tsd-kind-icon">Module<wbr>Not<wbr>Found<wbr>Error</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
+							<li class=" tsd-kind-constructor tsd-parent-kind-class tsd-is-overwrite">
 								<a href="modulenotfounderror.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
 								<a href="modulenotfounderror.html#code" class="tsd-kind-icon">code</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-static">
-								<a href="modulenotfounderror.html#errorbase" class="tsd-kind-icon">Error<wbr>Base</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 								<a href="modulenotfounderror.html#message" class="tsd-kind-icon">message</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
+							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
 								<a href="modulenotfounderror.html#name" class="tsd-kind-icon">name</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited tsd-is-static">
 								<a href="modulenotfounderror.html#stack" class="tsd-kind-icon">stack</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited">
+								<a href="modulenotfounderror.html#sayhello" class="tsd-kind-icon">say<wbr>Hello</a>
 							</li>
 						</ul>
 					</li>
