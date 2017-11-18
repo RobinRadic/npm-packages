@@ -1,6 +1,6 @@
 {
     "name": "@radic/console",
-    "version": "0.0.21",
+    "version": "0.0.22",
     "description": "Console library",
     "main": "index.js",
     "author": "Robin Radic <rradic@hotmail.com> (https://radic.nl/)",
@@ -14,8 +14,8 @@
         "watch": "mocha-typescript-watch"
     },
     "dependencies": {
-        "@radic/console-colors": "^2.0.2",
-        "@radic/util": "^2.3.1",
+        "@radic/console-colors": "^2.0.3",
+        "@radic/util": "^2.3.2",
         "archy": "^1.0.0",
         "async": "^2.4.0",
         "axios": "^0.16.1",
