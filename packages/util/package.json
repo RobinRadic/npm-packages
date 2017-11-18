@@ -1,6 +1,6 @@
 {
     "name": "@radic/util",
-    "version": "2.3.0",
+    "version": "2.3.1",
     "description": "Utilities for node / browser",
     "main": "index.js",
     "types": "types",
@@ -12,8 +12,7 @@
         "test": "nyc mocha",
         "posttest": "rimraf ./**/*.js",
         "clean": "rimraf types lib .nyc_output ./**/*.js",
-        "watch": "mocha-typescript-watch",
-        "prepare": "tsc"
+        "watch": "mocha-typescript-watch"
     },
     "scripts2": {
         "reinstall": "rm -rf node_modules yarn.lock package-lock.json && yarn install",

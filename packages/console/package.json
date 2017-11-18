@@ -1,6 +1,6 @@
 {
     "name": "@radic/console",
-    "version": "0.0.20",
+    "version": "0.0.21",
     "description": "Console library",
     "main": "index.js",
     "author": "Robin Radic",
@@ -15,8 +15,7 @@
         "test": "nyc mocha",
         "posttest": "rimraf test/*.js",
         "clean": "rimraf types ./**/*.js",
-        "watch": "mocha-typescript-watch",
-        "prepare": "tsc"
+        "watch": "mocha-typescript-watch"
     },
     "scriptsw": {
         "link": "npm link @radic/console-colors && npm link @radic/util",
@@ -37,8 +36,8 @@
         "postversion": "git push && git push --tags  && npm run docs:deploy"
     },
     "dependencies": {
-        "@radic/console-colors": "^2.0.1",
-        "@radic/util": "^2.3.0",
+        "@radic/console-colors": "^2.0.2",
+        "@radic/util": "^2.3.1",
         "archy": "^1.0.0",
         "async": "^2.4.0",
         "axios": "^0.16.1",

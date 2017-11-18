@@ -1,6 +1,6 @@
 {
     "name": "@radic/console-colors",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "Console Colors text parser. Apply colors to texts fast & easy. Use hex/rgb colors with auto (or custom) fallback for unsupported terminals.",
     "main": "radic.console-colors.js",
     "typings": "lib/index.d.ts",
@@ -13,7 +13,6 @@
         "test": "nyc mocha",
         "posttest": "rimraf test/**/*.js",
         "watch": "mocha-typescript-watch",
-        "prepare": "tsc",
         "clean": "rimraf types ./**/*.js .nyc_output"
     },
     "radic": {
