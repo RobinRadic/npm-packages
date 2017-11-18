@@ -1,18 +1,12 @@
-export interface ErrorBase extends Error {
-    readonly name: string;
-    readonly message: string;
-    readonly stack: string;
+export declare class BaseError extends Error {
+    constructor(m: string);
+    sayHello(): string;
 }
-export interface ErrorBaseConstructor {
-    new (message: string): ErrorBase;
-    readonly prototype: ErrorBase;
-}
-export declare const ErrorBase: ErrorBaseConstructor;
-export declare class ModuleNotFoundError extends ErrorBase {
-    readonly code: string;
+export declare class ModuleNotFoundError extends BaseError {
+    code: string;
     constructor(message: string);
 }
-export declare class HelperDependencyMissingError extends ErrorBase {
-    readonly code: string;
+export declare class HelperDependencyMissingError extends BaseError {
+    code: string;
     constructor(helperName: string, dependencyName: string);
 }

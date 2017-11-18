@@ -12,11 +12,10 @@ import { touch } from 'shelljs';
 import * as globule from 'globule';
 import { basename, join, resolve } from 'path';
 import * as _ from 'lodash';
-import { existsSync, statSync } from 'fs';
-import { exec } from 'child_process';
+import { existsSync, statSync, writeFileSync } from 'fs';
+import { exec, execSync } from 'child_process';
 import { GulpTypedocOptions, IdeaIml, IdeaJsMappings, PackageData, RGulpConfig, TSProjectOptions } from './scripts/interfaces';
 import * as yargs from 'yargs';
-import { defer } from 'q';
 import { Radic } from './scripts/Radic';
 import * as scss from 'node-sass';
 import * as pug from 'pug';
@@ -26,6 +25,7 @@ import * as sequence from 'run-sequence';
 import { isArray } from 'util';
 import { Template } from './scripts/Template';
 import * as ghPages from 'gulp-gh-pages';
+import { writeJsonSync } from 'fs-extra';
 // noinspection ES6UnusedImports
 import typedoc = require('gulp-typedoc');
 import mdtoc            = require('markdown-toc');
@@ -92,25 +92,25 @@ const c: RGulpConfig = {
     packageDefaults: {
         radic: {
             typedoc: {
-                module             : 'commonjs',
-                mode               : 'file',
-                target             : 'es6',
-                hideGenerator      : false,
-                json               : 'docs/typedoc.json',
-                verbose            : true,
-                out                : 'docs',
-                includeDeclarations: false,
-                excludeExternals   : true,
+                module              : 'commonjs',
+                mode                : 'file',
+                target              : 'es6',
+                hideGenerator       : false,
+                json                : 'docs/typedoc.json',
+                verbose             : true,
+                out                 : 'docs',
+                includeDeclarations : false,
+                excludeExternals    : true,
                 ignoreCompilerErrors: true,
-                includes           : resolve('scripts/templates/typedoc/inc'),
-                theme              : resolve('scripts/templates/typedoc/theme'),
-                plugins            : [
+                includes            : resolve('scripts/templates/typedoc/inc'),
+                theme               : resolve('scripts/templates/typedoc/theme'),
+                plugins             : [
                     'typedoc-plantuml'
                     // 'typedoc-plugin-markdown',
                     // 'typedoc-plugin-single-line-tags',
                     // 'typedoc-plugin-sourcefile-url'
                 ],
-                exclude            : [ 'types', 'test' ].join(',')
+                exclude             : [ 'types', 'test' ].join(',')
             }
         }
     }
@@ -137,9 +137,9 @@ const packagePaths            = globule
 // noinspection ReservedWordAsName
 const packages: PackageData[] = new DependencySorter({ idProperty: 'name' }).sort(packagePaths.map(path => {
 
-    const pkg  = require(resolve(path, 'package.json'))
+    const pkg     = require(resolve(path, 'package.json'))
     // general data
-    const data = <PackageData> {
+    const data    = <PackageData> {
         path        : {
             toString: () => resolve(path),
             to      : (...args: string[]) => resolve.apply(null, [ path ].concat(args)),
@@ -152,6 +152,7 @@ const packages: PackageData[] = new DependencySorter({ idProperty: 'name' }).sor
         depends     : Object.keys(pkg.dependencies),
         dependencies: pkg.dependencies
     }
+    data.hasTests = existsSync(data.path.to('test'));
 
     // apply package defaults
     data.package = _.merge(data.package, {
@@ -240,6 +241,7 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
         // Run Typescript Compiler
         exec(resolve('node_modules/.bin/tsc'), { cwd: pkg.path + '' })
             .on('exit', () => {
+                writeFileSync(pkg.path.to('index.d.ts'), 'export * from "./types"', 'utf-8')
                 cb()
             })
     })
@@ -441,9 +443,41 @@ gulp.task('docs:deploy', (cb) => sequence('docs', 'docs:ghpages', cb))
 //endregion
 
 
+//region: TASKS: PACKAGE.JSON DEFAULTS
+let defaultPackageJson = require('./scripts/templates/package.json')
+let pkgjsTaskNames     = []
+packages.forEach(pkg => {
+    let taskName = 'build:pkgjs:' + pkg.directory;
+    pkgjsTaskNames.push(taskName)
+    gulp.task(taskName, (cb) => {
+        let packageJson      = _.merge(require(pkg.path.to('package.json')), defaultPackageJson)
+        packageJson.homepage = 'http://robin.radic.nl/npm-packages/' + pkg.directory
+        writeJsonSync(pkg.path.to('package.json'), packageJson, { encoding: 'utf-8', spaces: 4 });
+        cb();
+    })
+})
+gulp.task('build:pkgjs', pkgjsTaskNames);
+//endregion
+
+
+//region: TASKS: TESTING
+
+packages.filter(pkg => pkg.hasTests).forEach(pkg => {
+    gulp.task('test:' + pkg.directory, (cb) => {
+        if ( pkg.package.scripts.test ) {
+            execSync('yarn test', { cwd: pkg.path.toString(), stdio: 'inherit' });
+        } else {
+            execSync('nyc mocha', { cwd: pkg.path.toString(), stdio: 'inherit' });
+        }
+        cb();
+    })
+})
+gulp.task('test', packages.filter(pkg => pkg.hasTests).map(pkg => 'test:' + pkg.directory))
+//endregion
+
 //region: MAIN TASKS
 gulp.task('clean', [ `clean:${c.ts.taskPrefix}`, `clean:${c.ts.taskPrefix}:test`, 'clean:docs' ])
-gulp.task('build', [ 'clean' ], (cb) => sequence(`build:${c.ts.taskPrefix}`, `build:${c.ts.taskPrefix}:test`, 'idea', cb))
+gulp.task('build', [ 'clean' ], (cb) => sequence('build:pkgjs', `build:${c.ts.taskPrefix}`, `build:${c.ts.taskPrefix}:test`, 'idea', cb))
 gulp.task('watch', [ 'build' ], () => gulp.start(`watch:${c.ts.taskPrefix}`, `watch:${c.ts.taskPrefix}:test`))
 gulp.task('default', [ 'build' ])
 gulp.task('list', (cb) => {
@@ -472,18 +506,6 @@ gulp.task('list', (cb) => {
 })
 gulp.task('tasks', [ 'list' ])
 //endregion
-
-
-//region: INTERACTIVE TASKS
-gulp.task('interact', async () => {
-    let d = defer()
-
-
-    return d;
-})
-
-//endregion
-
 
 if ( c.idea ) {
 // always run the IntelliJ IDEA fixer

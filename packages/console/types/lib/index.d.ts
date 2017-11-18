@@ -1,4 +1,3 @@
-import "module-alias/register.js";
 import "reflect-metadata";
 import './utils';
 import './core';

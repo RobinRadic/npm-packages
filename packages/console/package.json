@@ -3,37 +3,15 @@
     "version": "0.0.21",
     "description": "Console library",
     "main": "index.js",
-    "author": "Robin Radic",
+    "author": "Robin Radic <rradic@hotmail.com> (https://radic.nl/)",
     "license": "MIT",
-    "types": "types",
-    "homepage": "https://robin.radic.nl/npm-packages",
+    "types": "index.d.ts",
     "repository": "https://github.com/robinradic/npm-packages",
-    "bin": "examples/r.js",
+    "homepage": "http://robin.radic.nl/npm-packages/console",
     "scripts": {
-        "build": "tsc",
-        "pretest": "tsc",
         "test": "nyc mocha",
-        "posttest": "rimraf test/*.js",
         "clean": "rimraf types ./**/*.js",
         "watch": "mocha-typescript-watch"
-    },
-    "scriptsw": {
-        "link": "npm link @radic/console-colors && npm link @radic/util",
-        "reinstall": "rm -rf node_modules yarn.lock package-lock.json && yarn install",
-        "start": "npm run reinstall && npm run link && npm run build && npm run watch",
-        "build": "gulp build",
-        "watch": "gulp watch",
-        "pretest": "gulp build:test",
-        "test": "nyc mocha",
-        "posttest": "nyc report --reporter=json && codecov -f coverage/*.json",
-        "clean": "gulp clean",
-        "docs": "npm run docs:generate && npm run docs:serve",
-        "docs:generate": "rm -r docs &> /dev/null ; typedoc --name \"Radical Console\" --readme docs.md --target ES6 --exclude spec example example2 node_modules types/lodash --ignoreCompilerErrors --mode file --excludeNotExported --excludePrivate --out docs ./dts/index.d.ts",
-        "docs:serve": "cd docs && lite-server",
-        "docs:deploy": "npm run docs:generate; gulp ghpages",
-        "preversion": "npm test",
-        "version": "npm run build && git add -A",
-        "postversion": "git push && git push --tags  && npm run docs:deploy"
     },
     "dependencies": {
         "@radic/console-colors": "^2.0.2",
@@ -91,5 +69,29 @@
         "winston": "^2.3.1",
         "wrap-ansi": "^3.0.1",
         "yargs-parser": "^5.0.0"
+    },
+    "radic": {
+        "typedoc": {
+            "module": "commonjs",
+            "mode": "file",
+            "target": "es6",
+            "hideGenerator": false,
+            "json": "docs/@radic-console/typedoc.json",
+            "verbose": true,
+            "out": "docs/@radic-console",
+            "includeDeclarations": false,
+            "excludeExternals": true,
+            "ignoreCompilerErrors": true,
+            "includes": "/mnt/fat/node/lerna-test-@radic/scripts/templates/typedoc/inc",
+            "theme": "/mnt/fat/node/lerna-test-@radic/scripts/templates/typedoc/theme",
+            "plugins": [
+                "typedoc-plantuml"
+            ],
+            "exclude": "types,test"
+        }
+    },
+    "bugs": {
+        "email": "rradic@hotmail.com",
+        "url": "https://github.com/robinradic/npm-packages/issues"
     }
 }

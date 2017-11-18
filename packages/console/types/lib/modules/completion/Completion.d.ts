@@ -29,10 +29,10 @@ export declare class Completion extends EventEmitter {
     generateCompletionCode(): any;
     generateCompletionCodeFish(): any;
     generateTestAliases(): string;
-    checkInstall(): never;
+    checkInstall(): void;
     getActiveShell(): "bash" | "zsh" | "fish";
     getDefaultShellInitFile(): any;
     setupShellInitFile(initFile: any): never;
-    init(): never;
+    init(): void;
 }
 export declare function completion(...a: any[]): any;

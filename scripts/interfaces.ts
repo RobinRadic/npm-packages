@@ -70,7 +70,8 @@ export interface PackageData {
     name: string,
     tsconfig: TsConfig,
     depends: string[],
-    dependencies: { [name: string]: string }
+    dependencies: { [name: string]: string },
+    hasTests?:boolean
 }
 
 export interface GulpGhPagesOptions {

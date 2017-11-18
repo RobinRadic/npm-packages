@@ -1,5 +1,5 @@
 import { suite, test } from "mocha-typescript";
-import { Config } from "../src";
+import { Config } from "../";
 let defaultConfig = {
     foo     : 'bar',
     fooNum  : 1,

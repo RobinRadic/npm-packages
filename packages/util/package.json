@@ -3,38 +3,44 @@
     "version": "2.3.1",
     "description": "Utilities for node / browser",
     "main": "index.js",
-    "types": "types",
-    "jsnext:main": "es/index.js",
-    "repository": "https://bitbucket.org/robin-radic/util",
+    "types": "index.d.ts",
+    "author": "Robin Radic <rradic@hotmail.com> (https://radic.nl/)",
+    "license": "MIT",
+    "repository": "https://github.com/robinradic/npm-packages",
+    "homepage": "http://robin.radic.nl/npm-packages/util",
     "scripts": {
         "build": "tsc",
         "pretest": "tsc",
         "test": "nyc mocha",
         "posttest": "rimraf ./**/*.js",
-        "clean": "rimraf types lib .nyc_output ./**/*.js",
+        "clean": "rimraf types ./**/*.js",
         "watch": "mocha-typescript-watch"
     },
-    "scripts2": {
-        "reinstall": "rm -rf node_modules yarn.lock package-lock.json && yarn install",
-        "start": "npm run reinstall && npm run build && npm run watch",
-        "build": "gulp --gulpfile gulpfile.ts build",
-        "watch": "gulp --gulpfile gulpfile.ts watch",
-        "pretest": "gulp --gulpfile gulpfile.ts build:test",
-        "test": "nyc mocha -r chai/register-assert -r chai/register-expect -r chai/register-should",
-        "posttest2": "nyc report --reporter=json && codecov -f coverage/*.json",
-        "clean": "gulp --gulpfile gulpfile.ts clean",
-        "docs": "npm run docs:generate && npm run docs:serve",
-        "docs:generate": "rm -r docs &> /dev/null ; typedoc --name \"Radical Console\" --readme docs.md --target ES6 --exclude spec example example2 node_modules types/lodash --ignoreCompilerErrors --mode file --excludeNotExported --excludePrivate --out docs ./dts/index.d.ts",
-        "docs:serve": "cd docs && lite-server",
-        "docs:deploy": "npm run docs:generate; gulp ghpages",
-        "preversion": "npm test",
-        "version": "npm run build && git add -A",
-        "postversion": "git push && git push --tags && npm publish --access public",
-        "postpublish": "npm run docs:deploy"
-    },
-    "author": "Robin Radic",
-    "license": "MIT",
     "dependencies": {
         "lodash": "^4.15.0"
+    },
+    "radic": {
+        "typedoc": {
+            "module": "commonjs",
+            "mode": "file",
+            "target": "es6",
+            "hideGenerator": false,
+            "json": "docs/@radic-util/typedoc.json",
+            "verbose": true,
+            "out": "docs/@radic-util",
+            "includeDeclarations": false,
+            "excludeExternals": true,
+            "ignoreCompilerErrors": true,
+            "includes": "/mnt/fat/node/lerna-test-@radic/scripts/templates/typedoc/inc",
+            "theme": "/mnt/fat/node/lerna-test-@radic/scripts/templates/typedoc/theme",
+            "plugins": [
+                "typedoc-plantuml"
+            ],
+            "exclude": "types,test"
+        }
+    },
+    "bugs": {
+        "email": "rradic@hotmail.com",
+        "url": "https://github.com/robinradic/npm-packages/issues"
     }
 }

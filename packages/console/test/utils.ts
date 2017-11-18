@@ -1,5 +1,5 @@
 import { suite, test } from 'mocha-typescript';
-import { Cli, CliConfig, CommandArgumentConfig, CommandConfig, container, defaults, ParseArgumentsFunction, PrepareArgumentsFunction } from '../src';
+import { Cli, CliConfig, CommandArgumentConfig, CommandConfig, container, defaults, ParseArgumentsFunction, PrepareArgumentsFunction } from '../';
 import { bootstrap } from './_support/bootstrap';
 import { assert, should } from 'chai'
 

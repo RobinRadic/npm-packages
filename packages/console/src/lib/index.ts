@@ -1,4 +1,3 @@
-import "module-alias/register.js"
 import "reflect-metadata";
 import { resolve } from "path";
 import { config } from 'dotenv'
