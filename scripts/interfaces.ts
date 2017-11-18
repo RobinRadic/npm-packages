@@ -39,6 +39,7 @@ export interface RGulpConfig {
         docs?: {
             scss?:SCSS.Options
             pug?:PugOptions
+            pugLocals?:{[k:string]:any}
         }
     }
     ghPages?:GulpGHPagesOptions
@@ -94,6 +95,7 @@ export interface GulpTypedocOptions {
     module?: string;
     plugins?: string[]
     target?: string;
+    includes?:string
     theme?: string;
     name?: string;
     readme?: string;

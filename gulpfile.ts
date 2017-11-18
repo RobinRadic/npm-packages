@@ -8,6 +8,7 @@ import * as gts from 'gulp-typescript';
 import * as ts from 'typescript';
 // noinspection ES6UnusedImports
 import * as shelljs from 'shelljs';
+import { touch } from 'shelljs';
 import * as globule from 'globule';
 import { basename, join, resolve } from 'path';
 import * as _ from 'lodash';
@@ -23,12 +24,11 @@ import { Options as PugOptions } from 'pug';
 import * as browserSync from 'browser-sync';
 import * as sequence from 'run-sequence';
 import { isArray } from 'util';
+import { Template } from './scripts/Template';
+import * as ghPages from 'gulp-gh-pages';
 // noinspection ES6UnusedImports
 import typedoc = require('gulp-typedoc');
 import mdtoc            = require('markdown-toc');
-import { Template } from './scripts/Template';
-import * as ghPages from 'gulp-gh-pages';
-import { touch } from 'shelljs';
 
 sequence.use(<any> gulp);
 
@@ -61,12 +61,13 @@ const c: RGulpConfig = {
             inlineSources  : false
         }
     },
-    ghPages: {
+    ghPages        : {
         origin   : 'origin',
         branch   : 'gh-pages',
         push     : true,
         message  : 'update [timestamp]',
-        cacheDir : '.tmp/publish'
+        cacheDir : '.tmp/publish',
+        remoteUrl: 'https://github.com/robinradic/npm-packages/'
     },
     templates      : {
         readme: {
@@ -74,11 +75,17 @@ const c: RGulpConfig = {
             bullets: '-'
         },
         docs  : {
-            scss: {
+            scss     : {
                 outFile: './docs/index.css'
             },
-            pug : {
+            pug      : {
                 pretty: true
+            },
+            pugLocals: {
+                baseUrl: 'https://robin.radic.nl/npm-packages/',
+                lodash: _,
+                githubUrl: 'https://github.com/robinradic/npm-packages',
+                githubForkUrl: 'https://github.com/robinradic/npm-packages/fork',
             }
         }
     },
@@ -94,8 +101,10 @@ const c: RGulpConfig = {
                 out                : 'docs',
                 includeDeclarations: false,
                 excludeExternals   : true,
+                includes           : resolve('scripts/templates/typedoc/inc'),
+                theme              : resolve('scripts/templates/typedoc/theme'),
                 plugins            : [
-                    'typedoc-plantuml',
+                    'typedoc-plantuml'
                     // 'typedoc-plugin-markdown',
                     // 'typedoc-plugin-single-line-tags',
                     // 'typedoc-plugin-sourcefile-url'
@@ -169,7 +178,7 @@ const packages: PackageData[] = new DependencySorter({ idProperty: 'name' }).sor
 
 const packageNames = packages.map(pkg => pkg.name);
 
-
+_.merge(c.templates.docs.pugLocals, { packageNames, packages, packagePaths })
 r.addTemplateParser('markdown-readme-toc', (content) => {
     let toc = mdtoc(content, c.readme)
     return content.replace('[[TOC]]', toc.content);
@@ -183,11 +192,11 @@ r.addTemplateParser('scss', (content) => {
 })
 r.addTemplateParser('pug', (content) => {
     const compile = pug.compile(content, _.merge(c.templates.docs.pug, <PugOptions>{
-        pretty: true,
+        pretty  : true,
         filename: 'index.pug',
-        basedir: resolve('scripts/templates/docs')
+        basedir : resolve('scripts/templates/docs')
     }))
-    return compile({ packageNames, packages, packagePaths, baseUrl: 'https://robin.radic.nl/npm-packages', lodash: _ });
+    return compile(c.templates.docs.pugLocals);
 })
 //endregion
 
@@ -220,8 +229,8 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
     if ( pkg.package.radic.typedoc !== false ) {
         gulp.task('docs:' + name, () => gulp.src(pkg.path.to('src/**/*.ts')).pipe(typedoc(_.merge(pkg.package.radic.typedoc, <GulpTypedocOptions> {
             name: pkg.directory,
-            out: `./docs/${pkg.directory}`,
-            json               : `docs/${pkg.directory}/typedoc.json`,
+            out : `./docs/${pkg.directory}`,
+            json: `docs/${pkg.directory}/typedoc.json`
         }))))
         cleanPaths.push(pkg.package.radic.typedoc.out)
     }
@@ -367,12 +376,11 @@ gulp.task('docs:templates', [ 'clean:docs:templates' ], (cb) => {
     log(`Compiled and written {cyan}templates/docs/index.pug{/cyan} to {cyan}docs/index.html{/cyan}`)
 
 
-
-    r.template('docs/stylesheet.scss').parse(function(this:Template, content:string) {
+    r.template('docs/stylesheet.scss').parse(function (this: Template, content: string) {
         let result = scss.renderSync({
-            file   : this.getFilePath()
+            file: this.getFilePath()
         })
-        content = result.css.toString();
+        content    = result.css.toString();
         return content;
     }).writeTo('docs/stylesheet.css', true);
 
@@ -385,7 +393,8 @@ gulp.task('docs:script', (cb) => {
             cb()
         })
 })
-gulp.task('docs:serve', [ 'docs' ], () => {
+gulp.task('docs:serve', () => {
+    c.templates.docs.pugLocals.baseUrl = '/';
     if ( docsServer.active ) {
         log('docServer already active. exiting')
         docsServer.exit();
@@ -402,6 +411,14 @@ gulp.task('docs:serve', [ 'docs' ], () => {
     }).on('change', () => {
         if ( docsServer.active ) {
             docsServer.reload()
+        }
+    })
+    gulp.watch('docs/util/**/*', () => {
+        gulp.start('docs:ts:util')
+    }).on('change', () => {
+        if ( docsServer.active ) {
+            setTimeout(() => docsServer.reload(), 1000)
+
         }
     })
 });
