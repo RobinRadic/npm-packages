@@ -1,0 +1,22 @@
+{
+    "extends": "../../tsconfig",
+    "compilerOptions": {
+        "baseUrl": "./",
+        "declaration": false,
+        "paths": {
+            "*": ["*"],
+            "@log": ["../modules/log/"],
+            "@output": ["../modules/output/"],
+            "radical-console": ["../src/"],
+            "omelette": ["../types/omelette/index.d.ts"]
+        },
+        "typeRoots": [
+            "../node_modules/@types",
+            "../types"
+        ]
+    },
+    "include": [
+        "r.ts",
+        "commands/**/*"
+    ]
+}

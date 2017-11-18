@@ -14,7 +14,7 @@
         "posttest": "rimraf test/**/*.js",
         "watch": "mocha-typescript-watch",
         "prepare": "tsc",
-        "clean": "rimraf types test/**/*.js src/**/*.js .nyc_output"
+        "clean": "rimraf types ./**/*.js .nyc_output"
     },
     "radic": {
         "typedoc": {

@@ -19,8 +19,16 @@
         "paths": {
             "@radic/generators": ["./generators/types"],
             "@radic/generators/*": ["./generators/types/*"],
+
             "@radic/util": ["./util/types"],
             "@radic/util/*": ["./util/types/*"],
+
+            "@radic/console": ["./util/console/types"],
+            "@radic/console/*": ["./util/console/types/*"],
+
+            "@radic/rcli": ["./util/rcli/types"],
+            "@radic/rcli/*": ["./util/rcli/types/*"],
+
             "@radic/console-colors": ["./console-colors/types"],
             "@radic/console-colors/*": ["./console-colors/types/*"]
         }

@@ -2,5 +2,5 @@
 /*/*.js
 /*/yarn.lock
 /*/packages-lock.json
-/*/types
+/packages/console/src/types
 /*/.nyc_output
