@@ -1,4 +1,4 @@
-import { command, CommandConfig, option, TreeCmd } from "radical-console";
+import { command, CommandConfig, option, TreeCmd } from "@radic/console";
 
 @command('tree', 'Show commands as tree structure', <CommandConfig> {})
 export class RTreeCmd extends TreeCmd {

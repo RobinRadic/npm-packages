@@ -4,7 +4,7 @@ import { existsSync, readFileSync, writeFileSync } from "fs-extra";
 import * as dotenv from "dotenv";
 import { paths, setPaths } from "./paths";
 import { unlinkSync } from "fs";
-import { container, lazyInject, singleton } from "radical-console";
+import { container, lazyInject, singleton } from "@radic/console";
 import { basename, join } from "path";
 import * as globule from "globule";
 import { AES, enc, algo } from "crypto-js";

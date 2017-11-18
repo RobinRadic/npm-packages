@@ -2,9 +2,9 @@ import "./yargs-parser";
 import {Question as BaseQuestion} from "inquirer";
 
 
-declare module "radical-console" {
+declare module "@radic/console" {
 
-    import { HelperOptionsConfig } from 'radical-console';
+    import { HelperOptionsConfig } from '@radic/console';
 
     interface HelpersOptionsConfig {
         'ssh.bash': HelperOptionsConfig

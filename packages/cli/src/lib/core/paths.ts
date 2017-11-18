@@ -1,7 +1,7 @@
 import { join as j, resolve as r } from "path";
 import * as _ from "lodash";
 import { existsSync, statSync } from "fs";
-import { container } from "radical-console";
+import { container } from "@radic/console";
 import { chmod, mkdir } from "shelljs";
 // console.log(process.uptime(), 'core/paths')
 let root = j(__dirname, '..', '..'),

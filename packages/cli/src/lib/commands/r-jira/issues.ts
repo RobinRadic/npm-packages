@@ -1,4 +1,4 @@
-import { command } from "radical-console";
+import { command } from "@radic/console";
 @command('issues {command}', 'Issue manager', { isGroup: true })
 export class JiraIssuesCmd {
 }

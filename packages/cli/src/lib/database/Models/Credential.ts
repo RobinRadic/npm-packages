@@ -1,5 +1,5 @@
 import { JsonSchema, Model } from 'objection';
-import { container } from 'radical-console';
+import { container } from '@radic/console';
 import { Services } from '../../services/Services';
 
 export interface CredentialsExtraField {

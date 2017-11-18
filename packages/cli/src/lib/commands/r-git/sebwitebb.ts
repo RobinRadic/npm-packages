@@ -1,4 +1,4 @@
-import { command, CommandArguments, CommandConfig, Dispatcher, inject, InputHelper, LoggerInstance, option, OutputHelper } from "radical-console";
+import { command, CommandArguments, CommandConfig, Dispatcher, inject, InputHelper, LoggerInstance, option, OutputHelper } from "@radic/console";
 import { BitbucketService, ConnectHelper ,Cache,RConfig } from "../../";
 import { execSync } from "child_process";
 import * as globule from "globule";

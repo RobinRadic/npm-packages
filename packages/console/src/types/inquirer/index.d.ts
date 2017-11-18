@@ -1,5 +1,6 @@
 import inquirer = require('inquirer')
 import { Answers } from "inquirer";
+import { Dictionary } from '../../lib/interfaces';
 
 declare module "inquirer" {
 
@@ -9,7 +10,7 @@ declare module "inquirer" {
          * @link https://github.com/mokkabonna/inquirer-autocomplete-prompt
          * @link https://github.com/DerekTBrown/inquirer-datepicker-prompt
          */
-        export type QuestionType = string | 'input' | 'confirm' | 'list' | 'rawlist' | 'expand' | 'checkbox' | 'password' | 'autocomplete' | 'datetime';
+    export type QuestionType = string | 'input' | 'confirm' | 'list' | 'rawlist' | 'expand' | 'checkbox' | 'password' | 'autocomplete' | 'datetime';
         export type MessageType = string | ((answers: Answers) => string)
         export type SourceType = <T>(answersSoFar: Dictionary<string>, input: string) => Promise<T>
         export type DateType = { min?: string, max?: string }

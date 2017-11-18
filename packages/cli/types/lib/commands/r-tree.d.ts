@@ -1,4 +1,4 @@
-import { TreeCmd } from "radical-console";
+import { TreeCmd } from "@radic/console";
 export declare class RTreeCmd extends TreeCmd {
     desc: boolean;
     opts: boolean;

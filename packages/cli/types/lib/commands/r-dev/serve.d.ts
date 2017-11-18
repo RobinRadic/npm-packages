@@ -1,4 +1,4 @@
-import { Cli, CommandArguments, InputHelper, Log, OutputHelper } from "radical-console";
+import { Cli, CommandArguments, InputHelper, Log, OutputHelper } from "@radic/console";
 export declare class Servecmd {
     out: OutputHelper;
     ask: InputHelper;

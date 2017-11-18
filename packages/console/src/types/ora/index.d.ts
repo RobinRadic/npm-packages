@@ -94,7 +94,7 @@ declare namespace ora {
         frames: string[];
     }
 
-    declare class Ora {
+    class Ora {
         start(text?: string): Ora;
 
         stop(): Ora;
@@ -130,6 +130,6 @@ declare namespace ora {
 }
 
 declare module "ora" {
-    declare const ora: ora.oraFactory
+    const ora: ora.oraFactory
     export  = ora
 }

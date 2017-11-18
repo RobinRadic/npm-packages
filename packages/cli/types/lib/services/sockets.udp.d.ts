@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { Socket } from "dgram";
-import { Log } from "radical-console";
+import { Log } from "@radic/console";
 import { RConfig } from "../core/config";
 export interface SocketFactorySocket {
     id: string;

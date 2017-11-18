@@ -1,4 +1,4 @@
-import { command, CommandArguments, CommandConfig, inject, InputHelper, Log, OutputHelper } from 'radical-console';
+import { command, CommandArguments, CommandConfig, inject, InputHelper, Log, OutputHelper } from '@radic/console';
 
 import { basename, resolve } from 'path';
 import * as filesize from 'filesize';

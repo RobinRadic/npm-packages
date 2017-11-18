@@ -1,4 +1,4 @@
-import { OutputHelper ,command, option ,Config,inject, lazyInject } from "radical-console";
+import { OutputHelper ,command, option ,Config,inject, lazyInject } from "@radic/console";
 
 @command('git|2 {command}', 'Remote git communication', {
     isGroup: true,

@@ -1,4 +1,4 @@
-import { command, CommandArguments, inject, InputHelper, Log, option, OutputHelper } from 'radical-console';
+import { command, CommandArguments, inject, InputHelper, Log, option, OutputHelper } from '@radic/console';
 import { Database } from '../../database/Database';
 
 @command('db', 'General information')

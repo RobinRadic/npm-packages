@@ -1,5 +1,5 @@
 import { AbstractInteractiveModel } from "./Models/AbstractInteractiveModel";
-import { InputHelper } from "radical-console";
+import { InputHelper } from "@radic/console";
 import { Answers, ChoiceType } from "inquirer";
 /**
  * @link https://github.com/sboudrias/Inquirer.js#list---type-list

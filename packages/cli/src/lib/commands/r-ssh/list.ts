@@ -1,4 +1,4 @@
-import { command, CommandArguments, inject, Log, option, OutputHelper } from "radical-console";
+import { command, CommandArguments, inject, Log, option, OutputHelper } from "@radic/console";
 import { RConfig } from "../../";
 import * as Chalk from "chalk";
 import SSHConnection from '../../database/Models/SSHConnection';

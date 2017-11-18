@@ -1,4 +1,4 @@
-import { Dispatcher, Log, OutputHelper } from "radical-console";
+import { Dispatcher, Log, OutputHelper } from "@radic/console";
 import { RConfig } from "../";
 import { Client } from "raven";
 export declare class SentryCmd {

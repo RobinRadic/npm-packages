@@ -234,7 +234,7 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
         }))))
         cleanPaths.push(pkg.package.radic.typedoc.out)
     }
-    gulp.task('clean:' + name, (cb) => { pump(gulp.src(cleanPaths), clean(), (err) => cb(err)) });
+    gulp.task('clean:' + name, (cb) => gulp.src(cleanPaths).pipe(clean()));
     gulp.task('build:' + name, (cb) => {
         // Run Typescript Compiler
         exec(resolve('node_modules/.bin/tsc'), { cwd: pkg.path + '' })
@@ -254,13 +254,13 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
     let hasTests = existsSync(pkg.path.to('test'));
     //region: clean, build and watch tasks for the test directory
     if ( hasTests ) {
-        gulp.task(`clean:${name}:test`, (cb) => { pump(gulp.src(pkg.path.to('test/**/*.js')), clean(), (err) => cb(err)) });
+        gulp.task(`clean:${name}:test`, (cb) => gulp.src(pkg.path.to('test/**/*.js')).pipe(clean()));//, (err) => cb(err)) });
         gulp.task(`build:${name}:test`, (cb) => {
             let testProject = gts.createProject(pkg.path.to('tsconfig.json'), <TSProjectOptions> {
-                declaration: false, outDir: './test'
+                declaration: false, outDir: './test', rootDir: './'
             });
             delete testProject.options.declarationDir
-            gulp.src(pkg.path.to('test/**/*.ts'))
+            return gulp.src(pkg.path.to('test/**/*.ts'))
                 .pipe(testProject())
                 .pipe(gulp.dest(pkg.path.to('test')))
         })
@@ -427,6 +427,7 @@ gulp.task('docs:readme', (cb) => {
     cb()
 })
 
+
 gulp.task(`clean:docs`, (cb) => { pump(gulp.src('docs/*'), clean(), (err) => cb(err)) });
 gulp.task(`clean:docs:templates`, (cb) => { pump(gulp.src('docs/{index.html,stylesheet.scss}'), clean(), (err) => cb(err)) });
 gulp.task('docs', (cb) => sequence('clean:docs', 'docs:ts', 'docs:templates', 'docs:script', 'docs:readme', cb))
@@ -441,7 +442,7 @@ gulp.task('docs:deploy', (cb) => sequence('docs', 'docs:ghpages', cb))
 
 //region: MAIN TASKS
 gulp.task('clean', [ `clean:${c.ts.taskPrefix}`, `clean:${c.ts.taskPrefix}:test`, 'clean:docs' ])
-gulp.task('build', [ 'clean' ], () => gulp.start(`build:${c.ts.taskPrefix}`, `build:${c.ts.taskPrefix}:test`, 'idea'))
+gulp.task('build', [ 'clean' ], (cb) => sequence(`build:${c.ts.taskPrefix}`, `build:${c.ts.taskPrefix}:test`, 'idea', cb))
 gulp.task('watch', [ 'build' ], () => gulp.start(`watch:${c.ts.taskPrefix}`, `watch:${c.ts.taskPrefix}:test`))
 gulp.task('default', [ 'build' ])
 gulp.task('list', (cb) => {

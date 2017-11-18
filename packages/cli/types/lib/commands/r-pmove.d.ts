@@ -1,4 +1,4 @@
-import { CommandArguments, Dispatcher } from "radical-console";
+import { CommandArguments, Dispatcher } from "@radic/console";
 import { BaseCommand } from "../";
 export declare class PMoveCmd extends BaseCommand {
     protected events: Dispatcher;

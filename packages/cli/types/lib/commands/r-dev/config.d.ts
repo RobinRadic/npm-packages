@@ -1,4 +1,4 @@
-import { CommandArguments, Config, InputHelper, Log, OutputHelper } from "radical-console";
+import { CommandArguments, Config, InputHelper, Log, OutputHelper } from "@radic/console";
 import { IConfig } from "@radic/util";
 import { PersistentFileConfig } from "../../";
 export declare class ConfigCmd {

@@ -1,4 +1,3 @@
-/// <reference types="winston" />
 import { VerboseHelperOptionsConfig } from "../../interfaces";
 import { LoggerInstance } from "winston";
 import { CliExecuteCommandParsedEvent, CliExecuteCommandParseEvent } from "../../core/events";

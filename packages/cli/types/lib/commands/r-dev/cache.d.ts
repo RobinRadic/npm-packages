@@ -1,4 +1,4 @@
-import { CommandArguments, Log, OutputHelper } from "radical-console";
+import { CommandArguments, Log, OutputHelper } from "@radic/console";
 import { BaseCommand, Cache } from "../../";
 export declare class DevCacheCmd extends BaseCommand {
     cache: Cache;

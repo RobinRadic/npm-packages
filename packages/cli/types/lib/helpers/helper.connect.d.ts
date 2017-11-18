@@ -1,4 +1,4 @@
-import { HelperOptionsConfig, InputHelper } from 'radical-console';
+import { HelperOptionsConfig, InputHelper } from '@radic/console';
 import { Services } from '../services/Services';
 import { Credential } from '../database/Models/Credential';
 import { IService } from '../interfaces';

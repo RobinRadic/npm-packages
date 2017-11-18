@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import "module-alias/register.js"
 import "reflect-metadata";
-import { cli, command, CommandArguments, inject, OutputHelper } from "radical-console";
+import { cli, command, CommandArguments, inject, OutputHelper } from "@radic/console";
 
 @command('single', {
     options: [

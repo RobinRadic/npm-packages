@@ -1,13 +1,9 @@
+
 export = omelette
-export module "omelette"{
-    export = omelette
-}
 
-export function omelette(fragments?:string|string[]):omelette.Omelette{
-    return new omelette.Omelette()
-}
+declare function omelette(fragments?:string|string[]):omelette.Omelette
 
-export namespace omelette {
+declare namespace omelette {
     class Omelette extends NodeJS.EventEmitter {
         compgen:number
         install:boolean

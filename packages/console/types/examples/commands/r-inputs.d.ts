@@ -1,4 +1,4 @@
-import { InputHelper, OutputHelper } from 'radical-console';
+import { InputHelper, OutputHelper } from '@radic/console';
 export default class InputsCmd {
     ask: InputHelper;
     out: OutputHelper;

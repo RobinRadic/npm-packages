@@ -1,4 +1,4 @@
-import { command, CommandArguments, Dispatcher, inject, InputHelper, LoggerInstance, OutputHelper } from 'radical-console';
+import { command, CommandArguments, Dispatcher, inject, InputHelper, LoggerInstance, OutputHelper } from '@radic/console';
 import { Cache, ConnectHelper, RConfig } from '../../';
 import { cd, mkdir } from 'shelljs';
 import { execSync } from 'child_process';

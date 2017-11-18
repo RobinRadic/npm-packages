@@ -1,4 +1,4 @@
-import { command, CommandConfig, inject, Log, OptionConfig, OutputHelper } from "radical-console";
+import { command, CommandConfig, inject, Log, OptionConfig, OutputHelper } from "@radic/console";
 import { Paths } from "..";
 
 @command('ssh {command}', 'SSH connection helper', { //, [ 'add', 'list', 'edit', 'remove', 'console', 'mount', 'umount' ]

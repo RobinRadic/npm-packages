@@ -1,23 +1,14 @@
 import { Container as BaseContainer, decorate, inject as _inject, injectable as _injectable, interfaces, postConstruct } from "inversify";
 import { makeFluentProvideDecorator, makeProvideDecorator } from "inversify-binding-decorators";
 import getDecorators from "inversify-inject-decorators";
+import Newable = interfaces.Newable;
+import Abstract = interfaces.Abstract;
+
 
 
 export type ServiceIdentifier = interfaces.ServiceIdentifier<any>;
 
 export class Container extends BaseContainer {
-    protected static instance: Container;
-
-    protected constructor(containerOptions?: interfaces.ContainerOptions) {
-        super(containerOptions);
-    }
-
-    static getInstance(): Container {
-        if ( Container.instance === undefined ) {
-            Container.instance = new Container()
-        }
-        return Container.instance
-    }
 
     /**
      * Create an instance of a class using the container, making it injectable at runtime and able to @inject on the fly
@@ -99,12 +90,12 @@ export class Container extends BaseContainer {
     }
 }
 
-export const container: Container = Container.getInstance();
+export const container: Container = new Container()
 
 export const injectable = () => _injectable()
-export const lazyInject = getDecorators(container).lazyInject;
-export const provide    = makeProvideDecorator(container);
-const fprovide  = makeFluentProvideDecorator(container);
+export const lazyInject:any = getDecorators(container as any).lazyInject;
+export const provide:any    = makeProvideDecorator(container as any);
+const fprovide  = makeFluentProvideDecorator(container as any);
 
 export function singleton (identifier: ServiceIdentifier) : ClassDecorator {
     return (cls:any) => {
@@ -119,7 +110,7 @@ export const inject = (id: ServiceIdentifier) => {
 export const bindTo = (id: ServiceIdentifier) => {
     return container.bindTo(id);
 }
-
+export {Newable, Abstract}
 export { postConstruct } from 'inversify'
 export { autoProvide, makeFluentProvideDecorator, makeProvideDecorator } from 'inversify-binding-decorators'
 export * from 'inversify-inject-decorators'

@@ -1,4 +1,4 @@
-import { command, CommandArguments, container } from "radical-console";
+import { command, CommandArguments, container } from "@radic/console";
 
 @command('google|2 {command}', 'Google services', {
     isGroup: true,

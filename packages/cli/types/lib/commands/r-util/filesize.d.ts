@@ -1,4 +1,4 @@
-import { CommandArguments, InputHelper, Log, OutputHelper } from 'radical-console';
+import { CommandArguments, InputHelper, Log, OutputHelper } from '@radic/console';
 export interface ConnectAddArguments extends CommandArguments {
     name: string;
     host: string;

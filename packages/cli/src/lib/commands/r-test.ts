@@ -1,4 +1,4 @@
-import { command, CommandConfig, CommandArguments, Container, Dispatcher, lazyInject, Log, OutputHelper } from "radical-console";
+import { command, CommandConfig, CommandArguments, Container, Dispatcher, lazyInject, Log, OutputHelper } from "@radic/console";
 import { RConfig } from "../";
 import { Services } from "../services/Services";
 import { ConnectHelper } from "../helpers/helper.connect";

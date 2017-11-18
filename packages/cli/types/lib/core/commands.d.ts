@@ -1,4 +1,4 @@
-import { Dispatcher, InputHelper, Log, OutputHelper } from "radical-console";
+import { Dispatcher, InputHelper, Log, OutputHelper } from "@radic/console";
 import { RConfig } from "./config";
 import { Services } from "../services/Services";
 import { ConnectHelper } from "../helpers/helper.connect";

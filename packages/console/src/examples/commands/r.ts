@@ -1,4 +1,4 @@
-import { alwaysRun, command, CommandConfig, Config, lazyInject, Log, OptionConfig, OutputHelper } from 'radical-console';
+import { alwaysRun, command, CommandConfig, Config, lazyInject, Log, OptionConfig, OutputHelper } from '@radic/console';
 
 
 @command('r {command:string@any of the listed commands}', <CommandConfig> {

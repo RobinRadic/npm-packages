@@ -1,4 +1,4 @@
-import { CommandArguments, Dispatcher, InputHelper, LoggerInstance, OutputHelper } from "radical-console";
+import { CommandArguments, Dispatcher, InputHelper, LoggerInstance, OutputHelper } from "@radic/console";
 import { RConfig } from "../../";
 export declare class AuthRemoveCmd {
     out: OutputHelper;

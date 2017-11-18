@@ -1,4 +1,4 @@
-import { HelpHelperOptionsConfig ,command, CommandArguments, Config, InputHelper, lazyInject, Log, option, OutputHelper } from "radical-console";
+import { HelpHelperOptionsConfig ,command, CommandArguments, Config, InputHelper, lazyInject, Log, option, OutputHelper } from "@radic/console";
 
 @command(`add|1
 {name:string@the connection name} 

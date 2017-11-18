@@ -1,4 +1,4 @@
-import { CommandArguments, Dispatcher, InputHelper, Log, OutputHelper } from "radical-console";
+import { CommandArguments, Dispatcher, InputHelper, Log, OutputHelper } from "@radic/console";
 import { RConfig } from "../../core/config";
 import { Database } from '../../database/Database';
 export interface ConnectAddArguments extends CommandArguments {

@@ -1,4 +1,4 @@
-import { command, inject, InputHelper, OutputHelper } from 'radical-console';
+import { command, inject, InputHelper, OutputHelper } from '@radic/console';
 
 
 @command('inputs')

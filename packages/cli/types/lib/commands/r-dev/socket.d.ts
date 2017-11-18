@@ -1,6 +1,6 @@
 /// <reference types="node" />
 import { Socket } from "dgram";
-import { CommandArguments, Config, Dispatcher, InputHelper, OutputHelper } from "radical-console";
+import { CommandArguments, Config, Dispatcher, InputHelper, OutputHelper } from "@radic/console";
 import { UDPSocketFactory } from "../../services/sockets.udp";
 export declare class SocketCmd {
     events: Dispatcher;

@@ -1,4 +1,4 @@
-import { Cli, CliConfig, container, Log, logLevel, logTransports } from 'radical-console';
+import { Cli, CliConfig, container, Log, logLevel, logTransports } from '@radic/console';
 import { LoggerInstance, transports as wtransports } from 'winston';
 import { Client } from 'raven';
 import { paths } from './paths';

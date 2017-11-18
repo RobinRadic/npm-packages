@@ -1,6 +1,6 @@
 
 
-import { container, lazyInject } from 'radical-console/types/radical-console/src';
+import { container, lazyInject } from '@radic/console/types/@radic/console/src';
 import { Cache } from '../core/cache';
 
 export class StepperFactory {

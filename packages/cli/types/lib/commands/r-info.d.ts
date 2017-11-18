@@ -1,4 +1,4 @@
-import { CommandArguments, InputHelper, Log, OutputHelper } from "radical-console";
+import { CommandArguments, InputHelper, Log, OutputHelper } from "@radic/console";
 export declare class InfoCmd {
     log: Log;
     out: OutputHelper;

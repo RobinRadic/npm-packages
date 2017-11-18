@@ -1,4 +1,4 @@
-import { CommandArguments, InputHelper, LoggerInstance, OutputHelper } from "radical-console";
+import { CommandArguments, InputHelper, LoggerInstance, OutputHelper } from "@radic/console";
 import { SshBashHelper, RConfig } from "../../";
 export declare class RcliConnectRemoveCmd {
     log: LoggerInstance;

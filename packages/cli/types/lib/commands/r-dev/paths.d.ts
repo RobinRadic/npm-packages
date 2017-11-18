@@ -1,4 +1,4 @@
-import { CommandArguments, Log, OutputHelper } from "radical-console";
+import { CommandArguments, Log, OutputHelper } from "@radic/console";
 import { Paths } from "../../core/paths";
 import { RCFile } from "../../core/config";
 export interface PathsCommandArguments extends CommandArguments {

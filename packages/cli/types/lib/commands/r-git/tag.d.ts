@@ -1,4 +1,4 @@
-import { Cli, CommandArguments, Config, Dispatcher, InputHelper, Log, OutputHelper } from "radical-console";
+import { Cli, CommandArguments, Config, Dispatcher, InputHelper, Log, OutputHelper } from "@radic/console";
 import { RConfig } from "../../";
 import { ConnectHelper } from "../../helpers/helper.connect";
 import { BaseCommand } from "../../core/commands";

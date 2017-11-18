@@ -1,4 +1,4 @@
-import { container, lazyInject, singleton } from "radical-console";
+import { container, lazyInject, singleton } from "@radic/console";
 import { AuthMethod } from "./AuthMethod";
 import { Dictionary, IService, ServiceConfig } from "../interfaces";
 import { Credential } from "../database/Models/Credential";

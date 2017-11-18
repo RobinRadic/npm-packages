@@ -1,7 +1,7 @@
 {
     "name": "@radic/cli",
     "version": "0.1.0",
-    "description": "cli utility for various purposes. uses radical-console to provide a hierarchical command structure.",
+    "description": "cli utility for various purposes. uses @radic/console to provide a hierarchical command structure.",
     "main": "index.js",
     "types": "types",
     "author": "Robin Radic",
@@ -35,7 +35,7 @@
     },
 
     "scripts2": {
-        "link": "npm link radical-console && npm link @radic/console-colors && npm link @radic/util",
+        "link": "npm link @radic/console && npm link @radic/console-colors && npm link @radic/util",
         "reinstall": "rm -rf node_modules yarn.lock package-lock.json && yarn install",
         "start": "npm run reinstall && && npm run link && npm run build && npm run watch",
         "watch": "gulp --gulpfile gulpfile.ts watch",

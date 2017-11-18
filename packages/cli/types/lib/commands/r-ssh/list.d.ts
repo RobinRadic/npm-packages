@@ -1,4 +1,4 @@
-import { CommandArguments, Log, OutputHelper } from "radical-console";
+import { CommandArguments, Log, OutputHelper } from "@radic/console";
 import { RConfig } from "../../";
 import { Database } from '../../database/Database';
 export declare class RcliConnectListCmd {

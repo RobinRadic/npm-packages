@@ -1,4 +1,4 @@
-import { command, CommandArguments, lazyInject, Log, option, OutputHelper } from "radical-console";
+import { command, CommandArguments, lazyInject, Log, option, OutputHelper } from "@radic/console";
 import { BaseCommand ,Cache } from "../../";
 
 

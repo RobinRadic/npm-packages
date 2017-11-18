@@ -1,4 +1,4 @@
-import { command } from 'radical-console';
+import { command } from '@radic/console';
 
 @command('util|u {command}', 'Utility stuff', {
     isGroup: true

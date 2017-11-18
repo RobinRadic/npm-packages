@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import 'reflect-metadata';
 import 'module-alias/register'
-import { cli, CliConfig } from 'radical-console';
+import { cli, CliConfig } from '@radic/console';
 
 
 

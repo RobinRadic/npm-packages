@@ -1,4 +1,4 @@
-import { CommandArguments } from "radical-console";
+import { CommandArguments } from "@radic/console";
 import { BaseCommand } from "../../";
 import { ConnectHelper } from "../../helpers/helper.connect";
 export declare class JiraProjectsCmd extends BaseCommand {

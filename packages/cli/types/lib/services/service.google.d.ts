@@ -1,7 +1,7 @@
 import { AxiosInstance, AxiosRequestConfig } from "axios";
 import { AbstractService } from "./AbstractService";
 import { Credential } from "../database/Models/Credential";
-import { Log } from "radical-console";
+import { Log } from "@radic/console";
 import { ServiceExtraFields } from "../interfaces";
 export interface GoogleServiceContacts {
     results: number;

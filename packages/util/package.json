@@ -10,7 +10,8 @@
         "build": "tsc",
         "pretest": "tsc",
         "test": "nyc mocha",
-        "posttest": "rimraf test/**/*.js",
+        "posttest": "rimraf ./**/*.js",
+        "clean": "rimraf types lib .nyc_output ./**/*.js",
         "watch": "mocha-typescript-watch",
         "prepare": "tsc"
     },

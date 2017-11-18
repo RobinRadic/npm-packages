@@ -1,4 +1,4 @@
-import { command, CommandConfig, Config, lazyInject, Log, OptionConfig, OutputHelper } from 'radical-console';
+import { command, CommandConfig, Config, lazyInject, Log, OptionConfig, OutputHelper } from '@radic/console';
 
 @command('modules|3')
 export class ModulesCmd {

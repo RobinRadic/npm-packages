@@ -1,4 +1,4 @@
-import { CommandConfig, Log, OptionConfig, OutputHelper } from "radical-console";
+import { CommandConfig, Log, OptionConfig, OutputHelper } from "@radic/console";
 import { Paths } from "..";
 export declare class RcliSshCmd {
     _config: CommandConfig;

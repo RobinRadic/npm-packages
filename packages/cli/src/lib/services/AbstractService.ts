@@ -1,5 +1,5 @@
 import Axios, { AxiosInstance, AxiosPromise, AxiosRequestConfig, AxiosResponse } from "axios";
-import { container, injectable, lazyInject, Log } from "radical-console";
+import { container, injectable, lazyInject, Log } from "@radic/console";
 import { Credential } from "../database/Models/Credential";
 import { IService, ServiceConfig, ServiceExtraFields } from "../interfaces";
 import { MD5,enc } from "crypto-js";

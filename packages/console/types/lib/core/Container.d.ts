@@ -1,9 +1,8 @@
 import { Container as BaseContainer, interfaces } from "inversify";
+import Newable = interfaces.Newable;
+import Abstract = interfaces.Abstract;
 export declare type ServiceIdentifier = interfaces.ServiceIdentifier<any>;
 export declare class Container extends BaseContainer {
-    protected static instance: Container;
-    protected constructor(containerOptions?: interfaces.ContainerOptions);
-    static getInstance(): Container;
     /**
      * Create an instance of a class using the container, making it injectable at runtime and able to @inject on the fly
      * @param cls
@@ -20,8 +19,8 @@ export declare class Container extends BaseContainer {
     make<T>(cls: any): T;
     getParentClasses(cls: Function, classes?: Function[]): Function[];
     ensureInjectable(cls: Function): void;
-    bindTo(id: ServiceIdentifier): (target: any) => any;
-    lazyInject(id: ServiceIdentifier): (proto: any, key: string) => void;
+    bindTo(id: ServiceIdentifier): any;
+    lazyInject(id: ServiceIdentifier): any;
     singleton(id: ServiceIdentifier, cls: any): void;
     inject(id: ServiceIdentifier): (target: any, targetKey: string, index?: number | undefined) => void;
     injectable(): (target: any) => any;
@@ -30,11 +29,12 @@ export declare class Container extends BaseContainer {
 }
 export declare const container: Container;
 export declare const injectable: () => (target: any) => any;
-export declare const lazyInject: (serviceIdentifier: string | symbol | interfaces.Newable<any> | interfaces.Abstract<any>) => (proto: any, key: string) => void;
-export declare const provide: (serviceIdentifier: string | symbol | interfaces.Newable<any> | interfaces.Abstract<any>) => (target: any) => any;
+export declare const lazyInject: any;
+export declare const provide: any;
 export declare function singleton(identifier: ServiceIdentifier): ClassDecorator;
 export declare const inject: (id: string | symbol | interfaces.Newable<any> | interfaces.Abstract<any>) => (target: any, targetKey: string, index?: number) => void;
-export declare const bindTo: (id: string | symbol | interfaces.Newable<any> | interfaces.Abstract<any>) => (target: any) => any;
+export declare const bindTo: (id: string | symbol | interfaces.Newable<any> | interfaces.Abstract<any>) => any;
+export { Newable, Abstract };
 export { postConstruct } from 'inversify';
 export { autoProvide, makeFluentProvideDecorator, makeProvideDecorator } from 'inversify-binding-decorators';
 export * from 'inversify-inject-decorators';

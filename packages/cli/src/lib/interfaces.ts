@@ -3,7 +3,7 @@ import { AxiosInstance } from "axios";
 import { AuthMethod } from "./services/AuthMethod";
 export type SSHConnectionMethod = 'key' | 'password'
 
-import { HelperOptionsConfig , HelpersOptionsConfig as BaseHelpersOptionsConfig} from 'radical-console'
+import { HelperOptionsConfig , HelpersOptionsConfig as BaseHelpersOptionsConfig} from '@radic/console'
 
 export interface HelpersOptionsConfig extends BaseHelpersOptionsConfig {
     'ssh.bash': HelperOptionsConfig

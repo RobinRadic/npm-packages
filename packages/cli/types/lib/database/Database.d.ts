@@ -1,3 +1,4 @@
+/// <reference types="knex" />
 import * as Knex from 'knex';
 import { Config, Migrator } from 'knex';
 export declare class Database {

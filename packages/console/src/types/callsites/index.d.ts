@@ -12,6 +12,6 @@ interface CallSites {
     isConstructor(): boolean //: is this a constructor call?
 }
 declare module 'callsites' {
-    declare const callsites: () => CallSites[]
+    const callsites: () => CallSites[]
     export = callsites
 }

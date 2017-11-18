@@ -1,4 +1,4 @@
-import { CommandArguments, InputHelper, LoggerInstance, OutputHelper } from "radical-console";
+import { CommandArguments, InputHelper, LoggerInstance, OutputHelper } from "@radic/console";
 import { Services } from "../../../services/Services";
 import { ConnectHelper } from "../../../helpers/helper.connect";
 export declare class GoogleContactsDeleteCmd {

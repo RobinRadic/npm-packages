@@ -1,4 +1,4 @@
-import { command, CommandArguments, inject, InputHelper, Log, option, OutputHelper } from "radical-console";
+import { command, CommandArguments, inject, InputHelper, Log, option, OutputHelper } from "@radic/console";
 import { PKG } from "../core/static";
 
 @command('info', 'General information')

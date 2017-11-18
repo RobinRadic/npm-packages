@@ -1,4 +1,4 @@
-import { CommandArguments, CommandConfig, HelpHelper, inject, injectable, InputHelper, Log, option, OutputHelper } from "radical-console";
+import { CommandArguments, CommandConfig, HelpHelper, inject, injectable, InputHelper, Log, option, OutputHelper } from "@radic/console";
 import { RConfig } from "../../";
 import { ensureDirSync } from "fs-extra";
 import { execSync } from "child_process";

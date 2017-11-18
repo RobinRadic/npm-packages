@@ -1,4 +1,4 @@
-import { Dispatcher, Log } from "radical-console";
+import { Dispatcher, Log } from "@radic/console";
 import { RConfig } from "../";
 export declare class RcliCmd {
     protected events: Dispatcher;

@@ -1,6 +1,5 @@
 /// <reference types="node" />
 /// <reference types="ora" />
-/// <reference types="cli-table2" />
 import { ColumnsOptions, OutputOptions, TreeData, TreeOptions } from './interfaces';
 import { OutputUtil } from './OutputUtil';
 import * as Table from 'cli-table2';

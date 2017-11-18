@@ -15,7 +15,7 @@ import { resolve } from 'path';
 @helper('completion', {
     singleton: true,
     config   : {
-        name  : 'radical-console',
+        name  : '@radic/console',
         option: {
             enabled: true,
             key    : 'O',

@@ -1,4 +1,4 @@
-import { CommandArguments, InputHelper, Log, OutputHelper } from "radical-console";
+import { CommandArguments, InputHelper, Log, OutputHelper } from "@radic/console";
 import { Services } from "../../../services/Services";
 import { ConnectHelper } from "../../../helpers/helper.connect";
 import { Dictionary } from "../../../interfaces";

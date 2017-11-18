@@ -1,4 +1,4 @@
-import { CommandArguments } from "radical-console";
+import { CommandArguments } from "@radic/console";
 import { BaseServiceCommand } from "../../../core/commands";
 export declare class JiraIssuesListCmd extends BaseServiceCommand {
     credential: string;

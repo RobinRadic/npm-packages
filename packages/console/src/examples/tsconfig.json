@@ -7,7 +7,7 @@
             "*": ["*"],
             "@log": ["../modules/log/"],
             "@output": ["../modules/output/"],
-            "radical-console": ["../src/"],
+            "@radic/console": ["../src/"],
             "omelette": ["../types/omelette/index.d.ts"]
         },
         "typeRoots": [

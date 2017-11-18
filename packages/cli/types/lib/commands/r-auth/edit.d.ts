@@ -1,4 +1,4 @@
-import { CommandArguments, Dispatcher, InputHelper, LoggerInstance, OutputHelper } from "radical-console";
+import { CommandArguments, Dispatcher, InputHelper, LoggerInstance, OutputHelper } from "@radic/console";
 import { BaseCommand, RConfig } from "../../";
 import { ConnectHelper } from "../../helpers/helper.connect";
 export declare class AuthEditCmd extends BaseCommand {

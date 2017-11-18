@@ -1,5 +1,5 @@
 import { AxiosInstance, AxiosPromise, AxiosRequestConfig } from "axios";
-import { Log } from "radical-console";
+import { Log } from "@radic/console";
 import { Credential } from "../database/Models/Credential";
 import { IService, ServiceConfig, ServiceExtraFields } from "../interfaces";
 import { Cache } from "../core/cache";

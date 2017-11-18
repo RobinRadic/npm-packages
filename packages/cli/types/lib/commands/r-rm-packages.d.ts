@@ -1,4 +1,4 @@
-import { CommandArguments, Dispatcher, InputHelper, LoggerInstance, OutputHelper } from "radical-console";
+import { CommandArguments, Dispatcher, InputHelper, LoggerInstance, OutputHelper } from "@radic/console";
 import { RConfig } from "../core/config";
 import { Cache } from "../core/cache";
 export declare class AuthoCmd {
@@ -16,7 +16,7 @@ export declare class AuthoCmd {
     all: boolean;
     custom: string;
     protected actions: string[];
-    validate(args: CommandArguments): any;
+    validate(args: CommandArguments): CommandArguments;
     handle(args: CommandArguments, ...argv: any[]): Promise<any>;
 }
 export default AuthoCmd;

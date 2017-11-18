@@ -1,4 +1,4 @@
-import { CommandArguments, CommandConfig, HelpHelper, InputHelper, Log, OutputHelper } from "radical-console";
+import { CommandArguments, CommandConfig, HelpHelper, InputHelper, Log, OutputHelper } from "@radic/console";
 import { RConfig } from "../../";
 import { SSHConnection } from "../../database/Models/SSHConnection";
 import { Database } from '../../database/Database';
