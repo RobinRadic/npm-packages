@@ -12,6 +12,7 @@
     },
     "homepage": "https://github.com/robinradic/npm-packages",
     "scripts": {
+        "clean": "rimraf types *.js",
         "build": "tsc"
     },
     "bin": {

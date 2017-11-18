@@ -284,7 +284,7 @@ packages.forEach(pkg => createTsTask(`${c.ts.taskPrefix}:${pkg.directory}`, pkg,
 //region: TASKS:INTELLIJ
 if ( c.idea ) {
     gulp.task('idea', (cb) => {
-        const url       = (...parts: any[]) => [ 'file://$MODULE_DIR$/' ].concat(join.apply(null, parts)).join('')
+        const url       = (...parts: any[]) => [ 'file://$MODULE_DIR$' ].concat(join.apply(null, parts)).join('')
         let editIml     = existsSync(resolve('.idea/libraries/tsconfig_roots.xml')),
               editJsMap = existsSync(resolve('.idea/jsLibraryMappings.xml'));
 
@@ -422,18 +422,18 @@ gulp.task('docs:serve', () => {
         }
     })
 });
+gulp.task('docs:readme', (cb) => {
+    r.template('README.md').applyParsers(['markdown-readme-toc']).writeTo('./README.md', true);
+})
 
 gulp.task(`clean:docs`, (cb) => { pump(gulp.src('docs/*'), clean(), (err) => cb(err)) });
 gulp.task(`clean:docs:templates`, (cb) => { pump(gulp.src('docs/{index.html,stylesheet.scss}'), clean(), (err) => cb(err)) });
 gulp.task('docs', () => sequence('clean:docs', 'docs:ts', 'docs:templates', 'docs:script'))
-gulp.task('docs:deploy', () => {
+gulp.task('docs:deploy', ['docs', 'docs:readme'],() => {
     touch('docs/.nojekyll');
     return gulp.src('./docs/**/*').pipe(ghPages(c.ghPages))
 })
 
-gulp.task('readme', (cb) => {
-    r.template('README.md').writeTo('./README.md', true);
-})
 //endregion
 
 

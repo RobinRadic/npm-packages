@@ -5,10 +5,8 @@
     "main": "index.js",
     "types": "types",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
         "clean": "rimraf types *.js",
-        "build": "tsc",
-        "prepublish": "npm run clean && npm run build"
+        "build": "tsc"
 
     },
     "author": "Robin Radic <rradic@hotmail.com> (https://radic.nl/)",
