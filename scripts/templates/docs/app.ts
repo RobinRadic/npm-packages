@@ -1,4 +1,6 @@
-import { LoDashStatic } from 'lodash';
+import $ from 'jquery'
+import 'popper'
+import 'bootstrap'
 
 
 export class Docs {
@@ -10,13 +12,19 @@ export class Docs {
     $bsComponent: JQuery
     $button: JQuery
 
+    $header: JQuery
+    $content: JQuery
+
     constructor() {
 
         let self          = this;
         this.$body        = $('body');
+        this.$header      = $('#header');
+        this.$content     = $('#content');
+
         this.$nav         = $('#navbar-top');
-        this.$popovers    = $('.bs-component [data-toggle="popover"]');
-        this.$tooltips    = $('.bs-component [data-toggle="tooltip"]');
+        this.$popovers    = $('[data-toggle="popover"]');
+        this.$tooltips    = $('[data-toggle="tooltip"]');
         this.$bsComponent = $('.bs-component');
         this.$button      = $('<div id=\'source-button\' class=\'btn btn-primary btn-xs\'>&lt; &gt;</div>').click(function () {
             let html = $(this).parent().html();
@@ -24,6 +32,12 @@ export class Docs {
             $('#source-modal pre').text(html);
             $('#source-modal').modal();
         });
+    }
+
+    initContent(){
+        this.$content.css({
+            marginTop: this.$header.height() * 2
+        })
     }
 
     initWindowScroll() {
@@ -50,7 +64,9 @@ export class Docs {
     }
 
     initTooltips() {
-        this.$tooltips.tooltip();
+        this.$tooltips.tooltip({
+
+        });
     }
 
     initBsComponents() {
@@ -98,75 +114,14 @@ export class Docs {
         this.initLinks()
         this.initPopovers()
         this.initTooltips()
-        this.initBsComponents();
+        this.initContent();
+        // this.initBsComponents();
     }
 }
 
+console.log(Docs);
 $(() => {
-    // const docs = new Docs;
-    // docs.init();
-
+    const docs = new Docs;
+    console.log(docs);
+    docs.init();
 });
-
-(function(){
-    $(window).scroll(function () {
-        var top = $(document).scrollTop();
-        $('.splash').css({
-            'background-position': '0px -'+(top/3).toFixed(2)+'px'
-        });
-        if(top > 50)
-            $('#home > .navbar').removeClass('navbar-transparent');
-        else
-            $('#home > .navbar').addClass('navbar-transparent');
-    });
-
-    $("a[href='#']").click(function(e) {
-        e.preventDefault();
-    });
-
-    var $button = $("<div id='source-button' class='btn btn-primary btn-xs'>&lt; &gt;</div>").click(function(){
-        var html = $(this).parent().html();
-        html = cleanSource(html);
-        $("#source-modal pre").text(html);
-        $("#source-modal").modal();
-    });
-
-    $('.bs-component [data-toggle="popover"]').popover();
-    $('.bs-component [data-toggle="tooltip"]').tooltip();
-
-    $(".bs-component").hover(function(){
-        $(this).append($button);
-        $button.show();
-    }, function(){
-        $button.hide();
-    });
-
-    function cleanSource(html) {
-        html = html.replace(/×/g, "&times;")
-            .replace(/«/g, "&laquo;")
-            .replace(/»/g, "&raquo;")
-            .replace(/←/g, "&larr;")
-            .replace(/→/g, "&rarr;");
-
-        var lines = html.split(/\n/);
-
-        lines.shift();
-        lines.splice(-1, 1);
-
-        var indentSize = lines[0].length - lines[0].trim().length,
-            re = new RegExp(" {" + indentSize + "}");
-
-        lines = lines.map(function(line){
-            if (line.match(re)) {
-                line = line.substring(indentSize);
-            }
-
-            return line;
-        });
-
-        lines = lines.join("\n");
-
-        return lines;
-    }
-
-})();

@@ -14,10 +14,12 @@ dependency-reduced-pom.xml
 .checkstyle
 dist
 out
+/.tmp
 run
 target
 *.com
 *.class
+
 /docs
 *.dll
 *.exe
