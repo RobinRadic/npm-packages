@@ -82,10 +82,10 @@ const c: RGulpConfig = {
                 pretty: true
             },
             pugLocals: {
-                baseUrl: 'https://robin.radic.nl/npm-packages/',
-                lodash: _,
-                githubUrl: 'https://github.com/robinradic/npm-packages',
-                githubForkUrl: 'https://github.com/robinradic/npm-packages/fork',
+                baseUrl      : 'https://robin.radic.nl/npm-packages/',
+                lodash       : _,
+                githubUrl    : 'https://github.com/robinradic/npm-packages',
+                githubForkUrl: 'https://github.com/robinradic/npm-packages/fork'
             }
         }
     },
@@ -423,16 +423,18 @@ gulp.task('docs:serve', () => {
     })
 });
 gulp.task('docs:readme', (cb) => {
-    r.template('README.md').applyParsers(['markdown-readme-toc']).writeTo('./README.md', true);
+    r.template('README.md').applyParsers([ 'markdown-readme-toc' ]).writeTo('./README.md', true);
+    cb()
 })
 
 gulp.task(`clean:docs`, (cb) => { pump(gulp.src('docs/*'), clean(), (err) => cb(err)) });
 gulp.task(`clean:docs:templates`, (cb) => { pump(gulp.src('docs/{index.html,stylesheet.scss}'), clean(), (err) => cb(err)) });
-gulp.task('docs', () => sequence('clean:docs', 'docs:ts', 'docs:templates', 'docs:script'))
-gulp.task('docs:deploy', ['docs', 'docs:readme'],() => {
+gulp.task('docs', (cb) => sequence('clean:docs', 'docs:ts', 'docs:templates', 'docs:script', 'docs:readme', cb))
+gulp.task('docs:ghpages', () => {
     touch('docs/.nojekyll');
     return gulp.src('./docs/**/*').pipe(ghPages(c.ghPages))
 })
+gulp.task('docs:deploy', (cb) => sequence('docs', 'docs:ghpages', cb))
 
 //endregion
 

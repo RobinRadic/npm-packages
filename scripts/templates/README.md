@@ -3,7 +3,7 @@ Radic's NPM Packages
 
 This repository contains some of my public **non browser/DOM** node packages.
 
-Go to [documentation](https://robin.radic.nl/npm-packages) for all packages,
+Go to [documentation](http://robin.radic.nl/npm-packages) for all packages,
 
 [[TOC]]
 
