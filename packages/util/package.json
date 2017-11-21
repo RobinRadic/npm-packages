@@ -1,8 +1,9 @@
 {
     "name": "@radic/util",
-    "version": "2.3.3",
+    "version": "2.4.0",
     "description": "Utilities for node / browser",
     "main": "index.js",
+    "jsnext:main": "es/index.js",
     "types": "index.d.ts",
     "author": "Robin Radic <rradic@hotmail.com> (https://radic.nl/)",
     "license": "MIT",
@@ -14,9 +15,10 @@
         "watch": "mocha-typescript-watch"
     },
     "dependencies": {
-        "lodash": "^4.15.0"
+        "lodash-es": "^4.17.4"
     },
     "radic": {
+        "es": true,
         "typedoc": {
             "module": "commonjs",
             "mode": "file",
