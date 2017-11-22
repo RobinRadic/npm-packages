@@ -1,6 +1,6 @@
 {
     "name": "@radic/util",
-    "version": "2.5.0",
+    "version": "2.6.0",
     "description": "Utilities for node / browser",
     "main": "index.js",
     "jsnext:main": "es/index.js",
