@@ -1,4 +1,4 @@
-import { merge } from 'lodash'
+import merge from 'lodash/merge'
 import { kindOf } from "./general";
 
 export type StorageType = 'local' | 'session' | 'cookie' | string;

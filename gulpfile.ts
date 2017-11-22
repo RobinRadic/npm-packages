@@ -14,7 +14,14 @@ import { basename, join, resolve } from 'path';
 import * as _ from 'lodash';
 import { existsSync, statSync, writeFileSync } from 'fs';
 import { exec, execSync } from 'child_process';
-import { GulpTypedocOptions, IdeaIml, IdeaJsMappings, PackageData, RGulpConfig, TSProjectOptions } from './scripts/interfaces';
+import {
+    GulpTypedocOptions,
+    IdeaIml,
+    IdeaJsMappings,
+    PackageData,
+    RGulpConfig,
+    TSProjectOptions
+} from './scripts/interfaces';
 import * as yargs from 'yargs';
 import { Radic } from './scripts/Radic';
 import * as scss from 'node-sass';
@@ -26,8 +33,14 @@ import { isArray } from 'util';
 import { Template } from './scripts/Template';
 import * as ghPages from 'gulp-gh-pages';
 import { writeJsonSync } from 'fs-extra';
+import * as commonjs from 'rollup-plugin-commonjs';
+// noinspection ES6UnusedImports
+import * as rollup from 'rollup'
+// noinspection ES6UnusedImports
+import * as nresolve from 'rollup-plugin-node-resolve'
 // noinspection ES6UnusedImports
 import typedoc = require('gulp-typedoc');
+// noinspection ES6UnusedImports
 import mdtoc            = require('markdown-toc');
 
 sequence.use(<any> gulp);
@@ -226,7 +239,7 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
                 .filter(path => statSync(path).isDirectory())
                 .map(path => path.replace(pkg.path.to('src'), pkg.path.toString()))
         )
-        .concat(globule.find(join(pkg.path.to('*.js'))));
+        .concat(globule.find(join(pkg.path.to('*.{js,js.map,d.ts}'))))
 
     if ( pkg.package.radic.typedoc !== false ) {
         gulp.task('docs:' + name, () => gulp.src(pkg.path.to('src/**/*.ts')).pipe(typedoc(_.merge(pkg.package.radic.typedoc, <GulpTypedocOptions> {
@@ -250,6 +263,55 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
             gulp.start('build:' + name, 'idea')
         })
     });
+    if ( pkg.package.radic.es === true ) {
+        gulp.task('build:' + name + ':es', (cb) => {
+
+            exec(resolve('node_modules/.bin/tsc --module es2015 --outDir es/'), { cwd: pkg.path + '' })
+                .on('exit', () => {
+                    cb()
+                })
+        })
+        // gulp.task('build:' + name + ':es', (cb) =>
+        //     gulp.src([pkg.path.to('src/*.ts'),pkg.path.to('src/**/*.ts')]).pipe(
+        //     gts.createProject(pkg.path.to('tsconfig.json'), {
+        //         declaration: false,
+        //         outDir     : pkg.path.to('es'),
+        //         module     : 'es2015'
+        //     })()).pipe(gulp.dest(pkg.path.to('es')))
+        // )
+        // gulp.task('build:' + name + ':es', async () => {
+        //     const bundle = await rollup.rollup({
+        //         entry   : pkg.path.to('index.js'),
+        //         external: [ 'lodash' ],
+        //         plugins : [
+        //             nresolve({
+        //                 jsnext: true,
+        //                 main  : true
+        //             }),
+        //             commonjs({ include: 'node_modules/**' })
+        //         ]
+        //     });
+        //     await bundle.write({
+        //         dest     : pkg.path.to('es/'),
+        //         format   : 'es',
+        //         name     : 'radic-util',
+        //         sourcemap: true
+        //     });
+        // });
+
+        //     gulp.src(pkg.path.to('es/**/*.js')),
+        //     rollup({
+        //         input     : pkg.path.to('es/index.js'),
+        //         format    : 'umd',
+        //         moduleName: name,
+        //         globals   : {}
+        //     }),
+        //     gulp.dest(pkg.path.to('./radic.util.umd.js')),
+        //     // clean(),
+        //     // rename(o.umd.fileName),
+        //     // gulp.dest(o.dests.umd))
+        // ]))
+    }
     srcNames.push(name)
     //endregion
 
@@ -257,7 +319,7 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
     let hasTests = existsSync(pkg.path.to('test'));
     //region: clean, build and watch tasks for the test directory
     if ( hasTests ) {
-        gulp.task(`clean:${name}:test`, (cb) => gulp.src(pkg.path.to('test/**/*.js')).pipe(clean()));//, (err) => cb(err)) });
+        gulp.task(`clean:${name}:test`, (cb) => gulp.src([ pkg.path.to('test/**/*.{js,js.map}'), pkg.path.to('coverage') ]).pipe(clean()));//, (err) => cb(err)) });
         gulp.task(`build:${name}:test`, (cb) => {
             let testProject = gts.createProject(pkg.path.to('tsconfig.json'), <TSProjectOptions> {
                 declaration: false, outDir: './test', rootDir: './'
@@ -276,13 +338,34 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
     }
     //endregion
 }
-packages.forEach(pkg => createTsTask(`${c.ts.taskPrefix}:${pkg.directory}`, pkg, '/', {}));
+packages.forEach(pkg => createTsTask(`${pkg.directory}:${c.ts.taskPrefix}`, pkg, '/', {}));
 // src
 [ 'docs', 'build', 'clean', 'watch' ].forEach(prefix => gulp.task(`${prefix}:ts`, srcNames.map(name => `${prefix}:${name}`)));
 // test
 [ 'build', 'clean', 'watch' ].forEach(prefix => gulp.task(`${prefix}:ts:test`, testNames.map(name => `${prefix}:${name}`)));
 //endregion
 
+//region: TASKS: PACKAGE.JSON DEFAULTS
+let defaultPackageJson = require('./scripts/templates/package.json')
+let pkgjsTaskNames     = []
+packages.forEach(pkg => {
+    let taskName = 'build:' + pkg.directory + ':pkgjs';
+    pkgjsTaskNames.push(taskName)
+    gulp.task(`clean:${taskName}:pkgjs`, (cb) => cb()) // fake task
+    gulp.task(taskName, (cb) => {
+        let packageJson      = _.merge(require(pkg.path.to('package.json')), defaultPackageJson)
+        packageJson.homepage = 'http://robin.radic.nl/npm-packages/' + pkg.directory
+        writeJsonSync(pkg.path.to('package.json'), packageJson, { encoding: 'utf-8', spaces: 4 });
+        cb();
+    })
+})
+gulp.task('build:pkgjs', pkgjsTaskNames);
+//endregion
+
+packages.forEach(pkg => {
+    let name = pkg.directory;
+    [ 'build', 'clean' ].forEach(prefix => gulp.task(`${prefix}:${name}`, (cb) => sequence(`${prefix}:${name}:ts`, `${prefix}:${name}:ts:test`, `${prefix}:${name}:pkgjs`)));
+})
 
 //region: TASKS:INTELLIJ
 if ( c.idea ) {
@@ -435,23 +518,6 @@ gulp.task('docs:ghpages', () => {
 })
 gulp.task('docs:deploy', (cb) => sequence('docs', 'docs:ghpages', cb))
 
-//endregion
-
-
-//region: TASKS: PACKAGE.JSON DEFAULTS
-let defaultPackageJson = require('./scripts/templates/package.json')
-let pkgjsTaskNames     = []
-packages.forEach(pkg => {
-    let taskName = 'build:pkgjs:' + pkg.directory;
-    pkgjsTaskNames.push(taskName)
-    gulp.task(taskName, (cb) => {
-        let packageJson      = _.merge(require(pkg.path.to('package.json')), defaultPackageJson)
-        packageJson.homepage = 'http://robin.radic.nl/npm-packages/' + pkg.directory
-        writeJsonSync(pkg.path.to('package.json'), packageJson, { encoding: 'utf-8', spaces: 4 });
-        cb();
-    })
-})
-gulp.task('build:pkgjs', pkgjsTaskNames);
 //endregion
 
 

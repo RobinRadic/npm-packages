@@ -1,18 +1,20 @@
-import { objectExists, objectGet, objectSet, recurse } from "./object";
-// import merge = require("lodash/merge");
-// import cloneDeep = require("lodash/cloneDeep");
-import { cloneDeep, merge, template } from "lodash";
-import { defined, kindOf } from "./general";
+import { objectExists, objectGet, objectSet, recurse } from './object';
+import cloneDeep from 'lodash-es/cloneDeep'
+import merge from 'lodash-es/merge';
+import template from 'lodash-es/template';
+import { defined, kindOf } from './general';
 
 
 export interface IDelimitersCollection {
     [index: string]: IDelimiter;
 }
+
 export interface IDelimiterLodash {
     evaluate: RegExp;
     interpolate: RegExp;
     escape: RegExp;
 }
+
 export interface IDelimiter {
     opener?: string;
     closer?: string;
@@ -24,18 +26,27 @@ export interface IDelimiter {
  */
 export interface IConfig {
     get<T extends any>(prop?: any, defaultReturnValue?: any): T;
+
     set(prop: string | Object, value?: any): IConfig;
+
     merge(obj: Object): IConfig;
+
     merge(prop: string, obj: Object): IConfig;
+
     raw(prop?: any): any;
+
     process(raw: any): any;
+
     unset(prop: any): any;
+
     has(prop: any): boolean;
 }
 
 export interface IConfigProperty extends IConfig {
     (prop: string): any;
+
     (prop: Object): any;
+
     (prop: string, defaultReturnValue: any): any;
 }
 
@@ -103,7 +114,7 @@ export class Config implements IConfig {
     }
 
     public get<T extends any>(prop?: any, defaultReturnValue: any = undefined): T {
-        if(! prop || prop.toString().length === 0){
+        if ( ! prop || prop.toString().length === 0 ) {
             return this.process(this.raw())
         }
         return this.has(prop) ? this.process(this.raw(prop)) : defaultReturnValue;
@@ -291,8 +302,6 @@ export class PersistentConfig extends Config {
     }
 
 
-
-
     public static makeProperty(config: IConfig): IConfigProperty {
         let cf: any = function (prop?: any, defaultReturnValue?: any): any {
             if ( defined(defaultReturnValue) ) {
@@ -303,8 +312,8 @@ export class PersistentConfig extends Config {
             }
             return config.get(prop);
         };
-        cf.load = config.get.bind(config);
-        cf.safef      = config.set.bind(config);
+        cf.load     = config.get.bind(config);
+        cf.safef    = config.set.bind(config);
 
         return cf;
     }

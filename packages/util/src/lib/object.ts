@@ -1,4 +1,4 @@
-import {uniq} from 'lodash'
+import uniq from 'lodash-es/uniq'
 import { kindOf } from "./general";
 
 function getParts(str): any {

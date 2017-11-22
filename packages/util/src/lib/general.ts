@@ -1,4 +1,6 @@
-import { escapeRegExp, isNumber, isUndefined } from "lodash";
+import  escapeRegExp   from 'lodash-es/escapeRegExp';
+import  isNumber   from 'lodash-es/isNumber';
+import  isUndefined   from 'lodash-es/isUndefined';
 
 /**
  * Round a value to a precision

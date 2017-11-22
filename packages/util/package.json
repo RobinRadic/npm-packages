@@ -3,6 +3,7 @@
     "version": "2.5.0",
     "description": "Utilities for node / browser",
     "main": "index.js",
+    "jsnext:main": "es/index.js",
     "types": "index.d.ts",
     "author": "Robin Radic <rradic@hotmail.com> (https://radic.nl/)",
     "license": "MIT",
