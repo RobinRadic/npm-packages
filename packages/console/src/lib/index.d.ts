@@ -1,0 +1,18 @@
+import "reflect-metadata";
+import './utils';
+import './core';
+import './modules/log';
+export { LoggerInstance } from 'winston';
+export * from './interfaces';
+export * from './errors';
+export * from './core';
+export * from './utils';
+export * from './decorators';
+export * from './defaults';
+export * from './commands';
+export * from './modules/completion';
+export * from './modules/help';
+export * from './modules/input';
+export * from './modules/log';
+export * from './modules/output';
+export * from './modules/verbose';
