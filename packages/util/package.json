@@ -20,6 +20,8 @@
     },
     "radic": {
         "es": true,
+        "umd": true,
+        "moduleName": "radic_util",
         "typedoc": {
             "module": "commonjs",
             "mode": "file",

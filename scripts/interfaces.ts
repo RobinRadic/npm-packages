@@ -54,6 +54,10 @@ export interface RGulpConfig {
 
 export interface RPackageJsonOptions {
     [key: string]: any
+
+    es?: boolean
+    umd?: boolean
+    moduleName?: string
     typedoc?: GulpTypedocOptions | false
     ghpages?: GulpGhPagesOptions | false
 }

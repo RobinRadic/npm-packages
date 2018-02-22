@@ -1,10 +1,10 @@
 import "./yargs-parser";
 import {Question as BaseQuestion} from "inquirer";
+import { HelperOptionsConfig } from '@radic/console';
 
 
 declare module "@radic/console" {
 
-    import { HelperOptionsConfig } from '@radic/console';
 
     interface HelpersOptionsConfig {
         'ssh.bash': HelperOptionsConfig
@@ -13,7 +13,7 @@ declare module "@radic/console" {
 
 }
 
-namespace global {
+declare namespace global {
     export interface CliTable extends Array<string[]> {
 
     }
@@ -45,8 +45,18 @@ interface Cancelable {
     flush(): void;
 }
 
+import { GotOptions } from 'got';
+
+
+type DownloadOptions = GotOptions<string> & {
+    extract?: boolean
+    filename?: string
+    proxy?: string
+};
+
+declare function download(url: string, destination: string, options?: DownloadOptions): Promise<Buffer>
+declare function download(url: string, options?: DownloadOptions): Promise<Buffer>
 
 declare module 'download' {
-    import { download } from './download/index';
     export = download
 }

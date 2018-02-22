@@ -1,7 +1,7 @@
 import { GotOptions } from 'got';
 
 
-type DownloadOptions = GotOptions & {
+type DownloadOptions = GotOptions<string> & {
     extract?: boolean
     filename?:string
     proxy?:string

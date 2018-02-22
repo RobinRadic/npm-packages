@@ -16,6 +16,9 @@
     "exclude": [
         "./node_modules",
         "./types",
+        "./es",
+        "./lib",
+        "./umd",
         "./*.ts",
         "*.js"
     ],

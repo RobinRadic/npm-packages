@@ -4,3 +4,9 @@
 /*/packages-lock.json
 /packages/console/src/types
 /*/.nyc_output
+/*/bin
+/*/lib
+/*/es
+/*/umd
+/*/types
+/*/index.d.ts

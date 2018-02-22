@@ -24,8 +24,9 @@ import { Template } from './scripts/Template';
 import * as ghPages from 'gulp-gh-pages';
 import { writeJsonSync } from 'fs-extra';
 import * as commonjs from 'rollup-plugin-commonjs';
+import * as rename from 'gulp-rename';
 // noinspection ES6UnusedImports
-import * as rollup from 'rollup'
+import * as rollup from 'gulp-rollup'
 // noinspection ES6UnusedImports
 import * as nresolve from 'rollup-plugin-node-resolve'
 import typedoc = require('gulp-typedoc');
@@ -68,7 +69,7 @@ const c: RGulpConfig = {
         push     : true,
         message  : 'update [timestamp]',
         cacheDir : '.tmp/publish',
-        remoteUrl: 'https://github.com/robinradic/npm-packages/'
+        remoteUrl: 'github.com:robinradic/npm-packages'
     },
     templates      : {
         readme: {
@@ -130,7 +131,6 @@ Object.assign(gutil, { log: (msg, ...optional) => info(msg, ...optional) });
 //endregion
 
 
-
 //region: RESOLVE PACKAGES
 const packagePaths            = globule
     .find('packages/*')
@@ -188,7 +188,7 @@ const packageNames = packages.map(pkg => pkg.name);
 _.merge(c.templates.docs.pugLocals, { packageNames, packages, packagePaths })
 r.addTemplateParser('pug', function (this: Template, content: string) {
 
-    let compile = pug.compile(content,_.merge(c.templates.docs.pug, <pug.Options>{
+    let compile = pug.compile(content, _.merge(c.templates.docs.pug, <pug.Options>{
         pretty  : true,
         filename: this.getFilePath(),
         basedir : resolve('scripts/templates/docs')
@@ -252,76 +252,59 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
         .concat(globule.find(join(pkg.path.to('*.{js,js.map,d.ts}'))))
 
     if ( pkg.package.radic.typedoc !== false ) {
-        gulp.task('docs:' + name, () => gulp.src(pkg.path.to('src/**/*.ts')).pipe(typedoc(_.merge(pkg.package.radic.typedoc as any, <GulpTypedocOptions> {
+        gulp.task(`docs:${name}`, () => gulp.src(pkg.path.to('src/**/*.ts')).pipe(typedoc(_.merge(pkg.package.radic.typedoc as any, <GulpTypedocOptions> {
             name: pkg.directory,
             out : `./docs/${pkg.directory}`,
             json: `docs/${pkg.directory}/typedoc.json`
         }))))
         cleanPaths.push(pkg.package.radic.typedoc.out)
     }
-    gulp.task('clean:' + name, (cb) => gulp.src(cleanPaths).pipe(clean()));
-    gulp.task('build:' + name, (cb) => {
+    gulp.task(`clean:${name}`, (cb) => gulp.src(cleanPaths).pipe(clean()));
+
+    gulp.task(`build:${name}:compile`, (cb) => {
         // Run Typescript Compiler
-        exec(resolve('node_modules/.bin/tsc'), { cwd: pkg.path + '' })
+        exec(resolve('node_modules/.bin/tsc'), { cwd: `${pkg.path}` })
             .on('exit', () => {
                 writeFileSync(pkg.path.to('index.d.ts'), 'export * from "./types"', 'utf-8')
                 cb()
             })
     })
-    gulp.task('watch:' + name, () => {
+    gulp.task(`watch:${name}`, () => {
         gulp.watch([ pkg.path.to('src/**/*.ts'), pkg.path.to('test/**/*.ts') ], (event: WatchEvent) => {
-            gulp.start('build:' + name, 'idea')
+            gulp.start(`build:${name}`, 'idea')
         })
     });
+    let tasks = [ `clean:${name}`, `build:${name}:compile` ]
     if ( pkg.package.radic.es === true ) {
-        gulp.task('build:' + name + ':es', (cb) => {
-
-            exec(resolve('node_modules/.bin/tsc --module es2015 --outDir es/'), { cwd: pkg.path + '' })
+        gulp.task(`build:${name}:es`, [ `clean:${name}:es`, `build:${name}:compile` ], (cb) => {
+            exec(resolve('node_modules/.bin/tsc --module es2015 --outDir es/'), { cwd: `${pkg.path}` })
                 .on('exit', () => {
                     cb()
                 })
         })
-        // gulp.task('build:' + name + ':es', (cb) =>
-        //     gulp.src([pkg.path.to('src/*.ts'),pkg.path.to('src/**/*.ts')]).pipe(
-        //     gts.createProject(pkg.path.to('tsconfig.json'), {
-        //         declaration: false,
-        //         outDir     : pkg.path.to('es'),
-        //         module     : 'es2015'
-        //     })()).pipe(gulp.dest(pkg.path.to('es')))
-        // )
-        // gulp.task('build:' + name + ':es', async () => {
-        //     const bundle = await rollup.rollup({
-        //         entry   : pkg.path.to('index.js'),
-        //         external: [ 'lodash' ],
-        //         plugins : [
-        //             nresolve({
-        //                 jsnext: true,
-        //                 main  : true
-        //             }),
-        //             commonjs({ include: 'node_modules/**' })
-        //         ]
-        //     });
-        //     await bundle.write({
-        //         dest     : pkg.path.to('es/'),
-        //         format   : 'es',
-        //         name     : 'radic-util',
-        //         sourcemap: true
-        //     });
-        // });
+        gulp.task(`clean:${name}:es`, (cb) => gulp.src(pkg.path.to('es')).pipe(clean()));
+        tasks.push(`build:${name}:es`)
 
-        //     gulp.src(pkg.path.to('es/**/*.js')),
-        //     rollup({
-        //         input     : pkg.path.to('es/index.js'),
-        //         format    : 'umd',
-        //         moduleName: name,
-        //         globals   : {}
-        //     }),
-        //     gulp.dest(pkg.path.to('./radic.util.umd.js')),
-        //     // clean(),
-        //     // rename(o.umd.fileName),
-        //     // gulp.dest(o.dests.umd))
-        // ]))
     }
+    if ( pkg.package.radic.umd === true && pkg.package.radic.moduleName !== undefined ) {
+        gulp.task(`build:${name}:umd`, [ `clean:${name}:umd`, `build:${name}:es` ], (cb) => {
+            pump(
+                gulp.src(pkg.path.to('es/**/*.js')),
+                rollup({
+                    input     : pkg.path.to('es/index.js'),
+                    format    : 'umd',
+                    moduleName: pkg.package.radic.moduleName,
+                    globals   : {}
+                }),
+                rename(`${pkg.package.radic.moduleName}.js`),
+                gulp.dest(pkg.path.to('umd/')),
+                cb
+            )
+        })
+        gulp.task(`clean:${name}:umd`, (cb) => gulp.src(pkg.path.to('es')).pipe(clean()));
+        tasks.push(`build:${name}:umd`)
+    }
+    gulp.task(`build:${name}`, tasks);
     srcNames.push(name)
     //endregion
 
@@ -329,7 +312,7 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
     let hasTests = existsSync(pkg.path.to('test'));
     //region: clean, build and watch tasks for the test directory
     if ( hasTests ) {
-        gulp.task(`clean:${name}:test`, (cb) => gulp.src([ pkg.path.to('test/**/*.{js,js.map}'), pkg.path.to('coverage') ]).pipe(clean()));//, (err) => cb(err)) });
+        gulp.task(`clean:${name}:test`, (cb) => gulp.src([ pkg.path.to('test/**/*.{js,js.map,d.ts}'), pkg.path.to('coverage'), pkg.path.to('.nyc_output') ]).pipe(clean()));//, (err) => cb(err)) });
         gulp.task(`build:${name}:test`, (cb) => {
             let testProject = gts.createProject(pkg.path.to('tsconfig.json'), <TSProjectOptions> {
                 declaration: false, outDir: './test', rootDir: './'
@@ -347,6 +330,7 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
         testNames.push(`${name}:test`);
     }
     //endregion
+
 }
 packages.forEach(pkg => createTsTask(`${pkg.directory}:${c.ts.taskPrefix}`, pkg, '/', {}));
 // src
@@ -359,17 +343,19 @@ packages.forEach(pkg => createTsTask(`${pkg.directory}:${c.ts.taskPrefix}`, pkg,
 let defaultPackageJson = require('./scripts/templates/package.json')
 let pkgjsTaskNames     = []
 packages.forEach(pkg => {
-    let taskName = 'build:' + pkg.directory + ':pkgjs';
+    let taskName = `${pkg.directory}:pkgjs`;
+    // pkgjsTaskNames.push(`clean:${taskName}`)
     pkgjsTaskNames.push(taskName)
-    gulp.task(`clean:${taskName}:pkgjs`, (cb) => cb()) // fake task
-    gulp.task(taskName, (cb) => {
+    gulp.task(`clean:${taskName}`, (cb) => cb()) // fake task
+    gulp.task(`build:${taskName}`, (cb) => {
         let packageJson      = _.merge(require(pkg.path.to('package.json')), defaultPackageJson)
-        packageJson.homepage = 'http://robin.radic.nl/npm-packages/' + pkg.directory
+        packageJson.homepage = `http://robin.radic.nl/npm-packages/${pkg.directory}`
         writeJsonSync(pkg.path.to('package.json'), packageJson, { encoding: 'utf-8', spaces: 4 });
         cb();
     })
 })
-gulp.task('build:pkgjs', pkgjsTaskNames);
+gulp.task('build:pkgjs', pkgjsTaskNames.map(name => `build:${name}`));
+gulp.task('clean:pkgjs', pkgjsTaskNames.map(name => `clean:${name}`));
 //endregion
 
 packages.forEach(pkg => {
@@ -471,7 +457,7 @@ gulp.task('docs:templates', [ 'clean:docs:templates' ], (cb) => {
 
     r
         .template('docs/stylesheet.scss')
-        .applyParsers(['scss'])
+        .applyParsers([ 'scss' ])
         .writeTo('docs/stylesheet.css', true);
 
     log(`Compiled and written {cyan}templates/docs/stylesheet.scss{/cyan} to {cyan}docs/index.scss{/cyan}`)
@@ -521,7 +507,7 @@ gulp.task('docs:readme', (cb) => {
 })
 
 
-gulp.task(`clean:docs`, (cb) => { pump(gulp.src('docs/*'), clean(), (err) => cb(err)) });
+gulp.task(`clean:docs`, (cb) => { pump(gulp.src([ 'docs/*', c.ghPages.cacheDir ]), clean(), (err) => cb(err)) });
 gulp.task(`clean:docs:templates`, (cb) => { pump(gulp.src('docs/{index.html,stylesheet.scss}'), clean(), (err) => cb(err)) });
 gulp.task('docs', (cb) => sequence('clean:docs', 'docs:ts', 'docs:templates', 'docs:script', 'docs:readme', cb))
 gulp.task('docs:ghpages', () => {
@@ -536,9 +522,9 @@ gulp.task('docs:deploy', (cb) => sequence('docs', 'docs:ghpages', cb))
 //region: TASKS: TESTING
 
 packages.filter(pkg => pkg.hasTests).forEach(pkg => {
-    gulp.task('test:' + pkg.directory, (cb) => {
+    gulp.task(`test:${pkg.directory}`, (cb) => {
         if ( pkg.package.scripts.test ) {
-            execSync('lerna run test --scope ' + pkg.name, { stdio: 'inherit' })
+            execSync(`lerna run test --scope ${pkg.name}`, { stdio: 'inherit' })
             // execSync('yarn test', { cwd: pkg.path.toString(), stdio: 'inherit' });
         } else {
             execSync('nyc mocha', { cwd: pkg.path.toString(), stdio: 'inherit' });
@@ -553,7 +539,7 @@ packages.filter(pkg => pkg.hasTests).forEach(pkg => {
 gulp.task('clean', [ `clean:${c.ts.taskPrefix}`, `clean:${c.ts.taskPrefix}:test`, 'clean:docs' ])
 gulp.task('build', [ 'clean' ], (cb) => sequence('build:pkgjs', `build:${c.ts.taskPrefix}`, `build:${c.ts.taskPrefix}:test`, 'idea', cb))
 gulp.task('watch', [ 'build' ], () => gulp.start(`watch:${c.ts.taskPrefix}`, `watch:${c.ts.taskPrefix}:test`))
-gulp.task('test', packages.filter(pkg => pkg.hasTests).map(pkg => 'test:' + pkg.directory))
+gulp.task('test', packages.filter(pkg => pkg.hasTests).map(pkg => `test:${pkg.directory}`))
 gulp.task('list', (cb) => {
     let args = yargs
         .option({

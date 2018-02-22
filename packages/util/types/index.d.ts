@@ -4,6 +4,6 @@ export * from './lib/object';
 export * from './lib/general';
 export * from './lib/JSON';
 export * from './lib/material';
-export * from './lib/storage';
+export * from './lib/storage/index';
 export * from './lib/date';
 export * from './lib/string';

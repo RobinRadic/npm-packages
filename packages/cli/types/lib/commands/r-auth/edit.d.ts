@@ -8,6 +8,6 @@ export declare class AuthEditCmd extends BaseCommand {
     log: LoggerInstance;
     config: RConfig;
     events: Dispatcher;
-    handle(args: CommandArguments, ...argv: any[]): Promise<any>;
+    handle(args: CommandArguments, ...argv: any[]): Promise<boolean | LoggerInstance>;
 }
 export default AuthEditCmd;
