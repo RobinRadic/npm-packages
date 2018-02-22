@@ -126,6 +126,7 @@ cli
 
 <span class="hljs-comment">// require the 'root' command and pass it to the start function </span>
 cli.start(<span class="hljs-built_in">require</span>(<span class="hljs-string">'../commands/foobar'</span>));
+
 </code></pre>
 				<h4 id="group-definition">Group definition</h4>
 				<p>The &#39;root&#39; command is in this case configured as a group
@@ -315,6 +316,9 @@ cli.start(<span class="hljs-built_in">require</span>(<span class="hljs-string">'
 						<a href="classes/modulescmd.html" class="tsd-kind-icon">Modules<wbr>Cmd</a>
 					</li>
 					<li class=" tsd-kind-class">
+						<a href="classes/nulllog.html" class="tsd-kind-icon">Null<wbr>Log</a>
+					</li>
+					<li class=" tsd-kind-class">
 						<a href="classes/output.html" class="tsd-kind-icon">Output</a>
 					</li>
 					<li class=" tsd-kind-class">
@@ -340,6 +344,9 @@ cli.start(<span class="hljs-built_in">require</span>(<span class="hljs-string">'
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/verbosityhelper.html" class="tsd-kind-icon">Verbosity<wbr>Helper</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="classes/winstonlog.html" class="tsd-kind-icon">Winston<wbr>Log</a>
 					</li>
 					<li class=" tsd-kind-class">
 						<a href="classes/default.html" class="tsd-kind-icon">default</a>
@@ -540,16 +547,19 @@ cli.start(<span class="hljs-built_in">require</span>(<span class="hljs-string">'
 						<a href="globals.html#log" class="tsd-kind-icon">log</a>
 					</li>
 					<li class=" tsd-kind-variable">
-						<a href="globals.html#logcolors" class="tsd-kind-icon">log<wbr>Colors</a>
-					</li>
-					<li class=" tsd-kind-variable">
 						<a href="globals.html#loglevel" class="tsd-kind-icon">log<wbr>Level</a>
 					</li>
 					<li class=" tsd-kind-variable">
 						<a href="globals.html#loglevels" class="tsd-kind-icon">log<wbr>Levels</a>
 					</li>
 					<li class=" tsd-kind-variable">
+						<a href="globals.html#logmodule" class="tsd-kind-icon">log<wbr>Module</a>
+					</li>
+					<li class=" tsd-kind-variable">
 						<a href="globals.html#logtransports" class="tsd-kind-icon">log<wbr>Transports</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="globals.html#nulllogmodule" class="tsd-kind-icon">null<wbr>Log<wbr>Module</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-is-not-exported">
 						<a href="globals.html#parser" class="tsd-kind-icon">parser</a>
@@ -583,6 +593,9 @@ cli.start(<span class="hljs-built_in">require</span>(<span class="hljs-string">'
 					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#completion" class="tsd-kind-icon">completion</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#debug" class="tsd-kind-icon">debug</a>
 					</li>
 					<li class=" tsd-kind-function tsd-is-not-exported">
 						<a href="globals.html#deepequal" class="tsd-kind-icon">deep<wbr>Equal</a>
@@ -653,17 +666,11 @@ cli.start(<span class="hljs-built_in">require</span>(<span class="hljs-string">'
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#requirepeer" class="tsd-kind-icon">require<wbr>Peer</a>
 					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#seperator" class="tsd-kind-icon">seperator</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#setloglevel" class="tsd-kind-icon">set<wbr>Log<wbr>Level</a>
-					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
-						<a href="globals.html#setverbosity" class="tsd-kind-icon">set<wbr>Verbosity</a>
-					</li>
 					<li class=" tsd-kind-function">
 						<a href="globals.html#singleton" class="tsd-kind-icon">singleton</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="globals.html#timelog" class="tsd-kind-icon">timelog</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
 						<a href="globals.html#transformargumenttype" class="tsd-kind-icon">transform<wbr>Argument<wbr>Type</a>

@@ -23,7 +23,7 @@
 					},
 					"children": [
 						{
-							"id": 3,
+							"id": 35,
 							"name": "Storage",
 							"kind": 128,
 							"kindString": "Class",
@@ -32,7 +32,7 @@
 							},
 							"children": [
 								{
-									"id": 4,
+									"id": 36,
 									"name": "constructor",
 									"kind": 512,
 									"kindString": "Constructor",
@@ -41,14 +41,14 @@
 									},
 									"signatures": [
 										{
-											"id": 5,
+											"id": 37,
 											"name": "new Storage",
 											"kind": 16384,
 											"kindString": "Constructor signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 6,
+													"id": 38,
 													"name": "name",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -59,7 +59,7 @@
 													}
 												},
 												{
-													"id": 7,
+													"id": 39,
 													"name": "fs",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -70,7 +70,7 @@
 													}
 												},
 												{
-													"id": 8,
+													"id": 40,
 													"name": "configPath",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -84,20 +84,20 @@
 											"type": {
 												"type": "reference",
 												"name": "Storage",
-												"id": 3
+												"id": 35
 											}
 										}
 									],
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 15,
+											"line": 24,
 											"character": 19
 										}
 									]
 								},
 								{
-									"id": 9,
+									"id": 41,
 									"name": "defaults",
 									"kind": 2048,
 									"kindString": "Method",
@@ -106,14 +106,14 @@
 									},
 									"signatures": [
 										{
-											"id": 10,
+											"id": 42,
 											"name": "defaults",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 11,
+													"id": 43,
 													"name": "defaults",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -133,13 +133,13 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 18,
+											"line": 27,
 											"character": 16
 										}
 									]
 								},
 								{
-									"id": 12,
+									"id": 44,
 									"name": "delete",
 									"kind": 2048,
 									"kindString": "Method",
@@ -148,14 +148,14 @@
 									},
 									"signatures": [
 										{
-											"id": 13,
+											"id": 45,
 											"name": "delete",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 14,
+													"id": 46,
 													"name": "key",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -175,13 +175,13 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 19,
+											"line": 28,
 											"character": 14
 										}
 									]
 								},
 								{
-									"id": 15,
+									"id": 47,
 									"name": "get",
 									"kind": 2048,
 									"kindString": "Method",
@@ -190,14 +190,14 @@
 									},
 									"signatures": [
 										{
-											"id": 16,
+											"id": 48,
 											"name": "get",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 17,
+													"id": 49,
 													"name": "key",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -217,13 +217,13 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 20,
+											"line": 29,
 											"character": 11
 										}
 									]
 								},
 								{
-									"id": 18,
+									"id": 50,
 									"name": "getAll",
 									"kind": 2048,
 									"kindString": "Method",
@@ -232,7 +232,7 @@
 									},
 									"signatures": [
 										{
-											"id": 19,
+											"id": 51,
 											"name": "getAll",
 											"kind": 4096,
 											"kindString": "Call signature",
@@ -240,7 +240,7 @@
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 20,
+													"id": 52,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
@@ -249,14 +249,14 @@
 													},
 													"indexSignature": [
 														{
-															"id": 21,
+															"id": 53,
 															"name": "__index",
 															"kind": 8192,
 															"kindString": "Index signature",
 															"flags": {},
 															"parameters": [
 																{
-																	"id": 22,
+																	"id": 54,
 																	"name": "key",
 																	"kind": 32768,
 																	"kindString": "Parameter",
@@ -276,7 +276,7 @@
 													"sources": [
 														{
 															"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-															"line": 21,
+															"line": 30,
 															"character": 17
 														}
 													]
@@ -287,13 +287,13 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 21,
+											"line": 30,
 											"character": 14
 										}
 									]
 								},
 								{
-									"id": 23,
+									"id": 55,
 									"name": "save",
 									"kind": 2048,
 									"kindString": "Method",
@@ -302,7 +302,7 @@
 									},
 									"signatures": [
 										{
-											"id": 24,
+											"id": 56,
 											"name": "save",
 											"kind": 4096,
 											"kindString": "Call signature",
@@ -316,13 +316,13 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 22,
+											"line": 31,
 											"character": 12
 										}
 									]
 								},
 								{
-									"id": 25,
+									"id": 57,
 									"name": "set",
 									"kind": 2048,
 									"kindString": "Method",
@@ -331,14 +331,14 @@
 									},
 									"signatures": [
 										{
-											"id": 26,
+											"id": 58,
 											"name": "set",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 27,
+													"id": 59,
 													"name": "key",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -349,7 +349,7 @@
 													}
 												},
 												{
-													"id": 28,
+													"id": 60,
 													"name": "value",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -369,7 +369,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 23,
+											"line": 32,
 											"character": 11
 										}
 									]
@@ -380,32 +380,32 @@
 									"title": "Constructors",
 									"kind": 512,
 									"children": [
-										4
+										36
 									]
 								},
 								{
 									"title": "Methods",
 									"kind": 2048,
 									"children": [
-										9,
-										12,
-										15,
-										18,
-										23,
-										25
+										41,
+										44,
+										47,
+										50,
+										55,
+										57
 									]
 								}
 							],
 							"sources": [
 								{
 									"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-									"line": 15,
+									"line": 24,
 									"character": 17
 								}
 							]
 						},
 						{
-							"id": 34,
+							"id": 66,
 							"name": "ArgumentConfig",
 							"kind": 256,
 							"kindString": "Interface",
@@ -414,7 +414,7 @@
 							},
 							"children": [
 								{
-									"id": 39,
+									"id": 71,
 									"name": "default",
 									"kind": 1024,
 									"kindString": "Property",
@@ -425,7 +425,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 48,
+											"line": 57,
 											"character": 15
 										}
 									],
@@ -435,7 +435,7 @@
 									}
 								},
 								{
-									"id": 35,
+									"id": 67,
 									"name": "description",
 									"kind": 1024,
 									"kindString": "Property",
@@ -446,7 +446,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 44,
+											"line": 53,
 											"character": 19
 										}
 									],
@@ -456,7 +456,7 @@
 									}
 								},
 								{
-									"id": 37,
+									"id": 69,
 									"name": "optional",
 									"kind": 1024,
 									"kindString": "Property",
@@ -467,7 +467,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 46,
+											"line": 55,
 											"character": 16
 										}
 									],
@@ -477,7 +477,7 @@
 									}
 								},
 								{
-									"id": 36,
+									"id": 68,
 									"name": "required",
 									"kind": 1024,
 									"kindString": "Property",
@@ -488,7 +488,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 45,
+											"line": 54,
 											"character": 16
 										}
 									],
@@ -498,7 +498,7 @@
 									}
 								},
 								{
-									"id": 38,
+									"id": 70,
 									"name": "type",
 									"kind": 1024,
 									"kindString": "Property",
@@ -509,7 +509,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 47,
+											"line": 56,
 											"character": 12
 										}
 									],
@@ -541,24 +541,24 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										39,
-										35,
-										37,
-										36,
-										38
+										71,
+										67,
+										69,
+										68,
+										70
 									]
 								}
 							],
 							"sources": [
 								{
 									"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-									"line": 43,
+									"line": 52,
 									"character": 28
 								}
 							]
 						},
 						{
-							"id": 29,
+							"id": 61,
 							"name": "InstallOptions",
 							"kind": 256,
 							"kindString": "Interface",
@@ -567,7 +567,7 @@
 							},
 							"children": [
 								{
-									"id": 31,
+									"id": 63,
 									"name": "bower",
 									"kind": 1024,
 									"kindString": "Property",
@@ -581,7 +581,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 33,
+											"line": 42,
 											"character": 13
 										}
 									],
@@ -600,7 +600,7 @@
 									}
 								},
 								{
-									"id": 30,
+									"id": 62,
 									"name": "npm",
 									"kind": 1024,
 									"kindString": "Property",
@@ -614,7 +614,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 29,
+											"line": 38,
 											"character": 11
 										}
 									],
@@ -633,7 +633,7 @@
 									}
 								},
 								{
-									"id": 33,
+									"id": 65,
 									"name": "skipMessage",
 									"kind": 1024,
 									"kindString": "Property",
@@ -647,7 +647,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 41,
+											"line": 50,
 											"character": 19
 										}
 									],
@@ -657,7 +657,7 @@
 									}
 								},
 								{
-									"id": 32,
+									"id": 64,
 									"name": "yarn",
 									"kind": 1024,
 									"kindString": "Property",
@@ -671,7 +671,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 37,
+											"line": 46,
 											"character": 12
 										}
 									],
@@ -695,23 +695,23 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										31,
-										30,
-										33,
-										32
+										63,
+										62,
+										65,
+										64
 									]
 								}
 							],
 							"sources": [
 								{
 									"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-									"line": 25,
+									"line": 34,
 									"character": 28
 								}
 							]
 						},
 						{
-							"id": 46,
+							"id": 78,
 							"name": "MemFsEditor",
 							"kind": 256,
 							"kindString": "Interface",
@@ -720,7 +720,7 @@
 							},
 							"children": [
 								{
-									"id": 103,
+									"id": 135,
 									"name": "commit",
 									"kind": 2048,
 									"kindString": "Method",
@@ -729,14 +729,14 @@
 									},
 									"signatures": [
 										{
-											"id": 104,
+											"id": 136,
 											"name": "commit",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 105,
+													"id": 137,
 													"name": "callback",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -753,14 +753,14 @@
 											}
 										},
 										{
-											"id": 106,
+											"id": 138,
 											"name": "commit",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 107,
+													"id": 139,
 													"name": "filters",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -774,7 +774,7 @@
 													}
 												},
 												{
-													"id": 108,
+													"id": 140,
 													"name": "callback",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -794,18 +794,18 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 68,
+											"line": 77,
 											"character": 14
 										},
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 69,
+											"line": 78,
 											"character": 14
 										}
 									]
 								},
 								{
-									"id": 83,
+									"id": 115,
 									"name": "copy",
 									"kind": 2048,
 									"kindString": "Method",
@@ -814,14 +814,14 @@
 									},
 									"signatures": [
 										{
-											"id": 84,
+											"id": 116,
 											"name": "copy",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 85,
+													"id": 117,
 													"name": "from",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -832,7 +832,7 @@
 													}
 												},
 												{
-													"id": 86,
+													"id": 118,
 													"name": "to",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -843,7 +843,7 @@
 													}
 												},
 												{
-													"id": 87,
+													"id": 119,
 													"name": "options",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -865,13 +865,13 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 64,
+											"line": 73,
 											"character": 12
 										}
 									]
 								},
 								{
-									"id": 88,
+									"id": 120,
 									"name": "copyTpl",
 									"kind": 2048,
 									"kindString": "Method",
@@ -880,14 +880,14 @@
 									},
 									"signatures": [
 										{
-											"id": 89,
+											"id": 121,
 											"name": "copyTpl",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 90,
+													"id": 122,
 													"name": "from",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -898,7 +898,7 @@
 													}
 												},
 												{
-													"id": 91,
+													"id": 123,
 													"name": "to",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -909,7 +909,7 @@
 													}
 												},
 												{
-													"id": 92,
+													"id": 124,
 													"name": "context",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -920,7 +920,7 @@
 													}
 												},
 												{
-													"id": 93,
+													"id": 125,
 													"name": "templateOptions",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -933,7 +933,7 @@
 													}
 												},
 												{
-													"id": 94,
+													"id": 126,
 													"name": "copyOptions",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -955,13 +955,13 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 65,
+											"line": 74,
 											"character": 15
 										}
 									]
 								},
 								{
-									"id": 79,
+									"id": 111,
 									"name": "delete",
 									"kind": 2048,
 									"kindString": "Method",
@@ -970,8 +970,302 @@
 									},
 									"signatures": [
 										{
-											"id": 80,
+											"id": 112,
 											"name": "delete",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"parameters": [
+												{
+													"id": 113,
+													"name": "filepath",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 114,
+													"name": "options",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {
+														"isOptional": true
+													},
+													"type": {
+														"type": "reference",
+														"name": "__type"
+													}
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "void"
+											}
+										}
+									],
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
+											"line": 72,
+											"character": 14
+										}
+									]
+								},
+								{
+									"id": 132,
+									"name": "exists",
+									"kind": 2048,
+									"kindString": "Method",
+									"flags": {
+										"isExported": true
+									},
+									"signatures": [
+										{
+											"id": 133,
+											"name": "exists",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"parameters": [
+												{
+													"id": 134,
+													"name": "filepath",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "boolean"
+											}
+										}
+									],
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
+											"line": 76,
+											"character": 14
+										}
+									]
+								},
+								{
+									"id": 101,
+									"name": "extendJSON",
+									"kind": 2048,
+									"kindString": "Method",
+									"flags": {
+										"isExported": true
+									},
+									"signatures": [
+										{
+											"id": 102,
+											"name": "extendJSON",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"parameters": [
+												{
+													"id": 103,
+													"name": "filepath",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 104,
+													"name": "contents",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "reference",
+														"name": "__type"
+													}
+												},
+												{
+													"id": 105,
+													"name": "replacer",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {
+														"isOptional": true
+													},
+													"type": {
+														"type": "reflection",
+														"declaration": {
+															"id": 106,
+															"name": "__type",
+															"kind": 65536,
+															"kindString": "Type literal",
+															"flags": {
+																"isExported": true
+															},
+															"signatures": [
+																{
+																	"id": 107,
+																	"name": "__call",
+																	"kind": 4096,
+																	"kindString": "Call signature",
+																	"flags": {},
+																	"parameters": [
+																		{
+																			"id": 108,
+																			"name": "key",
+																			"kind": 32768,
+																			"kindString": "Parameter",
+																			"flags": {},
+																			"type": {
+																				"type": "intrinsic",
+																				"name": "string"
+																			}
+																		},
+																		{
+																			"id": 109,
+																			"name": "value",
+																			"kind": 32768,
+																			"kindString": "Parameter",
+																			"flags": {},
+																			"type": {
+																				"type": "intrinsic",
+																				"name": "any"
+																			}
+																		}
+																	],
+																	"type": {
+																		"type": "intrinsic",
+																		"name": "any"
+																	}
+																}
+															],
+															"sources": [
+																{
+																	"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
+																	"line": 71,
+																	"character": 61
+																}
+															]
+														}
+													}
+												},
+												{
+													"id": 110,
+													"name": "space",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {
+														"isOptional": true
+													},
+													"type": {
+														"type": "intrinsic",
+														"name": "number"
+													}
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "void"
+											}
+										}
+									],
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
+											"line": 71,
+											"character": 18
+										}
+									]
+								},
+								{
+									"id": 127,
+									"name": "move",
+									"kind": 2048,
+									"kindString": "Method",
+									"flags": {
+										"isExported": true
+									},
+									"signatures": [
+										{
+											"id": 128,
+											"name": "move",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"parameters": [
+												{
+													"id": 129,
+													"name": "from",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 130,
+													"name": "to",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 131,
+													"name": "options",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {
+														"isOptional": true
+													},
+													"type": {
+														"type": "reference",
+														"name": "__type"
+													}
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "void"
+											}
+										}
+									],
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
+											"line": 75,
+											"character": 12
+										}
+									]
+								},
+								{
+									"id": 79,
+									"name": "read",
+									"kind": 2048,
+									"kindString": "Method",
+									"flags": {
+										"isExported": true
+									},
+									"signatures": [
+										{
+											"id": 80,
+											"name": "read",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
@@ -1003,300 +1297,6 @@
 											],
 											"type": {
 												"type": "intrinsic",
-												"name": "void"
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 63,
-											"character": 14
-										}
-									]
-								},
-								{
-									"id": 100,
-									"name": "exists",
-									"kind": 2048,
-									"kindString": "Method",
-									"flags": {
-										"isExported": true
-									},
-									"signatures": [
-										{
-											"id": 101,
-											"name": "exists",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 102,
-													"name": "filepath",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "intrinsic",
-														"name": "string"
-													}
-												}
-											],
-											"type": {
-												"type": "intrinsic",
-												"name": "boolean"
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 67,
-											"character": 14
-										}
-									]
-								},
-								{
-									"id": 69,
-									"name": "extendJSON",
-									"kind": 2048,
-									"kindString": "Method",
-									"flags": {
-										"isExported": true
-									},
-									"signatures": [
-										{
-											"id": 70,
-											"name": "extendJSON",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 71,
-													"name": "filepath",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "intrinsic",
-														"name": "string"
-													}
-												},
-												{
-													"id": 72,
-													"name": "contents",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "reference",
-														"name": "__type"
-													}
-												},
-												{
-													"id": 73,
-													"name": "replacer",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "reflection",
-														"declaration": {
-															"id": 74,
-															"name": "__type",
-															"kind": 65536,
-															"kindString": "Type literal",
-															"flags": {
-																"isExported": true
-															},
-															"signatures": [
-																{
-																	"id": 75,
-																	"name": "__call",
-																	"kind": 4096,
-																	"kindString": "Call signature",
-																	"flags": {},
-																	"parameters": [
-																		{
-																			"id": 76,
-																			"name": "key",
-																			"kind": 32768,
-																			"kindString": "Parameter",
-																			"flags": {},
-																			"type": {
-																				"type": "intrinsic",
-																				"name": "string"
-																			}
-																		},
-																		{
-																			"id": 77,
-																			"name": "value",
-																			"kind": 32768,
-																			"kindString": "Parameter",
-																			"flags": {},
-																			"type": {
-																				"type": "intrinsic",
-																				"name": "any"
-																			}
-																		}
-																	],
-																	"type": {
-																		"type": "intrinsic",
-																		"name": "any"
-																	}
-																}
-															],
-															"sources": [
-																{
-																	"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-																	"line": 62,
-																	"character": 61
-																}
-															]
-														}
-													}
-												},
-												{
-													"id": 78,
-													"name": "space",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "intrinsic",
-														"name": "number"
-													}
-												}
-											],
-											"type": {
-												"type": "intrinsic",
-												"name": "void"
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 62,
-											"character": 18
-										}
-									]
-								},
-								{
-									"id": 95,
-									"name": "move",
-									"kind": 2048,
-									"kindString": "Method",
-									"flags": {
-										"isExported": true
-									},
-									"signatures": [
-										{
-											"id": 96,
-											"name": "move",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 97,
-													"name": "from",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "intrinsic",
-														"name": "string"
-													}
-												},
-												{
-													"id": 98,
-													"name": "to",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "intrinsic",
-														"name": "string"
-													}
-												},
-												{
-													"id": 99,
-													"name": "options",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "reference",
-														"name": "__type"
-													}
-												}
-											],
-											"type": {
-												"type": "intrinsic",
-												"name": "void"
-											}
-										}
-									],
-									"sources": [
-										{
-											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 66,
-											"character": 12
-										}
-									]
-								},
-								{
-									"id": 47,
-									"name": "read",
-									"kind": 2048,
-									"kindString": "Method",
-									"flags": {
-										"isExported": true
-									},
-									"signatures": [
-										{
-											"id": 48,
-											"name": "read",
-											"kind": 4096,
-											"kindString": "Call signature",
-											"flags": {},
-											"parameters": [
-												{
-													"id": 49,
-													"name": "filepath",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {},
-													"type": {
-														"type": "intrinsic",
-														"name": "string"
-													}
-												},
-												{
-													"id": 50,
-													"name": "options",
-													"kind": 32768,
-													"kindString": "Parameter",
-													"flags": {
-														"isOptional": true
-													},
-													"type": {
-														"type": "reference",
-														"name": "__type"
-													}
-												}
-											],
-											"type": {
-												"type": "intrinsic",
 												"name": "string"
 											}
 										}
@@ -1304,13 +1304,13 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 58,
+											"line": 67,
 											"character": 12
 										}
 									]
 								},
 								{
-									"id": 51,
+									"id": 83,
 									"name": "readJSON",
 									"kind": 2048,
 									"kindString": "Method",
@@ -1319,14 +1319,14 @@
 									},
 									"signatures": [
 										{
-											"id": 52,
+											"id": 84,
 											"name": "readJSON",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 53,
+													"id": 85,
 													"name": "filepath",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -1337,7 +1337,7 @@
 													}
 												},
 												{
-													"id": 54,
+													"id": 86,
 													"name": "defaults",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -1359,13 +1359,13 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 59,
+											"line": 68,
 											"character": 16
 										}
 									]
 								},
 								{
-									"id": 55,
+									"id": 87,
 									"name": "write",
 									"kind": 2048,
 									"kindString": "Method",
@@ -1374,14 +1374,14 @@
 									},
 									"signatures": [
 										{
-											"id": 56,
+											"id": 88,
 											"name": "write",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 57,
+													"id": 89,
 													"name": "filepath",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -1392,7 +1392,7 @@
 													}
 												},
 												{
-													"id": 58,
+													"id": 90,
 													"name": "contents",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -1412,13 +1412,13 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 60,
+											"line": 69,
 											"character": 13
 										}
 									]
 								},
 								{
-									"id": 59,
+									"id": 91,
 									"name": "writeJSON",
 									"kind": 2048,
 									"kindString": "Method",
@@ -1427,14 +1427,14 @@
 									},
 									"signatures": [
 										{
-											"id": 60,
+											"id": 92,
 											"name": "writeJSON",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 61,
+													"id": 93,
 													"name": "filepath",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -1445,7 +1445,7 @@
 													}
 												},
 												{
-													"id": 62,
+													"id": 94,
 													"name": "contents",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -1456,7 +1456,7 @@
 													}
 												},
 												{
-													"id": 63,
+													"id": 95,
 													"name": "replacer",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -1466,7 +1466,7 @@
 													"type": {
 														"type": "reflection",
 														"declaration": {
-															"id": 64,
+															"id": 96,
 															"name": "__type",
 															"kind": 65536,
 															"kindString": "Type literal",
@@ -1475,14 +1475,14 @@
 															},
 															"signatures": [
 																{
-																	"id": 65,
+																	"id": 97,
 																	"name": "__call",
 																	"kind": 4096,
 																	"kindString": "Call signature",
 																	"flags": {},
 																	"parameters": [
 																		{
-																			"id": 66,
+																			"id": 98,
 																			"name": "key",
 																			"kind": 32768,
 																			"kindString": "Parameter",
@@ -1493,7 +1493,7 @@
 																			}
 																		},
 																		{
-																			"id": 67,
+																			"id": 99,
 																			"name": "value",
 																			"kind": 32768,
 																			"kindString": "Parameter",
@@ -1513,7 +1513,7 @@
 															"sources": [
 																{
 																	"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-																	"line": 61,
+																	"line": 70,
 																	"character": 60
 																}
 															]
@@ -1521,7 +1521,7 @@
 													}
 												},
 												{
-													"id": 68,
+													"id": 100,
 													"name": "space",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -1543,7 +1543,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 61,
+											"line": 70,
 											"character": 17
 										}
 									]
@@ -1554,30 +1554,30 @@
 									"title": "Methods",
 									"kind": 2048,
 									"children": [
-										103,
-										83,
-										88,
+										135,
+										115,
+										120,
+										111,
+										132,
+										101,
+										127,
 										79,
-										100,
-										69,
-										95,
-										47,
-										51,
-										55,
-										59
+										83,
+										87,
+										91
 									]
 								}
 							],
 							"sources": [
 								{
 									"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-									"line": 57,
+									"line": 66,
 									"character": 25
 								}
 							]
 						},
 						{
-							"id": 40,
+							"id": 72,
 							"name": "OptionConfig",
 							"kind": 256,
 							"kindString": "Interface",
@@ -1586,7 +1586,7 @@
 							},
 							"children": [
 								{
-									"id": 41,
+									"id": 73,
 									"name": "alias",
 									"kind": 1024,
 									"kindString": "Property",
@@ -1597,7 +1597,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 51,
+											"line": 60,
 											"character": 13
 										}
 									],
@@ -1607,7 +1607,7 @@
 									}
 								},
 								{
-									"id": 42,
+									"id": 74,
 									"name": "default",
 									"kind": 1024,
 									"kindString": "Property",
@@ -1618,7 +1618,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 52,
+											"line": 61,
 											"character": 15
 										}
 									],
@@ -1628,7 +1628,7 @@
 									}
 								},
 								{
-									"id": 43,
+									"id": 75,
 									"name": "description",
 									"kind": 1024,
 									"kindString": "Property",
@@ -1639,7 +1639,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 53,
+											"line": 62,
 											"character": 19
 										}
 									],
@@ -1649,7 +1649,7 @@
 									}
 								},
 								{
-									"id": 44,
+									"id": 76,
 									"name": "hide",
 									"kind": 1024,
 									"kindString": "Property",
@@ -1660,7 +1660,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 54,
+											"line": 63,
 											"character": 12
 										}
 									],
@@ -1670,7 +1670,7 @@
 									}
 								},
 								{
-									"id": 45,
+									"id": 77,
 									"name": "type",
 									"kind": 1024,
 									"kindString": "Property",
@@ -1681,7 +1681,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 55,
+											"line": 64,
 											"character": 12
 										}
 									],
@@ -1709,21 +1709,792 @@
 									"title": "Properties",
 									"kind": 1024,
 									"children": [
-										41,
-										42,
-										43,
-										44,
-										45
+										73,
+										74,
+										75,
+										76,
+										77
 									]
 								}
 							],
 							"sources": [
 								{
 									"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-									"line": 50,
+									"line": 59,
 									"character": 26
 								}
 							]
+						},
+						{
+							"id": 3,
+							"name": "Question",
+							"kind": 256,
+							"kindString": "Interface",
+							"flags": {
+								"isExported": true
+							},
+							"children": [
+								{
+									"id": 15,
+									"name": "choices",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Choices array or a function returning a choices array. If defined as a function,\nthe first parameter will be the current inquirer session answers.\nArray values can be simple strings, or objects containing a name (to display) and a value properties\n(to save in the answers hash). Values can also be a Separator."
+									},
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 94,
+											"character": 15
+										}
+									],
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "array",
+												"elementType": {
+													"type": "reference",
+													"name": "ChoiceType"
+												}
+											},
+											{
+												"type": "reflection",
+												"declaration": {
+													"id": 16,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {},
+													"signatures": [
+														{
+															"id": 17,
+															"name": "__call",
+															"kind": 4096,
+															"kindString": "Call signature",
+															"flags": {},
+															"parameters": [
+																{
+																	"id": 18,
+																	"name": "answers",
+																	"kind": 32768,
+																	"kindString": "Parameter",
+																	"flags": {},
+																	"type": {
+																		"type": "reference",
+																		"name": "Answers"
+																	}
+																}
+															],
+															"type": {
+																"type": "array",
+																"elementType": {
+																	"type": "reference",
+																	"name": "ChoiceType"
+																}
+															}
+														}
+													],
+													"sources": [
+														{
+															"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+															"line": 94,
+															"character": 32
+														}
+													]
+												}
+											}
+										]
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.choices"
+									}
+								},
+								{
+									"id": 11,
+									"name": "default",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Default value(s) to use if nothing is entered, or a function that returns the default value(s).\nIf defined as a function, the first parameter will be the current inquirer session answers."
+									},
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 87,
+											"character": 15
+										}
+									],
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "any"
+											},
+											{
+												"type": "reflection",
+												"declaration": {
+													"id": 12,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {},
+													"signatures": [
+														{
+															"id": 13,
+															"name": "__call",
+															"kind": 4096,
+															"kindString": "Call signature",
+															"flags": {},
+															"parameters": [
+																{
+																	"id": 14,
+																	"name": "answers",
+																	"kind": 32768,
+																	"kindString": "Parameter",
+																	"flags": {},
+																	"type": {
+																		"type": "reference",
+																		"name": "Answers"
+																	}
+																}
+															],
+															"type": {
+																"type": "intrinsic",
+																"name": "any"
+															}
+														}
+													],
+													"sources": [
+														{
+															"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+															"line": 87,
+															"character": 23
+														}
+													]
+												}
+											}
+										]
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.default"
+									}
+								},
+								{
+									"id": 32,
+									"name": "mask",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Add a mask when password will entered"
+									},
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 118,
+											"character": 12
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.mask"
+									}
+								},
+								{
+									"id": 7,
+									"name": "message",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "The question to print. If defined as a function,\nthe first parameter will be the current inquirer session answers."
+									},
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 82,
+											"character": 15
+										}
+									],
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "string"
+											},
+											{
+												"type": "reflection",
+												"declaration": {
+													"id": 8,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {},
+													"signatures": [
+														{
+															"id": 9,
+															"name": "__call",
+															"kind": 4096,
+															"kindString": "Call signature",
+															"flags": {},
+															"parameters": [
+																{
+																	"id": 10,
+																	"name": "answers",
+																	"kind": 32768,
+																	"kindString": "Parameter",
+																	"flags": {},
+																	"type": {
+																		"type": "reference",
+																		"name": "Answers"
+																	}
+																}
+															],
+															"type": {
+																"type": "intrinsic",
+																"name": "string"
+															}
+														}
+													],
+													"sources": [
+														{
+															"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+															"line": 82,
+															"character": 26
+														}
+													]
+												}
+											}
+										]
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.message"
+									}
+								},
+								{
+									"id": 6,
+									"name": "name",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "The name to use when storing the answer in the anwers hash."
+									},
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 77,
+											"character": 12
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.name"
+									}
+								},
+								{
+									"id": 31,
+									"name": "pageSize",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Change the number of lines that will be rendered when using list, rawList, expand or checkbox."
+									},
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 114,
+											"character": 16
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "number"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.pageSize"
+									}
+								},
+								{
+									"id": 30,
+									"name": "paginated",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 110,
+											"character": 17
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.paginated"
+									}
+								},
+								{
+									"id": 33,
+									"name": "prefix",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Change the default prefix message."
+									},
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 122,
+											"character": 14
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.prefix"
+									}
+								},
+								{
+									"id": 4,
+									"name": "store",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "whether to store the user's previous answer"
+									},
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
+											"line": 19,
+											"character": 13
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "boolean"
+									}
+								},
+								{
+									"id": 34,
+									"name": "suffix",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Change the default suffix message."
+									},
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 126,
+											"character": 14
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.suffix"
+									}
+								},
+								{
+									"id": 5,
+									"name": "type",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Type of the prompt.\nPossible values:\n<ul>\n     <li>input</li>\n     <li>confirm</li>\n     <li>list</li>\n     <li>rawlist</li>\n     <li>password</li>\n</ul>",
+										"tags": [
+											{
+												"tag": "defaults:",
+												"text": "'input'\n"
+											}
+										]
+									},
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 73,
+											"character": 12
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "string"
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.type"
+									}
+								},
+								{
+									"id": 26,
+									"name": "when",
+									"kind": 1024,
+									"kindString": "Property",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"comment": {
+										"shortText": "Receive the current user answers hash and should return true or false depending on whether or\nnot this question should be asked. The value can also be a simple boolean."
+									},
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 109,
+											"character": 12
+										}
+									],
+									"type": {
+										"type": "union",
+										"types": [
+											{
+												"type": "intrinsic",
+												"name": "boolean"
+											},
+											{
+												"type": "reflection",
+												"declaration": {
+													"id": 27,
+													"name": "__type",
+													"kind": 65536,
+													"kindString": "Type literal",
+													"flags": {},
+													"signatures": [
+														{
+															"id": 28,
+															"name": "__call",
+															"kind": 4096,
+															"kindString": "Call signature",
+															"flags": {},
+															"parameters": [
+																{
+																	"id": 29,
+																	"name": "answers",
+																	"kind": 32768,
+																	"kindString": "Parameter",
+																	"flags": {},
+																	"type": {
+																		"type": "reference",
+																		"name": "Answers"
+																	}
+																}
+															],
+															"type": {
+																"type": "intrinsic",
+																"name": "boolean"
+															}
+														}
+													],
+													"sources": [
+														{
+															"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+															"line": 109,
+															"character": 24
+														}
+													]
+												}
+											}
+										]
+									},
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.when"
+									}
+								},
+								{
+									"id": 23,
+									"name": "filter",
+									"kind": 2048,
+									"kindString": "Method",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"signatures": [
+										{
+											"id": 24,
+											"name": "filter",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"comment": {
+												"shortText": "Receive the user input and return the filtered value to be used inside the program.\nThe value returned will be added to the Answers hash."
+											},
+											"parameters": [
+												{
+													"id": 25,
+													"name": "input",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											},
+											"inheritedFrom": {
+												"type": "reference",
+												"name": "Question.filter"
+											}
+										}
+									],
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 104,
+											"character": 14
+										}
+									],
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.filter"
+									}
+								},
+								{
+									"id": 19,
+									"name": "validate",
+									"kind": 2048,
+									"kindString": "Method",
+									"flags": {
+										"isExported": true,
+										"isOptional": true
+									},
+									"signatures": [
+										{
+											"id": 20,
+											"name": "validate",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"comment": {
+												"shortText": "Receive the user input and should return true if the value is valid, and an error message (String)\notherwise. If false is returned, a default error message is provided."
+											},
+											"parameters": [
+												{
+													"id": 21,
+													"name": "input",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {},
+													"type": {
+														"type": "intrinsic",
+														"name": "string"
+													}
+												},
+												{
+													"id": 22,
+													"name": "answers",
+													"kind": 32768,
+													"kindString": "Parameter",
+													"flags": {
+														"isOptional": true
+													},
+													"type": {
+														"type": "reference",
+														"name": "Answers"
+													}
+												}
+											],
+											"type": {
+												"type": "union",
+												"types": [
+													{
+														"type": "intrinsic",
+														"name": "boolean"
+													},
+													{
+														"type": "intrinsic",
+														"name": "string"
+													}
+												]
+											},
+											"inheritedFrom": {
+												"type": "reference",
+												"name": "Question.validate"
+											}
+										}
+									],
+									"sources": [
+										{
+											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/node_modules/@types/inquirer/index.d.ts",
+											"line": 99,
+											"character": 16
+										}
+									],
+									"inheritedFrom": {
+										"type": "reference",
+										"name": "Question.validate"
+									}
+								}
+							],
+							"groups": [
+								{
+									"title": "Properties",
+									"kind": 1024,
+									"children": [
+										15,
+										11,
+										32,
+										7,
+										6,
+										31,
+										30,
+										33,
+										4,
+										34,
+										5,
+										26
+									]
+								},
+								{
+									"title": "Methods",
+									"kind": 2048,
+									"children": [
+										23,
+										19
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
+									"line": 15,
+									"character": 22
+								}
+							]
+						},
+						{
+							"id": 142,
+							"name": "Answers",
+							"kind": 4194304,
+							"kindString": "Type alias",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
+									"line": 22,
+									"character": 16
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Answers"
+							}
+						},
+						{
+							"id": 141,
+							"name": "Questions",
+							"kind": 4194304,
+							"kindString": "Type alias",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
+									"line": 21,
+									"character": 18
+								}
+							],
+							"type": {
+								"type": "union",
+								"types": [
+									{
+										"type": "reference",
+										"name": "Question"
+									},
+									{
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"name": "Question"
+										}
+									},
+									{
+										"type": "reference",
+										"name": "Observable",
+										"typeArguments": [
+											{
+												"type": "reference",
+												"name": "Question"
+											}
+										]
+									}
+								]
+							}
 						}
 					],
 					"groups": [
@@ -1731,17 +2502,26 @@
 							"title": "Classes",
 							"kind": 128,
 							"children": [
-								3
+								35
 							]
 						},
 						{
 							"title": "Interfaces",
 							"kind": 256,
 							"children": [
-								34,
-								29,
-								46,
-								40
+								66,
+								61,
+								78,
+								72,
+								3
+							]
+						},
+						{
+							"title": "Type aliases",
+							"kind": 4194304,
+							"children": [
+								142,
+								141
 							]
 						}
 					],
@@ -1754,7 +2534,7 @@
 					]
 				},
 				{
-					"id": 299,
+					"id": 333,
 					"name": "Blabla",
 					"kind": 256,
 					"kindString": "Interface",
@@ -1763,7 +2543,7 @@
 					},
 					"children": [
 						{
-							"id": 300,
+							"id": 334,
 							"name": "foo",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1788,7 +2568,7 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								300
+								334
 							]
 						}
 					],
@@ -1801,7 +2581,7 @@
 					]
 				},
 				{
-					"id": 109,
+					"id": 143,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
@@ -1810,14 +2590,14 @@
 					},
 					"signatures": [
 						{
-							"id": 110,
+							"id": 144,
 							"name": "new Generator",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 111,
+									"id": 145,
 									"name": "args",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1840,7 +2620,7 @@
 									}
 								},
 								{
-									"id": 112,
+									"id": 146,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1865,7 +2645,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 73,
+							"line": 82,
 							"character": 41
 						}
 					],
@@ -1875,7 +2655,7 @@
 					}
 				},
 				{
-					"id": 121,
+					"id": 155,
 					"name": "appname",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1885,7 +2665,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 82,
+							"line": 91,
 							"character": 11
 						}
 					],
@@ -1899,7 +2679,7 @@
 					}
 				},
 				{
-					"id": 118,
+					"id": 152,
 					"name": "args",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1909,7 +2689,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 79,
+							"line": 88,
 							"character": 8
 						}
 					],
@@ -1923,7 +2703,7 @@
 					}
 				},
 				{
-					"id": 122,
+					"id": 156,
 					"name": "config",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1933,7 +2713,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 83,
+							"line": 92,
 							"character": 10
 						}
 					],
@@ -1947,7 +2727,7 @@
 					}
 				},
 				{
-					"id": 120,
+					"id": 154,
 					"name": "description",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1957,7 +2737,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 81,
+							"line": 90,
 							"character": 15
 						}
 					],
@@ -1971,7 +2751,7 @@
 					}
 				},
 				{
-					"id": 113,
+					"id": 147,
 					"name": "env",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1981,14 +2761,14 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 76,
+							"line": 85,
 							"character": 7
 						}
 					],
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 114,
+							"id": 148,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
@@ -1997,7 +2777,7 @@
 							},
 							"children": [
 								{
-									"id": 115,
+									"id": 149,
 									"name": "error",
 									"kind": 64,
 									"kindString": "Function",
@@ -2006,14 +2786,14 @@
 									},
 									"signatures": [
 										{
-											"id": 116,
+											"id": 150,
 											"name": "error",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 117,
+													"id": 151,
 													"name": "e",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -2038,7 +2818,7 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 77,
+											"line": 86,
 											"character": 13
 										}
 									]
@@ -2049,14 +2829,14 @@
 									"title": "Functions",
 									"kind": 64,
 									"children": [
-										115
+										149
 									]
 								}
 							],
 							"sources": [
 								{
 									"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-									"line": 76,
+									"line": 85,
 									"character": 8
 								}
 							]
@@ -2068,7 +2848,7 @@
 					}
 				},
 				{
-					"id": 123,
+					"id": 157,
 					"name": "fs",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2078,7 +2858,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 84,
+							"line": 93,
 							"character": 6
 						}
 					],
@@ -2092,7 +2872,7 @@
 					}
 				},
 				{
-					"id": 124,
+					"id": 158,
 					"name": "options",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2102,7 +2882,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 85,
+							"line": 94,
 							"character": 11
 						}
 					],
@@ -2116,7 +2896,7 @@
 					}
 				},
 				{
-					"id": 119,
+					"id": 153,
 					"name": "resolved",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2126,7 +2906,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 80,
+							"line": 89,
 							"character": 12
 						}
 					],
@@ -2140,7 +2920,7 @@
 					}
 				},
 				{
-					"id": 220,
+					"id": 254,
 					"name": "user",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2150,14 +2930,14 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 183,
+							"line": 192,
 							"character": 17
 						}
 					],
 					"type": {
 						"type": "reflection",
 						"declaration": {
-							"id": 221,
+							"id": 255,
 							"name": "__type",
 							"kind": 65536,
 							"kindString": "Type literal",
@@ -2166,7 +2946,7 @@
 							},
 							"children": [
 								{
-									"id": 222,
+									"id": 256,
 									"name": "git",
 									"kind": 32,
 									"kindString": "Variable",
@@ -2176,14 +2956,14 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 184,
+											"line": 193,
 											"character": 20
 										}
 									],
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 223,
+											"id": 257,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -2192,7 +2972,7 @@
 											},
 											"children": [
 												{
-													"id": 224,
+													"id": 258,
 													"name": "email",
 													"kind": 64,
 													"kindString": "Function",
@@ -2201,7 +2981,7 @@
 													},
 													"signatures": [
 														{
-															"id": 225,
+															"id": 259,
 															"name": "email",
 															"kind": 4096,
 															"kindString": "Call signature",
@@ -2219,13 +2999,13 @@
 													"sources": [
 														{
 															"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-															"line": 190,
+															"line": 199,
 															"character": 17
 														}
 													]
 												},
 												{
-													"id": 226,
+													"id": 260,
 													"name": "name",
 													"kind": 64,
 													"kindString": "Function",
@@ -2234,7 +3014,7 @@
 													},
 													"signatures": [
 														{
-															"id": 227,
+															"id": 261,
 															"name": "name",
 															"kind": 4096,
 															"kindString": "Call signature",
@@ -2252,7 +3032,7 @@
 													"sources": [
 														{
 															"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-															"line": 196,
+															"line": 205,
 															"character": 16
 														}
 													]
@@ -2263,15 +3043,15 @@
 													"title": "Functions",
 													"kind": 64,
 													"children": [
-														224,
-														226
+														258,
+														260
 													]
 												}
 											],
 											"sources": [
 												{
 													"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-													"line": 184,
+													"line": 193,
 													"character": 21
 												}
 											]
@@ -2279,7 +3059,7 @@
 									}
 								},
 								{
-									"id": 228,
+									"id": 262,
 									"name": "github",
 									"kind": 32,
 									"kindString": "Variable",
@@ -2289,14 +3069,14 @@
 									"sources": [
 										{
 											"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-											"line": 198,
+											"line": 207,
 											"character": 23
 										}
 									],
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 229,
+											"id": 263,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -2305,7 +3085,7 @@
 											},
 											"children": [
 												{
-													"id": 230,
+													"id": 264,
 													"name": "username",
 													"kind": 64,
 													"kindString": "Function",
@@ -2314,7 +3094,7 @@
 													},
 													"signatures": [
 														{
-															"id": 231,
+															"id": 265,
 															"name": "username",
 															"kind": 4096,
 															"kindString": "Call signature",
@@ -2338,7 +3118,7 @@
 													"sources": [
 														{
 															"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-															"line": 204,
+															"line": 213,
 															"character": 20
 														}
 													]
@@ -2349,14 +3129,14 @@
 													"title": "Functions",
 													"kind": 64,
 													"children": [
-														230
+														264
 													]
 												}
 											],
 											"sources": [
 												{
 													"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-													"line": 198,
+													"line": 207,
 													"character": 24
 												}
 											]
@@ -2369,15 +3149,15 @@
 									"title": "Variables",
 									"kind": 32,
 									"children": [
-										222,
-										228
+										256,
+										262
 									]
 								}
 							],
 							"sources": [
 								{
 									"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-									"line": 183,
+									"line": 192,
 									"character": 18
 								}
 							]
@@ -2389,7 +3169,7 @@
 					}
 				},
 				{
-					"id": 236,
+					"id": 270,
 					"name": "defaultMaxListeners",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2400,7 +3180,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 809,
+							"line": 907,
 							"character": 38
 						}
 					],
@@ -2414,7 +3194,7 @@
 					}
 				},
 				{
-					"id": 237,
+					"id": 271,
 					"name": "addListener",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2423,14 +3203,14 @@
 					},
 					"signatures": [
 						{
-							"id": 238,
+							"id": 272,
 							"name": "addListener",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 239,
+									"id": 273,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2450,7 +3230,7 @@
 									}
 								},
 								{
-									"id": 240,
+									"id": 274,
 									"name": "listener",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2458,7 +3238,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 241,
+											"id": 275,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -2467,14 +3247,14 @@
 											},
 											"signatures": [
 												{
-													"id": 242,
+													"id": 276,
 													"name": "__call",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 243,
+															"id": 277,
 															"name": "args",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -2499,7 +3279,7 @@
 											"sources": [
 												{
 													"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-													"line": 811,
+													"line": 909,
 													"character": 57
 												}
 											]
@@ -2524,7 +3304,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 811,
+							"line": 909,
 							"character": 23
 						}
 					],
@@ -2538,7 +3318,7 @@
 					}
 				},
 				{
-					"id": 129,
+					"id": 163,
 					"name": "argument",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2547,14 +3327,14 @@
 					},
 					"signatures": [
 						{
-							"id": 130,
+							"id": 164,
 							"name": "argument",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 131,
+									"id": 165,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2565,7 +3345,7 @@
 									}
 								},
 								{
-									"id": 132,
+									"id": 166,
 									"name": "config",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2589,7 +3369,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 88,
+							"line": 97,
 							"character": 12
 						}
 					],
@@ -2599,7 +3379,7 @@
 					}
 				},
 				{
-					"id": 175,
+					"id": 209,
 					"name": "argumentsHelp",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2608,7 +3388,7 @@
 					},
 					"signatures": [
 						{
-							"id": 176,
+							"id": 210,
 							"name": "argumentsHelp",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2626,7 +3406,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 103,
+							"line": 112,
 							"character": 17
 						}
 					],
@@ -2636,7 +3416,7 @@
 					}
 				},
 				{
-					"id": 196,
+					"id": 230,
 					"name": "bowerInstall",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2645,7 +3425,7 @@
 					},
 					"signatures": [
 						{
-							"id": 197,
+							"id": 231,
 							"name": "bowerInstall",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2657,7 +3437,7 @@
 							},
 							"parameters": [
 								{
-									"id": 198,
+									"id": 232,
 									"name": "component",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2685,7 +3465,7 @@
 									}
 								},
 								{
-									"id": 199,
+									"id": 233,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2701,7 +3481,7 @@
 									}
 								},
 								{
-									"id": 200,
+									"id": 234,
 									"name": "spawnOptions",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2736,7 +3516,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 124,
+							"line": 133,
 							"character": 16
 						}
 					],
@@ -2746,7 +3526,7 @@
 					}
 				},
 				{
-					"id": 133,
+					"id": 167,
 					"name": "composeWith",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2755,14 +3535,14 @@
 					},
 					"signatures": [
 						{
-							"id": 134,
+							"id": 168,
 							"name": "composeWith",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 135,
+									"id": 169,
 									"name": "namespace",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2773,7 +3553,7 @@
 									}
 								},
 								{
-									"id": 136,
+									"id": 170,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2781,7 +3561,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 137,
+											"id": 171,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -2790,14 +3570,14 @@
 											},
 											"indexSignature": [
 												{
-													"id": 138,
+													"id": 172,
 													"name": "__index",
 													"kind": 8192,
 													"kindString": "Index signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 139,
+															"id": 173,
 															"name": "name",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -2817,7 +3597,7 @@
 											"sources": [
 												{
 													"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-													"line": 89,
+													"line": 98,
 													"character": 43
 												}
 											]
@@ -2825,7 +3605,7 @@
 									}
 								},
 								{
-									"id": 140,
+									"id": 174,
 									"name": "settings",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2835,7 +3615,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 141,
+											"id": 175,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -2844,7 +3624,7 @@
 											},
 											"children": [
 												{
-													"id": 143,
+													"id": 177,
 													"name": "link",
 													"kind": 32,
 													"kindString": "Variable",
@@ -2854,7 +3634,7 @@
 													"sources": [
 														{
 															"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-															"line": 89,
+															"line": 98,
 															"character": 101
 														}
 													],
@@ -2873,7 +3653,7 @@
 													}
 												},
 												{
-													"id": 142,
+													"id": 176,
 													"name": "local",
 													"kind": 32,
 													"kindString": "Variable",
@@ -2883,7 +3663,7 @@
 													"sources": [
 														{
 															"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-															"line": 89,
+															"line": 98,
 															"character": 87
 														}
 													],
@@ -2898,15 +3678,15 @@
 													"title": "Variables",
 													"kind": 32,
 													"children": [
-														143,
-														142
+														177,
+														176
 													]
 												}
 											],
 											"sources": [
 												{
 													"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-													"line": 89,
+													"line": 98,
 													"character": 79
 												}
 											]
@@ -2927,7 +3707,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 89,
+							"line": 98,
 							"character": 15
 						}
 					],
@@ -2937,7 +3717,7 @@
 					}
 				},
 				{
-					"id": 177,
+					"id": 211,
 					"name": "desc",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2946,14 +3726,14 @@
 					},
 					"signatures": [
 						{
-							"id": 178,
+							"id": 212,
 							"name": "desc",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 179,
+									"id": 213,
 									"name": "description",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2977,7 +3757,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 104,
+							"line": 113,
 							"character": 8
 						}
 					],
@@ -2987,7 +3767,7 @@
 					}
 				},
 				{
-					"id": 144,
+					"id": 178,
 					"name": "destinationPath",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2996,14 +3776,14 @@
 					},
 					"signatures": [
 						{
-							"id": 145,
+							"id": 179,
 							"name": "destinationPath",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 146,
+									"id": 180,
 									"name": "path",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3032,7 +3812,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 90,
+							"line": 99,
 							"character": 19
 						}
 					],
@@ -3042,7 +3822,7 @@
 					}
 				},
 				{
-					"id": 147,
+					"id": 181,
 					"name": "destinationRoot",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3051,14 +3831,14 @@
 					},
 					"signatures": [
 						{
-							"id": 148,
+							"id": 182,
 							"name": "destinationRoot",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 149,
+									"id": 183,
 									"name": "rootPath",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3084,7 +3864,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 91,
+							"line": 100,
 							"character": 19
 						}
 					],
@@ -3094,7 +3874,7 @@
 					}
 				},
 				{
-					"id": 150,
+					"id": 184,
 					"name": "determineAppname",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3103,7 +3883,7 @@
 					},
 					"signatures": [
 						{
-							"id": 151,
+							"id": 185,
 							"name": "determineAppname",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3121,7 +3901,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 92,
+							"line": 101,
 							"character": 20
 						}
 					],
@@ -3131,7 +3911,7 @@
 					}
 				},
 				{
-					"id": 290,
+					"id": 324,
 					"name": "emit",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3140,14 +3920,14 @@
 					},
 					"signatures": [
 						{
-							"id": 291,
+							"id": 325,
 							"name": "emit",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 292,
+									"id": 326,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3167,7 +3947,7 @@
 									}
 								},
 								{
-									"id": 293,
+									"id": 327,
 									"name": "args",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3200,7 +3980,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 821,
+							"line": 919,
 							"character": 16
 						}
 					],
@@ -3214,7 +3994,7 @@
 					}
 				},
 				{
-					"id": 294,
+					"id": 328,
 					"name": "eventNames",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3223,7 +4003,7 @@
 					},
 					"signatures": [
 						{
-							"id": 295,
+							"id": 329,
 							"name": "eventNames",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3260,7 +4040,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 822,
+							"line": 920,
 							"character": 22
 						}
 					],
@@ -3274,7 +4054,7 @@
 					}
 				},
 				{
-					"id": 285,
+					"id": 319,
 					"name": "getMaxListeners",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3283,7 +4063,7 @@
 					},
 					"signatures": [
 						{
-							"id": 286,
+							"id": 320,
 							"name": "getMaxListeners",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3305,7 +4085,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 819,
+							"line": 917,
 							"character": 27
 						}
 					],
@@ -3319,7 +4099,7 @@
 					}
 				},
 				{
-					"id": 180,
+					"id": 214,
 					"name": "help",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3328,7 +4108,7 @@
 					},
 					"signatures": [
 						{
-							"id": 181,
+							"id": 215,
 							"name": "help",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3346,7 +4126,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 105,
+							"line": 114,
 							"character": 8
 						}
 					],
@@ -3356,7 +4136,7 @@
 					}
 				},
 				{
-					"id": 201,
+					"id": 235,
 					"name": "installDependencies",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3365,7 +4145,7 @@
 					},
 					"signatures": [
 						{
-							"id": 202,
+							"id": 236,
 							"name": "installDependencies",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3386,7 +4166,7 @@
 							},
 							"parameters": [
 								{
-									"id": 203,
+									"id": 237,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3418,7 +4198,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 143,
+							"line": 152,
 							"character": 23
 						}
 					],
@@ -3428,7 +4208,7 @@
 					}
 				},
 				{
-					"id": 296,
+					"id": 330,
 					"name": "listenerCount",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3437,14 +4217,14 @@
 					},
 					"signatures": [
 						{
-							"id": 297,
+							"id": 331,
 							"name": "listenerCount",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 298,
+									"id": 332,
 									"name": "type",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3481,7 +4261,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 823,
+							"line": 921,
 							"character": 25
 						}
 					],
@@ -3495,7 +4275,7 @@
 					}
 				},
 				{
-					"id": 287,
+					"id": 321,
 					"name": "listeners",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3504,14 +4284,14 @@
 					},
 					"signatures": [
 						{
-							"id": 288,
+							"id": 322,
 							"name": "listeners",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 289,
+									"id": 323,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3551,7 +4331,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 820,
+							"line": 918,
 							"character": 21
 						}
 					],
@@ -3565,7 +4345,7 @@
 					}
 				},
 				{
-					"id": 125,
+					"id": 159,
 					"name": "log",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3574,14 +4354,14 @@
 					},
 					"signatures": [
 						{
-							"id": 126,
+							"id": 160,
 							"name": "log",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 127,
+									"id": 161,
 									"name": "message",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3594,7 +4374,7 @@
 									}
 								},
 								{
-									"id": 128,
+									"id": 162,
 									"name": "context",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3620,7 +4400,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 86,
+							"line": 95,
 							"character": 7
 						}
 					],
@@ -3630,7 +4410,7 @@
 					}
 				},
 				{
-					"id": 204,
+					"id": 238,
 					"name": "npmInstall",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3639,7 +4419,7 @@
 					},
 					"signatures": [
 						{
-							"id": 205,
+							"id": 239,
 							"name": "npmInstall",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3651,7 +4431,7 @@
 							},
 							"parameters": [
 								{
-									"id": 206,
+									"id": 240,
 									"name": "pkgs",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3679,7 +4459,7 @@
 									}
 								},
 								{
-									"id": 207,
+									"id": 241,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3695,7 +4475,7 @@
 									}
 								},
 								{
-									"id": 208,
+									"id": 242,
 									"name": "spawnOptions",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3730,7 +4510,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 154,
+							"line": 163,
 							"character": 14
 						}
 					],
@@ -3740,7 +4520,7 @@
 					}
 				},
 				{
-					"id": 244,
+					"id": 278,
 					"name": "on",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3749,14 +4529,14 @@
 					},
 					"signatures": [
 						{
-							"id": 245,
+							"id": 279,
 							"name": "on",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 246,
+									"id": 280,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3776,7 +4556,7 @@
 									}
 								},
 								{
-									"id": 247,
+									"id": 281,
 									"name": "listener",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3784,7 +4564,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 248,
+											"id": 282,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -3793,14 +4573,14 @@
 											},
 											"signatures": [
 												{
-													"id": 249,
+													"id": 283,
 													"name": "__call",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 250,
+															"id": 284,
 															"name": "args",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -3825,7 +4605,7 @@
 											"sources": [
 												{
 													"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-													"line": 812,
+													"line": 910,
 													"character": 48
 												}
 											]
@@ -3850,7 +4630,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 812,
+							"line": 910,
 							"character": 14
 						}
 					],
@@ -3864,7 +4644,7 @@
 					}
 				},
 				{
-					"id": 251,
+					"id": 285,
 					"name": "once",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3873,14 +4653,14 @@
 					},
 					"signatures": [
 						{
-							"id": 252,
+							"id": 286,
 							"name": "once",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 253,
+									"id": 287,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3900,7 +4680,7 @@
 									}
 								},
 								{
-									"id": 254,
+									"id": 288,
 									"name": "listener",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3908,7 +4688,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 255,
+											"id": 289,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -3917,14 +4697,14 @@
 											},
 											"signatures": [
 												{
-													"id": 256,
+													"id": 290,
 													"name": "__call",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 257,
+															"id": 291,
 															"name": "args",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -3949,7 +4729,7 @@
 											"sources": [
 												{
 													"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-													"line": 813,
+													"line": 911,
 													"character": 50
 												}
 											]
@@ -3974,7 +4754,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 813,
+							"line": 911,
 							"character": 16
 						}
 					],
@@ -3988,7 +4768,7 @@
 					}
 				},
 				{
-					"id": 152,
+					"id": 186,
 					"name": "option",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3997,14 +4777,14 @@
 					},
 					"signatures": [
 						{
-							"id": 153,
+							"id": 187,
 							"name": "option",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 154,
+									"id": 188,
 									"name": "name",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4015,7 +4795,7 @@
 									}
 								},
 								{
-									"id": 155,
+									"id": 189,
 									"name": "config",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4039,7 +4819,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 93,
+							"line": 102,
 							"character": 10
 						}
 					],
@@ -4049,7 +4829,7 @@
 					}
 				},
 				{
-					"id": 182,
+					"id": 216,
 					"name": "optionsHelp",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4058,7 +4838,7 @@
 					},
 					"signatures": [
 						{
-							"id": 183,
+							"id": 217,
 							"name": "optionsHelp",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4076,7 +4856,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 106,
+							"line": 115,
 							"character": 15
 						}
 					],
@@ -4086,7 +4866,7 @@
 					}
 				},
 				{
-					"id": 258,
+					"id": 292,
 					"name": "prependListener",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4095,14 +4875,14 @@
 					},
 					"signatures": [
 						{
-							"id": 259,
+							"id": 293,
 							"name": "prependListener",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 260,
+									"id": 294,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4122,7 +4902,7 @@
 									}
 								},
 								{
-									"id": 261,
+									"id": 295,
 									"name": "listener",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4130,7 +4910,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 262,
+											"id": 296,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -4139,14 +4919,14 @@
 											},
 											"signatures": [
 												{
-													"id": 263,
+													"id": 297,
 													"name": "__call",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 264,
+															"id": 298,
 															"name": "args",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -4171,7 +4951,7 @@
 											"sources": [
 												{
 													"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-													"line": 814,
+													"line": 912,
 													"character": 61
 												}
 											]
@@ -4196,7 +4976,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 814,
+							"line": 912,
 							"character": 27
 						}
 					],
@@ -4210,7 +4990,7 @@
 					}
 				},
 				{
-					"id": 265,
+					"id": 299,
 					"name": "prependOnceListener",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4219,14 +4999,14 @@
 					},
 					"signatures": [
 						{
-							"id": 266,
+							"id": 300,
 							"name": "prependOnceListener",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 267,
+									"id": 301,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4246,7 +5026,7 @@
 									}
 								},
 								{
-									"id": 268,
+									"id": 302,
 									"name": "listener",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4254,7 +5034,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 269,
+											"id": 303,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -4263,14 +5043,14 @@
 											},
 											"signatures": [
 												{
-													"id": 270,
+													"id": 304,
 													"name": "__call",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 271,
+															"id": 305,
 															"name": "args",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -4295,7 +5075,7 @@
 											"sources": [
 												{
 													"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-													"line": 815,
+													"line": 913,
 													"character": 65
 												}
 											]
@@ -4320,7 +5100,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 815,
+							"line": 913,
 							"character": 31
 						}
 					],
@@ -4334,7 +5114,7 @@
 					}
 				},
 				{
-					"id": 156,
+					"id": 190,
 					"name": "prompt",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4343,21 +5123,22 @@
 					},
 					"signatures": [
 						{
-							"id": 157,
+							"id": 191,
 							"name": "prompt",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 158,
+									"id": 192,
 									"name": "questions",
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
 									"type": {
 										"type": "reference",
-										"name": "Questions"
+										"name": "Base.Questions",
+										"id": 141
 									}
 								}
 							],
@@ -4367,7 +5148,8 @@
 								"typeArguments": [
 									{
 										"type": "reference",
-										"name": "Answers"
+										"name": "Base.Answers",
+										"id": 142
 									}
 								]
 							},
@@ -4380,7 +5162,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 94,
+							"line": 103,
 							"character": 10
 						}
 					],
@@ -4390,7 +5172,7 @@
 					}
 				},
 				{
-					"id": 159,
+					"id": 193,
 					"name": "registerTransformStream",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4399,14 +5181,14 @@
 					},
 					"signatures": [
 						{
-							"id": 160,
+							"id": 194,
 							"name": "registerTransformStream",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 161,
+									"id": 195,
 									"name": "stream",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4445,7 +5227,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 95,
+							"line": 104,
 							"character": 27
 						}
 					],
@@ -4455,7 +5237,7 @@
 					}
 				},
 				{
-					"id": 279,
+					"id": 313,
 					"name": "removeAllListeners",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4464,14 +5246,14 @@
 					},
 					"signatures": [
 						{
-							"id": 280,
+							"id": 314,
 							"name": "removeAllListeners",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 281,
+									"id": 315,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4510,7 +5292,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 817,
+							"line": 915,
 							"character": 30
 						}
 					],
@@ -4524,7 +5306,7 @@
 					}
 				},
 				{
-					"id": 272,
+					"id": 306,
 					"name": "removeListener",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4533,14 +5315,14 @@
 					},
 					"signatures": [
 						{
-							"id": 273,
+							"id": 307,
 							"name": "removeListener",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 274,
+									"id": 308,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4560,7 +5342,7 @@
 									}
 								},
 								{
-									"id": 275,
+									"id": 309,
 									"name": "listener",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4568,7 +5350,7 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 276,
+											"id": 310,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
@@ -4577,14 +5359,14 @@
 											},
 											"signatures": [
 												{
-													"id": 277,
+													"id": 311,
 													"name": "__call",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 278,
+															"id": 312,
 															"name": "args",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -4609,7 +5391,7 @@
 											"sources": [
 												{
 													"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-													"line": 816,
+													"line": 914,
 													"character": 60
 												}
 											]
@@ -4634,7 +5416,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 816,
+							"line": 914,
 							"character": 26
 						}
 					],
@@ -4648,7 +5430,7 @@
 					}
 				},
 				{
-					"id": 162,
+					"id": 196,
 					"name": "rootGeneratorName",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4657,7 +5439,7 @@
 					},
 					"signatures": [
 						{
-							"id": 163,
+							"id": 197,
 							"name": "rootGeneratorName",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4675,7 +5457,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 96,
+							"line": 105,
 							"character": 21
 						}
 					],
@@ -4685,7 +5467,7 @@
 					}
 				},
 				{
-					"id": 164,
+					"id": 198,
 					"name": "rootGeneratorVersion",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4694,7 +5476,7 @@
 					},
 					"signatures": [
 						{
-							"id": 165,
+							"id": 199,
 							"name": "rootGeneratorVersion",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4712,7 +5494,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 97,
+							"line": 106,
 							"character": 24
 						}
 					],
@@ -4722,7 +5504,7 @@
 					}
 				},
 				{
-					"id": 166,
+					"id": 200,
 					"name": "run",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4731,14 +5513,14 @@
 					},
 					"signatures": [
 						{
-							"id": 167,
+							"id": 201,
 							"name": "run",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 168,
+									"id": 202,
 									"name": "cb",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4764,7 +5546,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 98,
+							"line": 107,
 							"character": 7
 						}
 					],
@@ -4774,7 +5556,7 @@
 					}
 				},
 				{
-					"id": 209,
+					"id": 243,
 					"name": "runInstall",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4783,7 +5565,7 @@
 					},
 					"signatures": [
 						{
-							"id": 210,
+							"id": 244,
 							"name": "runInstall",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -4795,7 +5577,7 @@
 							},
 							"parameters": [
 								{
-									"id": 211,
+									"id": 245,
 									"name": "installer",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4809,7 +5591,7 @@
 									}
 								},
 								{
-									"id": 212,
+									"id": 246,
 									"name": "paths",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4837,7 +5619,7 @@
 									}
 								},
 								{
-									"id": 213,
+									"id": 247,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4853,7 +5635,7 @@
 									}
 								},
 								{
-									"id": 214,
+									"id": 248,
 									"name": "spawnOptions",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4888,7 +5670,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 169,
+							"line": 178,
 							"character": 14
 						}
 					],
@@ -4898,7 +5680,7 @@
 					}
 				},
 				{
-					"id": 282,
+					"id": 316,
 					"name": "setMaxListeners",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4907,14 +5689,14 @@
 					},
 					"signatures": [
 						{
-							"id": 283,
+							"id": 317,
 							"name": "setMaxListeners",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 284,
+									"id": 318,
 									"name": "n",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4942,7 +5724,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 818,
+							"line": 916,
 							"character": 27
 						}
 					],
@@ -4956,7 +5738,7 @@
 					}
 				},
 				{
-					"id": 169,
+					"id": 203,
 					"name": "sourceRoot",
 					"kind": 2048,
 					"kindString": "Method",
@@ -4965,14 +5747,14 @@
 					},
 					"signatures": [
 						{
-							"id": 170,
+							"id": 204,
 							"name": "sourceRoot",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 171,
+									"id": 205,
 									"name": "rootPath",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -4998,7 +5780,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 99,
+							"line": 108,
 							"character": 14
 						}
 					],
@@ -5008,7 +5790,7 @@
 					}
 				},
 				{
-					"id": 186,
+					"id": 220,
 					"name": "spawnCommand",
 					"kind": 2048,
 					"kindString": "Method",
@@ -5017,14 +5799,14 @@
 					},
 					"signatures": [
 						{
-							"id": 187,
+							"id": 221,
 							"name": "spawnCommand",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 188,
+									"id": 222,
 									"name": "command",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5035,7 +5817,7 @@
 									}
 								},
 								{
-									"id": 189,
+									"id": 223,
 									"name": "args",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5049,7 +5831,7 @@
 									}
 								},
 								{
-									"id": 190,
+									"id": 224,
 									"name": "opt",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5075,7 +5857,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 110,
+							"line": 119,
 							"character": 16
 						}
 					],
@@ -5085,7 +5867,7 @@
 					}
 				},
 				{
-					"id": 191,
+					"id": 225,
 					"name": "spawnCommandSync",
 					"kind": 2048,
 					"kindString": "Method",
@@ -5094,14 +5876,14 @@
 					},
 					"signatures": [
 						{
-							"id": 192,
+							"id": 226,
 							"name": "spawnCommandSync",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 193,
+									"id": 227,
 									"name": "command",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5112,7 +5894,7 @@
 									}
 								},
 								{
-									"id": 194,
+									"id": 228,
 									"name": "args",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5126,7 +5908,7 @@
 									}
 								},
 								{
-									"id": 195,
+									"id": 229,
 									"name": "opt",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5152,7 +5934,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 111,
+							"line": 120,
 							"character": 20
 						}
 					],
@@ -5162,7 +5944,7 @@
 					}
 				},
 				{
-					"id": 172,
+					"id": 206,
 					"name": "templatePath",
 					"kind": 2048,
 					"kindString": "Method",
@@ -5171,14 +5953,14 @@
 					},
 					"signatures": [
 						{
-							"id": 173,
+							"id": 207,
 							"name": "templatePath",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 174,
+									"id": 208,
 									"name": "path",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5207,7 +5989,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 100,
+							"line": 109,
 							"character": 16
 						}
 					],
@@ -5217,7 +5999,7 @@
 					}
 				},
 				{
-					"id": 184,
+					"id": 218,
 					"name": "usage",
 					"kind": 2048,
 					"kindString": "Method",
@@ -5226,7 +6008,7 @@
 					},
 					"signatures": [
 						{
-							"id": 185,
+							"id": 219,
 							"name": "usage",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -5244,7 +6026,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 107,
+							"line": 116,
 							"character": 9
 						}
 					],
@@ -5254,7 +6036,7 @@
 					}
 				},
 				{
-					"id": 215,
+					"id": 249,
 					"name": "yarnInstall",
 					"kind": 2048,
 					"kindString": "Method",
@@ -5263,7 +6045,7 @@
 					},
 					"signatures": [
 						{
-							"id": 216,
+							"id": 250,
 							"name": "yarnInstall",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -5275,7 +6057,7 @@
 							},
 							"parameters": [
 								{
-									"id": 217,
+									"id": 251,
 									"name": "pkgs",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5303,7 +6085,7 @@
 									}
 								},
 								{
-									"id": 218,
+									"id": 252,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5319,7 +6101,7 @@
 									}
 								},
 								{
-									"id": 219,
+									"id": 253,
 									"name": "spawnOptions",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5354,7 +6136,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/yeoman-generator/index.d.ts",
-							"line": 180,
+							"line": 189,
 							"character": 15
 						}
 					],
@@ -5364,7 +6146,7 @@
 					}
 				},
 				{
-					"id": 232,
+					"id": 266,
 					"name": "listenerCount",
 					"kind": 2048,
 					"kindString": "Method",
@@ -5374,14 +6156,14 @@
 					},
 					"signatures": [
 						{
-							"id": 233,
+							"id": 267,
 							"name": "listenerCount",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 234,
+									"id": 268,
 									"name": "emitter",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5392,7 +6174,7 @@
 									}
 								},
 								{
-									"id": 235,
+									"id": 269,
 									"name": "event",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -5425,7 +6207,7 @@
 					"sources": [
 						{
 							"fileName": "/mnt/fat/node/@radic/node_modules/@types/node/index.d.ts",
-							"line": 808,
+							"line": 906,
 							"character": 32
 						}
 					],
@@ -5447,76 +6229,76 @@
 					"title": "Interfaces",
 					"kind": 256,
 					"children": [
-						299
+						333
 					]
 				},
 				{
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						109
+						143
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						121,
-						118,
-						122,
-						120,
-						113,
-						123,
-						124,
-						119,
-						220,
-						236
+						155,
+						152,
+						156,
+						154,
+						147,
+						157,
+						158,
+						153,
+						254,
+						270
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						237,
-						129,
-						175,
-						196,
-						133,
-						177,
-						144,
-						147,
-						150,
-						290,
-						294,
-						285,
-						180,
-						201,
-						296,
-						287,
-						125,
-						204,
-						244,
-						251,
-						152,
-						182,
-						258,
-						265,
-						156,
-						159,
-						279,
-						272,
-						162,
-						164,
-						166,
+						271,
+						163,
 						209,
-						282,
-						169,
-						186,
-						191,
-						172,
+						230,
+						167,
+						211,
+						178,
+						181,
 						184,
-						215,
-						232
+						324,
+						328,
+						319,
+						214,
+						235,
+						330,
+						321,
+						159,
+						238,
+						278,
+						285,
+						186,
+						216,
+						292,
+						299,
+						190,
+						193,
+						313,
+						306,
+						196,
+						198,
+						200,
+						243,
+						316,
+						203,
+						220,
+						225,
+						206,
+						218,
+						249,
+						266
 					]
 				}
 			],
