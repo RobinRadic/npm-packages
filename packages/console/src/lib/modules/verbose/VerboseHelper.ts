@@ -1,10 +1,8 @@
-import { helper } from "../../decorators";
-import { HelperOptionsConfig, VerboseHelperOptionsConfig } from "../../interfaces";
-import { inject } from "../../core/Container";
-import { LoggerInstance } from "winston";
-import { logLevels, setVerbosity } from "../log";
-import { CliExecuteCommandParsedEvent, CliExecuteCommandParseEvent } from "../../core/events";
-import { kindOf } from "@radic/util";
+import { helper } from '../../decorators';
+import { VerboseHelperOptionsConfig } from '../../interfaces';
+import { CliExecuteCommandParsedEvent, CliExecuteCommandParseEvent, container, HelpersStartedEvent, inject } from '../../core';
+import { LoggerInstance } from 'winston';
+import { logLevels, logModule } from '../log';
 
 @helper('verbose', {
     singleton: true,
@@ -16,9 +14,10 @@ import { kindOf } from "@radic/util";
         }
     },
     listeners: {
-        'cli:parsed': 'onExecuteCommandParsed',
+        'cli:parsed'        : 'onExecuteCommandParsed',
         'cli:execute:parse' : 'onExecuteCommandParse',
-        'cli:execute:parsed': 'onExecuteCommandParsed'
+        'cli:execute:parsed': 'onExecuteCommandParsed',
+        'helpers:started': 'onHelpersStarted'
     }
 })
 export class VerbosityHelper {
@@ -28,7 +27,7 @@ export class VerbosityHelper {
     log: LoggerInstance;
 
     public onExecuteCommandParse(event: CliExecuteCommandParseEvent) {
-        if(this.config.option.enabled) {
+        if ( this.config.option.enabled ) {
             event.cli.global(this.config.option.key, {
                 name       : this.config.option.name,
                 count      : true,
@@ -46,10 +45,14 @@ export class VerbosityHelper {
             if ( level > logLevels.length - 1 ) {
                 level = logLevels.length - 1;
             }
-            let levelName:string = logLevels[level] as string
-            this.log.level = levelName;
+            let levelName: string = logLevels[ level ] as string
+            this.log.level        = levelName;
 
             this.log.verbose(`Verbosity set (${level} : ${levelName} : ${this.log.level})`)
         }
+    }
+
+    public onHelpersStarted(event:HelpersStartedEvent){
+        container.load(logModule);
     }
 }

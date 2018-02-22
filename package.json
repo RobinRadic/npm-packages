@@ -33,6 +33,7 @@
         "restart": "yarn stop && yarn start",
         "stop": "yarn clean",
         "links": "scripts/yworkspace each link; lerna link --force-local",
+        "unlinks": "scripts/yworkspace each unlink",
         "lerna": "lerna-wizard"
     },
     "devDependencies": {
@@ -45,6 +46,7 @@
         "@types/cli-table2": "^0.2.1",
         "@types/commander": "^2.9.0",
         "@types/crypto-js": "^3.1.33",
+        "@types/debug": "^0.0.30",
         "@types/dotenv": "^4.0.0",
         "@types/faker": "^4.1.0",
         "@types/fs-extra": "^4.0.3",
@@ -171,7 +173,7 @@
         "shelljs": "^0.7.0",
         "sinon": "^2.3.4",
         "slice-ansi": "^1.0.0",
-        "source-map-support": "^0.5.0",
+        "source-map-support": "^0.5.3",
         "table": "^4.0.1",
         "tap-nyc": "^1.0.2",
         "through2": "^2.0.3",

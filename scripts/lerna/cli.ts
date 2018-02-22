@@ -7,7 +7,7 @@ import { Argv } from 'yargs';
 
 interface Awesome {
     [k:string]: () => this
-    withArg(myself:this):this
+    // withArg(myself:this):this
 }
 
 // declare var amazing:Awesome

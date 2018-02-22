@@ -1,7 +1,8 @@
-import * as _ from "lodash";
-import { CliExecuteCommandParsedEvent, CliExecuteCommandParseEvent, Dispatcher, helper, HelperContainerResolvedEvent, inject } from "../../";
-import { Output } from "./Output";
-import { OutputHelperOptionsConfig } from "./interfaces";
+import * as _ from 'lodash';
+import { CliExecuteCommandParsedEvent, CliExecuteCommandParseEvent } from '../../core';
+import { Output } from './Output';
+import { OutputHelperOptionsConfig } from './interfaces';
+import { helper } from '../../decorators';
 
 
 @helper('output', {
@@ -28,7 +29,7 @@ import { OutputHelperOptionsConfig } from "./interfaces";
 
             success: 'green lighten 20 bold',
             warning: 'orange lighten 20 bold',
-            error  : 'red lighten 20 bold',
+            error  : 'red lighten 20 bold'
 
         },
         tableStyle    : {
@@ -91,10 +92,10 @@ export class OutputHelper extends Output {
     public onExecuteCommandParsed(event: CliExecuteCommandParsedEvent) {
         if ( this.config.options.quiet.enabled && event.argv[ this.config.options.quiet.key ] ) {
             this.options.enabled = false;
-            this.config.quiet = true
+            this.config.quiet    = true
         }
         if ( this.config.options.colors.enabled && event.argv[ this.config.options.colors.key ] ) {
-            this.config.colors = false;
+            this.config.colors  = false;
             this.options.colors = false;
         }
     }

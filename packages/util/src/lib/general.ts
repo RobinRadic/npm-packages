@@ -1,6 +1,5 @@
-import  escapeRegExp   from 'lodash-es/escapeRegExp';
-import  isNumber   from 'lodash-es/isNumber';
-import  isUndefined   from 'lodash-es/isUndefined';
+import { escapeRegExp } from './string';
+
 
 /**
  * Round a value to a precision
@@ -45,12 +44,12 @@ export type KindOf = 'number' | 'string' | 'boolean' | 'function' | 'regexp' | '
 let nativeTrim = String.prototype.trim;
 
 let entityMap = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': '&quot;',
-    "'": '&#39;',
-    "/": '&#x2F;'
+    '&' : '&amp;',
+    '<' : '&lt;',
+    '>' : '&gt;',
+    '"' : '&quot;',
+    '\'': '&#39;',
+    '/' : '&#x2F;'
 };
 
 /**
@@ -86,7 +85,7 @@ export function def(val, def): any {
  * @returns {boolean}
  */
 export function defined(obj?: any): boolean {
-    return ! isUndefined(obj);
+    return undefined !== obj;
 }
 
 /**
@@ -96,11 +95,11 @@ export function defined(obj?: any): boolean {
  * @returns {string}
  */
 export function getRandomId(length?: number): string {
-    if ( isNumber(length) ) {
+    if ( kindOf(length) === 'number' ) {
         length = 15;
     }
-    var text: string     = "";
-    var possible: string = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    var text: string     = '';
+    var possible: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     for ( var i = 0; i < length; i ++ ) {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
     }

@@ -1,4 +1,4 @@
-import { TreeCmd } from "@radic/console";
+import { TreeCmd } from "../../";
 export declare class Tree extends TreeCmd {
     desc: boolean;
     opts: boolean;

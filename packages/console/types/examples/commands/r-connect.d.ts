@@ -1,4 +1,4 @@
-import { OutputHelper, CommandArguments, CommandConfig, Config, Log, OptionConfig } from "@radic/console";
+import { OutputHelper, CommandArguments, CommandConfig, Config, Log, OptionConfig } from "../../";
 export declare class RcliConnectCmd {
     showHelp: () => void;
     _config: CommandConfig;

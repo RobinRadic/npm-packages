@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="[cli] r.ts" type="NodeJSConfigurationType" factoryName="Node.js" node-parameters="--nolazy -r ts-node/register --inspect" path-to-js-file="src/bin/r.ts" working-dir="$PROJECT_DIR$/packages/cli">
+    <method />
+  </configuration>
+</component>

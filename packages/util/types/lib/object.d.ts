@@ -1,4 +1,4 @@
-declare function getParts(str: any): any;
+export declare function getParts(str: any): any;
 /**
  * Get a child of the object using dot notation
  * @param obj
@@ -6,7 +6,7 @@ declare function getParts(str: any): any;
  * @param create
  * @returns {any}
  */
-declare function objectGet(obj?: any, parts?: any, create?: any): any;
+export declare function objectGet(obj?: any, parts?: any, create?: any): any;
 /**
  * Set a value of a child of the object using dot notation
  * @param obj
@@ -14,29 +14,30 @@ declare function objectGet(obj?: any, parts?: any, create?: any): any;
  * @param value
  * @returns {any}
  */
-declare function objectSet(obj: any, parts: any, value: any): any;
+export declare function objectSet(obj: any, parts: any, value: any): any;
 /**
  * Check if a child of the object exists using dot notation
  * @param obj
  * @param parts
  * @returns {boolean|any}
  */
-declare function objectExists(obj: any, parts: any): boolean;
-declare function recurse(value: Object, fn: Function, fnContinue?: Function): any;
+export declare function objectExists(obj: any, parts: any): boolean;
+export declare function recurse(value: Object, fn: Function, fnContinue?: Function): any;
 /**
  * Copy an object, creating a new object and leaving the old intact
  * @param object
  * @returns {T}
  */
-declare function copyObject<T>(object: T): T;
+export declare function copyObject<T>(object: T): T;
 /**
  * Flatten an object to a dot notated associative array
  * @param obj
  * @param prefix
  * @returns {any}
  */
-declare function dotize(obj: any, prefix?: any): any;
-declare function objectLoop(obj: any, callback: (key: string, item: any) => void): void;
+export declare function dotize(obj: any, prefix?: any): any;
+export declare function deepClone(obj: any, hash?: WeakMap<object, any>): any;
+export declare function objectLoop(obj: any, callback: (key: string, item: any) => void): void;
 export declare class StringType {
     value: string;
     constructor(value: string);
@@ -45,7 +46,7 @@ export declare class StringType {
     valueOf(): string;
     static all(): any[];
 }
-declare function applyMixins(derivedCtor: any, baseCtors: any[]): void;
+export declare function applyMixins(derivedCtor: any, baseCtors: any[]): void;
 export declare class DependencySorter {
     /**
      * @var array
@@ -151,4 +152,3 @@ export declare function omap<T extends object>(obj: T, cb: (obj?: T, key?: strin
  * @constructor
  */
 export declare function Mixin<T>(...mixins: Array<new (...args: any[]) => any>): new (...args: any[]) => T;
-export { objectLoop, getParts, objectExists, objectGet, objectSet, copyObject, applyMixins, recurse, dotize };

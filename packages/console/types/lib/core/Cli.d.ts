@@ -1,9 +1,9 @@
-import { HelpersOptionsConfig, CliConfig, CommandConfig, OptionConfig } from "../interfaces";
-import { Log } from "../modules/log";
-import { Config } from "./config";
-import { ParseArgumentsFunction, SubCommandsGetFunction, TransformOptionsFunction } from "../utils";
-import { Helpers } from "./Helpers";
-import { Dispatcher } from "./Dispatcher";
+import { CliConfig, CommandConfig, HelpersOptionsConfig, OptionConfig } from '../interfaces';
+import { Log } from '../modules/log';
+import { Config } from './config';
+import { ParseArgumentsFunction, SubCommandsGetFunction, TransformOptionsFunction } from '../utils';
+import { Helpers } from './Helpers';
+import { Dispatcher } from './Dispatcher';
 export declare class Cli {
     protected _runningCommand: CommandConfig;
     protected _parsedCommands: CommandConfig[];

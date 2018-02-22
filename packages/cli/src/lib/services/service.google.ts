@@ -337,7 +337,7 @@ export class GoogleServiceAuth {
                 res.writeHead(200, { 'Content-Type': 'text/plain' });
                 res.end('okay done');
                 server.close()
-                resolve(query[ 'code' ])
+                resolve(query[ 'code' ] as string)
             })
 
             server.on('error', reject)

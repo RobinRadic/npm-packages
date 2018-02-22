@@ -35,9 +35,9 @@ export class Radic {
     line    = (msg: string) => this.io.line(msg)
     write   = (msg: string) => this.io.write(msg)
     dump    = (...crap) => this.io.dump(...crap);
-    confirm = (msg: string, def: boolean = true) => this.io.confirm(msg)
-    list    = (msg: string, choices: ChoiceType[]) => this.io.list(msg, choices)
-    ask     = (msg: string) => this.io.ask(msg)
+    // confirm = (msg: string, def: boolean = true) => this.io.confirm(msg)
+    // list    = (msg: string, choices: ChoiceType[]) => this.io.list(msg, choices)
+    // ask     = (msg: string) => this.io.ask(msg)
 
     log    = (msg: string, ...optional: any[]) => this.logger.info(msg, ...optional)
     notice = (msg: string, ...optional: any[]) => this.logger.notice(msg, ...optional)

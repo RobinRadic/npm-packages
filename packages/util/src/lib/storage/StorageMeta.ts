@@ -1,4 +1,3 @@
-import merge from 'lodash/merge';
 import { kindOf } from '../general';
 import { IStorageBagOptions } from './interfaces';
 
@@ -8,14 +7,11 @@ export class StorageMeta implements IStorageBagOptions {
     expires: number = null
 
     constructor(options: IStorageBagOptions = {}) {
-        merge(this, {
-            json   : true,
-            expires: null
-        }, options);
+        this.merge(options);
     }
 
     merge(options: IStorageBagOptions): this {
-        merge(this, options);
+        Object.keys(options).forEach(key => this[key] = options[key])
         return this;
     }
 

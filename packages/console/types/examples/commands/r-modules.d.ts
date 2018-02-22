@@ -1,4 +1,4 @@
-import { CommandConfig, Config, Log, OptionConfig, OutputHelper } from '@radic/console';
+import { CommandConfig, Config, Log, OptionConfig, OutputHelper } from '../../';
 export declare class ModulesCmd {
     _config: CommandConfig;
     _options: OptionConfig[];

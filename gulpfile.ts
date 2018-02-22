@@ -1,9 +1,7 @@
 //region: IMPORTS
 import * as gulp from 'gulp';
 import { WatchEvent } from 'gulp';
-// noinspection ES6UnusedImports
 import * as gutil from 'gulp-util';
-// noinspection ES6UnusedImports
 import * as gts from 'gulp-typescript';
 import * as ts from 'typescript';
 // noinspection ES6UnusedImports
@@ -14,19 +12,11 @@ import { basename, join, resolve } from 'path';
 import * as _ from 'lodash';
 import { existsSync, statSync, writeFileSync } from 'fs';
 import { exec, execSync } from 'child_process';
-import {
-    GulpTypedocOptions,
-    IdeaIml,
-    IdeaJsMappings,
-    PackageData,
-    RGulpConfig,
-    TSProjectOptions
-} from './scripts/interfaces';
+import { GulpTypedocOptions, IdeaIml, IdeaJsMappings, PackageData, RGulpConfig, TSProjectOptions } from './scripts/interfaces';
 import * as yargs from 'yargs';
 import { Radic } from './scripts/Radic';
 import * as scss from 'node-sass';
 import * as pug from 'pug';
-import { Options as PugOptions } from 'pug';
 import * as browserSync from 'browser-sync';
 import * as sequence from 'run-sequence';
 import { isArray } from 'util';
@@ -38,7 +28,6 @@ import * as commonjs from 'rollup-plugin-commonjs';
 import * as rollup from 'rollup'
 // noinspection ES6UnusedImports
 import * as nresolve from 'rollup-plugin-node-resolve'
-// noinspection ES6UnusedImports
 import typedoc = require('gulp-typedoc');
 // noinspection ES6UnusedImports
 import mdtoc            = require('markdown-toc');
@@ -51,7 +40,6 @@ const DependencySorter = require('dependency-sorter')
 const docsServer       = browserSync.create();
 
 //endregion
-
 
 //region: CONFIG
 const c: RGulpConfig = {
@@ -192,27 +180,48 @@ const packages: PackageData[] = new DependencySorter({ idProperty: 'name' }).sor
 }));
 
 const packageNames = packages.map(pkg => pkg.name);
+//endregion
 
+
+//region: TEMPLATE PARSERS
 _.merge(c.templates.docs.pugLocals, { packageNames, packages, packagePaths })
-r.addTemplateParser('markdown-readme-toc', (content) => {
-    let toc = mdtoc(content, c.readme)
+r.addTemplateParser('pug', function (this: Template, content: string) {
+
+    let compile = pug.compile(content,_.merge(c.templates.docs.pug, <pug.Options>{
+        pretty  : true,
+        filename: this.getFilePath(),
+        basedir : resolve('scripts/templates/docs')
+    }));
+    return compile(c.templates.docs.pugLocals)
+})
+r.addTemplateParser('scss', function (this: Template, content: string) {
+    let result = scss.renderSync({
+        file: this.getFilePath()
+    })
+    content    = result.css.toString();
+    return content;
+})
+// r.addTemplateParser('md', content => mdtoc(content, {}).content)
+
+r.addTemplateParser('mdtoc', (content) => {
+    let toc = mdtoc(content, c.templates.readme)
     return content.replace('[[TOC]]', toc.content);
 });
-r.addTemplateParser('scss', (content) => {
-    let result = scss.renderSync(_.merge(c.templates.docs.scss, {
-        data: content
-
-    }))
-    return result.css.toString();
-})
-r.addTemplateParser('pug', (content) => {
-    const compile = pug.compile(content, _.merge(c.templates.docs.pug, <PugOptions>{
-        pretty  : true,
-        filename: 'index.pug',
-        basedir : resolve('scripts/templates/docs')
-    }))
-    return compile(c.templates.docs.pugLocals);
-})
+// r.addTemplateParser('scss', (content) => {
+//     let result = scss.renderSync(_.merge(c.templates.docs.scss, {
+//         data: content
+//
+//     }))
+//     return result.css.toString();
+// })
+// r.addTemplateParser('pug', (content) => {
+//     const compile = pug.compile(content, _.merge(c.templates.docs.pug, <pug.Options>{
+//         pretty  : true,
+//         filename: 'index.pug',
+//         basedir : resolve('scripts/templates/docs')
+//     }))
+//     return compile(c.templates.docs.pugLocals);
+// })
 //endregion
 
 
@@ -242,7 +251,7 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
         .concat(globule.find(join(pkg.path.to('*.{js,js.map,d.ts}'))))
 
     if ( pkg.package.radic.typedoc !== false ) {
-        gulp.task('docs:' + name, () => gulp.src(pkg.path.to('src/**/*.ts')).pipe(typedoc(_.merge(pkg.package.radic.typedoc, <GulpTypedocOptions> {
+        gulp.task('docs:' + name, () => gulp.src(pkg.path.to('src/**/*.ts')).pipe(typedoc(_.merge(pkg.package.radic.typedoc as any, <GulpTypedocOptions> {
             name: pkg.directory,
             out : `./docs/${pkg.directory}`,
             json: `docs/${pkg.directory}/typedoc.json`
@@ -453,17 +462,16 @@ if ( c.idea ) {
 //region: TASKS: README / TYPEDOCS / GHPAGES
 gulp.task('docs:templates', [ 'clean:docs:templates' ], (cb) => {
     // create index page / style
-    r.template('docs/index.pug').applyParsers([ 'pug' ]).writeTo('docs/index.html', true);
+    r.template('docs/index.pug')
+        .applyParsers([ 'pug' ])
+        .writeTo('docs/index.html', true);
     log(`Compiled and written {cyan}templates/docs/index.pug{/cyan} to {cyan}docs/index.html{/cyan}`)
 
 
-    r.template('docs/stylesheet.scss').parse(function (this: Template, content: string) {
-        let result = scss.renderSync({
-            file: this.getFilePath()
-        })
-        content    = result.css.toString();
-        return content;
-    }).writeTo('docs/stylesheet.css', true);
+    r
+        .template('docs/stylesheet.scss')
+        .applyParsers(['scss'])
+        .writeTo('docs/stylesheet.css', true);
 
     log(`Compiled and written {cyan}templates/docs/stylesheet.scss{/cyan} to {cyan}docs/index.scss{/cyan}`)
     cb()
@@ -474,7 +482,7 @@ gulp.task('docs:script', (cb) => {
             cb()
         })
 })
-gulp.task('docs:serve', () => {
+gulp.task('docs:serve', [ 'docs' ], () => {
     c.templates.docs.pugLocals.baseUrl = '/';
     if ( docsServer.active ) {
         log('docServer already active. exiting')
@@ -504,7 +512,10 @@ gulp.task('docs:serve', () => {
     })
 });
 gulp.task('docs:readme', (cb) => {
-    r.template('README.md').applyParsers([ 'markdown-readme-toc' ]).writeTo('./README.md', true);
+    r
+        .template('README.md')
+        .applyParsers([ 'mdtoc' ])
+        .writeTo('./README.md', true);
     cb()
 })
 
@@ -526,7 +537,8 @@ gulp.task('docs:deploy', (cb) => sequence('docs', 'docs:ghpages', cb))
 packages.filter(pkg => pkg.hasTests).forEach(pkg => {
     gulp.task('test:' + pkg.directory, (cb) => {
         if ( pkg.package.scripts.test ) {
-            execSync('yarn test', { cwd: pkg.path.toString(), stdio: 'inherit' });
+            execSync('lerna run test --scope ' + pkg.name, { stdio: 'inherit' })
+            // execSync('yarn test', { cwd: pkg.path.toString(), stdio: 'inherit' });
         } else {
             execSync('nyc mocha', { cwd: pkg.path.toString(), stdio: 'inherit' });
         }
@@ -541,18 +553,17 @@ gulp.task('clean', [ `clean:${c.ts.taskPrefix}`, `clean:${c.ts.taskPrefix}:test`
 gulp.task('build', [ 'clean' ], (cb) => sequence('build:pkgjs', `build:${c.ts.taskPrefix}`, `build:${c.ts.taskPrefix}:test`, 'idea', cb))
 gulp.task('watch', [ 'build' ], () => gulp.start(`watch:${c.ts.taskPrefix}`, `watch:${c.ts.taskPrefix}:test`))
 gulp.task('test', packages.filter(pkg => pkg.hasTests).map(pkg => 'test:' + pkg.directory))
-gulp.task('default', [ 'build' ])
 gulp.task('list', (cb) => {
     let args = yargs
         .option({
             d: { alias: 'depth', type: 'number', default: 0 }
         })
         .parse(process.argv.slice(2))
-    log('-'.repeat(50));
-    log(`Listing tasks with a depth of ${args.depth}.`)
-    log(`Depth equals the amount of ':' columns`)
-    log(`Use the '--depth N' or '-d N' to view more tasks.`)
-    log('-'.repeat(50));
+    console.log('-'.repeat(50));
+    console.log(`Listing tasks with a depth of ${args.depth}.`)
+    console.log(`Depth equals the amount of ':' columns`)
+    console.log(`Use the '--depth N' or '-d N' to view more tasks.`)
+    console.log('-'.repeat(50));
 
     Object.keys(gulp.tasks)
         .filter(taskName => taskName.split(':').length <= args.depth + 1)
@@ -566,6 +577,7 @@ gulp.task('list', (cb) => {
         })
     cb();
 })
+gulp.task('default', [ 'list' ])
 gulp.task('tasks', [ 'list' ])
 //endregion
 

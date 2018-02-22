@@ -6,12 +6,12 @@ This repository contains some of my public **non browser/DOM** node packages.
 Go to [documentation](http://robin.radic.nl/npm-packages) for all packages,
 
 - [Radic's NPM Packages](#radics-npm-packages)
-  * [Summary](#summary)
-  * [Development](#development)
-    + [Primary toolset](#primary-toolset)
-    + [Run Tasks](#run-tasks)
-    + [Gulp tasks](#gulp-tasks)
-  * [Todo](#todo)
+  - [Summary](#summary)
+  - [Development](#development)
+    - [Primary toolset](#primary-toolset)
+    - [Run Tasks](#run-tasks)
+    - [Gulp tasks](#gulp-tasks)
+  - [Todo](#todo)
 
 Summary
 -------

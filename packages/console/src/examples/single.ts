@@ -1,7 +1,6 @@
 #!/usr/bin/env node
-import "module-alias/register.js"
 import "reflect-metadata";
-import { cli, command, CommandArguments, inject, OutputHelper } from "@radic/console";
+import { cli, command, CommandArguments, inject, OutputHelper } from "..";
 
 @command('single', {
     options: [
@@ -13,7 +12,7 @@ export default class {
     out: OutputHelper;
 
     handle(args: CommandArguments, argv: string[]) {
-        this.out.success('YES!')
+        this.out.line('YES!')
     }
 }
 

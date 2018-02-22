@@ -4,6 +4,7 @@
     "description": "Utilities for node / browser",
     "main": "index.js",
     "jsnext:main": "es/index.js",
+    "module": "es/index.js",
     "types": "index.d.ts",
     "author": "Robin Radic <rradic@hotmail.com> (https://radic.nl/)",
     "license": "MIT",
@@ -15,7 +16,7 @@
         "watch": "mocha-typescript-watch"
     },
     "dependencies": {
-        "lodash-es": "^4.17.4"
+        "lodash": "^4.17.4"
     },
     "radic": {
         "es": true,

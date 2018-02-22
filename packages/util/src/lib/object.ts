@@ -1,7 +1,6 @@
-import uniq from 'lodash-es/uniq'
-import { kindOf } from "./general";
+import { kindOf } from './general';
 
-function getParts(str): any {
+export function getParts(str): any {
     return str.replace(/\\\./g, '\uffff').split('.').map(function (s) {
         return s.replace(/\uffff/g, '.');
     });
@@ -14,7 +13,7 @@ function getParts(str): any {
  * @param create
  * @returns {any}
  */
-function objectGet(obj?: any, parts?: any, create?: any): any {
+export function objectGet(obj?: any, parts?: any, create?: any): any {
     if ( typeof parts === 'string' ) {
         parts = getParts(parts);
     }
@@ -38,7 +37,7 @@ function objectGet(obj?: any, parts?: any, create?: any): any {
  * @param value
  * @returns {any}
  */
-function objectSet(obj, parts, value) {
+export function objectSet(obj, parts, value) {
     parts = getParts(parts);
 
     var prop = parts.pop();
@@ -54,7 +53,7 @@ function objectSet(obj, parts, value) {
  * @param parts
  * @returns {boolean|any}
  */
-function objectExists(obj, parts) {
+export function objectExists(obj, parts) {
     parts = getParts(parts);
 
     var prop = parts.pop();
@@ -63,7 +62,7 @@ function objectExists(obj, parts) {
     return typeof obj === 'object' && obj && prop in obj;
 }
 
-function recurse(value: Object, fn: Function, fnContinue?: Function): any {
+export function recurse(value: Object, fn: Function, fnContinue?: Function): any {
     function recurse(value, fn, fnContinue, state) {
         var error;
         if ( state.objs.indexOf(value) !== - 1 ) {
@@ -82,7 +81,7 @@ function recurse(value: Object, fn: Function, fnContinue?: Function): any {
             return value.map(function (item, index) {
                 return recurse(item, fn, fnContinue, {
                     objs: state.objs.concat([ value ]),
-                    path: state.path + '[' + index + ']',
+                    path: state.path + '[' + index + ']'
                 });
             });
         }
@@ -92,7 +91,7 @@ function recurse(value: Object, fn: Function, fnContinue?: Function): any {
             for ( key in value ) {
                 obj[ key ] = recurse(value[ key ], fn, fnContinue, {
                     objs: state.objs.concat([ value ]),
-                    path: state.path + (/\W/.test(key) ? '["' + key + '"]' : '.' + key),
+                    path: state.path + (/\W/.test(key) ? '["' + key + '"]' : '.' + key)
                 });
             }
             return obj;
@@ -111,7 +110,7 @@ function recurse(value: Object, fn: Function, fnContinue?: Function): any {
  * @param object
  * @returns {T}
  */
-function copyObject<T>(object: T): T {
+export function copyObject<T>(object: T): T {
     var objectCopy = <T>{};
 
     for ( var key in object ) {
@@ -129,8 +128,8 @@ function copyObject<T>(object: T): T {
  * @param prefix
  * @returns {any}
  */
-function dotize(obj: any, prefix?: any) {
-    if ( ! obj || typeof obj != "object" ) {
+export function dotize(obj: any, prefix?: any) {
+    if ( ! obj || typeof obj != 'object' ) {
         if ( prefix ) {
             var newObj       = {};
             newObj[ prefix ] = obj;
@@ -144,21 +143,21 @@ function dotize(obj: any, prefix?: any) {
 
     function recurse(o: any, p: any, isArrayItem?: any) {
         for ( var f in o ) {
-            if ( o[ f ] && typeof o[ f ] === "object" ) {
+            if ( o[ f ] && typeof o[ f ] === 'object' ) {
                 if ( Array.isArray(o[ f ]) )
-                    newObj = recurse(o[ f ], (p ? p : "") + (isNumber(f) ? "[" + f + "]" : "." + f), true); // array
+                    newObj = recurse(o[ f ], (p ? p : '') + (isNumber(f) ? '[' + f + ']' : '.' + f), true); // array
                 else {
                     if ( isArrayItem )
-                        newObj = recurse(o[ f ], (p ? p : "") + "[" + f + "]"); // array item object
+                        newObj = recurse(o[ f ], (p ? p : '') + '[' + f + ']'); // array item object
                     else
-                        newObj = recurse(o[ f ], (p ? p + "." : "") + f); // object
+                        newObj = recurse(o[ f ], (p ? p + '.' : '') + f); // object
                 }
             }
             else {
                 if ( isArrayItem || isNumber(f) )
-                    newObj[ p + "[" + f + "]" ] = o[ f ]; // array item primitive
+                    newObj[ p + '[' + f + ']' ] = o[ f ]; // array item primitive
                 else
-                    newObj[ (p ? p + "." : "") + f ] = o[ f ]; // primitive
+                    newObj[ (p ? p + '.' : '') + f ] = o[ f ]; // primitive
             }
         }
 
@@ -184,9 +183,23 @@ function dotize(obj: any, prefix?: any) {
     return recurse(obj, prefix);
 }
 
-function objectLoop(obj:any, callback:(key:string, item:any)=>void) {
-    Object.keys(obj).forEach((key:string) =>{
-        callback(key, obj[key])
+export function deepClone(obj, hash = new WeakMap()) {
+    if ( Object(obj) !== obj ) return obj; // primitives
+    if ( hash.has(obj) ) return hash.get(obj); // cyclic reference
+    const result = obj instanceof Date ? new Date(obj)
+        : obj instanceof RegExp ? new RegExp(obj.source, obj.flags)
+                       : obj.constructor ? new obj.constructor()
+              : Object.create(null);
+    hash.set(obj, result);
+    if ( obj instanceof Map )
+        Array.from(obj, ([ key, val ]) => result.set(key, deepClone(val, hash)));
+    return Object.assign(result, ...Object.keys(obj).map(
+        key => ({ [ key ]: deepClone(obj[ key ], hash) })));
+}
+
+export function objectLoop(obj: any, callback: (key: string, item: any) => void) {
+    Object.keys(obj).forEach((key: string) => {
+        callback(key, obj[ key ])
     })
 }
 
@@ -211,7 +224,7 @@ export class StringType {
     }
 }
 
-function applyMixins(derivedCtor: any, baseCtors: any[]) {
+export function applyMixins(derivedCtor: any, baseCtors: any[]) {
     baseCtors.forEach(baseCtor => {
         Object.getOwnPropertyNames(baseCtor.prototype).forEach(name => {
             derivedCtor.prototype[ name ] = baseCtor.prototype[ name ];
@@ -261,13 +274,13 @@ export class DependencySorter {
 
     }
 
-    public add(items: {[name: string]: string|string[]}) {
+    public add(items: { [name: string]: string | string[] }) {
         Object.keys(items).forEach((name: string) => {
             this.addItem(name, items[ name ]);
         });
     }
 
-    public addItem(name: string, deps?: string|string[]) {
+    public addItem(name: string, deps?: string | string[]) {
         if ( typeof deps === 'undefined' ) {
             deps = deps || [];
         }
@@ -291,7 +304,8 @@ export class DependencySorter {
             this.hits[ dep ] = 0;
         });
 
-        this.items                = uniq(this.items);
+        // uniq
+        this.items                = this.items.filter((x, i, a) => a.indexOf(x) == i)
         this.dependencies[ name ] = deps;
         this.hits[ name ]         = 0;
     }
@@ -506,7 +520,7 @@ export class DependencySorter {
 
 }
 
-export function everyKey<T extends object, U extends T>(obj: T, cb: (key?: string, obj?: T, index?: number, keys?: string[]) => U ): U[] {
+export function everyKey<T extends object, U extends T>(obj: T, cb: (key?: string, obj?: T, index?: number, keys?: string[]) => U): U[] {
     let objs = [];
     Object.keys(obj).forEach((key: string, index: number, keys: string[]) => {
         objs.push(cb(key, obj[ key ], index, keys))
@@ -514,9 +528,9 @@ export function everyKey<T extends object, U extends T>(obj: T, cb: (key?: strin
     return objs
 }
 
-export type KeyObjectArray<T extends object> = [string, T]
+export type KeyObjectArray<T extends object> = [ string, T ]
 
-export function omap<T extends object>(obj: T, cb: (obj?: T, key?:string, index?:number, keys?:string[]) => T | KeyObjectArray<T> ) : T{
+export function omap<T extends object>(obj: T, cb: (obj?: T, key?: string, index?: number, keys?: string[]) => T | KeyObjectArray<T>): T {
     Object.keys(obj).forEach((key, index, keys) => {
         let result = cb(obj[ key ], key, index, keys)
         let type   = kindOf(result);
@@ -542,6 +556,7 @@ export function Mixin<T>(...mixins: Array<new (...args: any[]) => any>): new (..
     return mixins.reduceRight((prev, cur) => __extends(cur, prev), class {});
 }
 
+
 function __extends(f: MixinFunction, s: MixinFunction): MixinFunction {
     const mixedClass = class {
         constructor() {
@@ -549,8 +564,8 @@ function __extends(f: MixinFunction, s: MixinFunction): MixinFunction {
         }
     };
     void Object.assign(mixedClass.prototype, f.prototype, s.prototype);
-    for (const p in s) if (s.hasOwnProperty(p)) mixedClass[p] = s[p];
-    for (const p in f) if (f.hasOwnProperty(p)) mixedClass[p] = f[p];
+    for ( const p in s ) if ( s.hasOwnProperty(p) ) mixedClass[ p ] = s[ p ];
+    for ( const p in f ) if ( f.hasOwnProperty(p) ) mixedClass[ p ] = f[ p ];
 
     return mixedClass;
 }
@@ -560,4 +575,3 @@ interface MixinFunction {
 }
 
 
-export { objectLoop,getParts, objectExists, objectGet, objectSet, copyObject, applyMixins, recurse, dotize }

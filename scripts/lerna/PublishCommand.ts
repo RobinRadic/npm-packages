@@ -1,4 +1,4 @@
-declare class BasePublishCommand  {
+export declare class BasePublishCommand  {
     initialize(callback)
     execute(callback)
     publishPackagesToNpm(callback)

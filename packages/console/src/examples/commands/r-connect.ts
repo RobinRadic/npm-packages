@@ -1,4 +1,4 @@
-import {OutputHelper, command, CommandArguments, CommandConfig, Config, lazyInject, Log, OptionConfig } from "@radic/console";
+import {OutputHelper, command, CommandArguments, CommandConfig, Config, lazyInject, Log, OptionConfig } from "../../";
 
 @command('connect|3 [command]', 'SSH connection helper', <CommandConfig> {
 isGroup: true,

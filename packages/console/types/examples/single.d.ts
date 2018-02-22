@@ -1,6 +1,5 @@
-import "module-alias/register.js";
 import "reflect-metadata";
-import { CommandArguments, OutputHelper } from "@radic/console";
+import { CommandArguments, OutputHelper } from "..";
 export default class  {
     out: OutputHelper;
     handle(args: CommandArguments, argv: string[]): void;

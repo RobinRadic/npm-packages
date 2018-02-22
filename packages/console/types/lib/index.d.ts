@@ -10,6 +10,7 @@ export * from './utils';
 export * from './decorators';
 export * from './defaults';
 export * from './commands';
+export * from './modules/completion';
 export * from './modules/help';
 export * from './modules/input';
 export * from './modules/log';

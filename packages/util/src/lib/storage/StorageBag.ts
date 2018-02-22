@@ -1,6 +1,5 @@
-import merge from 'lodash/merge';
 import { StorageMeta } from './StorageMeta';
-import { IStorageBagOptions, IStorageProvider,StorageEvent } from './interfaces';
+import { IStorageBagOptions, IStorageProvider, StorageEvent } from './interfaces';
 
 export class StorageBag {
     provider: IStorageProvider;
@@ -11,20 +10,20 @@ export class StorageBag {
 
     constructor(provider: IStorageProvider, options: IStorageBagOptions = {}) {
         this.provider = provider;
-        merge(this.options, options);
+        this.options  = { ...this.options, ...options };
     }
 
-    on(event:StorageEvent, callback: Function) {
-        this.listeners[event].push(callback);
+    on(event: StorageEvent, callback: Function) {
+        this.listeners[ event ].push(callback);
     }
 
-    listeners:{[event:string]:Function[]} = {set: [], del: [], clear: []}
+    listeners: { [event: string]: Function[] } = { set: [], del: [], clear: [] }
 
-    protected fireEvent(event:StorageEvent, params:any[]=[]){
-        this.listeners[event].forEach(listener => listener.apply(this, params));
+    protected fireEvent(event: StorageEvent, params: any[] = []) {
+        this.listeners[ event ].forEach(listener => listener.apply(this, params));
     }
 
-    get <T extends any>(key: any, defaultReturn: any = null, options: IStorageBagOptions = {}): T {
+    get<T extends any>(key: any, defaultReturn: any = null, options: IStorageBagOptions = {}): T {
         if ( ! this.has(key) ) {
             return defaultReturn;
         }
@@ -41,14 +40,14 @@ export class StorageBag {
         return <T> val;
     }
 
-    set (key: any, val: any, options: IStorageBagOptions = {}) {
+    set(key: any, val: any, options: IStorageBagOptions = {}) {
         const meta = StorageMeta.create(this.options).merge(options);
         if ( meta.isJSON() ) {
             val = JSON.stringify(val);
         }
         this.provider.setItem(key + ':meta', meta.toString());
         this.provider.setItem(key, val);
-        this.fireEvent('set', [key, val, meta]);
+        this.fireEvent('set', [ key, val, meta ]);
     }
 
     has(key) {
@@ -63,7 +62,7 @@ export class StorageBag {
     del(key) {
         this.provider.removeItem(key);
         this.provider.removeItem(key + ':meta');
-        this.fireEvent('del', [key]);
+        this.fireEvent('del', [ key ]);
     }
 
     /**

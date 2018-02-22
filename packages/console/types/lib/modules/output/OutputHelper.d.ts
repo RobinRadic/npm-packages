@@ -1,6 +1,6 @@
-import { CliExecuteCommandParsedEvent, CliExecuteCommandParseEvent } from "../../";
-import { Output } from "./Output";
-import { OutputHelperOptionsConfig } from "./interfaces";
+import { CliExecuteCommandParsedEvent, CliExecuteCommandParseEvent } from '../../core';
+import { Output } from './Output';
+import { OutputHelperOptionsConfig } from './interfaces';
 export declare class OutputHelper extends Output {
     config: OutputHelperOptionsConfig;
     styles(styles: any): void;

@@ -1,14 +1,15 @@
-import { Cli, CliConfig, container, Log, logLevel, logTransports } from '@radic/console';
-import { LoggerInstance, transports as wtransports } from 'winston';
+import { Cli, CliConfig, container, Log, logModule,logLevel } from '@radic/console';
+import { LoggerInstance, TransportInstance, transports as wtransports } from 'winston';
 import { Client } from 'raven';
 import { paths } from './paths';
 import { PKG } from './static';
 import { Inquirer } from 'inquirer';
 import { Database } from '../database/Database';
 import { RConfig } from './config';
+import { timelog } from '@radic/console';
 
 export function bootstrapRaven() {
-
+    timelog('cli:core:bootstrap:raven')
     const rconfig = container.get<RConfig>('r.config')
     if ( rconfig.has('raven.dsn') && false === container.isBound('sentry') ) {
         const sentry: Client = require('raven').config(rconfig('raven.dsn')).install({
@@ -27,15 +28,18 @@ export function bootstrapRaven() {
         })
         container.bind<Client>('sentry').toConstantValue(sentry);
     }
+    timelog('cli:core:bootstrap:raven:end')
 }
 
 
 export function bootstrapRcli(): Promise<Cli> {
-
+    timelog('cli:core:bootstrap:rcli')
+    container.load(logModule);
     bootstrapRaven();
     const rconfig = container.get<RConfig>('r.config')
     const cli     = container.get<Cli>('cli');
-    logTransports.push(<any>
+    const transports = container.get<TransportInstance[]>('cli.log.transports')
+    transports.push(<any>
         new (wtransports.File)({
             filename   : paths.logFile,
             level      : 'error',
@@ -56,24 +60,25 @@ export function bootstrapRcli(): Promise<Cli> {
         })
     )
 
+
     if ( rconfig.has('raven.dsn') ) {
-        wtransports[ 'Sentry' ] = require('winston-sentry');
-        logTransports.push(new (wtransports[ 'Sentry' ])({
+        transports[ 'Sentry' ] = require('winston-sentry');
+        transports.push(new (wtransports[ 'Sentry' ])({
             dsn        : rconfig('raven.dsn'),
             level      : 'info',
             patchGlobal: true
         }))
     }
 
-    cli.log.configure({
+    cli.log.logger.configure({
         level           : 'info',
         rewriters       : cli.log.rewriters,
-        levels          : logLevel,
-        transports      : logTransports,
+        levels          : logLevel as any,
+        transports      : transports,
         handleExceptions: true
     })
     container.unbind('cli.log')
-    container.bind<LoggerInstance>('cli.log').toConstantValue(cli.log)
+    container.bind<Log>('cli.log').toConstantValue(cli.log)
     container.bind<Log>('r.log').toConstantValue(cli.log)
 
     // const eventHandler = (event:string) => event && cli.log.info(event['event'] || event);
@@ -127,19 +132,23 @@ export function bootstrapRcli(): Promise<Cli> {
         // .helper('completion')
         .helper('ssh.bash')
         .helper('connect')
+    timelog('cli:core:bootstrap:cli:end')
 
     // cli.events.on('**', (event: Event) => event && event.event && console.log('event', event.event, process.uptime()))
     return new Promise((resolve, reject) => {
+        timelog('cli:core:bootstrap:cli:promise')
         let  db;
         container.bind('r.db').toDynamicValue(() => {
+            timelog('cli:core:bootstrap:cli:db')
             if(db) return db;
             db = new Database();
 
             db.migrateLatest().then(() => {
             })
+            timelog('cli:core:bootstrap:cli:db:return')
             return db;
         });
-
+        timelog('cli:core:bootstrap:cli:promise:resole')
         resolve(cli)
     })
 

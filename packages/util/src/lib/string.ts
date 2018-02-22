@@ -26,3 +26,6 @@ export function strStripRight(str: string, right: string): string {
     }
     return str;
 }
+export function escapeRegExp(s:string) {
+    return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+};

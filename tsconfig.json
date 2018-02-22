@@ -13,6 +13,7 @@
         "noImplicitAny": false,
         "noImplicitReturns": false,
         "allowUnreachableCode": true,
+        "allowSyntheticDefaultImports": true,
         "typeRoots": [
             "./node_modules/@types",
             "./types"
@@ -32,7 +33,7 @@
         "./packages",
         "./packages/*/types"
     ],
-    "compileOnSave": true,
+    "compileOnSave": false,
     "typeAcquisition": {
         "enable": true
     }

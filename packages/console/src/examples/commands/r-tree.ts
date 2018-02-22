@@ -1,4 +1,4 @@
-import { TreeCmd, command, option, CommandArguments, CommandConfig, Config, inject, Log, OptionConfig } from "@radic/console";
+import { TreeCmd, command, option, CommandArguments, CommandConfig, Config, inject, Log, OptionConfig } from "../../";
 
 @command('tree', 'Show command structure')
 export class Tree extends TreeCmd {

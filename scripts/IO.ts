@@ -1,31 +1,29 @@
-import { kindOf } from '../packages/util/src/lib/general';
 import { Answers, ChoiceType, DateType, MessageType, objects, prompt, prompts, Question, Questions, QuestionType, registerPrompt, Separator, SourceType, TimeType } from 'inquirer';
-import * as _ from 'lodash';
-import { Colors } from '../packages/console-colors/src/lib/colors';
-import { Parser } from '../packages/console-colors/src/lib/parser';
+import { Colors, Parser } from '../packages/console-colors/src';
 import { OutputUtil } from './OutputUtil';
-import { RGulpConfig, OutputOptions } from './interfaces';
+import { OutputOptions, RGulpConfig } from './interfaces';
 import { inspect } from 'util';
-import { createLogger} from './logger';
 import { LoggerInstance } from 'winston';
+import { kindOf } from '../packages/util/src/lib/general';
+import * as _ from 'lodash';
 
-const seperator = (msg = '') => new Separator(` -=${msg}=- `)
+// const seperator = (msg = '') => new Separator(` -=${msg}=- `)
 
 export class IO {
 
-    protected logger:LoggerInstance
+    protected logger: LoggerInstance
 
-    public get types(): QuestionType[] { return [ 'input', 'confirm', 'list', 'rawlist', 'expand', 'checkbox', 'password', 'autocomplete', 'datetime' ] }
+    // public get types(): QuestionType[] { return [ 'input', 'confirm', 'list', 'rawlist', 'expand', 'checkbox', 'password', 'autocomplete', 'datetime' ] }
 
-    constructor(protected config:RGulpConfig) {
-        let promptNames = Object.keys(prompts);
-        if ( ! promptNames.includes('autocomplete') ) registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
-        if ( ! promptNames.includes('datetime') ) registerPrompt('datetime', require('inquirer-datepicker-prompt'))
+    constructor(protected config: RGulpConfig) {
+        // let promptNames = Object.keys(prompts);
+        // if ( ! promptNames.includes('autocomplete') ) registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
+        // if ( ! promptNames.includes('datetime') ) registerPrompt('datetime', require('inquirer-datepicker-prompt'))
         this._parser = new Parser()
         this.util    = new OutputUtil(this);
     }
 
-    attachLogger(logger:LoggerInstance){
+    attachLogger(logger: LoggerInstance) {
         this.logger = logger;
     }
 
@@ -72,12 +70,13 @@ export class IO {
         return this
     }
 
+
     async ask(message: MessageType, def?: string): Promise<string> {
         return this.prompt<string>({ default: def, type: 'input', message })
     }
 
 
-    async confirm(message: MessageType, def: boolean=true): Promise<boolean> {
+    async confirm(message: MessageType, def: boolean = true): Promise<boolean> {
         return this.prompt<boolean>({ type: 'confirm', default: def, message })
     }
 

@@ -1,24 +1,22 @@
-import { helper } from "../../";
-import * as inquirer from "inquirer";
-import { ChoiceType, Question,MessageType,QuestionType, SourceType,DateType,TimeType } from "inquirer";
-import { inject } from "../../core/Container";
-import { Config } from "../../core/config";
-import * as _ from "lodash";
-import { kindOf } from "@radic/util";
-import { CliExecuteCommandParseEvent } from "../../core/events";
-import { HelperOptionsConfig, InputHelperOptionsConfig } from "../../interfaces";
-export interface CheckListItem extends inquirer.objects.ChoiceOption {
+import { helper } from '../../';
+import { Questions, Answers, ChoiceType, DateType, Inquirer, MessageType, objects, Question, QuestionType, Separator, SourceType, TimeType } from 'inquirer';
+
+import { CliExecuteCommandParseEvent, Config, inject } from '../../core';
+import * as _ from 'lodash';
+import { kindOf } from '@radic/util';
+import { InputHelperOptionsConfig } from '../../interfaces';
+
+export interface CheckListItem extends objects.ChoiceOption {
     name?: string
     disabled?: string
     checked: boolean
     value?: string
 }
-const seperator = (msg = '') => new inquirer.Separator(` -=${msg}=- `)
 
 @helper('input', {
     singleton: true,
     config   : {
-        registerPrompts: (inquirer: inquirer.Inquirer) => {}
+        registerPrompts: (inquirer: Inquirer) => {}
     },
     listeners: {
         'cli:execute:parse': 'onExecuteCommandParse'
@@ -33,12 +31,12 @@ export class InputHelper {
     config: InputHelperOptionsConfig
 
     public onExecuteCommandParse(event: CliExecuteCommandParseEvent) {
-        let promptNames = Object.keys(inquirer.prompts);
-        if ( ! promptNames.includes('autocomplete') ) inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
-        if ( ! promptNames.includes('datetime') ) inquirer.registerPrompt('datetime', require('inquirer-datepicker-prompt'))
+        let promptNames = Object.keys(this.inquirer.prompts);
+        if ( ! promptNames.includes('autocomplete') ) this.inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
+        if ( ! promptNames.includes('datetime') ) this.inquirer.registerPrompt('datetime', require('inquirer-datepicker-prompt'))
 
         if ( kindOf(this.config.registerPrompts) === 'function' ) {
-            this.config.registerPrompts(inquirer)
+            this.config.registerPrompts(this.inquirer)
         }
     }
 
@@ -51,19 +49,19 @@ export class InputHelper {
         return this.prompt<boolean>({ type: 'confirm', default: def, message })
     }
 
-    async list(msg:MessageType, choices: ChoiceType[] | Array<inquirer.objects.ChoiceOption>, validate?: (answer) => boolean): Promise<string> {
+    async list(msg: MessageType, choices: ChoiceType[] | Array<objects.ChoiceOption>, validate?: (answer) => boolean): Promise<string> {
         return this.multiple<string>(msg, 'list', choices, validate);
     }
 
-    async rawlist(msg:MessageType, choices: ChoiceType[] | Array<inquirer.objects.ChoiceOption>, validate?: (answer) => boolean): Promise<string> {
+    async rawlist(msg: MessageType, choices: ChoiceType[] | Array<objects.ChoiceOption>, validate?: (answer) => boolean): Promise<string> {
         return this.multiple<string>(msg, 'rawlist', choices, validate);
     }
 
-    async expand(msg:MessageType, choices: ChoiceType[] | Array<inquirer.objects.ChoiceOption>, validate?: (answer) => boolean): Promise<string> {
+    async expand(msg: MessageType, choices: ChoiceType[] | Array<objects.ChoiceOption>, validate?: (answer) => boolean): Promise<string> {
         return this.multiple<string>(msg, 'expand', choices, validate);
     }
 
-    async checkbox(msg:MessageType, choices: ChoiceType[] | Array<inquirer.objects.ChoiceOption>, validate?: (answer) => boolean): Promise<string[]> {
+    async checkbox(msg: MessageType, choices: ChoiceType[] | Array<objects.ChoiceOption>, validate?: (answer) => boolean): Promise<string[]> {
         return this.multiple<string[]>(msg, 'checkbox', choices, validate);
     }
 
@@ -71,10 +69,10 @@ export class InputHelper {
         return this.prompt<string>({ type: 'password', default: def, message, validate })
     }
 
-    async autocomplete(message:MessageType, source: string[] | SourceType, suggestOnly:boolean=false, validate?: (answer) => boolean): Promise<string> {
-        let src:SourceType = <SourceType> source;
-        if(kindOf(source) === 'array'){
-            src = (answersSoFar, input) : Promise<any>=> {
+    async autocomplete(message: MessageType, source: string[] | SourceType, suggestOnly: boolean = false, validate?: (answer) => boolean): Promise<string> {
+        let src: SourceType = <SourceType> source;
+        if ( kindOf(source) === 'array' ) {
+            src = (answersSoFar, input): Promise<any> => {
                 return Promise.resolve((<string[]> source).filter((name) => {
                     return name.startsWith(input);
                 }))
@@ -91,12 +89,12 @@ export class InputHelper {
      *
      * @returns {Promise<string>}
      */
-    async datetime(message:MessageType, date?:DateType, time?:TimeType, format: string[] = ['d', '/', 'm', '/', 'yyyy', ' ', 'HH', ':', 'MM', ':', 'ss']): Promise<string> {
+    async datetime(message: MessageType, date?: DateType, time?: TimeType, format: string[] = [ 'd', '/', 'm', '/', 'yyyy', ' ', 'HH', ':', 'MM', ':', 'ss' ]): Promise<string> {
         return this.prompt<string>({ type: 'datetime', message, date, time, format })
 
     }
 
-    async multiple<T>(message: MessageType, type: QuestionType, choices: ChoiceType[] | Array<inquirer.objects.ChoiceOption>, validate?: (answer) => boolean): Promise<T> {
+    async multiple<T>(message: MessageType, type: QuestionType, choices: ChoiceType[] | Array<objects.ChoiceOption>, validate?: (answer) => boolean): Promise<T> {
         let prompt = { type, message, choices }
         if ( validate ) {
             prompt[ 'validate' ] = validate;
@@ -104,13 +102,13 @@ export class InputHelper {
         return this.prompt<T>(prompt)
     }
 
-    async prompts(questions: inquirer.Questions): Promise<inquirer.Answers> {
-        return inquirer.prompt(questions);
+    async prompts(questions: Questions): Promise<Answers> {
+        return this.inquirer.prompt(questions);
     }
 
-    async prompt<T extends any>(question: inquirer.Question): Promise<T> {
+    async prompt<T extends any>(question: Question): Promise<T> {
         question.name = 'prompt'
-        return inquirer.prompt([ question ])
+        return this.inquirer.prompt([ question ])
             .then((answers) => Promise.resolve(<T>answers.prompt))
             .catch(e => Promise.reject(e))
     }
@@ -118,7 +116,11 @@ export class InputHelper {
     async interact(message: string, type: string = 'input', opts: Question = {}, def?: string) {
         return <Promise<string>> new Promise((resolve, reject) => {
             let question = _.merge({ name: 'ask', message, type, default: def }, opts)
-            inquirer.prompt(question).then(answers => resolve(answers.ask)).catch(e => reject(e))
+            this.inquirer.prompt(question).then(answers => resolve(answers.ask)).catch(e => reject(e))
         })
+    }
+
+    get inquirer(): Inquirer {
+        return require('inquirer')
     }
 }

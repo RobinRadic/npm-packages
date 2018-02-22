@@ -13,7 +13,7 @@ container.bind('cli.helpers.help.describer.factory').toFactory((ctx) => {
     }
 })
 
-@bindTo('cli.helpers.help.describer')
+
 export class CommandDescriber {
     public command: CommandConfig = null;
 
@@ -234,3 +234,5 @@ export class CommandDescriber {
     }
 
 }
+container.ensureInjectable(CommandDescriber)
+container.bind('cli.helpers.help.describer' ).to(CommandDescriber)

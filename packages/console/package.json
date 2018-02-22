@@ -16,6 +16,7 @@
     "dependencies": {
         "@radic/console-colors": "^2.0.4",
         "@radic/util": "^2.3.3",
+        "debug": "^3.1.0",
         "archy": "^1.0.0",
         "async": "^2.4.0",
         "axios": "^0.16.1",

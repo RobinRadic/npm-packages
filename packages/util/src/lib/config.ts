@@ -1,8 +1,7 @@
-import { objectExists, objectGet, objectSet, recurse } from './object';
-import cloneDeep from 'lodash-es/cloneDeep'
-import merge from 'lodash-es/merge';
-import template from 'lodash-es/template';
+import { deepClone, objectExists, objectGet, objectSet, recurse } from './object';
 import { defined, kindOf } from './general';
+import template =require('lodash/template');
+import merge =require('lodash/merge');
 
 
 export interface IDelimitersCollection {
@@ -89,7 +88,11 @@ export class Config implements IConfig {
         this.allDelimiters = {};
         this.addDelimiters('config', '<%', '%>');
         this.defaults = obj || {};
-        this.data     = cloneDeep(this.defaults);
+        try {
+            this.data = JSON.parse(JSON.stringify(obj));
+        } catch ( e ) {
+            this.data = deepClone(obj);
+        }
     }
 
 

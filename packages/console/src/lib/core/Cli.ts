@@ -1,21 +1,16 @@
-import { kindOf } from "@radic/util";
-import { container, inject, injectable, lazyInject } from './Container';
-import {  HelpersOptionsConfig,CliConfig, CommandConfig, HelperOptionsConfig, OptionConfig } from "../interfaces";
+import { kindOf } from '@radic/util';
+import { container, injectable, lazyInject } from './Container';
+import { CliConfig, CommandConfig, HelpersOptionsConfig, OptionConfig } from '../interfaces';
 // import { YargsParserArgv } from "../../types/yargs-parser";
-import { CliExecuteCommandEvent, CliExecuteCommandHandledEvent, CliExecuteCommandHandleEvent, CliExecuteCommandInvalidArgumentsEvent,
-    CliExecuteCommandParsedEvent, CliExecuteCommandParseEvent, CliParsedEvent, CliParseEvent, CliStartEvent } from "./events";
-import { Log } from "../modules/log";
-import { Config } from "./config";
-import { ParseArgumentsFunction, SubCommandsGetFunction, TransformOptionsFunction } from "../utils";
-import { resolve } from "path";
-import { interfaces } from "inversify";
-import * as _ from "lodash";
-import { Helpers } from "./Helpers";
-import { Dispatcher } from "./Dispatcher";
-import * as parser from "yargs-parser";
-import Context = interfaces.Context;
-import BindingWhenOnSyntax = interfaces.BindingWhenOnSyntax;
-import Factory = interfaces.Factory;
+import { CliExecuteCommandEvent, CliExecuteCommandHandledEvent, CliExecuteCommandHandleEvent, CliExecuteCommandInvalidArgumentsEvent, CliExecuteCommandParsedEvent, CliExecuteCommandParseEvent, CliParsedEvent, CliParseEvent, CliStartEvent } from './events';
+import { Log, nullLogModule } from '../modules/log';
+import { Config } from './config';
+import { ParseArgumentsFunction, SubCommandsGetFunction, timelog, TransformOptionsFunction } from '../utils';
+import { resolve } from 'path';
+import * as _ from 'lodash';
+import { Helpers } from './Helpers';
+import { Dispatcher } from './Dispatcher';
+import * as parser from 'yargs-parser';
 
 // import { YargsParserArgv } from "../../types/yargs-parser";
 // const parser = require('yargs-parser')
@@ -75,19 +70,20 @@ export class Cli {
 
     public async start(requirePath: string) {
         this.log.data(`cli.start('${requirePath}')`)
+        timelog('cli', 'start')
 
         process
             .on('unhandledRejection', (reason, p) => {
                 try {
                     this.log.error(`unhandledRejection (reason: ${reason}) at Promise`, p);
-                } catch(e){
+                } catch ( e ) {
                     console.error(e)
                 }
             })
             .on('uncaughtException', err => {
-                try{
-                this.log.error('uncaughtException thrown', err);
-                } catch(e){
+                try {
+                    this.log.error('uncaughtException thrown', err);
+                } catch ( e ) {
                     console.error(e)
                 }
                 process.exit(1);
@@ -123,9 +119,9 @@ export class Cli {
 
         if ( this.events.fire(new CliParseEvent(config, this.globalOptions, isRootCommand)).stopIfExit().isCanceled() ) return
 
-        let transformedOptions        :any   = this.transformOptions(this.globalOptions);
+        let transformedOptions: any      = this.transformOptions(this.globalOptions);
         transformedOptions.configuration = this.config.get<any>('parser.yargs') as any
-        let result                     :any  = parser(config.argv, transformedOptions) ;
+        let result: any                  = parser(config.argv, transformedOptions);
         this.events.fire(new CliParsedEvent(config, this.globalOptions, isRootCommand, result)).stopIfExit()
         this._parsedCommands.push(config);
 
@@ -173,9 +169,9 @@ export class Cli {
         // Parse
         this.events.fire(new CliExecuteCommandParseEvent(config, optionConfigs))
 
-        let transformedOptions :any          = this.transformOptions(this.globalOptions.concat(optionConfigs));
+        let transformedOptions: any      = this.transformOptions(this.globalOptions.concat(optionConfigs));
         transformedOptions.configuration = this.config('parser.yargs')
-        let argv                   :any      = parser(config.argv, transformedOptions) as YargsParserArgv;
+        let argv: any                    = parser(config.argv, transformedOptions) as YargsParserArgv;
 
         this.events.fire(new CliExecuteCommandParsedEvent(argv, config, optionConfigs))
 
@@ -204,10 +200,10 @@ export class Cli {
         if ( ! parsed.valid ) {
             this.log.data(`in cli.executeCommand: ! parsed.valid. should now ${config.onMissingArgument}`)
             this.events.fire(new CliExecuteCommandInvalidArgumentsEvent(instance, parsed, config, optionConfigs)).stopIfExit();
-            if ( config.onMissingArgument === "fail" ) {
+            if ( config.onMissingArgument === 'fail' ) {
                 this.fail(`Missing required argument [${parsed.missing.shift()}]`);
             }
-            if ( config.onMissingArgument === "handle" ) {
+            if ( config.onMissingArgument === 'handle' ) {
                 if ( kindOf(instance[ 'handleInvalid' ]) === 'function' ) {
                     let result = instance[ 'handleInvalid' ].apply(instance, [ parsed, argv ])
                     if ( result === false ) {

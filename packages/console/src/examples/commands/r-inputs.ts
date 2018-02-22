@@ -1,4 +1,4 @@
-import { command, inject, InputHelper, OutputHelper } from '@radic/console';
+import { command, inject, InputHelper, OutputHelper } from '../../';
 
 
 @command('inputs')
