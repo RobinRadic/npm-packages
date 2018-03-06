@@ -6,12 +6,12 @@ import * as gts from 'gulp-typescript';
 import * as ts from 'typescript';
 // noinspection ES6UnusedImports
 import * as shelljs from 'shelljs';
-import { touch } from 'shelljs';
+import { cd, touch } from 'shelljs';
 import * as globule from 'globule';
 import { basename, join, resolve } from 'path';
 import * as _ from 'lodash';
 import { existsSync, statSync, writeFileSync } from 'fs';
-import { exec, execSync } from 'child_process';
+import { exec,execSync } from 'child_process';
 import { GulpTypedocOptions, IdeaIml, IdeaJsMappings, PackageData, RGulpConfig, TSProjectOptions } from './scripts/interfaces';
 import * as yargs from 'yargs';
 import { Radic } from './scripts/Radic';
@@ -29,6 +29,7 @@ import * as rename from 'gulp-rename';
 import * as rollup from 'gulp-rollup'
 // noinspection ES6UnusedImports
 import * as nresolve from 'rollup-plugin-node-resolve'
+import * as inquirer from 'inquirer';
 import typedoc = require('gulp-typedoc');
 // noinspection ES6UnusedImports
 import mdtoc            = require('markdown-toc');
@@ -517,6 +518,50 @@ gulp.task('docs:ghpages', () => {
 gulp.task('docs:deploy', (cb) => sequence('docs', 'docs:ghpages', cb))
 
 //endregion
+
+async function getCommitMessage(): Promise<string> {
+    let argv = yargs
+        .option('m', {
+            string     : true,
+            requiresArg: true,
+            alias      : 'message',
+            nargs      : 1
+        })
+        .help('h', true)
+        .argv
+
+    if ( argv.message ) {
+        return Promise.resolve(argv.message);
+    }
+    log('No message specified by command line option -m|--message')
+
+    return inquirer
+        .prompt([ <inquirer.Question> { name: 'message', type: 'input', message: 'Specify commit message' } ])
+        .then(answers => Promise.resolve(answers.message))
+
+}
+
+packages.forEach(pkg => {
+    let name = pkg.directory;
+    gulp.task(`git:commit:${name}`, async () => {
+        let message = await getCommitMessage()
+        cd(pkg.path.toString());
+        [
+            'git add -A',
+            `git commit -m "${message}"`,
+            `git push`
+        ].forEach(cmd => execSync(cmd, {stdio: 'inherit'}))
+        log('Commited and pushed')
+    })
+})
+
+/*
+git:commit
+    git:commit:utils
+
+publish
+    publish:utils
+ */
 
 
 //region: TASKS: TESTING
