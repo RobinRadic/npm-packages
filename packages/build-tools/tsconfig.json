@@ -1,0 +1,23 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "outDir": "./",
+        "declarationDir": "./types",
+        "typeRoots": [
+            "../../node_modules/@types"
+        ]
+    },
+    "include": [
+        "./src",
+        "./src/**/*.d.ts"
+    ],
+    "exclude": [
+        "./node_modules",
+        "./types",
+        "./es",
+        "./lib",
+        "./*.ts",
+        "*.js"
+    ],
+    "compileOnSave": true
+}

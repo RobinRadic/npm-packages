@@ -1,0 +1,65 @@
+{
+    "name": "@radic/build-tools",
+    "version": "0.0.1",
+    "description": "build tools",
+    "main": "index.js",
+    "keywords": [
+        "util"
+    ],
+    "jsnext:main": "es/index.js",
+    "module": "es/index.js",
+    "types": "index.d.ts",
+    "author": {
+        "name": "Robin Radic",
+        "email": "rradic@hotmail.com",
+        "url": "https://radic.nl"
+    },
+    "license": "MIT",
+    "files": [
+        "index.js",
+        "index.d.ts",
+        "types/**/*.d.ts",
+        "lib/**/*.js",
+        "umd/*.js",
+        "es/**/*.js"
+    ],
+    "repository": "https://github.com/robinradic/build-tools",
+    "homepage": "http://robin.radic.nl/npm-packages/build-tools",
+    "bugs": {
+        "email": "rradic@hotmail.com",
+        "url": "https://github.com/robinradic/npm-packages/issues"
+    },
+    "scripts": {
+        "test": "nyc mocha",
+        "clean": "rimraf types .nyc_output ./**/*.js",
+        "watch": "mocha-typescript-watch"
+    },
+    "dependencies": {
+        "gulpclass": "^0.1.2",
+        "lodash": "^4.17.4"
+    },
+    "devDependencies": {
+        "source-map-support": "^0.5.0"
+    },
+    "radic": {
+        "es": true,
+        "typedoc": {
+            "module": "commonjs",
+            "mode": "file",
+            "target": "es6",
+            "hideGenerator": false,
+            "json": "docs/@radic-build-tools/typedoc.json",
+            "verbose": true,
+            "out": "docs/@radic-build-tools",
+            "includeDeclarations": false,
+            "excludeExternals": true,
+            "ignoreCompilerErrors": true,
+            "includes": "/mnt/fat/node/@radic/scripts/templates/typedoc/inc",
+            "theme": "/mnt/fat/node/@radic/scripts/templates/typedoc/theme",
+            "plugins": [
+                "typedoc-plantuml"
+            ],
+            "exclude": "types,test"
+        }
+    }
+}
