@@ -55,6 +55,7 @@ export interface RGulpConfig {
 export interface RPackageJsonOptions {
     [key: string]: any
 
+    docgen?:boolean|string
     es?: boolean
     umd?: boolean
     moduleName?: string
@@ -315,6 +316,57 @@ export interface Log extends LoggerInstance {}
 export type LogLevel = 'error' | 'warn' | 'alert' | 'notice' | 'help' | 'info' | 'verbose' | 'data' | 'debug' | 'silly' | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | string | number
 
 
+
+export namespace SCSS {
+
+    export type ImporterReturnType = { file: string } | { contents: string } | Error | null;
+
+    export interface Importer {
+        (url: string, prev: string, done: (data: ImporterReturnType) => void): ImporterReturnType | void;
+    }
+
+    export interface Options {
+        file?: string;
+        data?: string;
+        importer?: Importer | Importer[];
+        functions?: { [key: string]: Function };
+        includePaths?: string[];
+        indentedSyntax?: boolean;
+        indentType?: string;
+        indentWidth?: number;
+        linefeed?: string;
+        omitSourceMapUrl?: boolean;
+        outFile?: string;
+        outputStyle?: "compact" | "compressed" | "expanded" | "nested";
+        precision?: number;
+        sourceComments?: boolean;
+        sourceMap?: boolean | string;
+        sourceMapContents?: boolean;
+        sourceMapEmbed?: boolean;
+        sourceMapRoot?: string;
+    }
+
+    export interface SassError extends Error {
+        message: string;
+        line: number;
+        column: number;
+        status: number;
+        file: string;
+    }
+
+    export interface Result {
+        css: Buffer;
+        map: Buffer;
+        stats: {
+            entry: string;
+            start: number;
+            end: number;
+            duration: number;
+            includedFiles: string[];
+        }
+    }
+}
+
 export type TruncateFunction = (input: string, columns: number, options?: TruncateOptions) => string
 export type WrapFunction = (input: string, columns: number, options?: WrapOptions) => string;
 export type SliceFunction = (inputu: string, beginSlice: number, endSlice?: number) => string;
@@ -425,57 +477,6 @@ export interface OutputHelperOptionsConfig {
     tableStyle?: OutputHelperOptionsConfigTableStyles
 }
 
-
-
-export namespace SCSS {
-
-    export type ImporterReturnType = { file: string } | { contents: string } | Error | null;
-
-    export interface Importer {
-        (url: string, prev: string, done: (data: ImporterReturnType) => void): ImporterReturnType | void;
-    }
-
-    export interface Options {
-        file?: string;
-        data?: string;
-        importer?: Importer | Importer[];
-        functions?: { [key: string]: Function };
-        includePaths?: string[];
-        indentedSyntax?: boolean;
-        indentType?: string;
-        indentWidth?: number;
-        linefeed?: string;
-        omitSourceMapUrl?: boolean;
-        outFile?: string;
-        outputStyle?: "compact" | "compressed" | "expanded" | "nested";
-        precision?: number;
-        sourceComments?: boolean;
-        sourceMap?: boolean | string;
-        sourceMapContents?: boolean;
-        sourceMapEmbed?: boolean;
-        sourceMapRoot?: string;
-    }
-
-    export interface SassError extends Error {
-        message: string;
-        line: number;
-        column: number;
-        status: number;
-        file: string;
-    }
-
-    export interface Result {
-        css: Buffer;
-        map: Buffer;
-        stats: {
-            entry: string;
-            start: number;
-            end: number;
-            duration: number;
-            includedFiles: string[];
-        }
-    }
-}
 
 export interface Figures {
     tick: string

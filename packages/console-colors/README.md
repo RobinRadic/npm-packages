@@ -2,6 +2,8 @@
 Console Colors
 ==============
 
+[Documentation](https://robin.radic.nl/npm-packages)
+
 Install
 -------
 ```bash

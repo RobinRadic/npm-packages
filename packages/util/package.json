@@ -1,6 +1,6 @@
 {
     "name": "@radic/util",
-    "version": "2.7.0",
+    "version": "2.8.0",
     "description": "Utilities for node / browser",
     "main": "index.js",
     "keywords": [

@@ -19,8 +19,8 @@ A modern NodeJS console library created in Typescript.
 
 Documentation
 -------------
-The documentation can be found [here](#)<br>
-For working examples, check out [`@radic/console-exmples`](#) and [`rcli`](#)
+- [Documentation](https://robin.radic.nl/npm-packages)
+- For working examples, check out [`@radic/console-exmples`](#) and [`rcli`](#)
 
 Quick glance
 ------------

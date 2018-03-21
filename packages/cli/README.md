@@ -1,6 +1,8 @@
 Radical CLI
 ===========
 
+[Documentation](https://robin.radic.nl/npm-packages)
+
 Cli utility for various personal purposes. Unless you'd like to see how `@radic/console` can be implemented, you probably have no use for this.
 
 ```text

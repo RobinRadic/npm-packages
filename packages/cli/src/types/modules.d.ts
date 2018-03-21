@@ -59,7 +59,6 @@ declare module "events";
 declare module "color-convert";
 declare module "color-string";
 declare module "trucolor";
-declare module "globule";
 
 
 declare module "window-size" {

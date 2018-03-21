@@ -1,7 +1,7 @@
 # radic/utils
 Utility JS functions for use in both browser and node.
 
-[View Documentation](docs/index.md)
+[Documentation](https://robin.radic.nl/npm-packages)
 
 ### Install
 ```bash

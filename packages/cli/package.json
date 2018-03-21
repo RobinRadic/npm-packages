@@ -15,7 +15,9 @@
     "scripts": {
         "test": "nyc mocha",
         "watch": "mocha-typescript-watch",
-        "clean": "rimraf types .nyc_output ./**/*.js"
+        "clean": "rimraf types .nyc_output ./**/*.js",
+        "poststart": "npm run chown",
+        "chown": "chown +x bin/r.js"
     },
     "radic": {
         "typedoc": {

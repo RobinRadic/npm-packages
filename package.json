@@ -19,6 +19,7 @@
     "scripts": {
         "start": "yarn install && lerna bootstrap && yarn links && yarn build && yarn test",
         "clean": "yarn clean:build && yarn clean:lerna && yarn clean:modules",
+        "postinstall": "node scripts/node-v9.js",
         "clean:lerna": "lerna clean --yes",
         "clean:build": "gulp clean",
         "clean:modules": "rimraf node_modules/ *.log docs/ .tmp/",

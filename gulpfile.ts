@@ -11,7 +11,7 @@ import * as globule from 'globule';
 import { basename, join, resolve } from 'path';
 import * as _ from 'lodash';
 import { existsSync, statSync, writeFileSync } from 'fs';
-import { exec,execSync } from 'child_process';
+import { exec, execSync } from 'child_process';
 import { GulpTypedocOptions, IdeaIml, IdeaJsMappings, PackageData, RGulpConfig, TSProjectOptions } from './scripts/interfaces';
 import * as yargs from 'yargs';
 import { Radic } from './scripts/Radic';
@@ -22,7 +22,7 @@ import * as sequence from 'run-sequence';
 import { isArray } from 'util';
 import { Template } from './scripts/Template';
 import * as ghPages from 'gulp-gh-pages';
-import { writeJsonSync } from 'fs-extra';
+import { copySync, moveSync, removeSync, writeJsonSync } from 'fs-extra';
 import * as commonjs from 'rollup-plugin-commonjs';
 import * as rename from 'gulp-rename';
 // noinspection ES6UnusedImports
@@ -94,6 +94,8 @@ const c: RGulpConfig = {
     },
     packageDefaults: {
         radic: {
+            es     : false,
+            docgen : false,
             typedoc: {
                 module              : 'commonjs',
                 mode                : 'file',
@@ -158,7 +160,7 @@ const packages: PackageData[] = new DependencySorter({ idProperty: 'name' }).sor
     data.hasTests = existsSync(data.path.to('test'));
 
     // apply package defaults
-    data.package = _.merge(data.package, {
+    data.package = _.merge({}, {
         radic: c.packageDefaults.radic
     }, data.package)
 
@@ -227,7 +229,7 @@ r.addTemplateParser('mdtoc', (content) => {
 //endregion
 
 
-//region: TASKS:TYPESCRIPT
+//region: TASKS: TYPESCRIPT / TYPEDOCS
 // the package task prefix names for src (populates by createTsTask() calls)
 // - used to afterwards create [clean,build,watch]:ts:${packageName} task name array
 // - and uses the array as dependencies for creation of [clean,build,watch]:ts tasks
@@ -235,6 +237,7 @@ let srcNames = []
 // the package task prefix names for test works same as src but
 // creates [clean,build,watch]:ts:test:${packageName} task name array for the [clean,build,watch]:ts:test tasks
 let testNames      = []
+let tsDocsNames = []
 const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProjectOptions = {}) => {
 
     //region: clean, build and watch tasks for the src directory
@@ -259,6 +262,7 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
             json: `docs/${pkg.directory}/typedoc.json`
         }))))
         cleanPaths.push(pkg.package.radic.typedoc.out)
+        tsDocsNames.push(name);
     }
     gulp.task(`clean:${name}`, (cb) => gulp.src(cleanPaths).pipe(clean()));
 
@@ -334,8 +338,9 @@ const createTsTask = (name: string, pkg: PackageData, dest, tsProject: TSProject
 
 }
 packages.forEach(pkg => createTsTask(`${pkg.directory}:${c.ts.taskPrefix}`, pkg, '/', {}));
+gulp.task('docs:ts', tsDocsNames.map(name => `docs:${name}`));
 // src
-[ 'docs', 'build', 'clean', 'watch' ].forEach(prefix => gulp.task(`${prefix}:ts`, srcNames.map(name => `${prefix}:${name}`)));
+[ 'build', 'clean', 'watch' ].forEach(prefix => gulp.task(`${prefix}:ts`, srcNames.map(name => `${prefix}:${name}`)));
 // test
 [ 'build', 'clean', 'watch' ].forEach(prefix => gulp.task(`${prefix}:ts:test`, testNames.map(name => `${prefix}:${name}`)));
 //endregion
@@ -447,7 +452,7 @@ if ( c.idea ) {
 //endregion
 
 
-//region: TASKS: README / TYPEDOCS / GHPAGES
+//region: TASKS: DOCS / DOCGEN / TEMPLATES / README / GHPAGES
 gulp.task('docs:templates', [ 'clean:docs:templates' ], (cb) => {
     // create index page / style
     r.template('docs/index.pug')
@@ -506,11 +511,57 @@ gulp.task('docs:readme', (cb) => {
         .writeTo('./README.md', true);
     cb()
 })
+let docgenPackages: PackageData[] = [];
+packages.forEach(pkg => {
+    let enabled = pkg.package.radic.docgen;
+    if ( enabled === undefined || enabled === false ) return;
+    docgenPackages.push(pkg)
+    let docgenFilePath = typeof enabled === 'string' ? pkg.path.to(enabled) : pkg.path.to('docgen.json')
+    let docgenConfig   = require(docgenFilePath);
 
+    let originalConfig = _.cloneDeep(docgenConfig);
+    docgenConfig.title = `${pkg.package} | Documentation`;
+    // docgenConfig.logo  = { text: pkg.directory.replace('-', ' '), size: 25, x: 0, y: 0 }
+    docgenConfig.copyright = 'Copyright ' + (new Date()).getFullYear() + ' &copy; Robin Radic'
+    docgenConfig.dest = '._docgen'
+    docgenConfig.baseUrl = '/docs/' + pkg.directory
+    const replaceConfig = () => writeFileSync(docgenFilePath, JSON.stringify(docgenConfig, null, 4), 'utf-8');
+    const restoreConfig = () => writeFileSync(docgenFilePath, JSON.stringify(docgenConfig, null, 4), 'utf-8');
+
+    // gulp.task(`clean:docs:docgen:${pkg.name}`, (cb) => { pump(gulp.src([ pkg.path.to(docgenConfig.dest) ]), clean(), (err) => cb(err)) });
+    gulp.task(`docs:docgen:${pkg.directory}`, (cb) => {
+        replaceConfig()
+        try {
+            log(`Generating docgen for ${pkg.name}`)
+            execSync('docgen generate', { cwd: pkg.path.toString(), stdio: 'inherit' })
+
+            let destPath = resolve(process.cwd(), 'docs', pkg.directory);
+
+            if(existsSync(destPath)){
+                removeSync(destPath)
+            }
+
+            moveSync(pkg.path.to('._docgen'), destPath);
+            let findPath = resolve(destPath, 'assets/scripts/src/ts/*');
+            log('findPath', findPath)
+            globule
+                .find(findPath)
+                .forEach(path => {
+                    log(`Move "${path}" \n To "${path.replace('/src/ts', '')}"`)
+                    moveSync(path, path.replace('/src/ts', ''))
+                })
+        } catch(e) {
+            error(e)
+        }
+        restoreConfig();
+    });
+})
+// gulp.task('clean:docs:docgen', docgenPackages.map(pkg => `clean:docs:docgen:${pkg.name}`));
+gulp.task('docs:docgen', docgenPackages.map(pkg => `docs:docgen:${pkg.directory}`));
 
 gulp.task(`clean:docs`, (cb) => { pump(gulp.src([ 'docs/*', c.ghPages.cacheDir ]), clean(), (err) => cb(err)) });
 gulp.task(`clean:docs:templates`, (cb) => { pump(gulp.src('docs/{index.html,stylesheet.scss}'), clean(), (err) => cb(err)) });
-gulp.task('docs', (cb) => sequence('clean:docs', 'docs:ts', 'docs:templates', 'docs:script', 'docs:readme', cb))
+gulp.task('docs', (cb) => sequence('clean:docs', 'docs:ts', 'docs:templates', 'docs:script', 'docs:readme', 'docs:docgen', cb))
 gulp.task('docs:ghpages', () => {
     touch('docs/.nojekyll');
     return gulp.src('./docs/**/*').pipe(ghPages(c.ghPages))
@@ -550,7 +601,7 @@ packages.forEach(pkg => {
             'git add -A',
             `git commit -m "${message}"`,
             `git push`
-        ].forEach(cmd => execSync(cmd, {stdio: 'inherit'}))
+        ].forEach(cmd => execSync(cmd, { stdio: 'inherit' }))
         log('Commited and pushed')
     })
 })
