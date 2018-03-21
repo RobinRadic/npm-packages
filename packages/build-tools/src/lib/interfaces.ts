@@ -66,7 +66,8 @@ export interface ColumnsOptions {
 export interface OutputOptions {
     enabled?: boolean
     colors?: boolean
-    inspect?: InspectOptions
+    inspect?: InspectOptions,
+    stdout?: NodeJS.WriteStream
 }
 
 

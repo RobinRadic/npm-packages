@@ -33,34 +33,30 @@ export class OutputUtil {
 }
 
 export class Output {
-    constructor(options: OutputOptions = {}) {
-        this.options = {
-            ...this.options,
-            ...options
-        }
-        this._parser = new Parser()
-        this.util    = new OutputUtil(this);
-        // let promptNames = Object.keys(prompts);
-        // if ( ! promptNames.includes('autocomplete') ) registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'))
-        // if ( ! promptNames.includes('datetime') ) registerPrompt('datetime', require('inquirer-datepicker-prompt'))
-    }
-
-    protected _parser: Parser
-    protected macros: { [name: string]: (...args: any[]) => string }
-    public options: OutputOptions = {
+    public util: OutputUtil                                          = new OutputUtil(this);
+    public stdout: NodeJS.WriteStream                                = process.stdout;
+    protected _parser: Parser                                        = new Parser();
+    protected macros: { [name: string]: (...args: any[]) => string } = {}
+    public options: OutputOptions                                    = {
         enabled: true,
         colors : true,
-        inspect: { showHidden: true, depth: 10 }
+        inspect: { showHidden: true, depth: 10 },
+        stdout : process.stdout
     }
 
-    public util: OutputUtil;
-    public stdout: NodeJS.WriteStream = process.stdout
 
     get parser(): Parser { return this._parser }
 
     get colors(): Colors { return this._parser.colors; }
 
     get nl(): this { return this.write('\n') }
+
+    constructor(options: OutputOptions = {}) {
+        this.options = {
+            ...this.options,
+            ...options
+        }
+    }
 
     bind(name: string, fn: (this: Output, ...args) => any): this {
         this.macros[ name ] = fn;
@@ -126,5 +122,6 @@ export class Output {
     }
 
 
-
 }
+
+export const output = new Output();
