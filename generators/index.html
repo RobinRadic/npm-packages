@@ -64,83 +64,12 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="radic-s-npm-packages">Radic&#39;s NPM Packages</h1>
-				<p>This repository contains some of my public <strong>non browser/DOM</strong> node packages.</p>
-				<p>Go to <a href="http://robin.radic.nl/npm-packages">documentation</a> for all packages,</p>
-				<ul>
-					<li><a href="#radics-npm-packages">Radic&#39;s NPM Packages</a><ul>
-							<li><a href="#summary">Summary</a></li>
-							<li><a href="#development">Development</a><ul>
-									<li><a href="#primary-toolset">Primary toolset</a></li>
-									<li><a href="#run-tasks">Run Tasks</a></li>
-									<li><a href="#gulp-tasks">Gulp tasks</a></li>
-								</ul>
-							</li>
-							<li><a href="#todo">Todo</a></li>
-						</ul>
-					</li>
-				</ul>
-				<h2 id="summary">Summary</h2>
-				<ul>
-					<li>All packages are prefixed/scoped under <strong>@radic</strong></li>
-					<li>Typescript only</li>
-					<li>Opinionated structure and workflow</li>
-					<li>Automation as much as possible, including docs, gh-pages, etc</li>
-					<li>Individual package versions. Aims to follow <a href="http://semver.org/">Semantic version</a> as much as possible.</li>
-				</ul>
-				<h2 id="development">Development</h2>
-				<h3 id="primary-toolset">Primary toolset</h3>
-				<ul>
-					<li>Lerna<ul>
-							<li>Includes example for extending it&#39;s CLI, extending commands or adding new ones.</li>
-						</ul>
-					</li>
-					<li>Typescript (NodeJS configuration)</li>
-					<li>Typedoc</li>
-					<li>Mocha, Mocha Typescript, Chai</li>
-					<li>Gulp, optionally with:<ul>
-							<li>Automatic Typescript packages task builder (clean,build,watch) for both <code>src</code> and <code>test</code></li>
-							<li>IntelliJ IDEA (php/webstorm) helper task for fixing / configuring Typescript stuff</li>
-						</ul>
-					</li>
-					<li>IntelliJ IDEA (php/webstorm) run configurations<ul>
-							<li>Debugging Typescript code using ts-node</li>
-							<li>Debugging/running Gulp using ts-node</li>
-						</ul>
-					</li>
-				</ul>
-				<h3 id="run-tasks">Run Tasks</h3>
-				<ul>
-					<li><code>yarn start</code> : Installs, bootstraps, links and build all packages.</li>
-					<li><code>yarn clean</code> : Cleans everything; docs, node_modules, package build js. Can only be reversed by <code>yarn start</code></li>
-					<li><code>yarn build</code> : Builds source and tests files for all packages</li>
-					<li><code>yarn watch</code> : Watches all source and test files and builds on change</li>
-					<li><code>yarn docs</code>  : Generates typedoc for all packages and compiles the index.html file inside <code>docs/</code></li>
-					<li><code>yarn docs:serve</code> : Creates a static server inside <code>docs/</code> and watches all template related files. Run <code>yarn docs</code> first.</li>
-					<li><code>yarn docs:deploy</code> : Runs <code>yarn docs</code> then deploys <code>docs/</code> to <code>gh-pages</code> (located at <a href="https://robin.radic.nl/npm-packages">https://robin.radic.nl/npm-packages</a>)</li>
-					<li><code>yarn scan</code> : Scans all node modules for security vulnerabilities.</li>
-					<li><code>yarn test</code> : Tests all packages. Run <code>yarn build</code> or <code>yarn watch</code> first.</li>
-					<li><code>yarn lerna</code>: Starts <code>lerna-wizard</code>, a interactive tool to execute Lerna commands.</li>
-					<li><code>yarn test</code> : Test all packages that contain tests</li>
-				</ul>
-				<h3 id="gulp-tasks">Gulp tasks</h3>
-				<ul>
-					<li><code>gulp -T</code> for a complete useless overview.</li>
-					<li><code>gulp tasks</code> for a better overview.</li>
-					<li><code>gulp idea</code> : If using any IntelliJ product (IDEA,php/webstorm). This adds all source, tests, exclusions paths. Fixes some anoyances and improves intellisence.</li>
-					<li><code>gulp tasks -d 3</code> : The higher the number gives more tasks for fine picking of tasks. Its better not to use them directly.</li>
-				</ul>
-				<h2 id="todo">Todo</h2>
-				<p>This project was initially created as hands-on-learning mono-repo management.
-				There&#39;s a couple of things that:  require improvement | are useless | stupid | usefull | awesome | tiring</p>
-				<ul>
-					<li>gulpfile rework, some of them i&#39;d like to move to a seperate package</li>
-					<li>scripts/*.ts scripts are silly</li>
-					<li>Tests reports can be added to the generated docs</li>
-					<li>Jenkins integration</li>
-					<li>Better task naming &amp; task dependency improvements</li>
-					<li>Reduce code, some stuff could have been done more easy and efficient</li>
-				</ul>
+				<h1 id="yeoman-generators">Yeoman Generators</h1>
+				<h2 id="install">Install</h2>
+				<pre><code class="lang-text">npm install -g @radic/cli
+</code></pre>
+				<h2 id="documentation">Documentation</h2>
+				<p><a href="https://robin.radic.nl/npm-packages">Documentation</a></p>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
