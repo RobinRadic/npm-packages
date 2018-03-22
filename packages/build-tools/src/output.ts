@@ -1,11 +1,6 @@
 ///<reference path="declarations.d.ts"/>
 
 import { figures } from './lib/figures'
-import * as truncate from 'cli-truncate'
-import * as wrap from 'wrap-ansi'
-import * as slice from 'slice-ansi'
-import * as widest from 'widest-line'
-import * as width from 'string-width'
 import { Figures, OutputOptions, TruncateOptions, WrapOptions } from './lib/interfaces';
 import { Colors, Parser } from '@radic/console-colors';
 import { inspect } from 'util';
@@ -19,15 +14,15 @@ export class OutputUtil {
 
     constructor(protected out: Output) { }
 
-    truncate(input: string, columns: number, options?: TruncateOptions): string { return truncate.apply(truncate, arguments)}
+    truncate(input: string, columns: number, options?: TruncateOptions): string { return require('cli-truncate').apply(require('cli-truncate'), arguments)}
 
-    wrap(input: string, columns: number, options?: WrapOptions): string { return wrap.apply(wrap, arguments)}
+    wrap(input: string, columns: number, options?: WrapOptions): string { return require('wrap-ansi').apply(require('wrap-ansi'), arguments)}
 
-    slice(inputu: string, beginSlice: number, endSlice?: number): string { return slice.apply(slice, arguments)}
+    slice(inputu: string, beginSlice: number, endSlice?: number): string { return require('slice-ansi').apply(require('slice-ansi'), arguments)}
 
-    widest(input: string): number { return widest.apply(widest, arguments)}
+    widest(input: string): number { return require('widest-line').apply(require('widest-line'), arguments)}
 
-    width(input: string): number { return width.apply(width, arguments)}
+    width(input: string): number { return require('string-width').apply(require('string-width'), arguments)}
 
 
 }
@@ -47,7 +42,9 @@ export class Output {
 
     get parser(): Parser { return this._parser }
 
-    get colors(): Colors { return this._parser.colors; }
+    get colors(): Colors {
+        return this._parser.colors;
+    }
 
     get nl(): this { return this.write('\n') }
 
@@ -56,6 +53,7 @@ export class Output {
             ...this.options,
             ...options
         }
+        this._parser = new Parser();
     }
 
     bind(name: string, fn: (this: Output, ...args) => any): this {

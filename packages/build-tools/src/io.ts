@@ -1,11 +1,13 @@
 import { Output } from './output';
 import { Input } from './input';
-import { Mixin } from '@radic/util';
-
+import { Mixin } from './lib/mixins';
 
 export interface IO extends Input, Output {}
 
-export class IO extends Mixin(Input, Output) {
+@Mixin(Input)
+@Mixin(Output)
+export class IO {
+
 }
 
-export const io = new IO
+const io = new IO;

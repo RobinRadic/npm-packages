@@ -4,60 +4,25 @@ import { read, write } from './lib/utils';
 import * as xml2js from 'xml2js';
 import * as globule from 'globule'
 import * as _ from 'lodash';
+// import { Folders, IdeaIml, PackageSourceFolder, PhpXml, ResourceSourceFolder } from './lib/interfaces';
+//
+// export { Folders, IdeaIml, PackageSourceFolder, PhpXml, ResourceSourceFolder }
 
-export type IdeaBoolean = 'true' | 'false'
+export function getPsr4FoldersFromComposerFiles(composerGlobs: string | string[] = 'composer.json'): PackageSourceFolder[] {
+    let dirs: PackageSourceFolder[] = []
 
-export interface IdeaIml {
-    module: {
-        $: { type: string, version: string },
-        component: Array<{
-            '$': { 'name': string, 'inherit-compiler-output': IdeaBoolean },
-            'exclude-output'?: any[],
-            'content'?: Array<{
-                '$': { 'url': string },
-                'sourceFolder'?: Array<{
-                    '$': { 'url': string, 'isTestSource'?: IdeaBoolean, packagePrefix?: string, type?: string, relativeOutputPath?: string }
-                }>,
-                'excludeFolder'?: Array<{ '$': { 'url': string } }>
-            }>,
-            'orderEntry'?: Array<{
-                '$': {
-                    'type'?: 'library' | 'sourceFolder' | 'inheritedJdk',
-                    'name'?: string,
-                    'level'?: 'project' | 'global' | 'scope',
-                    'forTests'?: IdeaBoolean
-                }
-            }>
-        }>
-    }
-}
-
-export interface PhpXml {
-    project: {
-        $: { type: string, version: string },
-        component: Array<{
-            '$': { 'name': string, 'inherit-compiler-output': IdeaBoolean },
-            'include_path'?: Array<{
-                'path'?: Array<{ '$': { 'value': string } }>
-            }>
-        }>
-    }
-}
-
-export type SourceFolders = Array<{ name: string, dev: boolean, namespace: string, path: string }>
-export type ResourceFolders = Array<{ path: string, relativeOutputPath: string }>
-
-export function getPsr4FoldersFromComposerFiles(composerGlobs: string | string[] = 'composer.json'): SourceFolders {
-    let dirs: SourceFolders = [] = []
     globule.find(composerGlobs).forEach(composerPath => {
         composerPath   = resolve(composerPath)
         const composer = require(composerPath);
         [ 'autoload', 'autoload-dev' ].forEach(type => {
-            const dev = type.endsWith('dev')
             if ( objectExists(composer, type + '.psr-4') ) {
                 const autoload = objectGet(composer, type + '.psr-4')
                 Object.keys(autoload).forEach(namespace => {
-                    dirs.push({ dev, namespace, name: composer.name, path: relative(process.cwd(), resolve(dirname(composerPath), autoload[ namespace ])) })
+                    dirs.push({
+                        isTestSource : type.endsWith('dev') ? 'true' : 'false',
+                        packagePrefix: namespace,
+                        url          : relative(process.cwd(), resolve(dirname(composerPath), autoload[ namespace ]))
+                    })
                 })
             }
         })
@@ -85,40 +50,52 @@ export function xmlEdit<T>(filePath: string, customizer: (this: XmlEdit, json: T
 
 
 export class Intellij {
-    static getProjectIMLPath = (): string => globule.find(resolve(process.cwd(),'.idea', '*.iml'))[ 0 ]
+    static getProjectIMLPath = (): string => globule.find(resolve(process.cwd(), '.idea', '*.iml'))[ 0 ]
+    static url               = (str: string) => str.startsWith('file://') ? str : 'file://' + join('$MODULE_DIR$', str);
 
-    static markFoldersUsingComposerFiles(composerGlobs: string | string[]): Promise<any> {
-        let dirs = getPsr4FoldersFromComposerFiles(composerGlobs);
-
+    static markFolders(markFolders: Folders): Promise<any> {
         return xmlEdit<IdeaIml>(Intellij.getProjectIMLPath(), function (json) {
-            const url                     = (...parts: any[]) => 'file://' + join(...[ '$MODULE_DIR$' ].concat(parts))
-            let cid                       = _.findIndex(json.module.component, (component) => component.$.name === 'NewModuleRootManager');
-            const content                 = json.module.component[ cid ].content[ 0 ];
-            content.excludeFolder         = content.excludeFolder || []
-            content.sourceFolder          = content.sourceFolder || []
-            const sourceFolders: string[] = content.sourceFolder.map(sf => sf.$.url)
-            dirs.forEach(dir => {
-                if ( ! sourceFolders.includes(url(dir.path)) ) {
-                    content.sourceFolder.push({ $: { url: url(dir.path), isTestSource: dir.dev ? 'true' : 'false', packagePrefix: dir.namespace } })
-                }
-            })
-            this.write(this.build(json));
-        })
-    }
 
-    static markResourceFolders(resources: ResourceFolders) : Promise<any>{
-        return xmlEdit<IdeaIml>(Intellij.getProjectIMLPath(), function (json) {
-            const url                     = (...parts: any[]) => 'file://' + join(...[ '$MODULE_DIR$' ].concat(parts))
-            let cid                       = _.findIndex(json.module.component, (component) => component.$.name === 'NewModuleRootManager');
-            const content                 = json.module.component[ cid ].content[ 0 ];
-            content.excludeFolder         = content.excludeFolder || []
-            content.sourceFolder          = content.sourceFolder || []
-            const sourceFolders: string[] = content.sourceFolder.map(sf => sf.$.url)
-            resources.forEach(res => {
-                if ( ! sourceFolders.includes(url(res.path)) ) {
-                    content.sourceFolder.push({ $: { url: url(res.path), type: 'java-resource', relativeOutputPath: res.relativeOutputPath } })
-                }
-            })
+            let cid                        = _.findIndex(json.module.component, (component) => component.$.name === 'NewModuleRootManager');
+            const content                  = json.module.component[ cid ].content[ 0 ];
+            content.excludeFolder          = content.excludeFolder || []
+            content.sourceFolder           = content.sourceFolder || []
+            const sourceFolders: string[]  = content.sourceFolder.map(sf => sf.$.url)
+            const excludeFolders: string[] = content.excludeFolder.map(sf => sf.$.url)
+
+            if ( markFolders.resources && Array.isArray(markFolders.resources) ) {
+                markFolders.resources.forEach(markResourceFolder => {
+                    if ( ! sourceFolders.includes(Intellij.url(markResourceFolder.url)) ) {
+                        content.sourceFolder.push({
+                            $: {
+                                url               : Intellij.url(markResourceFolder.url),
+                                type              : 'java-resource',
+                                relativeOutputPath: markResourceFolder.relativeOutputPath
+                            }
+                        })
+                    }
+                })
+            }
+            if ( markFolders.sources && Array.isArray(markFolders.sources) ) {
+                markFolders.sources.forEach(markSourceFolder => {
+                    if ( ! sourceFolders.includes(Intellij.url(markSourceFolder.url)) ) {
+                        content.sourceFolder.push({
+                            $: {
+                                url          : Intellij.url(markSourceFolder.url),
+                                isTestSource : markSourceFolder.isTestSource, //typeof markSourceFolder.isTestSource === 'string' ? markSourceFolder.isTestSource : markSourceFolder.isTestSource === true ? 'true' : 'false',
+                                packagePrefix: markSourceFolder.packagePrefix
+                            }
+                        })
+                    }
+                })
+            }
+            if ( markFolders.excludes && Array.isArray(markFolders.excludes) ) {
+                markFolders.excludes.forEach(markFolder => {
+                    if ( ! excludeFolders.includes(Intellij.url(markFolder)) ) {
+                        content.excludeFolder.push({ $: { url: Intellij.url(markFolder) } })
+                    }
+                })
+            }
             this.write(this.build(json));
         })
     }
@@ -128,8 +105,9 @@ export class Intellij {
             .find(composerGlobs)
             .map(composerPath => require(resolve(composerPath)).name)
 
-        return xmlEdit<PhpXml>(resolve(process.cwd(),'.idea/php.xml'), function (json) {
-            const value                                          = (...parts: any[]) => join(...[ '$PROJECT_DIR$' ].concat(parts))
+        return xmlEdit<PhpXml>(resolve(process.cwd(), '.idea/php.xml'), function (json) {
+            const value                                          = (...parts: any[]) => join(...[ '$PROJECT_DIR$' ].concat(parts));
+
             let cid                                              = _.findIndex(json.project.component, (component) => component.$.name === 'PhpIncludePathManager');
             const path                                           = json.project.component[ cid ].include_path[ 0 ].path;
             json.project.component[ cid ].include_path[ 0 ].path = path.filter((p) => {
@@ -138,5 +116,75 @@ export class Intellij {
             })
             this.write(this.build(json));
         })
+    }
+
+    /** @deprecated */
+    static markFoldersUsingComposerFiles(composerGlobs: string | string[]): Promise<any> {
+        return Intellij.markFolders({ sources: getPsr4FoldersFromComposerFiles(composerGlobs) });
+    }
+
+    /** @deprecated */
+    static markResourceFolders(markResourceFolders: ResourceSourceFolder[]): Promise<any> {
+        return Intellij.markFolders({ resources: markResourceFolders })
+    }
+}
+
+
+export type IdeaBoolean = 'true' | 'false'
+
+export interface BaseSourceFolder {
+    url: string
+}
+
+export interface PackageSourceFolder extends BaseSourceFolder {
+    isTestSource: IdeaBoolean
+    packagePrefix: string
+}
+
+export interface ResourceSourceFolder extends BaseSourceFolder {
+    type: string
+    relativeOutputPath: string
+}
+
+export interface Folders {
+    resources?: Partial<ResourceSourceFolder>[],
+    sources?: PackageSourceFolder[]
+    excludes?: string[]
+}
+
+export interface IdeaIml {
+    module: {
+        $: { type: string, version: string },
+        component: Array<{
+            '$': { 'name': string, 'inherit-compiler-output': IdeaBoolean },
+            'exclude-output'?: any[],
+            'content'?: Array<{
+                '$': { 'url': string },
+                'sourceFolder'?: Array<{
+                    '$': Partial<PackageSourceFolder & ResourceSourceFolder>
+                }>,
+                'excludeFolder'?: Array<{ '$': { 'url': string } }>
+            }>,
+            'orderEntry'?: Array<{
+                '$': {
+                    'type'?: 'library' | 'sourceFolder' | 'inheritedJdk',
+                    'name'?: string,
+                    'level'?: 'project' | 'global' | 'scope',
+                    'forTests'?: IdeaBoolean
+                }
+            }>
+        }>
+    }
+}
+
+export interface PhpXml {
+    project: {
+        $: { type: string, version: string },
+        component: Array<{
+            '$': { 'name': string, 'inherit-compiler-output': IdeaBoolean },
+            'include_path'?: Array<{
+                'path'?: Array<{ '$': { 'value': string } }>
+            }>
+        }>
     }
 }
