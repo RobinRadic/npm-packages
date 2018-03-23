@@ -1,3 +1,4 @@
+
 import { Answers, ChoiceType } from 'inquirer'
 
 declare module 'inquirer' {
@@ -102,5 +103,4 @@ declare module 'inquirer' {
         time?: TimeType
     }
 }
-
 

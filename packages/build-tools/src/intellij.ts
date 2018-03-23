@@ -48,6 +48,21 @@ export function xmlEdit<T>(filePath: string, customizer: (this: XmlEdit, json: T
 }
 //@formatter:on
 
+const helpers = {
+    phpXml: {
+        includePaths: (customizer: (paths: PhpXmlIncludePathPath[], toValue: (...parts: any[]) => string) => PhpXmlIncludePathPath[]) => {
+            return xmlEdit<PhpXml>(resolve(process.cwd(), '.idea/php.xml'), function (json) {
+                const value = (...parts: any[]) => join(...[ '$PROJECT_DIR$' ].concat(parts));
+
+                let cid                                              = _.findIndex(json.project.component, (component) => component.$.name === 'PhpIncludePathManager');
+                json.project.component[ cid ].include_path[ 0 ].path = customizer(json.project.component[ cid ].include_path[ 0 ].path, value);
+
+                this.write(this.build(json));
+
+            })
+        }
+    }
+}
 
 export class Intellij {
     static getProjectIMLPath = (): string => globule.find(resolve(process.cwd(), '.idea', '*.iml'))[ 0 ]
@@ -100,21 +115,38 @@ export class Intellij {
         })
     }
 
-    static removeSymlinkedVendorEntriesFromPhpXml(composerGlobs: string | string[]): Promise<any> {
+    static removePhpXmlSymlinkedVendorIncludePaths(composerGlobs: string | string[]): Promise<any> {
         let packageNames = globule
             .find(composerGlobs)
             .map(composerPath => require(resolve(composerPath)).name)
 
-        return xmlEdit<PhpXml>(resolve(process.cwd(), '.idea/php.xml'), function (json) {
-            const value                                          = (...parts: any[]) => join(...[ '$PROJECT_DIR$' ].concat(parts));
-
-            let cid                                              = _.findIndex(json.project.component, (component) => component.$.name === 'PhpIncludePathManager');
-            const path                                           = json.project.component[ cid ].include_path[ 0 ].path;
-            json.project.component[ cid ].include_path[ 0 ].path = path.filter((p) => {
+        return helpers.phpXml.includePaths((paths, value) => {
+            return paths.filter((p) => {
                 let packageName = p.$.value.split('/').reverse().slice(0, 2).reverse().join('/')
                 return packageNames.includes(packageName) === false;
             })
-            this.write(this.build(json));
+        })
+    }
+
+    /**
+     *
+     * @param {string[]} addPaths An array of relative paths to add to the include paths
+     * @returns {Promise<any>}
+     */
+    static addPhpXmlIncludePaths(addPaths: string[]): Promise<any> {
+        return helpers.phpXml.includePaths((currentPaths: PhpXmlIncludePathPath[], value) => {
+            let currentPathValues = currentPaths.map(path => path.$.value); // gets the string paths value from the object so we can compare it
+            addPaths              = addPaths
+                .map(path => value(path)) // transforms addPaths to $PROJECT_ROOT$/${path}
+                .filter(path => currentPathValues.includes(path) === false) // filter out the path we want to add but are already already defined in currentPaths to avoid duplicates
+
+            // add the new paths to the current paths
+            addPaths.forEach(addPath => {
+                currentPaths.push({ $: { value: addPath } })
+            })
+
+            // and return the modified result
+            return currentPaths
         })
     }
 
@@ -177,14 +209,15 @@ export interface IdeaIml {
     }
 }
 
+export type PhpXmlIncludePathPath = { '$': { 'value': string } }
+export type PhpXmlIncludePath = { 'path'?: PhpXmlIncludePathPath[] }
+
 export interface PhpXml {
     project: {
         $: { type: string, version: string },
         component: Array<{
             '$': { 'name': string, 'inherit-compiler-output': IdeaBoolean },
-            'include_path'?: Array<{
-                'path'?: Array<{ '$': { 'value': string } }>
-            }>
+            'include_path'?: PhpXmlIncludePath[]
         }>
     }
 }

@@ -1,15 +1,34 @@
 ///<reference path="declarations.d.ts"/>
 
-import { Answers, ChoiceType, objects, prompt, Question, Questions, SourceType, MessageType, DateType, TimeType, QuestionType } from 'inquirer';
+import { Answers, ChoiceType, DateType, MessageType, objects, prompt, prompts, Question, Questions, QuestionType, registerPrompt, SourceType, TimeType } from 'inquirer';
 import * as _ from 'lodash';
+
+const log = require('debug')('build-tools:input')
+
+function ensurePromptsInstalled() {
+    if ( prompts[ 'autocomplete' ] === undefined ) {
+        let prompt = require('inquirer-autocomplete-prompt')
+        log('registering prompt: autocomplete', prompt)
+        registerPrompt('autocomplete', prompt);
+    }
+    if ( prompts[ 'datepicker' ] === undefined ) {
+        let prompt = require('inquirer-datepicker-prompt')
+        log('registering prompt: datepicker', prompt)
+        registerPrompt('datepicker', prompt)
+    }
+}
+
 
 export class Input {
     public get types(): QuestionType[] { return [ 'input', 'confirm', 'list', 'rawlist', 'expand', 'checkbox', 'password', 'autocomplete', 'datetime' ] }
 
+    constructor(){
+        ensurePromptsInstalled();
+    }
+
     async ask(message: MessageType, def?: string): Promise<string> {
         return this.prompt<string>({ default: def, type: 'input', message })
     }
-
 
     async confirm(message: MessageType, def: boolean = true): Promise<boolean> {
         return this.prompt<boolean>({ type: 'confirm', default: def, message })
@@ -37,7 +56,7 @@ export class Input {
 
     async autocomplete(message: MessageType, source: string[] | SourceType, suggestOnly: boolean = false, validate?: (answer) => boolean): Promise<string> {
         let src: SourceType = <SourceType> source;
-        if ( Array.isArray(source)  ) {
+        if ( Array.isArray(source) ) {
             src = (answersSoFar, input): Promise<any> => {
                 return Promise.resolve((<string[]> source).filter((name) => {
                     return name.startsWith(input);
@@ -68,14 +87,14 @@ export class Input {
         return this.prompt<T>(prompt)
     }
 
-    async prompts(questions: Questions): Promise<Answers> {
+    async prompts<T extends Answers>(questions: Questions<T>): Promise<T> {
         return prompt(questions);
     }
 
-    async prompt<T extends any>(question: Question): Promise<T> {
+    async prompt<T>(question: Question): Promise<T> {
         question.name = 'prompt'
         return prompt([ question ])
-            .then((answers) => Promise.resolve(<T>answers.prompt))
+            .then((answers) => Promise.resolve(answers.prompt as T))
             .catch(e => Promise.reject(e))
     }
 
@@ -86,3 +105,5 @@ export class Input {
         })
     }
 }
+
+export const input:Input = new Input()
