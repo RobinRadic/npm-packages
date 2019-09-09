@@ -41,7 +41,7 @@ export function createLogger(opts:RGulpLoggerConfig) :LoggerInstance{
                 if ( typeof options.prettyPrint === 'function' ) {
                     output += '' + options.prettyPrint(meta);
                 } else if ( options.prettyPrint ) {
-                    output += '' + util.inspect(meta, false, options.depth || null, options.colorize);
+                    output += '' + util.inspect(meta, false, options.depth || null, options.colorize as any);
                 } else if (
                     options.humanReadableUnhandledException
                     && Object.keys(meta).length === 5

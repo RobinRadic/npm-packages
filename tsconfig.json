@@ -14,6 +14,7 @@
         "noImplicitReturns": false,
         "allowUnreachableCode": true,
         "allowSyntheticDefaultImports": true,
+        "suppressImplicitAnyIndexErrors": true,
         "typeRoots": [
             "./node_modules/@types",
             "./types"
