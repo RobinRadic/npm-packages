@@ -1,0 +1,6 @@
+{
+    "name": "@radic/supermenu",
+    "dependencies": {
+        "eventemitter2": "^5.0.1"
+    }
+}
