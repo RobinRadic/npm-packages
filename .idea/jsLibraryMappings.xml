@@ -1,7 +1,0 @@
-<project version="4">
-  <component name="JavaScriptLibraryMappings">
-    <file url="file://$PROJECT_DIR$" libraries="{Node.js Core, bootstrap, browser, jquery-3.2.1, popper}"/>
-    <file url="file://$PROJECT_DIR$/scripts/templates/docs" libraries="{HTML, bootstrap, browser, jquery-3.2.1, popper, system, system-production, system.src}"/>
-    <file url="PROJECT" libraries="{HTML}"/>
-  </component>
-</project>
