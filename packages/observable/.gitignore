@@ -5,8 +5,5 @@ package-lock.json
 yarn-error.log
 yarn.lock
 test.ts
-packages/webpacker
-/packages/collections/lib/
-/packages/util/lib/
 dist
-/.env
+lib

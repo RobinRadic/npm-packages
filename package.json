@@ -13,6 +13,13 @@
         ]
     },
     "scripts": {
+        "publisher": "cd packages/publisher && yarn",
+        "watch:publisher": "yarn publisher watch",
+        "build:publisher": "yarn publisher build",
+        "observable": "cd packages/observable && yarn",
+        "watch:observable": "yarn observable watch",
+        "build:observable": "yarn observable build",
+        "bitbucket": "cd packages/bitbucket && yarn",
         "util": "cd packages/util && yarn",
         "watch:util": "yarn util watch",
         "build:util": "yarn util build",
