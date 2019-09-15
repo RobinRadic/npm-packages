@@ -1,6 +1,6 @@
 {
     "name": "@radic/observable",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Object observe",
     "private": false,
     "author": {
@@ -27,8 +27,8 @@
         "reflect-metadata": "^0.1.13"
     },
     "devDependencies": {
+        "@types/node": "^12.6.9",
         "ts-node": "^8.3.0",
-        "typescript": "^3.5.3",
-        "@types/node": "^12.6.9"
+        "typescript": "^3.5.3"
     }
 }
