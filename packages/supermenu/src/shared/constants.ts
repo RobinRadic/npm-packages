@@ -1,2 +1,2 @@
 
-export const NAMESPACE = 'sm'
+export const NS = 'sm'

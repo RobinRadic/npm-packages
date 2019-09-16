@@ -2,12 +2,13 @@
 import { helpers, plugins, presets, rules, Webpacker } from '@radic/webpacker';
 import { resolve } from 'path';
 
+const mode = process.env.NODE_ENV === 'production' ? 'production' : 'development';
 const wp = new Webpacker({
     path       : __dirname,
     contextPath: 'src',
     outputPath : 'dev',
     workspace  : __dirname + '/../../package.json',
-    mode       : process.env.NODE_ENV === 'production' ? 'production' : 'development',
+    mode       ,
 });
 
 rules.css(wp);
@@ -25,7 +26,7 @@ rules.typescript(wp, {
     transpileOnly  : true,
     configFile     : resolve(__dirname, 'tsconfig.build.json'),
     compilerOptions: {
-        target        : 'es5' as any,
+        target        : 'es2015' as any,
         module        : 'commonjs' as any,
         sourceMap     : wp.isDev,
         removeComments: false,
@@ -38,16 +39,23 @@ plugins.define(wp, {});
 plugins.html(wp, {
     template: resolve(__dirname, 'index.html'),
     filename: 'index.html',
-    inject  : 'head',
+    inject  : 'body',
 });
-
 
 
 if ( wp.isDev ) {
 
 }
 if ( wp.isProd ) {
-
+    helpers.replaceStyleLoader(wp,'css', { publicPath: '/' });
+    helpers.replaceStyleLoader(wp,'scss', { publicPath: '/' });
+    plugins.miniCssExtract(wp, {
+        filename: 'css/[name].css'
+    })
+    // helpers.minimizer(wp)
+    wp.optimization.minimize(true)
+    plugins.bundleAnalyzer(wp)
+    wp.cache(false)
 }
 if ( wp.isHot ) {
     helpers.devServer(wp);

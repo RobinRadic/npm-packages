@@ -1,0 +1,9 @@
+/* BEM support Func
+ -------------------------- */
+/* BEM
+ -------------------------- */
+.sm-menu {
+    padding : 0; }
+
+.sm-menu__root {
+    padding-left : 15px; }
