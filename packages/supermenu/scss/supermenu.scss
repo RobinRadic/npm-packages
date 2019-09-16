@@ -1,0 +1,15 @@
+@import "base";
+
+
+@include b(menu) {
+    padding: 0;
+    @include e(root) {
+        padding-left: 15px;
+        @include when(collapsed){
+
+        }
+        @include m(menu) {
+
+        }
+    }
+}

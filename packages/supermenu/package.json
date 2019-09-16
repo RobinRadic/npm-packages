@@ -1,6 +1,26 @@
 {
     "name": "@radic/supermenu",
+    "version": "1.0.0",
+    "scripts": {
+        "build:dev": "NODE_ENV=development webpack --config webpack.config.ts",
+        "serve": "NODE_ENV=development webpack-dev-server --inline --hot --config webpack.config.ts"
+    },
     "dependencies": {
         "eventemitter2": "^5.0.1"
+    },
+    "devDependencies": {
+        "@webcomponents/webcomponentsjs": "^2.2.10",
+        "@radic/webpacker": "^5.1.0",
+        "lit-element": "^2.2.1",
+        "css-loader": "^3.2.0",
+        "file-loader": "^4.2.0",
+        "friendly-errors-webpack-plugin": "^1.7.0",
+        "html-webpack-plugin": "^3.2.0",
+        "node-sass": "^4.12.0",
+        "sass-loader": "^7.1.0",
+        "style-loader": "^1.0.0",
+        "webpack": "^4.40.2",
+        "webpack-cli": "^3.3.8",
+        "webpack-dev-server": "^3.8.0"
     }
 }
