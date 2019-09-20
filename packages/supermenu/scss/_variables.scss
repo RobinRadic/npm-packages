@@ -1,4 +1,7 @@
-$namespace: 'sm';
-$element-separator: '__';
-$modifier-separator: '--';
-$state-prefix: 'is-';
+$namespace          : 'sm' !default;
+$element-separator  : '__' !default;
+$modifier-separator : '--' !default;
+$state-prefix       : 'is-' !default;
+
+
+$fa-font-path       : "~font-awesome/fonts";

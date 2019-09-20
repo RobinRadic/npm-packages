@@ -8,14 +8,16 @@
         "style": "node-sass scss/supermenu.scss css/supermenu.css"
     },
     "dependencies": {
-        "@types/bootstrap": "^4.3.1",
-        "@types/classnames": "^2.2.9",
-        "bootstrap": "^4.3.1",
         "classnames": "^2.2.6",
         "eventemitter2": "^5.0.1",
-        "font-awesome": "^4.7.0"
+        "@radic/observable": "^1.0.0",
+        "@radic/tree": "^1.0.0"
     },
     "devDependencies": {
+        "@types/bootstrap": "^4.3.1",
+        "@types/classnames": "^2.2.9",
+        "font-awesome": "^4.7.0",
+        "bootstrap": "^4.3.1",
         "@radic/webpacker": "5.3.0",
         "@webcomponents/webcomponentsjs": "^2.2.10",
         "css-loader": "^3.2.0",

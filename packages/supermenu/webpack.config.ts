@@ -42,10 +42,11 @@ plugins.html(wp, {
     inject  : 'body',
 });
 
-
+// NODE_ENV=development webpack
 if ( wp.isDev ) {
 
 }
+// NODE_ENV=production webpack --production
 if ( wp.isProd ) {
     helpers.replaceStyleLoader(wp,'css', { publicPath: '/' });
     helpers.replaceStyleLoader(wp,'scss', { publicPath: '/' });
@@ -57,6 +58,8 @@ if ( wp.isProd ) {
     plugins.bundleAnalyzer(wp)
     wp.cache(false)
 }
+
+// NODE_ENV=development webpack-dev-server --hot
 if ( wp.isHot ) {
     helpers.devServer(wp);
     helpers.setServerLocation(wp, 'http', 'localhost', 5179);

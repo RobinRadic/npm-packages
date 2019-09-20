@@ -1,5 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="gulp git:commit:util" type="NodeJSConfigurationType" factoryName="Node.js" application-parameters="--gulpfile gulpfile.ts git:commit:util" path-to-node="$USER_HOME$/.nvm/versions/node/v8.9.4/bin/node" node-parameters="--nolazy -r ts-node/register --inspect" path-to-js-file="node_modules/.bin/gulp" working-dir="$PROJECT_DIR$">
-    <method />
-  </configuration>
-</component>

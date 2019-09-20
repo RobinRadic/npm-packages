@@ -37,7 +37,7 @@ export class Config<T> {
         });
     };
 
-    static proxied<T>(data): Config<T> {
+    static proxied<T>(data:T): Config<T> {
         return new Proxy(new Config<T>(data), {
             get(target: Config<T>, p: PropertyKey, receiver: any): any {
                 if ( target.has(p.toString()) ) {

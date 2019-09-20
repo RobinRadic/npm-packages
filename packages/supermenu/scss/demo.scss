@@ -1,6 +1,103 @@
+$namespace : '';
 @import "base";
 @import "colors_classes";
+@import "~bootstrap/scss/bootstrap";
+@import "~font-awesome/scss/font-awesome";
 
 body {
-    background: black;
+    background : black;
 }
+
+
+@include b(layout) {
+    @include flex;
+    position  : relative;
+    width     : 100%;
+    min-width : 100%;
+
+    @include e(header) {
+
+    }
+    @include e(side) {
+
+        @include m(left) {}
+        @include m(right) {}
+    }
+    @include e(content) {
+
+    }
+    @include e(footer) {
+
+    }
+}
+
+.#{$layout-prefix} {
+
+    // layout > __header
+    &__header {
+        @include pvar(background, layout-header);
+
+        z-index  : 1;
+        position : absolute;
+        top      : 0;
+        left     : 0;
+        right    : 0;
+
+        &--fixed {
+            position : fixed;
+        }
+    }
+
+    &__footer {
+        @include pvar(background, layout-footer);
+
+        z-index  : 1;
+        position : absolute;
+        left     : 0;
+        right    : 0;
+        bottom   : 0;
+
+        &--fixed {
+            position : fixed;
+        }
+    }
+
+    &__page {
+
+    }
+
+    &__side {
+        position : absolute;
+
+        @include pvar(background, layout-side);
+
+        &--left {
+            top    : 0;
+            left   : 0;
+            bottom : 0;
+        }
+
+        &--right {
+            top    : 0;
+            right  : 0;
+            bottom : 0;
+        }
+
+        &--hidden {
+            display : none;
+        }
+
+        &--collapsed {
+
+        }
+
+        &--fixed,
+        &--overlay {
+            position : fixed;
+
+            .#{$layout-prefix}__side-inner {
+            }
+        }
+
+
+    }

@@ -24,7 +24,7 @@
     },
     "scripts": {
         "start": "npm-run-all clean:build build",
-        "test": "echo \"test not implemented\" && exit 0",
+        "test": "nyc mocha",
         "build": "tsc --project tsconfig.build.json",
         "watch": "tsc --project tsconfig.build.json --watch",
         "clean:build": "rm -rf lib",

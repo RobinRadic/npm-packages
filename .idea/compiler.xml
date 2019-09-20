@@ -13,7 +13,7 @@
     </wildcardResourcePatterns>
   </component>
   <component name="TypeScriptCompiler">
+    <option name="nodeInterpreterTextField" value="$USER_HOME$/.nvm/versions/node/v10.16.0/bin/node" />
     <option name="recompileOnChanges" value="true" />
-    <option name="useConfig" value="true" />
   </component>
 </project>

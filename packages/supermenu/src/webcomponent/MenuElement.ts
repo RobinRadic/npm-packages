@@ -1,6 +1,6 @@
 import { html, LitElement, property } from 'lit-element';
 import { element } from './decorators';
-import { NS } from '../shared/constants';
+import { NS } from '../constants';
 import classNames from 'classnames';
 
 @element('menu')

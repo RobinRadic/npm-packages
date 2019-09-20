@@ -1,5 +1,5 @@
 import { customElement } from 'lit-element';
-import { NS } from '../shared/constants';
+import { NS } from '../constants';
 
 
 export function element(tagName: string): ClassDecorator {

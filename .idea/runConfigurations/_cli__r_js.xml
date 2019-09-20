@@ -1,5 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="[cli] r.js" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="bin/r.js" working-dir="$PROJECT_DIR$/packages/cli">
-    <method />
-  </configuration>
-</component>
