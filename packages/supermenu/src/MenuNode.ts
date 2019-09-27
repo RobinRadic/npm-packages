@@ -1,20 +1,20 @@
 import { EventEmitter2 } from 'eventemitter2';
-import { MenuItem } from './MenuItem';
-import { MenuItems } from './MenuItems';
+import { MenuItemNode } from './MenuItemNode';
+import { MenuItemNodeArray } from './MenuItemNodeArray';
 import { merge } from 'lodash';
 import { RootNode } from '@radic/tree';
 import { MenuConfig, MenuItemState } from './interfaces';
 
 const log = require('debug')('components:menu:Menu');
 
-export interface Menu extends EventEmitter2 {
-    constructor: typeof Menu
+export interface MenuNode extends EventEmitter2 {
+    constructor: typeof MenuNode
 
 }
 
 export type MenuEventTypes = { open: 'sf', close: any }
 
-export class Menu<C extends MenuItems = MenuItems> extends RootNode<C> {
+export class MenuNode<C extends MenuItemNodeArray = MenuItemNodeArray> extends RootNode<C> {
     static defaultConfig: MenuConfig   = {
         open  : {
             closeSiblings: true,
@@ -34,8 +34,8 @@ export class Menu<C extends MenuItems = MenuItems> extends RootNode<C> {
         selected : false,
     };
 
-    nodeClass       = MenuItem;
-    collectionClass = MenuItems;
+    nodeClass       = MenuItemNode;
+    collectionClass = MenuItemNodeArray;
     events: EventEmitter2;
     config: MenuConfig;
 
@@ -52,11 +52,17 @@ export class Menu<C extends MenuItems = MenuItems> extends RootNode<C> {
             this[ name ] = this.events[ name ].bind(this.events);
         });
         this.configure(config);
-        this.on('item:expand', (item: MenuItem) => {
+        this.on('item:expand', (item: MenuItemNode) => {
             log('on item:expand', { closeSiblings: this.config.open.closeSiblings, item });
             if ( this.config.open.closeSiblings ) {
                 item.getNeighbors().expanded().collapse();
             }
+        });
+        this.on('item:collapse', (item: MenuItemNode) => {
+            item.getAllDescendants().expanded().collapse();
+        });
+        this.onAny((event, ...values) => {
+            log('on', event, { values });
         });
     }
 
@@ -66,5 +72,21 @@ export class Menu<C extends MenuItems = MenuItems> extends RootNode<C> {
 
     getDefaultState(): MenuItemState {
         return { ...this.constructor.defaultState } as any;
+    }
+
+    get(key: string) {
+        let keys               = key.split('.').map(v => parseInt(v));
+        let node: MenuItemNode = this as any;
+        while ( keys.length > 0 ) {
+            log('get', key, 'keys:', keys);
+            let currentKey = keys.shift();
+            log('get', key, 'keys:', keys, 'currentKey:', currentKey);
+            if ( !node.getChildren().hasItem(currentKey) ) {
+                console.warn('could not get item ', currentKey, 'of node', node, 'children', node.getChildren());
+                return node;
+            }
+            node = node.getChildren().item(currentKey);
+        }
+        return node;
     }
 }

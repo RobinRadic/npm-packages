@@ -1,10 +1,13 @@
-import '../scss/supermenu.scss'
-export const a = 'a';
+///<reference path="globals.d.ts"/>
 
+import '../scss/supermenu.scss';
+import debug from 'debug';
+
+const log = debug('supermenu');
 
 export * from './constants';
 export * from './interfaces';
-export * from './Menu';
-export * from './MenuItem';
-export * from './MenuItems';
-export * from './webcomponent/MenuElement';
+export * from './MenuNode';
+export * from './MenuItemNode';
+export * from './MenuItemNodeArray';
+

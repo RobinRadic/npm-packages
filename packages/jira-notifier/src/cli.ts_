@@ -1,0 +1,300 @@
+import yargs from 'yargs';
+
+
+let argv = yargs
+    .help('h', 'Show this help')
+    .default({
+        commit: true,
+        tag   : false,
+        bump  : null,
+    })
+    .boolean('commit').alias('c', 'commit')
+    .showHelpOnFail(true)
+    .parserConfiguration({
+        'boolean-negation': true,
+    })
+    .options({
+        url     : {
+            // alias  : 'u',
+            // default: true,
+            type   : 'string',
+            // desc   : 'Toggles git commit on/off. If disabled, tag will be disabled aswell',
+        },
+        username        : {
+            // alias  : 'u',
+            // default: false,
+            type   : 'string',
+            // desc   : 'Toggles git tag on/off',
+        },
+        password       : {
+            // alias  : 'p',
+            // default: null,
+            type   : 'string',
+            // desc   : 'If provided, will preform the given bump to the version',
+            // choices: [ 'patch', 'minor', 'major', 'custom' ],
+        },
+        reset: {
+            // alias  : 'i',
+            default: false,
+            type   : 'boolean',
+            // desc   : 'Enables interactive option questions',
+        },
+    })
+    .argv;
+
+
+
+// setup width
+let width = yargs.terminalWidth();
+width     = width > 250 ? 250 : width;
+console.log('width',width);
+yargs.wrap(width);
+
+
+yargs.showHelp();
+console.dir(argv);
+
+import { connect } from './index';
+import Conf from 'conf';
+import { notify } from 'node-notifier';
+import { Schema } from '@atlassian/jira';
+// import Growl from 'node-notifier/notifiers/growl';
+// import WindowsBalloon from 'node-notifier/notifiers/balloon';
+// import WindowsToaster from 'node-notifier/notifiers/toaster';
+// import NotifySend from 'node-notifier/notifiers/notifysend';
+// import NotificationCenter from 'node-notifier/notifiers/notificationcenter';
+//
+//
+// interface NotificationOptions extends NotificationCenter.Notification, Growl.Notification, WindowsBalloon.Notification, WindowsToaster.Notification, NotifySend.Notification {
+//
+// }
+
+
+const config = new Conf({});
+const jira   = connect();
+
+let firstFetch = true;
+const interval = 1000 * 5;
+
+async function doit() {
+    try {
+
+        const user      = await jira.myself.getCurrentUser({});
+        const search     = await jira.search.searchForIssuesUsingJqlGet({
+            jql       : 'assignee = currentUser()',
+            maxResults: 1000,
+            fields:['summary','description','creator','priority'],
+            // fieldsByKeys:true
+
+        });
+        const issues = search.data.issues;
+
+        const keys = issues.map(issue => issue.key);
+
+        if ( config.has('keys') ) {
+            const prevKeys: string[] = config.get('keys', []);
+            const newKeys            = keys.filter(key => prevKeys.includes(key) === false);
+            if ( newKeys.length > 0 ) {
+                config.set('keys', keys);
+                if(!firstFetch) {
+                    notify({
+                        message: 'Issue(s) assigned' + newKeys.join(', '),
+                    });
+                }
+                firstFetch = false;
+            }
+        } else {
+            config.set('keys', keys);
+        }
+
+
+        notifyIssue(issues[ 0 ] as IssueBean);
+
+
+        console.dir({
+            u : user.data,
+            wh: search.data,
+        });
+    } catch ( e ) {
+        console.dir(e);
+    }
+
+}
+
+doit();
+setInterval(() => {
+    doit();
+}, interval);
+
+
+function notifyIssue(issue: IssueBean) {
+    // @ts-ignore
+    notify({
+        type   : 'info',
+        title  : `Assigned to you: ${issue.key} [${issue.fields.priority.name}] - ${issue.fields.summary}`,
+        icon   : issue.fields.creator.avatarUrls[ '48x48' ],
+        message: `${issue.fields.summary}        
+${issue.fields.description}        
+        `,
+    });
+}
+
+
+
+interface IssueBean extends Schema.IssueBean {
+    fields?: IssueFields
+}
+
+declare module IssueFields {
+
+    export interface Issuetype {
+        self: string;
+        id: string;
+        description: string;
+        iconUrl: string;
+        name: string;
+        subtask: boolean;
+        avatarId: number;
+    }
+
+    export interface AvatarUrls {
+        '48x48': string;
+        '24x24': string;
+        '16x16': string;
+        '32x32': string;
+    }
+
+    export interface Project {
+        self: string;
+        id: string;
+        key: string;
+        name: string;
+        projectTypeKey: string;
+        avatarUrls: AvatarUrls;
+    }
+
+    export interface Watches {
+        self: string;
+        watchCount: number;
+        isWatching: boolean;
+    }
+
+
+    export interface Creator {
+        self: string;
+        name: string;
+        key: string;
+        emailAddress: string;
+        avatarUrls: AvatarUrls;
+        displayName: string;
+        active: boolean;
+        timeZone: string;
+    }
+
+    export interface Reporter {
+        self: string;
+        name: string;
+        key: string;
+        emailAddress: string;
+        avatarUrls: AvatarUrls;
+        displayName: string;
+        active: boolean;
+        timeZone: string;
+    }
+
+    export interface Aggregateprogress {
+        progress: number;
+        total: number;
+    }
+
+    export interface Priority {
+        self: string;
+        iconUrl: string;
+        name: string;
+        id: string;
+    }
+
+    export interface Progress {
+        progress: number;
+        total: number;
+    }
+
+    export interface Votes {
+        self: string;
+        votes: number;
+        hasVoted: boolean;
+    }
+
+    export interface Assignee {
+        self: string;
+        name: string;
+        key: string;
+        emailAddress: string;
+        avatarUrls: AvatarUrls;
+        displayName: string;
+        active: boolean;
+        timeZone: string;
+    }
+
+    export interface StatusCategory {
+        self: string;
+        id: number;
+        key: string;
+        colorName: string;
+        name: string;
+    }
+
+    export interface Status {
+        self: string;
+        description: string;
+        iconUrl: string;
+        name: string;
+        id: string;
+        statusCategory: StatusCategory;
+
+    }
+}
+
+export interface IssueFields {
+    issuetype: IssueFields.Issuetype;
+    project: IssueFields.Project;
+    lastViewed: Date;
+    watches: IssueFields.Watches;
+    creator: IssueFields.Creator;
+    created: Date;
+    reporter: IssueFields.Reporter;
+    aggregateprogress: IssueFields.Aggregateprogress;
+    priority: IssueFields.Priority;
+    progress: IssueFields.Progress;
+    votes: IssueFields.Votes;
+    assignee: IssueFields.Assignee;
+    updated: Date;
+    status: IssueFields.Status;
+    components: any[];
+    timespent?: any;
+    timeoriginalestimate?: any;
+    description: string;
+    fixVersions: any[];
+    aggregatetimespent?: any;
+    resolution?: any;
+    customfield_10104?: any;
+    customfield_10302?: any;
+    customfield_10105: string;
+    customfield_10303?: any;
+    aggregatetimeestimate?: any;
+    resolutiondate?: any;
+    workratio: number;
+    summary: string;
+    subtasks: any[];
+    customfield_10000: string;
+    customfield_10100?: any;
+    labels: any[];
+    environment?: any;
+    timeestimate?: any;
+    aggregatetimeoriginalestimate?: any;
+    versions: any[];
+    duedate: string;
+    issuelinks: any[];
+}
+
+

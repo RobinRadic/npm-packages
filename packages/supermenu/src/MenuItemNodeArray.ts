@@ -1,13 +1,13 @@
-import { Menu } from './Menu';
-import { MenuItem } from './MenuItem';
+import { MenuNode } from './MenuNode';
+import { MenuItemNode } from './MenuItemNode';
 import { NodeArray } from '@radic/tree';
 
 const log = require('debug')('components:menu:MenuItems');
 
 
-export class MenuItems extends NodeArray<MenuItem> {
-    _menu: Menu
-    menu():Menu{return this._menu}
+export class MenuItemNodeArray extends NodeArray<MenuItemNode> {
+    _menu: MenuNode
+    menu():MenuNode{return this._menu}
 
     focused() {return this.filter(item => item.focused()) }
 
@@ -44,7 +44,7 @@ export class MenuItems extends NodeArray<MenuItem> {
     visible() {return this.each(item => item.visible()) }
 
 
-    children(parent: MenuItem) { return parent.getChildren()}
+    children(parent: MenuItemNode) { return parent.getChildren()}
 
-    nodes() { return new MenuItems(...this) }
+    nodes() { return new MenuItemNodeArray(...this) }
 }

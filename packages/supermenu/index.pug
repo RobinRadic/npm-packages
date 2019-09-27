@@ -1,0 +1,53 @@
+mixin menu-item(title, icon)
+    - icon = icon ? 'fa fa-' + icon : icon;
+    li.sm-menu-item&attributes(attributes)
+        a.sm-menu-item__content.sm-menu-item__item-content--link(href="#")
+            span.sm-menu-item__icon
+                if icon
+                    i(class=icon)
+            span.sm-menu-item__title=title
+            span.sm-menu-item__arrow: i
+        block
+
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        title Title
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.2.10/custom-elements-es5-adapter.js")
+        script(src="https://cdnjs.cloudflare.com/ajax/libs/webcomponentsjs/2.2.10/webcomponents-loader.js")
+    body
+        .layout
+            .layout__header headf
+            .layout__side.layout__side--left
+            .layout__side.layout__side--right right
+            .layout__content
+                .demo-sm-content
+                    ul.sm-menu#example-menu-1
+                        +menu-item('Dashboard', 'dashboard')
+                        +menu-item('Account', 'user')
+                        +menu-item('Settings', 'cogs').has-children.is-open.is-focused
+                            ul.sm-menu-item__submenu
+                                +menu-item('Title 2.1', 'windows')
+                                +menu-item('Title 2.2', 'wifi').has-children.is-focused
+                                    ul.sm-menu-item__submenu
+                                        +menu-item('Title 2.2.1', 'usb').is-focused.is-selected
+                                        +menu-item('Title 2.2.2')
+                                +menu-item('Title 2.3', 'upload')
+                                +menu-item('Title 2.4')
+                                +menu-item('Title 2.5', 'unlock-alt')
+                        +menu-item('Database', 'database')
+                        +menu-item('Users', 'users').has-children
+                            ul.sm-menu-item__submenu
+                                +menu-item('Users')
+                                +menu-item('Roles')
+                        +menu-item('Pages', 'file-code-o')
+                        +menu-item('Post', 'envelope-o')
+                        +menu-item('System', 'flash')
+                .demo-sm-content
+                    a(data-menu-action="get" data-menu-action-params='["2.1.1"]' href="javascript: void(0);" style="margin: 50px; display: block;") open 2.1.1
+    .layout__footer foot
+
+    script.
+        var $menu = demo.init('#example-menu-1')

@@ -1,13 +1,13 @@
-import { Menu } from './Menu';
+import { MenuNode } from './MenuNode';
 import { MenuItemState } from './interfaces';
-import { MenuItems } from './MenuItems';
+import { MenuItemNodeArray } from './MenuItemNodeArray';
 import { observable, observe, ObserverChangedFunction } from '@radic/observable';
 import { Node } from '@radic/tree';
 
 const log = require('debug')('components:menu:MenuItem');
 
-export class MenuItem extends Node<MenuItems> {
-    collectionClass = MenuItems;
+export class MenuItemNode extends Node<MenuItemNodeArray> {
+    collectionClass = MenuItemNodeArray;
     protected _state: MenuItemState;
     attributes: any = {};
     id: string;
@@ -15,7 +15,7 @@ export class MenuItem extends Node<MenuItems> {
     data: any       = {};
 
 
-    constructor(public readonly _menu: Menu) {
+    constructor(public readonly _menu: MenuNode) {
         super(_menu);
         this._state = observable(_menu.getDefaultState());
         this.observe(change => this.fire(change.name.toString(), change.name, change.newValue, this.state()));
@@ -41,6 +41,7 @@ export class MenuItem extends Node<MenuItems> {
             this.state(key, value);
         }
         if ( fire ) {
+            // console.trace(`set ${key} = ${value}`)
             this.fire(fire, key, value, this.state());
         }
         return this;
@@ -72,11 +73,17 @@ export class MenuItem extends Node<MenuItems> {
         }
     }
 
+    key() {
+        return this.getAncestorsAndSelf().slice(1).map(node => node.getIndex()).join('.');
+    }
+
     focus(): this {return this.set('focused', true, 'focus');}
 
     blur(): this {return this.set('focused', false, 'blur');}
 
     focused(): boolean {return this.state('focused'); }
+
+    toggleFocus(): this {return this.focused() ? this.blur() : this.focus();}
 
 
     show(): this {return this.set('hidden', false, 'show');}
@@ -86,6 +93,8 @@ export class MenuItem extends Node<MenuItems> {
     hidden(): boolean {return this.state('hidden');}
 
     visible(): boolean {return !this.state('hidden');}
+
+    toggleHidden(): this {return this.hidden() ? this.show() : this.hide();}
 
 
     expand(): this {return this.set('collapsed', false, 'expand');}
@@ -105,8 +114,10 @@ export class MenuItem extends Node<MenuItems> {
 
     selected(): boolean {return this.state('selected'); }
 
+    toggleSelect(): this {return this.selected() ? this.deselect() : this.select();}
+
     getState() {return { ...this._state };}
 
-    menu(): Menu {return this._menu;}
+    menu(): MenuNode {return this._menu;}
 
 }

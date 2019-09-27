@@ -30,9 +30,11 @@
             "../../node_modules/@types"
         ],
         "baseUrl": ".",
-        "paths": {
-
-        }
+        "plugins": [
+            {
+                "name": "typescript-lit-html-plugin"
+            }
+        ]
     },
     "include": [
         "src",

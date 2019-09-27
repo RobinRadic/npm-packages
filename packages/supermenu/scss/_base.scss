@@ -2,7 +2,79 @@
 @import "functions";
 @import "variables";
 @import "mixins";
+@import "~sass-ignis/src/main";
+@import "~sass-ignis/src/bem-shortcodes";
 
+@mixin wrap-in-selector($sign) {
+    $selector : #{'&'} #{$sign};
+
+    #{$selector} {
+        @content
+    }
+}
+
+@mixin we($sign,$names...) {
+    @include wrap-in-selector($sign) {
+        @include e($names...) {
+            @content
+        }
+    }
+}
+
+@mixin wm($sign,$names...) {
+    @include wrap-in-selector($sign) {
+        @include m($names...) {
+            @content
+        }
+    }
+}
+
+
+@mixin wis($sign,$names...) {
+    @include wrap-in-selector($sign) {
+        @include is($names...) {
+            @content
+        }
+    }
+}
+
+@mixin whas($sign,$names...) {
+    @include wrap-in-selector($sign) {
+        @include has($names...) {
+            @content
+        }
+    }
+}
+
+
+// @see https://github.com/danielguillan/bem-constructor
+//$bem-use-namespaces: false;
+
+//$bem-block-namespaces: (
+//    'utility': 'u',
+//    'object': 'o',
+//    'component': 'c',
+//    //'menu': 'sm',
+//    //null: ''
+//) ;
+
+//@import "~sass-bem-constructor/dist/sass-bem-constructor";
+//
+//@mixin b($name,$type:null){
+//    @include block($name,$type){
+//        @content
+//    }
+//}
+//@mixin e($elements...){
+//    @include element($elements...){
+//        @content
+//    }
+//}
+//@mixin m($modifiers...){
+//    @include modifier($modifiers...){
+//        @content
+//    }
+//}
 
 @import "~font-awesome/scss/variables";
 @import "~font-awesome/scss/mixins";

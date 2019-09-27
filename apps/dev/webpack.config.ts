@@ -1,4 +1,4 @@
-import { typescriptImportPresets } from '@radic/webpacker/lib/blocks/rules';
+import {  } from '@radic/webpacker';
 import { resolve } from 'path';
 import { blocks, Webpacker } from '@radic/webpacker';
 import { loader } from 'webpack';
@@ -25,7 +25,7 @@ rules.typescript(wp, {
 });
 
 rules.typescriptImport(wp, [
-    typescriptImportPresets.lodash,
+    rules.typescriptImportPresets.lodash,
     {
         libraryName     : '@radic/util',
         libraryDirectory: 'lib',

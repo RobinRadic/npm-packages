@@ -29,7 +29,7 @@ export abstract class BaseNode<C extends NodeArray<INode> = NodeArray<INode>> im
         if ( this.hasChild(child) ) {
             return this;
         }
-        child.setIndex(this.children.push(child))
+        child.setIndex(this.children.push(child) - 1)
         child.setParent(this);
         return this;
     }

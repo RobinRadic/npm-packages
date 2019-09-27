@@ -1,0 +1,43 @@
+{
+    "name": "@radic/idea",
+    "version": "1.0.0",
+    "description": "Idea",
+    "private": false,
+    "author": {
+        "name": "Robin Radic"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "license": "MIT",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "typings": "lib/index.d.ts",
+    "scripts": {
+        "start": "npm-run-all clean:build build",
+        "test": "echo \"test not implemented\" && exit 0",
+        "build": "tsc --project tsconfig.build.json",
+        "watch": "tsc --project tsconfig.build.json --watch",
+        "clean:build": "rm -rf lib",
+        "postinstall": "rm -rf node_modules/@types",
+        "clean:yarn": "rm yarn.lock node_modules/",
+        "prepare": "npm-run-all clean:build build",
+        "postpublish": "git pull",
+        "release": "yarn login && np --yolo --no-yarn"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "ts-node": "^8.3.0",
+        "typescript": "^3.5.3",
+        "np": "^5.0.3",
+        "npm-run-all": "^4.1.5",
+        "nps": "^5.9.5",
+        "nps-utils": "^1.7.0",
+        "npm-gui": "^2.1.0",
+        "release-it": "^12.3.5"
+    },
+    "peerDependencies": {
+    },
+    "optionalDependencies": {}
+}

@@ -24,7 +24,7 @@ class BaseNode {
         if (this.hasChild(child)) {
             return this;
         }
-        child.setIndex(this.children.push(child));
+        child.setIndex(this.children.push(child) - 1);
         child.setParent(this);
         return this;
     }

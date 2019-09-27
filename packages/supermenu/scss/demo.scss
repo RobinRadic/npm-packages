@@ -1,8 +1,18 @@
 $namespace : '';
 @import "base";
-@import "colors_classes";
-@import "~bootstrap/scss/bootstrap";
-@import "~font-awesome/scss/font-awesome";
+
+$layout-prefix                : layout;
+$layout-header-background     : none;
+$layout-header-size           : 50;
+$layout-side-background       : none;
+$layout-side-left-background  : none;
+$layout-side-left-size        : 300;
+$layout-side-right-background : none;
+$layout-side-right-size       : 300;
+$layout-page-background       : none;
+$layout-footer-background     : none;
+$layout-footer-size           : 50;
+
 
 body {
     background : black;
@@ -10,12 +20,22 @@ body {
 
 
 @include b(layout) {
-    @include flex;
+    //@include flex;
     position  : relative;
     width     : 100%;
     min-width : 100%;
 
     @include e(header) {
+        background: $layout-header-background;
+        z-index  : 1;
+        position : absolute;
+        top      : 0;
+        left     : 0;
+        right    : 0;
+
+        @include m(fixed) {
+            position : fixed;
+        }
 
     }
     @include e(side) {
@@ -31,25 +51,21 @@ body {
     }
 }
 
+.demo-sm-content {
+    width: 300px;
+    @include float-left;
+}
+
 .#{$layout-prefix} {
 
     // layout > __header
     &__header {
-        @include pvar(background, layout-header);
-
-        z-index  : 1;
-        position : absolute;
-        top      : 0;
-        left     : 0;
-        right    : 0;
-
         &--fixed {
-            position : fixed;
         }
     }
 
     &__footer {
-        @include pvar(background, layout-footer);
+        background: $layout-footer-background;
 
         z-index  : 1;
         position : absolute;
@@ -69,7 +85,7 @@ body {
     &__side {
         position : absolute;
 
-        @include pvar(background, layout-side);
+        background: $layout-side-background;
 
         &--left {
             top    : 0;
@@ -101,3 +117,6 @@ body {
 
 
     }
+}
+
+
