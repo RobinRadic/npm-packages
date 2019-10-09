@@ -33,6 +33,8 @@ export interface WrappedClassList extends DOMTokenList {
     set(token: string[], value: boolean)
 
     set(classes: Record<string, boolean>)
+
+    test(...tokens:string[]|RegExp[]):boolean
 }
 
 export function wrapClassList(list: DOMTokenList): WrappedClassList {
@@ -59,6 +61,17 @@ export function wrapClassList(list: DOMTokenList): WrappedClassList {
             err[ 'arguments' ] = arguments;
             throw err;
         },
+        test(...tokens: RegExp[] | string[]) {
+            for ( let i = 0; i < list.length; i ++ ) {
+                const className = list.item(i);
+                for ( const token of tokens ) {
+                    if ( (new RegExp(token)).test(className) ) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        },
     };
     const methodNames = Object.keys(methods);
     const proxy       = new Proxy(list, {
@@ -66,8 +79,18 @@ export function wrapClassList(list: DOMTokenList): WrappedClassList {
             if ( methodNames.includes(p.toString()) ) {
                 return methods[ p ];
             }
-            return target[ p ];
+            return target[ p ].bind(target);
         },
     });
     return proxy as WrappedClassList;
+}
+export function getOffset( el:HTMLElement ) {
+    var _x = 0;
+    var _y = 0;
+    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+        _x += el.offsetLeft - el.scrollLeft;
+        _y += el.offsetTop - el.scrollTop;
+        el = el.offsetParent as HTMLElement;
+    }
+    return { top: _y, left: _x };
 }

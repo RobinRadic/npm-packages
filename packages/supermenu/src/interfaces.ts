@@ -33,9 +33,6 @@ export interface MenuConfigEvents extends EventEmitter2Options {
 }
 
 export interface MenuConfig {
-    open?: {
-        closeSiblings?: boolean
-    }
     events?: MenuConfigEvents
 }
 

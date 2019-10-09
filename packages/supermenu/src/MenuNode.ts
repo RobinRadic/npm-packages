@@ -12,13 +12,9 @@ export interface MenuNode extends EventEmitter2 {
 
 }
 
-export type MenuEventTypes = { open: 'sf', close: any }
 
 export class MenuNode<C extends MenuItemNodeArray = MenuItemNodeArray> extends RootNode<C> {
     static defaultConfig: MenuConfig   = {
-        open  : {
-            closeSiblings: true,
-        },
         events: {
             delimiter   : ':',
             maxListeners: Infinity,
@@ -52,18 +48,6 @@ export class MenuNode<C extends MenuItemNodeArray = MenuItemNodeArray> extends R
             this[ name ] = this.events[ name ].bind(this.events);
         });
         this.configure(config);
-        this.on('item:expand', (item: MenuItemNode) => {
-            log('on item:expand', { closeSiblings: this.config.open.closeSiblings, item });
-            if ( this.config.open.closeSiblings ) {
-                item.getNeighbors().expanded().collapse();
-            }
-        });
-        this.on('item:collapse', (item: MenuItemNode) => {
-            item.getAllDescendants().expanded().collapse();
-        });
-        this.onAny((event, ...values) => {
-            log('on', event, { values });
-        });
     }
 
     configure(config: Partial<MenuConfig>) {

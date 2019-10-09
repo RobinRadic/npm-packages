@@ -1,5 +1,5 @@
 // noinspection ES6UnusedImports
-import { helpers, plugins, presets, rules, Webpacker } from '@radic/webpacker';
+import {loaders, helpers, plugins, presets, rules, Webpacker } from '@radic/webpacker';
 import { resolve } from 'path';
 import { inspect } from 'util';
 
@@ -13,10 +13,17 @@ const wp   = new Webpacker({
 });
 
 rules.css(wp);
+
 rules.scss(wp, {
     css : { importLoaders: 1 },
     scss: { outputStyle: 'expanded' },
 });
+
+loaders.saveContent(wp, 'scss', {
+    name: 'css',
+    outputPath: resolve(__dirname, '.tmp')
+}).before('sass-loader');
+
 rules.images(wp);
 rules.fonts(wp);
 rules.pug(wp);

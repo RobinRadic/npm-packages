@@ -1,258 +1,437 @@
 @import "base";
 
-$font-size-root                         : 14px;
-$font-family-base                       : Arial;
-$dropdown-border-width                  : 1px;
-$dropdown-border-color                  : #333333;
-$menu-prefix                            : sm-menu;
-
-// Dimensions
-$menu-item-text-shadow                  : 1px 1px 0px #000000 !default;
-$menu-item-font-size                    : $font-size-root !default;
-$menu-item-font-weight                  : 400 !default;
-$menu-item-icon-font-size               : $font-size-root !default;
-$menu-item-icon-width                   : 25px !default;
-$menu-item-indent                       : $menu-item-icon-width !default;
-$menu-item-padding-y                    : 9px !default; // top / bottom
-$menu-submenu-padding-y                 : 0px !default;
-
-//$menu-child-item-font-size              : $menu-item-font-size !default;
-//$menu-child-item-font-weight            : $menu-item-font-weight !default;
-//$menu-child-item-icon-font-size         : $menu-item-icon-font-size !default;
-//$menu-child-item-indent                 : 25px !default;
-//$menu-child-item-padding-y              : $menu-item-padding-y !default; // top / bottom
-//
-//$menu-divider-margin-y                  : 5px !default;
-//
-//$menu-header-text-shadow                : 0px 0px 0px #F5F5F5 !default;
-//$menu-header-font-familiy               : $font-family-base !default;
-//$menu-header-font-size                  : $font-size-root !default;
-//$menu-header-font-weight                : 400 !default;
-//$menu-header-padding-y                  : 2px !default;
-
-// compact
-//$menu-compact-item-font-size            : 11px !default;
-//$menu-compact-item-font-weight          : 300 !default;
-//$menu-compact-item-icon-font-size       : 12px !default;
-//$menu-compact-item-padding-y            : 5px !default; // top / bottom
-//
-//$menu-compact-child-item-font-size      : $menu-compact-item-font-size !default;
-//$menu-compact-child-item-font-weight    : $menu-compact-item-font-weight !default;
-//$menu-compact-child-item-icon-font-size : $menu-compact-item-icon-font-size !default;
-//$menu-compact-child-item-indent         : 19px !default;
-//$menu-compact-child-item-padding-y      : $menu-compact-item-padding-y !default; // top / bottom
-//$menu-compact-divider-margin-y          : 5px !default;
-//
-//$menu-compact-header-text-shadow        : $menu-header-text-shadow !default;
-//$menu-compact-header-font-size          : 12px !default;
-//$menu-compact-header-font-weight        : $menu-header-font-weight !default;
-//$menu-compact-header-padding-y          : 5px !default;
-
-
-// Theme
-$menu-header-background                 : transparent !default;
-$menu-header-color                      : darken(#A6A6A7, 10) !default;
-$menu-header-border-bottom              : 1px solid #353131;
-
-
-$menu-divider-color                     : $blue-grey-800;
-$menu-item-background                   : transparent !default;
-$menu-item-icon-color                   : $blue-grey-700 !default;
-$menu-item-title-color                  : #A6A6A7 !default;
-$menu-item-arrow-color                  : $blue-grey-700 !default;
-
-$menu-item-hover-background             : darken($blue-grey-900, 5) !default;
-$menu-item-icon-hover-color             : darken($menu-item-icon-color, 5) !default;
-$menu-item-title-hover-color            : darken($menu-item-title-color, 5) !default;
-$menu-item-arrow-hover-color            : darken($menu-item-arrow-color, 5) !default;
-
-$menu-item-active-background            : null !default; //rgba($blue-grey-400, 0.1) !default;
-$menu-item-icon-active-color            : lighten($menu-item-icon-color, 10) !default;
-$menu-item-title-active-color           : lighten($menu-item-title-color, 10) !default;
-$menu-item-arrow-active-color           : $menu-item-title-color !default;
-
-$menu-item-selected-background          : null !default;
-$menu-item-icon-selected-color          : $menu-item-title-color !default;
-$menu-item-title-selected-color         : $menu-item-title-active-color !default;
-$menu-item-arrow-selected-color         : $menu-item-title-color !default;
-
-
-$menu-dropdown-submenu-border-width     : $dropdown-border-width !default;
-$menu-dropdown-submenu-border-color     : $dropdown-border-color !default;
-$menu-dropdown-submenu-box-shadow       : 1px 1px 5px 2px rgba(#000, 0.175) !default;
-$menu-dropdown-submenu-item-background  : $blue-grey-900 !default;
-$menu-dropdown-submenu-item-title-color : $blue-grey-200 !default;
-$menu-dropdown-submenu-item-icon-color  : $blue-grey-200 !default;
-$menu-dropdown-submenu-item-arrow-color : $blue-grey-200 !default;
-
-$menu-slide-submenu-transition          : all 1s linear; //cubic-bezier(0, 1, 0.5, 1) !default;
-
-
 @mixin menu-indent-levels($depth, $current: 1) {
-    @include e(submenu) {
-        @include e(content) {
-            padding-left : $menu-item-indent * ($current + 1);
+    .#{$menu-item-prefix}__submenu {
+        .#{$menu-item-prefix}__content {
+            padding-left : $menu-item-indent * $current;
         }
         @if ($depth > 0) {
             @include menu-indent-levels($depth - 1, $current + 1)
         }
     }
+
+    //@include e(submenu) {
+    //    @include e(content) {
+    //        padding-left : $menu-item-indent * $current;
+    //    }
+    //    @if ($depth > 0) {
+    //        @include menu-indent-levels($depth - 1, $current + 1)
+    //    }
+    //}
 }
 
-$menu-item-prefix                       : #{$menu-prefix}-item;
 
-
-@include b($menu-prefix) {
+//@include b($menu-prefix) {
+.#{$menu-prefix} {
     margin     : 0;
     padding    : 0;
     list-style : none;
+}
 
-    @include has(lines){
-        @include b($menu-item-prefix) {
+
+.#{$menu-item-prefix} {
+
+    position       : relative;
+    display        : flex;
+    float          : none;
+    flex-direction : column;
+    flex-grow      : 1;
+    margin         : 0;
+    padding        : 0;
+
+    $self          : &;
+
+    // states
+    &.is-hidden {
+        display : none;
+    }
+
+    &.is-hovered {
+        > #{$self}__content { border-left-color : #1A237E; }
+    }
+
+    &.is-open {
+        > #{$self}__content {
+            > #{$self}__arrow > i { transform : rotate(90deg); }
+
+        }
+
+        > #{$self}__submenu {
+            display : flex;
+        }
+
+    }
+
+    &.is-selected {
+        > #{$self}__content { border-right : 5px solid #1471A1; }
+    }
+
+    &.is-focused {
+        > #{$self}__content { border-left : 2px solid #0D47A1; }
+    }
+
+    &.has-children {
+        > #{$self}__content > #{$self}__arrow {display : flex; }
+    }
+
+    &__content {
+        //@include e(content) {
+        position        : relative;
+        display         : flex;
+        align-items     : stretch;
+        flex-grow       : 1;
+        padding         : $menu-item-padding-y 20px $menu-item-padding-y 5px;
+        text-decoration : none;
+        border-left     : 5px solid transparent;;
+        outline         : 0;
+
+        &:hover, &:focus, &:active {
+            text-decoration : none;
+            outline         : 0;
+        }
+
+        &:hover {
+            text-decoration : none;
+        }
+    }
+
+    &__icon {
+        //@include e(icon) {
+        font-size       : $menu-item-icon-font-size;
+        display         : flex;
+        align-items     : center;
+        flex            : 0 0 $menu-item-icon-width;
+        justify-content : center;
+        margin-right    : 10px;
+        text-align      : center;
+    }
+
+    &__title {
+        //@include e(title) {
+        font-size    : $menu-item-font-size;
+        font-weight  : $menu-item-font-weight;
+        display      : flex;
+        align-items  : center;
+        flex-grow    : 1;
+        margin-right : 30px;
+        padding      : 0;
+        white-space  : nowrap;
+        text-shadow  : $menu-item-text-shadow;
+    }
+
+    &__arrow {
+        font-size       : 9px;
+        line-height     : 0;
+        display         : none;
+        align-items     : center;
+        flex            : 0; // 0 20px;
+        justify-content : center;
+        width           : 20px;
+        margin          : 0 5px;
+
+        > i {
+            transition : all 0.2s linear;
+            @include fa-icon();
+
+            &:before {
+                content : $fa-var-chevron-right
+            }
+        }
+    }
+
+    &__submenu {
+        //@include e(submenu) {
+        display        : none;
+        float          : none;
+        flex-direction : column;
+        flex-grow      : 1;
+        min-width      : 100%;
+        margin         : 0;
+        padding        : $menu-submenu-padding-y 0;
+        list-style     : none;
+    }
+}
+
+.#{$menu-prefix} {
+    .has-lines {
+        .#{$menu-item-prefix} {
+            $self : &;
+
             &:not(:last-child) {
-                //background : blue;
-                @include e(content) {
+                .#{$menu-item-prefix}__content {
                     &::before {
                         position    : absolute;
-                        width       : 1px;
                         top         : 0;
+                        width       : 1px;
                         height      : calc(100% - 15px);
                         margin      : 12px 0 0 -17px;
-                        border-left : 1px dashed #353535;
                         content     : ' ';
+                        border-left : 1px dashed #353535;
                     }
                 }
             }
         }
     }
 
-    @include b($menu-item-prefix) {
-        @include menu-indent-levels(4);
+    &--collapsed {
+        > .#{$menu-item-prefix} {
+            > .#{$menu-item-prefix}__content {
+                justify-content : center;
+                padding-right   : 5px;
+                padding-left    : 0;
+                $self           : &;
 
-        position       : relative;
-        display        : flex;
-        float          : none;
-        flex-direction : column;
-        flex-grow      : 1;
-        margin         : 0;
-        padding        : 0;
-
-
-
-        @include is(hidden) {
-            display : none;
-        }
-
-        @include is(open) {
-            @include we('>', content) {
-                @include we('>', arrow) {
-                    > i { transform : rotate(90deg); }
+                > .#{$menu-item-prefix}__icon {
+                    margin-right : 0;
                 }
-            }
-            @include we('>', submenu) {
-                display : flex;
-            }
-        }
 
-        @include is(selected) {
-            @include we('>', content) {
-                border-right : 5px solid #1471A1;
-            }
-        }
+                > .#{$menu-item-prefix}__title {
+                    display : none;
+                }
 
-        @include is(focused) {
-            @include we('>', content) {
-                border-left : 2px solid #0D47A1;
-            }
-        }
+                > .#{$menu-item-prefix}__arrow {
+                    width  : 0;
+                    margin : 0;
 
-        @include has(children) {
-            @include we('>', content) {
-                @include we('>', arrow) {
-                    display : flex;
+                    > i {
+                        display : none;
+                    }
                 }
             }
         }
+    }
 
-        @include e(content) {
+    &--horizontal {
+        display   : flex;
+        min-width : 100%;
 
-            position        : relative;
-            display         : flex;
-            align-items     : stretch;
-            flex-grow       : 1;
-            padding         : $menu-item-padding-y $menu-item-indent;
-            text-decoration : none;
-            outline         : 0;
+        > .#{$menu-item-prefix} {
+            flex-grow   : 0;
+            flex-shrink : 1;
+            $self       : &;
 
-            &:hover, &:focus, &:active {
-                text-decoration : none;
-                outline         : 0;
-            }
+            > .#{$menu-item-prefix}__content {
+                flex-direction : row;
+                flex-grow      : unset;
+                //min-width      : 150px;
+                border-left    : none;
 
-            &:hover {
-                text-decoration : none;
-            }
-        }
-        @include e(icon) {
-            font-size       : $menu-item-icon-font-size;
-            display         : flex;
-            align-items     : center;
-            flex            : 0 0 $menu-item-icon-width;
-            justify-content : center;
-            margin-right    : 10px;
-        }
-        @include e(title) {
-            font-size    : $menu-item-font-size;
-            font-weight  : $menu-item-font-weight;
-            display      : flex;
-            align-items  : center;
-            flex-grow    : 1;
-            margin-right : 30px;
-            padding      : 0;
-            white-space  : nowrap;
-            text-shadow  : $menu-item-text-shadow;
-        }
-        @include e(arrow) {
-            font-size       : 9px;
-            line-height     : 0;
-            //display         : flex;
-            display         : none;
-
-            align-items     : center;
-            flex            : 0; // 0 20px;
-            justify-content : center;
-            width           : 20px;
-            margin          : 0 5px;
-
-            > i {
-                transition : all 0.2s linear;
-                @include fa-icon();
-
-                &:before {
-                    content : $fa-var-chevron-right
+                > .#{$menu-item-prefix}__arrow {
+                    > i {
+                        transform : rotate(90deg);
+                    }
                 }
             }
-        }
 
-        @include e(submenu) {
-            display        : none;
-            float          : none;
-            flex-direction : column;
-            flex-grow      : 1;
-            min-width      : 100%;
-            margin         : 0;
-            padding        : $menu-submenu-padding-y 0;
-            list-style     : none;
-        }
+            &.is-open {
+                > .#{$menu-item-prefix}__content {
+                    > .#{$menu-item-prefix}__arrow {
+                        > i {
+                            transform : rotate(90deg);
+                        }
+                    }
+                }
 
+            }
+        }
 
     }
 
 
-    @include m(horizontal) {}
-    @include m(dropdown) {}
-    @include m(compact) {}
+    &--inline {
+        .#{$menu-item-prefix} {
+            @include menu-indent-levels(4);
+        }
+    }
+
+
+    &--dropdown {
+
+        .#{$menu-item-prefix} {
+            &__submenu {
+                position   : absolute;
+                z-index    : $zindex-dropdown;
+                min-width  : 150px;
+                background : black;
+            }
+
+            &.has-submenu {
+                &-up > .#{$menu-item-prefix}__submenu {
+                    top    : unset;
+                    bottom : 100%;
+                }
+
+                &-down > .#{$menu-item-prefix}__submenu {
+                    top    : 100%;
+                    bottom : unset;
+                }
+
+                &-right > .#{$menu-item-prefix}__submenu {
+                    right : unset;
+                    left  : 100%;
+                }
+
+                &-left > .#{$menu-item-prefix}__submenu {
+                    right : 100%;
+                    left  : unset;
+                }
+            }
+        }
+        &-up  .#{$menu-item-prefix}__submenu {
+            top    : unset;
+            bottom : 100%;
+        }
+
+        &-down  .#{$menu-item-prefix}__submenu {
+            top    : 100%;
+            bottom : unset;
+        }
+
+        &-right  .#{$menu-item-prefix}__submenu {
+            right : unset;
+            left  : 100%;
+        }
+
+        &-left  .#{$menu-item-prefix}__submenu {
+            right : 100%;
+            left  : unset;
+        }
+        // root item dropdown
+        //@include b-w('>', $menu-item-prefix) {}
+    }
 }
+//region:old
+
+//@include b($menu-prefix) {
+//    //@include has(lines) {
+//    //    @include b($menu-item-prefix) {
+//    //        &:not(:last-child) {
+//    //            //background : blue;
+//    //            @include e(content) {
+//    //                &::before {
+//    //                    position    : absolute;
+//    //                    top         : 0;
+//    //                    width       : 1px;
+//    //                    height      : calc(100% - 15px);
+//    //                    margin      : 12px 0 0 -17px;
+//    //                    content     : ' ';
+//    //                    border-left : 1px dashed #353535;
+//    //                }
+//    //            }
+//    //        }
+//    //    }
+//    //}
+//    //
+//    //@include m(collapsed) {
+//    //    @include b-w('>', $menu-item-prefix) {
+//    //        @include e-w('>', content) {
+//    //            justify-content : center;
+//    //            padding-right   : 5px;
+//    //            padding-left    : 0;
+//    //            @include e-w('>', icon) {
+//    //                margin-right : 0;
+//    //            }
+//    //            @include e-w('>', title) {
+//    //                display : none;
+//    //            }
+//    //            @include e-w('>', arrow) {
+//    //                width  : 0;
+//    //                margin : 0;
+//    //                > i {
+//    //                    display : none;
+//    //                }
+//    //            }
+//    //        }
+//    //    }
+//    //}
+//    //
+//    //@include m(horizontal) {
+//    //    display   : flex;
+//    //    min-width : 100%;
+//    //    @include b-w('>', $menu-item-prefix) {
+//    //        flex-grow   : 0;
+//    //        flex-shrink : 1;
+//    //        $self       : &;
+//    //        @include e-w('>', content) {
+//    //            flex-direction : row;
+//    //            flex-grow      : unset;
+//    //            //min-width      : 150px;
+//    //            border-left    : none;
+//    //            @include e(arrow) {
+//    //                > i {
+//    //                    transform : rotate(90deg);
+//    //                }
+//    //            }
+//    //        }
+//    //        @include is(open) {
+//    //            @include e-w('>', content) {
+//    //                @include e(arrow) {
+//    //                    > i {
+//    //                        transform : rotate(0deg);
+//    //                    }
+//    //                }
+//    //            }
+//    //        }
+//    //    }
+//    //}
+//
+//    //@include m(inline) {
+//    //    @include b($menu-item-prefix) {
+//    //        @include menu-indent-levels(4);
+//    //    }
+//    //}
+//
+//
+//    //@include m(dropdown) {
+//    //    // all level dropdown
+//    //    @include b($menu-item-prefix) {
+//    //        $self : &;
+//    //        @include e(submenu) {
+//    //            position   : absolute;
+//    //            z-index    : $zindex-dropdown;
+//    //            min-width  : 150px;
+//    //            background : black;
+//    //        }
+//    //        &.has-submenu {
+//    //            &-up > .#{$menu-item-prefix}__submenu {
+//    //                top    : unset;
+//    //                bottom : 100%;
+//    //            }
+//    //
+//    //            &-down > .#{$menu-item-prefix}__submenu {
+//    //                top    : 100%;
+//    //                bottom : unset;
+//    //            }
+//    //
+//    //            &-right > .#{$menu-item-prefix}__submenu {
+//    //                right : unset;
+//    //                left  : 100%;
+//    //            }
+//    //
+//    //            &-left > .#{$menu-item-prefix}__submenu {
+//    //                right : 100%;
+//    //                left  : unset;
+//    //            }
+//    //        }
+//    //    }
+//    // root item dropdown
+//    //@include b-w('>', $menu-item-prefix) {}
+//    //}
+//
+//    //@include m(compact) {}
+//
+//
+//    //@include b($menu-prefix) {
+//    //    @include theme(dark) {
+//    //        background : black;
+//    //    }
+//    //    @include theme(light) {
+//    //        background : white;
+//    //    }
+//    //}
+//}
+
+
 //
 //@mixin menu-submenu-link-padding($padding) {
 //    .#{$menu-prefix}__submenu {
@@ -558,3 +737,153 @@ $menu-item-prefix                       : #{$menu-prefix}-item;
 //    }
 //}
 //
+
+
+//
+////block
+//.#{$prefix} {
+//    margin     : 0;
+//    padding    : 0;
+//    list-style : none;
+//
+//    // state
+//    &.has-lines {}
+//
+//    // modifiers
+//    // block
+//    &-item {
+//        position       : relative;
+//        display        : flex;
+//        float          : none;
+//        flex-direction : column;
+//        flex-grow      : 1;
+//        margin         : 0;
+//        padding        : 0;
+//
+//        $self          : &;
+//
+//        // states
+//        &.is-hidden {
+//            display : none;
+//        }
+//
+//        &.is-hovered {
+//            > #{$self}__content { border-left-color : #1A237E; }
+//        }
+//
+//        &.is-open {
+//            > #{$self}__content {
+//                > #{$self}__arrow > i { transform : rotate(90deg); }
+//
+//            }
+//
+//            > #{$self}__submenu {
+//                display : flex;
+//            }
+//
+//        }
+//
+//        &.is-selected {
+//            > #{$self}__content { border-right : 5px solid #1471A1; }
+//        }
+//
+//        &.is-focused {
+//            > #{$self}__content { border-left : 2px solid #0D47A1; }
+//        }
+//
+//        &.has-children {
+//            > #{$self}__content > #{$self}__arrow {display : flex; }
+//        }
+//
+//        // elements
+//        &__content {
+//            position        : relative;
+//            display         : flex;
+//            align-items     : stretch;
+//            flex-grow       : 1;
+//            padding         : $menu-item-padding-y 20px $menu-item-padding-y 5px;
+//            text-decoration : none;
+//            border-left     : 5px solid transparent;;
+//
+//            outline         : 0;
+//
+//            &:hover, &:focus, &:active {
+//                text-decoration : none;
+//                outline         : 0;
+//            }
+//
+//            &:hover {
+//                text-decoration : none;
+//            }
+//        }
+//
+//        &__icon {
+//            font-size       : $menu-item-icon-font-size;
+//            display         : flex;
+//            align-items     : center;
+//            flex            : 0 0 $menu-item-icon-width;
+//            justify-content : center;
+//            margin-right    : 10px;
+//            text-align      : center;
+//        }
+//
+//        &__title {
+//            font-size    : $menu-item-font-size;
+//            font-weight  : $menu-item-font-weight;
+//            display      : flex;
+//            align-items  : center;
+//            flex-grow    : 1;
+//            margin-right : 30px;
+//            padding      : 0;
+//            white-space  : nowrap;
+//            text-shadow  : $menu-item-text-shadow;
+//        }
+//
+//        &__arrow {
+//            font-size       : 9px;
+//            line-height     : 0;
+//            //display         : flex;
+//            display         : none;
+//
+//            align-items     : center;
+//            flex            : 0; // 0 20px;
+//            justify-content : center;
+//            width           : 20px;
+//            margin          : 0 5px;
+//
+//            > i {
+//                transition : all 0.2s linear;
+//                @include fa-icon();
+//
+//                &:before {
+//                    content : $fa-var-chevron-right
+//                }
+//            }
+//        }
+//
+//        &__submenu {
+//            display        : none;
+//            float          : none;
+//            flex-direction : column;
+//            flex-grow      : 1;
+//            min-width      : 100%;
+//            margin         : 0;
+//            padding        : $menu-submenu-padding-y 0;
+//            list-style     : none;
+//        }
+//
+//
+//    }
+//
+//}
+//
+//.#{$prefix}--icons {}
+//
+//.#{$prefix}--horizontal {}
+//
+//.#{$prefix}--compact {}
+//
+//.#{$prefix}--dropdown {}
+//
+
+//endregion

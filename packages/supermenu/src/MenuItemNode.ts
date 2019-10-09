@@ -49,7 +49,8 @@ export class MenuItemNode extends Node<MenuItemNodeArray> {
 
     fire(name: string, ...extraArgs): this {
         const { itemPrefix, delimiter } = this._menu.config.events;
-        this._menu.emit(`${itemPrefix}${delimiter}${name}`, this, ...extraArgs);
+        const eventName = `${itemPrefix}${delimiter}${name}`
+        this._menu.emit(eventName, this,eventName, ...extraArgs);
         return this;
     }
 
