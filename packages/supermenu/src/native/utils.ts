@@ -1,3 +1,5 @@
+import { EventEmitter2 } from 'eventemitter2';
+
 const hasMutationObserver = window.MutationObserver || window[ 'WebKitMutationObserver' ];
 
 
@@ -84,6 +86,7 @@ export function wrapClassList(list: DOMTokenList): WrappedClassList {
     });
     return proxy as WrappedClassList;
 }
+
 export function getOffset( el:HTMLElement ) {
     var _x = 0;
     var _y = 0;
@@ -93,4 +96,15 @@ export function getOffset( el:HTMLElement ) {
         el = el.offsetParent as HTMLElement;
     }
     return { top: _y, left: _x };
+}
+
+
+export function bindEventEmitter(
+    emitter:EventEmitter2,
+    obj:any,
+    methods:string[]=[ 'emit', 'emitAsync', 'addListener', 'on', 'prependListener', 'once', 'prependOnceListener', 'many', 'prependMany', 'onAny', 'prependAny', 'offAny', 'removeListener', 'off', 'removeAllListeners', 'setMaxListeners', 'eventNames', 'listeners', 'listenersAny' ]
+){
+    methods.forEach(name => {
+        obj[ name ] = emitter[ name ].bind(emitter);
+    });
 }

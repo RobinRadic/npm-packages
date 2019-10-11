@@ -1,0 +1,86 @@
+@import "../styling/base";
+
+$layout-prefix: layout;
+$layout-header-size: 70px;
+$layout-footer-size: 70px;
+$layout-side-left-size: 250px;
+$layout-side-right-size: 250px;
+
+body {
+    min-width: 100px;
+    min-height: 100%;
+    margin: 0;
+}
+#preview, body, html {
+    width: 100%;
+    direction: ltr;
+}
+
+.#{$layout-prefix} {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 100%;
+
+    // layout > __header
+    &__header {
+        position: relative;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: $layout-header-size;
+    }
+
+    &__footer {
+        position: relative;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: $layout-footer-size;
+    }
+
+    &__page {
+        padding-top: $layout-header-size;
+        padding-right: $layout-side-right-size;
+        padding-bottom: $layout-footer-size;
+        padding-left: $layout-side-left-size;
+    }
+
+    &__side {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+
+        &--left {
+            left: 0;
+            min-width: $layout-side-left-size;
+        }
+
+        &--right {
+            right: 0;
+            min-width: $layout-side-right-size;
+        }
+    }
+}
+
+.layout {
+    color: blue;
+
+    &__header {
+        color: red;
+        background: rgba(blue, 0.1);
+    }
+
+    &__footer {
+        background: rgba(purple, 0.1);
+    }
+
+    &__page {
+        color: black;
+        background: rgba(yellow, 0.1);
+    }
+
+    &__side {
+        background: rgba(red, 0.1);
+    }
+}

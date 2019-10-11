@@ -4,6 +4,7 @@ import { MenuItemNodeArray } from './MenuItemNodeArray';
 import { merge } from 'lodash';
 import { RootNode } from '@radic/tree';
 import { MenuConfig, MenuItemState } from './interfaces';
+import { bindEventEmitter } from './native/utils';
 
 const log = require('debug')('components:menu:Menu');
 
@@ -44,9 +45,8 @@ export class MenuNode<C extends MenuItemNodeArray = MenuItemNodeArray> extends R
             newListener : true,
             wildcard    : true,
         }) as any;
-        [ 'emit', 'emitAsync', 'addListener', 'on', 'prependListener', 'once', 'prependOnceListener', 'many', 'prependMany', 'onAny', 'prependAny', 'offAny', 'removeListener', 'off', 'removeAllListeners', 'setMaxListeners', 'eventNames', 'listeners', 'listenersAny' ].forEach(name => {
-            this[ name ] = this.events[ name ].bind(this.events);
-        });
+        bindEventEmitter(this.events, this)
+        // [ 'emit', 'emitAsync', 'addListener', 'on', 'prependListener', 'once', 'prependOnceListener', 'many', 'prependMany', 'onAny', 'prependAny', 'offAny', 'removeListener', 'off', 'removeAllListeners', 'setMaxListeners', 'eventNames', 'listeners', 'listenersAny' ].forEach(name => { this[ name ] = this.events[ name ].bind(this.events); });
         this.configure(config);
     }
 

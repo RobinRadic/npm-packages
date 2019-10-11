@@ -40,7 +40,7 @@ mixin menu()
         +menu-item('Pages', 'file-code-o').has-submenu-up
             ul.sm-item__submenu
                 +menu-item('Title 2.1', 'windows')
-                +menu-item('Title 2.2', 'wifi').has-children.is-focused.has-submenu-right
+                +menu-item('Title 2.2', 'wifi').has-children.is-focused
                     ul.sm-item__submenu
                         +menu-item('Title 2.2.1', 'usb').is-focused.is-selected
                         +menu-item('Title 2.2.2')
