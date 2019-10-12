@@ -10,7 +10,7 @@ import { Options as OptimizeCssAssetsOptions } from 'optimize-css-assets-webpack
 import { Options as HtmlOptions } from 'html-webpack-plugin';
 import JsonPlugin from '../plugins/JsonPlugin';
 import ScssVariableToTypescript from '../plugins/scss-variables-to-typescript';
-import { ExtraTemplatedPathsPlugin } from '../plugins/ExtraTemplatedPathsPlugin';
+import ExtraTemplatedPathsPlugin from '../plugins/ExtraTemplatedPathsPlugin';
 
 export const loaderOptions       = Webpacker.plugin('loaderOptions', (w, p) => ([ LoaderOptionsPlugin ]));
 export const copy                = Webpacker.plugin('copy', (w, p) => ([ 'copy-webpack-plugin', {}, p.depends('copy-webpack-plugin') ]));
