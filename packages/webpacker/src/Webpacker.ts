@@ -10,6 +10,7 @@ import { merge } from 'lodash';
 import { EventEmitter } from 'events';
 import { createExitHandler } from './utils/exitHandler';
 import { Blocks, blocks } from './blocks';
+import { SyncHook, SyncWaterfallHook } from 'tapable';
 
 
 let a               = Object.getPrototypeOf(Chain.prototype);
@@ -164,9 +165,8 @@ export class Webpacker extends Chain {
         return resolve(this.settings.outputPath, ...parts);
     }
 
-    public load(loadables: Array<(packer: Webpacker, ...params) => any>): this {
-        loadables.forEach(loadable => loadable(this));
-        return this;
+    public use(plugin:(wp:Webpacker, options?:any) => any, options?:any){
+        plugin(this, options)
     }
 
     protected linked = [];
@@ -277,23 +277,50 @@ export class Webpacker extends Chain {
         };
     }
 
-    public static wrap<T extends ((wp: Webpacker, ...params: any[]) => any) = (wp: Webpacker, ...params: any[]) => any>(cb: T): T {
-        const ret: any = (wp: Webpacker, ...params: any[]) => {
+    public static wrap<T extends {
+        (wp: Webpacker, ...params: any[]):any
+        hooks?: {
+            params: SyncWaterfallHook<any[]>
+        }
+    } = {
+        (wp: Webpacker, ...params: any[]): any
+        hooks?: {
+            params: SyncWaterfallHook<any[]>
+        }
+    }>(cb: T): T & {
+        hooks?: {
+            params: SyncWaterfallHook<any[]>
+        }
+    } {
+        let paramsHook = new SyncWaterfallHook<any[]>([ 'params' ]);
+        let ret: any   = (wp: Webpacker, ...params: any[]) => {
+            params = paramsHook.call(params);
             return cb(wp, ...params) as any;
         };
+        ret.hooks      = { params: paramsHook };
         return ret;
     }
 
     public static rule<Options = any>(defaultName: string, cb: RuleDefinitionFunction<Options>): RuleDefinitionBlockFunction<Options> {
-        return (wp: Webpacker, options: Options = {} as any, ruleName: string = defaultName) => {
-            let rule                         = wp.module.rule(ruleName);
+        let optionsHook                              = new SyncWaterfallHook<Options>([ 'options' ]);
+        let before                                   = new SyncHook<Rule>([ 'rule' ]);
+        let after                                    = new SyncHook<Rule>([ 'rule' ]);
+        let fn: RuleDefinitionBlockFunction<Options> = (wp: Webpacker, options: Options = {} as any, ruleName: string = defaultName) => {
+            let rule = wp.module.rule(ruleName);
+            before.call(rule);
+            options                          = optionsHook.call(options);
             let cbr: RuleDefinition<Options> = cb(wp, rule, options);
             if ( Array.isArray(cbr) ) {
                 let [ _, defaultOptions ] = cbr;
                 options                   = { ...defaultOptions, ...options };
             }
+            after.call(rule);
             return rule;
         };
+
+        fn.hooks = { options: optionsHook, before, after };
+
+        return fn;
     }
 
 }
@@ -301,7 +328,14 @@ export class Webpacker extends Chain {
 
 export type RuleDefinition<Options> = Use<Rule> | Rule | [ Use<Rule> | Rule, Partial<Options> ]
 export type RuleDefinitionFunction<Options> = (w: Webpacker, r: Rule, o: Options) => RuleDefinition<Options>
-export type RuleDefinitionBlockFunction<Options> = (w: Webpacker, options?: Options, ruleName?: string) => any
+export type RuleDefinitionBlockFunction<Options> = {
+    (w: Webpacker, options?: Options, ruleName?: string): any
+    hooks?: {
+        options: SyncWaterfallHook<Options>
+        before: SyncHook<Rule>
+        after: SyncHook<Rule>
+    }
+}
 
 export type PluginDefinition<Options> = [ Chain.PluginClass | string, Partial<Options>, Chain.Plugin<Webpacker> ] | [ Chain.PluginClass | string, Partial<Options> ] | [ Chain.PluginClass ]
 export type PluginDefinitionFunction<Options> = (w: Webpacker, p: Chain.Plugin<Webpacker>) => PluginDefinition<Options>

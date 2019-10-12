@@ -4,6 +4,9 @@ import { LoaderOptions } from 'webpack-chain';
 import { RenderOptions } from 'stylus';
 import { Options as PugOptions } from "pug";
 
+
+export { Blocks, Helpers, Presets, ImportedHelpers, ImportedLoaders, ImportedPlugins, ImportedPresets, ImportedRules, Loaders, Plugins, Rules } from './blocks';
+
 export type ConfigProxy<T> = T & {
     get<V>(prop: keyof T | string, defaultValue?): V
     has(prop: keyof T | string): boolean

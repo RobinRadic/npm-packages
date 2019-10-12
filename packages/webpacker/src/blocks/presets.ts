@@ -15,6 +15,7 @@ export const common = Webpacker.wrap((wp: Webpacker) => {
         '@babel/core',
         'core-js',
     ]);
+    const {rules,plugins} = wp.blocks
     rules.css(wp);
     rules.scss(wp);
     rules.images(wp);
@@ -51,7 +52,7 @@ export const ReactTS = Webpacker.wrap((wp: Webpacker, options: ReactTSPresetOpti
         'babel-preset-react-app',
         'babel-plugin-jsx-control-statements',
     ]);
-
+    const {rules} = wp.blocks
     const babelOptions = {
         babelrc       : false,
         configFile    : false,
@@ -112,7 +113,7 @@ export const VueTS = Webpacker.wrap((wp: Webpacker, options: VueTSPresetOptions 
     options                                   = { ...defaults, ...options };
     wp.settings.preset                        = 'VueTS';
     wp.settings.presetOptions                 = options;
-
+    const {rules,plugins} = wp.blocks
     const babelOptions = {
         babelrc       : false,
         configFile    : false,
@@ -161,13 +162,13 @@ export const VueTS = Webpacker.wrap((wp: Webpacker, options: VueTSPresetOptions 
 });
 
 
-export interface NodeTSPresetOptions extends PresetOptions {}
+export interface NodeTSPresetOptions extends PresetOptions {
+}
 
 export const NodeTS = Webpacker.wrap((wp: Webpacker, options: NodeTSPresetOptions = {}) => {
     wp.settings.preset = 'NodeTS';
 
 });
-
 
 /*
 "speed-measure-webpack-plugin": "^1.3.0",
