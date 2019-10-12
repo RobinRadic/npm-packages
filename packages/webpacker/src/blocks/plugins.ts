@@ -17,7 +17,7 @@ export const copy                = Webpacker.plugin('copy', (w, p) => ([ 'copy-w
 export const favicon             = Webpacker.plugin('favicon', (w, p) => ([ 'webapp-webpack-plugin', {}, p.depends('webapp-webpack-plugin') ]));
 export const scss2ts             = Webpacker.plugin<ScssVariableToTypescript.Options>('scss2ts', (w, p) => [ resolve(__dirname, '../plugins/scss-variables-to-typescript'), {} ]);
 export const json                = Webpacker.plugin<JsonPlugin.Options>('json', (w, p) => ([ resolve(__dirname, '../plugins/JsonPlugin'), {} ]));
-export const extraTemplatedPaths = Webpacker.plugin<ExtraTemplatedPathsPlugin.Options>('extra-templated-paths', (w, p) => ([ resolve(__dirname, '../plugins/ExtraTemplatedPathsPlugin.ts'), {} ]));
+export const extraTemplatedPaths = Webpacker.plugin<ExtraTemplatedPathsPlugin.Options>('extra-templated-paths', (w, p) => ([ resolve(__dirname, '../plugins/ExtraTemplatedPathsPlugin'), {} ]));
 export const size                = Webpacker.plugin('size', (w, p) => ([ resolve(__dirname, '../plugins/SizePlugin'), {}, p.depends('@@pretty-bytes', '@@gzip-size') ]));
 export const vueLoader           = Webpacker.plugin('vueLoader', (w, p) => ([ 'vue-loader/lib/plugin', {}, p.depends('vue-loader', 'vue-template-compiler') ]));
 export const bar                 = Webpacker.plugin<BarOptions>('bar', (w, p) => ([ 'webpackbar', {
