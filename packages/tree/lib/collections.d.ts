@@ -5,6 +5,7 @@ export declare class Collection<T> extends Array<T> implements Array<T> {
     constructor(...items: T[]);
     static make<T>(items?: T[]): Collection<T>;
     isEmpty(): boolean;
+    IMenuNode: any;
     isNotEmpty(): boolean;
     first(): T;
     last(): T;

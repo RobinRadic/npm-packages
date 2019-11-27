@@ -1,10 +1,8 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const collections_1 = require("./collections");
-class BaseNode {
+import { NodeArray } from './collections';
+export class BaseNode {
     constructor() {
         this.children = [];
-        this.collectionClass = collections_1.NodeArray;
+        this.collectionClass = NodeArray;
     }
     setIndex(index) {
         this._index = index;
@@ -178,8 +176,7 @@ class BaseNode {
         return object;
     }
 }
-exports.BaseNode = BaseNode;
-class Node extends BaseNode {
+export class Node extends BaseNode {
     constructor(_root) {
         super();
         this._root = _root;
@@ -189,12 +186,11 @@ class Node extends BaseNode {
         return this._root;
     }
 }
-exports.Node = Node;
-class RootNode extends BaseNode {
+export class RootNode extends BaseNode {
     constructor() {
         super(...arguments);
         this.nodeClass = Node;
-        this.collectionClass = collections_1.NodeArray;
+        this.collectionClass = NodeArray;
     }
     createNode() {
         const node = new this.nodeClass(this);
@@ -202,8 +198,7 @@ class RootNode extends BaseNode {
         return node;
     }
 }
-exports.RootNode = RootNode;
-class ValuedNode extends BaseNode {
+export class ValuedNode extends BaseNode {
     constructor(value) {
         super();
         this.value = value;
@@ -216,5 +211,4 @@ class ValuedNode extends BaseNode {
         return this.value;
     }
 }
-exports.ValuedNode = ValuedNode;
 //# sourceMappingURL=nodes.js.map

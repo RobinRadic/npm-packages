@@ -1,3 +1,4 @@
+import { INode } from '@radic/tree';
 
 
 export interface EventEmitter2Options {
@@ -37,8 +38,18 @@ export interface MenuConfig {
 }
 
 export interface MenuItemState {
-    collapsed: boolean
+    expanded: boolean
     hidden: boolean
     focused: boolean
     selected: boolean
+    hovered: boolean
+    slug?:string
+}
+
+export interface IMenuNode {
+    node: INode
+}
+
+export function isMenuNode(value): value is IMenuNode {
+    return value && value.node;
 }

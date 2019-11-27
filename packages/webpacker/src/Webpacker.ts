@@ -30,6 +30,10 @@ c.prototype._root   = function () {
     }
 };
 
+export type ChainWithStore<Chain, Name extends keyof Configuration> = Chain & {
+    store: Map<keyof Configuration[Name], any>
+}
+
 export interface Webpacker {
     constructor: typeof Webpacker
 }
@@ -59,7 +63,20 @@ export namespace Webpacker {
     }
 }
 
+export interface Mapper<ConfigKey extends keyof Configuration, Config = Configuration[ConfigKey]> extends Map<keyof Config, any> {
+    get<K extends keyof Config>(key: K): Config[K]
+}
+
 export class Webpacker extends Chain {
+    devServer: Chain.DevServer & { store: Mapper<'devServer'> };
+    module: Chain.Module & { store: Mapper<'module'> };
+    output: Chain.Output & { store: Mapper<'output'> };
+    optimization: Chain.Optimization & { store: Mapper<'optimization'> };
+    performance: Chain.Performance & { store: Mapper<'performance'> };
+    plugins: Chain.Plugins<this> & { store: Mapper<'plugins'> };
+    resolve: Chain.Resolve & { store: Mapper<'resolve'> };
+    resolveLoader: Chain.ResolveLoader & { store: Mapper<'resolveLoader'> };
+
     static defaultSettings: Partial<Webpacker.Settings> = {
         contextPath               : 'src',
         sourceMap                 : false,
@@ -165,8 +182,8 @@ export class Webpacker extends Chain {
         return resolve(this.settings.outputPath, ...parts);
     }
 
-    public use(plugin:(wp:Webpacker, options?:any) => any, options?:any){
-        plugin(this, options)
+    public use(plugin: (wp: Webpacker, options?: any) => any, options?: any) {
+        plugin(this, options);
     }
 
     protected linked = [];
@@ -278,7 +295,7 @@ export class Webpacker extends Chain {
     }
 
     public static wrap<T extends {
-        (wp: Webpacker, ...params: any[]):any
+        (wp: Webpacker, ...params: any[]): any
         hooks?: {
             params: SyncWaterfallHook<any[]>
         }
@@ -329,7 +346,7 @@ export class Webpacker extends Chain {
 export type RuleDefinition<Options> = Use<Rule> | Rule | [ Use<Rule> | Rule, Partial<Options> ]
 export type RuleDefinitionFunction<Options> = (w: Webpacker, r: Rule, o: Options) => RuleDefinition<Options>
 export type RuleDefinitionBlockFunction<Options> = {
-    (w: Webpacker, options?: Options, ruleName?: string): any
+    (w: Webpacker, options?: Options, ruleName?: string): Rule
     hooks?: {
         options: SyncWaterfallHook<Options>
         before: SyncHook<Rule>

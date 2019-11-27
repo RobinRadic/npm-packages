@@ -1,10 +1,7 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-function collect(items) {
+export function collect(items) {
     return new Collection(...items);
 }
-exports.collect = collect;
-class Collection extends Array {
+export class Collection extends Array {
     constructor(...items) {
         super(...items);
         Object.setPrototypeOf(this, new.target.prototype);
@@ -52,8 +49,7 @@ class Collection extends Array {
         return result;
     }
 }
-exports.Collection = Collection;
-class NodeArray extends Collection {
+export class NodeArray extends Collection {
     item(key) { return this[key]; }
     hasItem(key) { return this[key] !== undefined; }
     depth(depth) { return this.filter(item => item.getDepth() === depth); }
@@ -61,5 +57,4 @@ class NodeArray extends Collection {
     without(item) { return this.filter(i => !item.includes(i)); }
     only(item) { return this.filter(i => item.includes(i)); }
 }
-exports.NodeArray = NodeArray;
 //# sourceMappingURL=collections.js.map

@@ -1,0 +1,261 @@
+import { injectable } from 'inversify';
+import { inject } from './app';
+import { Application } from './classes/Application';
+import { Bitbucket } from './classes/Bitbucket';
+import { Cache, IConfig } from './interfaces';
+import { Github } from './classes/Github';
+import { OrgsListForAuthenticatedUserResponse, ReposListForOrgResponseItem, UsersGetAuthenticatedResponse } from '@octokit/rest';
+import { Schema } from 'bitbucket';
+// import Github from '@octokit/rest';
+
+export namespace Bithub {
+
+
+    export namespace Api {
+        export interface Repository {
+            slug: string
+            full_name: string
+            private: boolean
+            owner: string
+            default_branch: string
+            urls: {
+                ssh: string
+                https: string
+            }
+
+        }
+
+        export interface FullRepository extends Repository {
+            webhooks: any[]
+            branches: any[]
+        }
+
+        export interface Owner {
+            repositories: string[]
+
+            getRepository()
+        }
+
+        export interface User {
+            display_name: string
+            username: string
+            groups: string[]
+            repositories: Repository[]
+        }
+    }
+
+    export interface Api {
+        getCurrentUser(): Promise<Api.User>
+        getRepository(owner:string, slug:string): Promise<Api.FullRepository>
+
+        getOwner(name: string): Promise<Api.Owner>
+    }
+
+    export interface DriverClass {
+        new(...params): Driver
+    }
+
+    export interface Driver {
+        driver(name: string): Driver
+
+        bithub: Bithub
+        name?: string
+
+    }
+
+}
+
+@injectable()
+export class Bithub {
+    @inject() app: Application;
+
+    drivers: Record<string, Bithub.Driver> = {};
+
+    driver(name: string): Bithub.Driver {
+        return this.drivers[ name ];
+    }
+
+    register(name: string, cls: Bithub.DriverClass) {
+        const driver                = this.app.resolve<Bithub.Driver>(cls);
+        driver.name                 = name;
+        this.drivers[ driver.name ] = driver;
+    };
+}
+
+
+export class BithubRepository {
+    createWebhook(){}
+    isPackagistPackage(){}
+    hasPackagistWebhook(){}
+    createPackagistPackage(){}
+    createPackagistWebhook(){}
+}
+
+
+
+
+
+@injectable()
+export abstract class Driver {
+    name?: string;
+    @inject() app: Application;
+    @inject() bithub: Bithub;
+    @inject() cache: Cache;
+    @inject() config: IConfig;
+
+    protected nextWithoutCache = false;
+
+    uncached() {
+        this.nextWithoutCache = true;
+        return this;
+    }
+
+    cacheKey(keys: string | string[]) {
+        keys = Array.isArray(keys) ? keys : [ keys ];
+        return [ this.name ].concat(keys).join('.');
+    }
+
+    async cacheWrap<T>(keys: string | string[], callback: () => Promise<T>, ttl?: number) {
+        let result;
+        if ( this.nextWithoutCache ) {
+            result                = callback;
+            this.nextWithoutCache = false;
+        } else {
+            result = this.cache.wrap(this.cacheKey(keys), callback, ttl ? { ttl } : undefined); //, (error, result) => {});
+        }
+        return result;
+    }
+}
+
+
+class BitbucketTransformer {
+    static repository = (r: Schema.Repository): Bithub.Api.Repository => ({
+        slug          : r.slug.toLowerCase(),
+        full_name     : r.full_name.toLowerCase(),
+        owner         : r.full_name.split('/')[ 0 ].toLowerCase(),
+        private       : r.is_private,
+        default_branch: r.mainbranch.name,
+        urls          : {
+            https: r.links.clone[ 0 ].href,
+            ssh  : r.links.clone[ 1 ].href,
+        },
+    });
+}
+
+@injectable()
+export class BitbucketDriver extends Driver implements Bithub.Driver, Bithub.Api {
+    @inject('bitbucket') client: Bitbucket;
+
+    public driver(name: string): Bithub.Driver {
+        return this.bithub.driver(name);
+    }
+
+    protected async _getCurrentUser(): Promise<{
+        user: Schema.User
+        groups: Schema.Team[]
+        repos: Schema.Repository[]
+    }> {
+        const user   = await this.client.user.get({});
+        const groups = await this.client.teams.list({ role: 'admin', pagelen: 100 });
+        const repos  = await this.client.repositories.list({ username: user.data.username, pagelen: 100 });
+        return { user: user.data, groups: groups.data.values, repos: repos.data.values };
+    }
+
+    public async getOwner(name: string): Promise<Bithub.Api.Owner> {
+        return;
+    }
+
+    public async getCurrentUser() {
+        const { user, groups, repos }               = await this._getCurrentUser();
+        const repositories: Bithub.Api.Repository[] = repos.map(r => BitbucketTransformer.repository(r));
+        return {
+            username    : user.username.toLowerCase(),
+            display_name: user.display_name,
+            groups      : groups.map(group => group.username.toLowerCase()),
+            repositories,
+        };
+    }
+
+    async __getRepository(owner: string, slug: string) {
+        const repo     = await this.client.repositories.get({ username: owner, repo_slug: slug });
+        const webhooks = await this.client.repositories.listWebhooks({ username: owner, repo_slug: slug, pagelen: 100 });
+        const branches = await this.client.repositories.listBranches({ username: owner, repo_slug: slug, pagelen: 100 });
+        return { repo:repo.data, webhooks:webhooks.data.values, branches:branches.data.values };
+    }
+
+    public async getRepository(owner: string, slug: string): Promise<Bithub.Api.FullRepository> {
+        const {repo,branches,webhooks} = await this.__getRepository(owner, slug)
+        return {
+            ...BitbucketTransformer.repository(repo),
+            webhooks: webhooks.map(hook => hook),
+            branches: branches.map(branch => branch.name)
+        }
+    }
+
+}
+
+class GithubTransformer {
+    static repository = (r: ReposListForOrgResponseItem): Bithub.Api.Repository => ({
+        slug          : r.name.toLowerCase(),
+        full_name     : r.full_name.toLowerCase(),
+        owner         : r.owner.login.toLowerCase(),
+        default_branch: r.default_branch,
+        private       : r.private,
+        urls          : {
+            https: r.clone_url,
+            ssh  : r.ssh_url,
+        },
+    });
+}
+
+@injectable()
+export class GithubDriver extends Driver implements Bithub.Driver, Bithub.Api {
+    @inject('github') client: Github;
+
+    public driver(name: string): Bithub.Driver {
+        return undefined;
+    }
+
+
+    protected async __getCurrentUser(): Promise<{
+        user: UsersGetAuthenticatedResponse
+        groups: OrgsListForAuthenticatedUserResponse
+        repos: ReposListForOrgResponseItem[]
+    }> {
+        const user   = await this.client.users.getAuthenticated({});
+        const groups = await this.client.orgs.listForAuthenticatedUser({ per_page: 300 });
+        const repos  = await this.client.repos.listForUser({ type: 'owner', username: user.data.login, per_page: 300 });
+        return { user: user.data, groups: groups.data, repos: repos.data };
+    }
+
+    public async getCurrentUser() {
+        const { user, groups, repos }               = await this.__getCurrentUser();
+        const repositories: Bithub.Api.Repository[] = repos.map(r => GithubTransformer.repository(r));
+        return {
+            username    : user.login.toLowerCase(),
+            display_name: user.name,
+            groups      : groups.map(group => group.login.toLowerCase()),
+            repositories,
+        };
+    }
+
+    async __getRepository(owner: string, slug: string) {
+        const repo     = await this.client.repos.get({ owner, repo: slug });
+        const webhooks = await this.client.repos.listHooks({ owner, repo: slug, per_page: 300 });
+        const branches = await this.client.repos.listBranches({ owner, repo: slug, per_page: 300 });
+        return { repo:repo.data, webhooks:webhooks.data, branches:branches.data };
+    }
+
+    public getOwner(name: string): Promise<Bithub.Api.Owner> {
+        return undefined;
+    }
+
+    public async getRepository(owner: string, slug: string): Promise<Bithub.Api.FullRepository> {
+        const {repo,webhooks,branches} = await this.__getRepository(owner,slug);
+        return {
+            ...GithubTransformer.repository(repo),
+            webhooks: webhooks.map(hook => hook),
+            branches: branches.map(branch => branch.name)
+        }
+    }
+}

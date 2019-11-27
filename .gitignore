@@ -9,3 +9,5 @@ test.ts
 /packages/util/lib/
 dist
 /.env
+/.supermenu
+/lib/

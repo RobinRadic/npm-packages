@@ -1,0 +1,134 @@
+@import "demo.vendor";
+
+$layout-prefix                : layout;
+$layout-header-height           : 50px !default;
+
+$layout-header-font-color       : #BBB6B6 !default;
+$layout-header-background       : $blue-grey-800 !default;
+$layout-header-hover-font-color : darken($layout-header-font-color, 10) !default;
+$layout-header-hover-background : lighten($layout-header-background, 10) !default;
+$layout-header-border-bottom    : 1px solid #4A626F !default;
+
+$layout-footer-height           : 50px !default;
+$layout-footer-font-color       : #BBB6B6 !default;
+$layout-footer-background       : $blue-grey-800 !default;
+$layout-footer-hover-font-color : darken($layout-footer-font-color, 10) !default;
+$layout-footer-hover-background : lighten($layout-footer-background, 10) !default;
+$layout-footer-border-top       : 1px solid #4A626F !default;
+
+$layout-sidebar-width           : 200px !default;
+$layout-sidebar-collapse-width  : 64px !default;
+
+$layout-sidebar-font-color      : #BBB6B6 !default;
+$layout-sidebar-background      : #333333 !default;
+$layout-sidebar-hover-font-color : darken($layout-sidebar-font-color, 10) !default;
+$layout-sidebar-hover-background : lighten($layout-sidebar-background, 10) !default;
+
+
+
+html, body {
+    height : 100%;
+}
+
+body {
+    background : white;
+    color: black;
+}
+
+.demo-sm-section {
+}
+
+.demo-sm-content {
+    background : rgba(white, 0.05);
+
+    h3 {
+        font-size     : 17px;
+        display       : block;
+        padding       : 10px;
+        color         : grey;
+        border-bottom : 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+.#{$layout-prefix} {
+    $self          : &;
+    display        : flex;
+    flex-direction : column;
+    width          : 100%;
+    min-width      : 100%;
+    min-height     : 100vh;
+    position       : absolute;
+
+    &__header,
+    &__footer {
+        display        : flex;
+        flex-direction : row;
+        width          : 100%;
+        white-space    : nowrap;
+
+        &-item {
+            padding     : 0 10px;
+            height      : inherit;
+            line-height : inherit;
+
+            &--separator {
+                width      : 1px;
+                background : #607D8B;
+            }
+
+            &--spacer {
+                flex : 1 1 auto;
+            }
+        }
+    }
+
+    &__header {
+        background  : $layout-header-background;
+        color       : $layout-header-font-color;
+        height      : $layout-header-height;
+        line-height : $layout-header-height;
+
+        a {
+            color : $layout-header-font-color;
+
+            &:hover { color : $layout-header-hover-font-color; }
+        }
+    }
+
+    &__footer {
+        background  : $layout-footer-background;
+        color       : $layout-footer-font-color;
+        height      : $layout-footer-height;
+        line-height : $layout-footer-height;
+
+    }
+
+    &__main {
+        display        : flex;
+        flex-direction : row;
+        flex           : 1 0 auto;
+    }
+
+    &__content {
+        flex  : 1 0 0;
+        order : 1;
+    }
+
+    &__sidebar {
+        width      : $layout-sidebar-width;
+        order      : 0;
+        background : $layout-sidebar-background;
+        color      : $layout-sidebar-font-color;
+        height     : inherit; // from __main
+        //overflow-x : hidden !important;
+        &.is-collapsed {
+            width : $layout-sidebar-collapse-width;
+        }
+
+        .#{$menu-prefix}{
+            &.is-collapsed {
+                width: $layout-sidebar-collapse-width;
+            }
+        }
+    }
+}

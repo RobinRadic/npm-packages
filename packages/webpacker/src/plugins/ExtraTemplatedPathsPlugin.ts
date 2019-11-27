@@ -81,12 +81,12 @@ class ExtraTemplatedPathsPlugin {
                               chunk.contentHashWithLength &&
                               chunk.contentHashWithLength[ contentHashType ]) ||
                           data.contentHashWithLength;
-                const module                = data.module;
-                const moduleId              = module && module.id;
-                const moduleHash            = module && (module.renderedHash || module.hash);
-                const moduleHashWithLength  = module && module.hashWithLength;
+                const module               :any = data.module;
+                const moduleId             :any = module && module.id;
+                const moduleHash           :any = module && (module.renderedHash || module.hash);
+                const moduleHashWithLength :any = module && module.hashWithLength;
 
-                let context: ExtraTemplatedPathsPlugin.ReplacerContext = {
+                let context: ExtraTemplatedPathsPlugin.ReplacerContext = <ExtraTemplatedPathsPlugin.ReplacerContext|any>{
                     compilation,
                     path,
                     chunk,
@@ -94,7 +94,7 @@ class ExtraTemplatedPathsPlugin {
                     chunkId, chunkName, chunkHash, chunkHashWithLength, contentHashType,
                     contentHash, contentHashWithLength,
                     module, moduleId, moduleHash, moduleHashWithLength,
-                };
+                } as any;
                 for ( let tpl of this.templates ) {
                     if ( !tpl.parser.matches(path) ) continue;
                     let parsed = tpl.parser.parse(path);

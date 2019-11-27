@@ -8,7 +8,7 @@
     },
     "dependencies": {
         "@radic/util": "^3.0.0",
-        "@radic/webpacker": "^5.0.0",
+        "@radic/webpacker": "*",
         "reflect-metadata": "^0.1.13"
     },
     "devDependencies": {

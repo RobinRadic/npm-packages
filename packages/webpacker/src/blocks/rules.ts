@@ -131,6 +131,7 @@ export const cache = Webpacker.rule<CacheLoaderOptions>('cache', (w, r, o) => {
 
 export const babel              = Webpacker.rule<BabelLoaderOptions>('babel', (w, r, o) => {
     return r.depends(...[
+        '@types/babel-core',
         '@babel/core',
         '@babel/plugin-proposal-object-rest-spread',
         '@babel/plugin-syntax-dynamic-import',

@@ -1,0 +1,2 @@
+
+import {TypeStyle} from 'typestyle'

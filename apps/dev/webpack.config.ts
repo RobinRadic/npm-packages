@@ -6,7 +6,7 @@ import { loader } from 'webpack';
 Error.stackTraceLimit = Infinity;
 
 const { helpers, rules, presets, plugins } = blocks;
-
+rules.babel(null);
 const isProd = process.env.NODE_ENV === 'production';
 const isHot  = process.argv.includes('--hot');
 
@@ -16,6 +16,7 @@ const wp         = new Webpacker({
     sourceMap: true,
     workspace: '../../',
 });
+wp.devServer.store.get('publicPath')
 const defineVars = {
     DEV : !isProd,
     PROD: isProd,

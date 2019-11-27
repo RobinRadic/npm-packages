@@ -1,12 +1,18 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "target": "es6",
-        "module": "commonjs",
-        "lib": ["es5", "es6", "es7", "es2018", "es2018.promise", "dom"],
-        "declaration": true,
-        "jsx": "preserve",
+        "allowUnreachableCode": true,
+        "declaration": false,
+        "lib": [
+            "dom",
+            "es2017"
+        ],
+        "moduleResolution": "node",
+        "module": "esnext",
+        "target": "es2017",
+        "jsx": "react",
         "jsxFactory": "h",
+        "baseUrl": ".",
         "strict": false,
         "noImplicitAny": false,
         "strictNullChecks": false,
@@ -26,24 +32,21 @@
         "sourceMap": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
-        "typeRoots": [
-            "../../node_modules/@types"
-        ],
-        "baseUrl": ".",
-        "plugins": [
-            {
-                "name": "typescript-lit-html-plugin"
-            }
-        ]
+        "paths": {
+            "@/*": ["src/*"],
+            "@menu": ["src/components/supermenu/menu/menu.tsx"],
+            "@menu-item": ["src/components/supermenu/menu-item/menu-item.tsx"],
+            "@menu-submenu": ["src/components/supermenu/menu-submenu/menu-submenu.tsx"],
+            "#": ["src/utils/index.ts"],
+            "#/*": ["src/utils/*"],
+            "#/tunnels": ["src/utils/tunnels.tsx"]
+        }
     },
     "include": [
         "src",
-        "src/index.ts",
-        "webpack.config.ts"
+        "types/jsx.d.ts"
     ],
     "exclude": [
-        "node_modules",
-        "dist",
-        "lib"
+        "node_modules"
     ]
 }

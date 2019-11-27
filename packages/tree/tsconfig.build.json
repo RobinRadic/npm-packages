@@ -2,7 +2,7 @@
     "compileOnSave": false,
     "compilerOptions": {
         "target": "es6",
-        "module": "commonjs",
+        "module": "esnext",
         "moduleResolution": "node",
         "lib": ["es5", "es6", "es7", "es2018", "es2018.promise"],
         "outDir": "lib",

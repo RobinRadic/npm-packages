@@ -16,7 +16,7 @@ export class Collection<T> extends Array<T> implements Array<T> {
     static make<T>(items: T[] = []) { return new (this)(...items); }
 
     isEmpty() { return this.length === 0}
-
+IMenuNode
     isNotEmpty() { return this.length > 0}
 
     first() { return this[ 0 ]; }
