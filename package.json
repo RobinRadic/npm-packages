@@ -26,6 +26,7 @@
         "util": "cd packages/util && yarn",
         "utils": "cd packages/utils && yarn",
         "webpacker": "cd packages/webpacker && yarn",
+        "publish:webpacker": "cd packages/webpacker && npm publish",
         "app:dev": "cd apps/dev && yarn",
         "app:node": "cd apps/node && yarn",
         "build": "npm-run-all \"supermenu build\" \"webpacker build\"",
