@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+require('../lib/cli').run()
+.then(require('@oclif/command/flush'))
+.catch(require('@oclif/errors/handle'))

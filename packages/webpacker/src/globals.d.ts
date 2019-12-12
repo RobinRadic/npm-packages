@@ -46,15 +46,15 @@ declare module 'webpack' {
 
     export namespace compilation {
         export interface Chunk {
-            filenameTemplate?: string;
+            // filenameTemplate?: string|any;
             hashWithLength: string;
-            contentHash?: any
+            // contentHash?: any
             contentHashWithLength?: any
             // entryModule: MultiModule;
         }
 
         export interface Module {
-            id: string;
+            // id: string;
             renderedHash: string;
             hash: string;
             hashWithLength: string;

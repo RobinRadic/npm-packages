@@ -24,6 +24,7 @@
         "tree": "cd packages/tree && yarn",
         "idea-sync": "cd packages/idea-sync && yarn",
         "util": "cd packages/util && yarn",
+        "sites": "cd packages/sites && yarn",
         "utils": "cd packages/utils && yarn",
         "webpacker": "cd packages/webpacker && yarn",
         "publish:webpacker": "cd packages/webpacker && npm publish",

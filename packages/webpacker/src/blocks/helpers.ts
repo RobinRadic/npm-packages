@@ -1,14 +1,15 @@
-import { Webpacker } from '../Webpacker';
-import morgan from 'morgan';
+import { Webpacker }           from '../Webpacker';
+import morgan                  from 'morgan';
 import { TerserPluginOptions } from 'terser-webpack-plugin';
-import { merge } from 'lodash';
-import { Rule } from 'webpack-chain';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { merge }               from 'lodash';
+import { Rule }                from 'webpack-chain';
+import MiniCssExtractPlugin    from 'mini-css-extract-plugin';
 import { SpeedMeasureOptions } from '../interfaces';
+import { inspect }             from 'util';
 
 
 export const devServer = Webpacker.wrap((wp: Webpacker) => {
-    return wp.devServer.depends('@@webpack-dev-server')
+    return wp.devServer.depends('@@webpack-dev-server','launch-editor-middleware','morgan')
         .headers({ 'Access-Control-Allow-Origin': '*' })
         .contentBase(__dirname + '/.tmp/out')
         .historyApiFallback(true)
@@ -20,7 +21,14 @@ export const devServer = Webpacker.wrap((wp: Webpacker) => {
         .disableHostCheck(true)
         .stats('none')
         .before(app => {
-            app.use(morgan('dev', {}));
+            if(require.resolve('morgan')) {
+                app.use(require('morgan')('dev', {}));
+            }
+            if(require.resolve('launch-editor-middleware')) {
+                app.use('/__open-in-editor', require('launch-editor-middleware')('idea-php', (fileName, errorMsg)=>{
+                    process.stdout.write(inspect({fileName,errorMsg},true, 10, true));
+                }))
+            }
         });
 });
 

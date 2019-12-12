@@ -1,6 +1,6 @@
 {
     "name": "@radic/webpacker",
-    "version": "7.2.2",
+    "version": "7.6.1",
     "description": "Webpacker",
     "private": false,
     "author": {
@@ -22,7 +22,8 @@
         "postinstall": "rm -rf node_modules/@types",
         "clean:yarn": "rm yarn.lock node_modules/",
         "prepare": "npm-run-all clean:build build",
-        "release": "yarn login && np --yolo --no-yarn"
+        "login": "yarn login",
+        "release": "npm-run-all clean:build build login && np --yolo --no-yarn"
     },
     "dependencies": {
         "@yarnpkg/lockfile": "^1.1.0",

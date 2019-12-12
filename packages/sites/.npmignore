@@ -9,3 +9,4 @@ package-scripts.js
 release-it.js
 test.ts
 .editorconfig
+src

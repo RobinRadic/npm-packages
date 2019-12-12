@@ -182,7 +182,7 @@ class TemplatedPathParser {
 declare class MultiModule extends Module {}
 
 declare class Chunk extends compilation.Chunk {
-    filenameTemplate?: string;
+    filenameTemplate: string;
     hash: string;
     hashWithLength: string;
     groupsIterable: WeakSet<compilation.ChunkGroup> | any;
