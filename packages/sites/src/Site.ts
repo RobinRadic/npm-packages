@@ -78,7 +78,7 @@ export class Site {
     async setPhpVersion(version:string) {
         const currentVersion = await this.getPhpVersion();
         const fastcgi_pass = await this.getFastCgiPass()
-        fastcgi_pass._value.replace(currentVersion, version);
+        fastcgi_pass._value=fastcgi_pass._value.replace(currentVersion, version);
 
     }
 }

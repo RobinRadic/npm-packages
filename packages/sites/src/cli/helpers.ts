@@ -1,7 +1,8 @@
 import { SiteArray }   from '../SiteArray';
 import { Input }       from './Input';
 import { BaseCommand } from './BaseCommand';
-import { out }         from './Output';
+import { out }                 from './Output';
+import { exec, ExecException } from 'child_process';
 
 export async function filterSites(sites: SiteArray, name?: string): Promise<SiteArray> {
 

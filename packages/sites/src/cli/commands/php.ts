@@ -35,10 +35,13 @@ export default class PhpCommand extends BaseCommand {
         let version = args.version ? args.version : await Input.list('PHP Version',['7.2','7.3'])
 
         for(const site of sites){
+            const config = await site.getConfig();
+            config.on('flushed', _=>out.info(`Config modified for ${site.name}`))
             await site.setPhpVersion(version);
+            config.flush()
         }
 
-        this.restartServices()
 
+        setTimeout(_=> this.restartServices(), 2000);
     }
 }
