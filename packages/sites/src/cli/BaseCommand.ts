@@ -10,6 +10,7 @@ import { SiteArray } from '../SiteArray';
 import glob          from 'glob';
 import { resolve }   from 'path';
 import { Site }      from '../Site';
+import { restartServices } from './helpers';
 
 export interface BaseCommand {
     constructor: typeof BaseCommand
@@ -42,6 +43,10 @@ export abstract class BaseCommand extends Command {
 
     async setup(): Promise<any> {
 
+    }
+
+    protected restartServices(){
+        restartServices(this)
     }
 
     createExec(cwd = process.cwd()) {

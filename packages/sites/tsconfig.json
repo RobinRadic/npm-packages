@@ -31,7 +31,8 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "typeRoots": [
-            "../../node_modules/@types"
+            "../../node_modules/@types",
+            "./types"
         ],
         "baseUrl": ".",
         "paths": {
@@ -40,6 +41,7 @@
     },
     "include": [
         "src",
+        "types",
         "src/cli/index.ts"
     ],
     "exclude": [

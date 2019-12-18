@@ -1,5 +1,5 @@
-import BaseCommand from './BaseCommand';
-
+import {BaseCommand} from './BaseCommand';
+import chalk from 'chalk'
 
 export class IO {
     constructor(protected cmd: BaseCommand) {}

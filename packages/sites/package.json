@@ -27,7 +27,9 @@
         "postpack": "rm -f oclif.manifest.json",
         "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
         "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
-        "version": "oclif-dev readme && git add README.md"
+        "version": "oclif-dev readme && git add README.md",
+        "login": "yarn login",
+        "release": "npm-run-all clean:build build login && np --yolo --no-yarn"
     },
     "dependencies": {
         "@oclif/command": "^1",
@@ -44,6 +46,7 @@
         "dotenv": "^8.0.0",
         "inquirer": "^6.5.0",
         "lodash": "^4.17.15",
+        "nginx-conf": "^1.5.0",
         "npm": "^6.10.2",
         "semver": "^6.3.0",
         "yargs": "^14.0.0"
