@@ -26,7 +26,7 @@ export abstract class BaseCommand extends Command {
 
     protected get sites(): SiteArray {return new SiteArray(...glob.sync(resolve('/etc/nginx/sites-available/*')).map(path => new Site(path))); }
 
-    protected io: IO;
+    public io: IO;
 
     protected dump(...args) {
         this.log(inspect(args, { showHidden: true, depth: 10, colors: true }));

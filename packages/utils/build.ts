@@ -1,5 +1,5 @@
-import {rollup, RollupOptions }                       from 'rollup';
-import { IOptions }                                    from 'rollup-plugin-typescript2/dist/ioptions';
+import { OutputOptions, rollup, RollupOptions } from 'rollup';
+import { IOptions }                             from 'rollup-plugin-typescript2/dist/ioptions';
 import cleanup                                         from 'rollup-plugin-cleanup';
 // noinspection ES6UnusedImports
 import commonjs, { RollupCommonJSOptions }             from 'rollup-plugin-commonjs';
@@ -67,13 +67,14 @@ interface DefaultPluginOptions {
 
 export interface DefaultRollupOptions extends Omit<RollupOptions, 'plugins'> {
     plugins?: DefaultPluginOptions
+    output?: OutputOptions[]
 }
 
 const defaultOptions: DefaultRollupOptions = {
     input  : './src/index.ts',
     plugins: {
         cleanup   : {
-            include: [ './lib' ],
+            include: [ 'lib', 'module', 'es' ],
         },
         typescript: {
             tsconfig        : './tsconfig.build.json',
@@ -82,45 +83,97 @@ const defaultOptions: DefaultRollupOptions = {
     },
 };
 
-export function createOptionsFromDefaults(options: DefaultRollupOptions, plugins = {}): RollupOptions {
+export function createOptionsFromDefaults(options: DefaultRollupOptions[], plugins = {}): Omit<RollupOptions,'output'> & {output:OutputOptions[]} {
     plugins                          = { cleanup, typescript, commonjs, copy, node_resolve, terser, vue, ...plugins };
-    let rollupOptions: RollupOptions = merge({}, defaultOptions, options) as RollupOptions;
-    rollupOptions.plugins            = Object.getOwnPropertyNames(options.plugins).map(pluginName => {
-        return plugins[ pluginName ](options.plugins[ pluginName ]);
+    let rollupOptions: RollupOptions = merge({}, defaultOptions, ...options) as RollupOptions;
+    rollupOptions.plugins            = Object.getOwnPropertyNames(rollupOptions.plugins).map(pluginName => {
+        return plugins[ pluginName ](rollupOptions.plugins[ pluginName ]);
     });
-    return rollupOptions;
+    return rollupOptions as any;
 }
+//
+// export async function buildNode() {}
+//
+// export async function buildUMD() {}
+//
+// class Config {
+//     public static async es6():Promise<DefaultRollupOptions> {
+//         return {
+//             plugins: {
+//                 typescript: {
+//                     clean:true,
+//                     include: './src/**/*.ts',
+//                     tsconfigOverride: {
+//                         compilerOptions: {
+//                             target: 'es2016',
+//                             module: 'esnext'
+//                         },
+//                     },
+//                 },
+//             },
+//             output : [
+//                 { dir: 'module', format: 'module',name: '@radic/utils' },
+//                 { dir: 'es', format: 'es',name: '@radic/utils' },
+//                 { dir: 'esm', format: 'esm',name: '@radic/utils' },
+//                 { dir: 'cjs', format: 'cjs',name: '@radic/utils' },
+//                 { dir: 'umd', format: 'umd',name: '@radic/utils' },
+//             ],
+//         };
+//     }
+// }
+//
+// class Build {
+//     public static async es6(overrides:DefaultRollupOptions={}){
+//         const options = createOptionsFromDefaults([await Config.es6(), overrides])
+//         const outputOptions = options.output
+//         const bundle = await rollup(options)
+//         const written = []
+//         for(const outputOption of outputOptions){
+//             written.push(
+//                 await bundle.write(outputOption)
+//             );
+//         }
+//         return {written, bundle}
+//     }
+// }
+//
+// export async function buildDTS() {}
+//
+//
+// export async function build(name:keyof typeof Build,overrides:DefaultRollupOptions={}) {
+//     let build = await Build[name as any](overrides)
+//     return build;
+// }
 
-export async function buildNode() {}
-
-export async function buildUMD() {}
-
-export async function buildES6() {
-    return rollup(
-        createOptionsFromDefaults({
-            plugins: {
-                typescript: {
-                    tsconfigOverride: {
-                        compilerOptions: {
-                            target: 'es2016',
-                            module: 'esnext'
-                        },
+async function build() {
+    const bundle = await rollup(createOptionsFromDefaults([ {
+        plugins: {
+            typescript: {
+                clean           : true,
+                include         : './src/**/*.ts',
+                tsconfigOverride: {
+                    compilerOptions: {
+                        target: 'es2016',
+                        module: 'esnext'
                     },
                 },
             },
-            output : [
-                { esModule: true },
-            ],
-        }),
-    );
+        }
+    } ]));
+
+    const outputs:OutputOptions[] = [
+              { dir: 'module', format: 'module',name: '@radic/utils' },
+              { dir: 'es', format: 'es',name: '@radic/utils' },
+              { dir: 'esm', format: 'esm',name: '@radic/utils' },
+              { dir: 'cjs', format: 'cjs',name: '@radic/utils' },
+              { dir: 'umd', format: 'umd',name: '@radic/utils' },
+          ];
+
+    for(const output of outputs) {
+        await bundle.write(output);
+    }
 }
-
-export async function buildDTS() {}
-
-
-export async function build() {
-    await buildES6()
-}
-
 
 build();
+
+

@@ -12,6 +12,7 @@ export default class UnlinkCommand extends BaseCommand {
         if ( existsSync(Paths.cwd('sites')) && existsSync(Paths.cwd('sites/nginx')) ) {
             unlink(Paths.cwd('sites/nginx'));
             unlink(Paths.cwd('sites/apache2'));
+            unlink(Paths.cwd('sites/php74'));
             unlink(Paths.cwd('sites/php73'));
             unlink(Paths.cwd('sites/php72'));
             rmdirSync(Paths.cwd('sites'));

@@ -1,8 +1,8 @@
 import { BaseCommand } from '../BaseCommand';
 import { out }         from '../Output';
 
-export default class TestCommand extends BaseCommand {
-    static description = 'Test';
+export default class RestartCommand extends BaseCommand {
+    static description = 'Restart the services';
 
     async run() {
         await this.setup();

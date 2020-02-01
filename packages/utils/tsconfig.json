@@ -12,6 +12,7 @@
         "suppressImplicitAnyIndexErrors": true,
         "jsx": "preserve",
         "jsxFactory": "h",
+
         "strict": false,
         "noImplicitAny": false,
         "strictNullChecks": false,

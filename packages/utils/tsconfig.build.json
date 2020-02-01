@@ -33,6 +33,7 @@
         "inlineSourceMap": false,
         "inlineSources": false,
         "sourceMap": true,
+
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "typeRoots": [
@@ -40,7 +41,7 @@
         ]
     },
     "include": [
-        "src",
+        "src/**/*.ts",
         "src/index.ts"
     ],
     "exclude": [

@@ -6,4 +6,5 @@ export class Paths {
 
     static cwd(...parts) {return resolve(process.cwd(), ...parts); }
 
+    static package(...parts){return resolve(__dirname, '..', ...parts)}
 }

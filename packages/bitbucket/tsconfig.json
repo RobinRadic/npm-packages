@@ -1,0 +1,41 @@
+{
+    "compilerOptions": {
+        "declaration": true,
+        "importHelpers": true,
+        "module": "commonjs",
+        "outDir": "lib",
+        "rootDir": "src",
+        "target": "es2017",
+        "strict": false,
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "strictFunctionTypes": false,
+        "strictBindCallApply": false,
+        "strictPropertyInitialization": false,
+        "noImplicitThis": false,
+        "alwaysStrict": false,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "noImplicitReturns": false,
+        "noFallthroughCasesInSwitch": false,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "inlineSourceMap": true,
+        "inlineSources": true,
+        "sourceMap": false,
+        "traceResolution": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "typeRoots": [
+            "../../node_modules/@types"
+        ],
+        "baseUrl": ".",
+        "paths": {
+            "@radic/collections": ["../collections/src"],
+            "@radic/collections/*": ["../collections/src/*"]
+        }
+    },
+    "include": [
+        "src/**/*"
+    ]
+}

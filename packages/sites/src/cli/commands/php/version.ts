@@ -1,11 +1,11 @@
-import {BaseCommand}   from '../BaseCommand';
+import {BaseCommand}   from '../../BaseCommand';
 import * as Parser     from '@oclif/parser';
-import { filterSites } from '../helpers';
+import { filterSites } from '../../helpers';
 import { flags }       from '@oclif/command';
-import { out }         from '../Output';
-import { Input }       from '../Input';
+import { out }         from '../../Output';
+import { Input }       from '../../Input';
 
-export default class PhpCommand extends BaseCommand {
+export default class PhpVersionCommand extends BaseCommand {
     static description = 'Switch PHP version for site';
     static args: Parser.args.IArg[] = [
         { name: 'name', description: 'name or part of name' } ,

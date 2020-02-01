@@ -12,6 +12,7 @@ export default class LinkCommand extends BaseCommand {
             mkdirSync(Paths.cwd('sites'));
             symlinkSync('/etc/nginx', Paths.cwd('sites/nginx'));
             symlinkSync('/etc/apache2', Paths.cwd('sites/apache2'));
+            symlinkSync('/etc/php/7.4', Paths.cwd('sites/php74'));
             symlinkSync('/etc/php/7.3', Paths.cwd('sites/php73'));
             symlinkSync('/etc/php/7.2', Paths.cwd('sites/php72'));
         }

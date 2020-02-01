@@ -8,6 +8,7 @@ export class Services {
     static async restartAll() {
         this.restartPhp72();
         this.restartPhp73();
+        this.restartPhp74();
         this.restartNginx();
     }
 
@@ -16,6 +17,8 @@ export class Services {
     static async restartPhp72() {return this.restart('php7.2-fpm'); }
 
     static async restartPhp73() {return this.restart('php7.3-fpm'); }
+
+    static async restartPhp74() {return this.restart('php7.4-fpm'); }
 
     static async validateNginxConfig(): Promise<boolean> {
         const { error, stderr } = await shell('sudo nginx -t', this.log);

@@ -1,16 +1,16 @@
-import {BaseCommand}   from '../../BaseCommand';
-import * as Parser     from '@oclif/parser';
-import { filterSites } from '../../helpers';
-import { flags }       from '@oclif/command';
-import { out }         from '../../Output';
-import { Input }       from '../../Input';
+import { BaseCommand }  from '../../BaseCommand';
+import * as Parser                                        from '@oclif/parser';
+import { getPHPStruct, getPHPVersions, modifyConfigFile } from '../../helpers';
+import { flags }                                          from '@oclif/command';
+import { inspect }      from 'util';
+import { keyBy }        from 'lodash';
 
-export default class PhpVersionCommand extends BaseCommand {
-    static description = 'Switch PHP version for site';
+export default class PhpEditCommand extends BaseCommand {
+    static description              = 'Edit configuration for a PHP version';
     static args: Parser.args.IArg[] = [
-        { name: 'name', description: 'name or part of name' } ,
-        { name: 'version', description: 'PHP version' }
-        ];
+        { name: 'version', description: 'PHP version' },
+        { name: 'sapi', description: 'PHP SAPI' },
+    ];
     static flags                    = {
         help     : flags.help({ char: 'h' }),
         list     : flags.boolean({ char: 'l' }),
@@ -20,28 +20,17 @@ export default class PhpVersionCommand extends BaseCommand {
     async run() {
         await this.setup();
         const { args, flags } = this.parse(this.constructor);
-        if(flags.list){
-            let list=[]
-            for(const site of this.sites){
-                list.push({
-                    name:site.prettyName,
-                    version: await site.getPhpVersion()
-                })
-            }
-            return this.ux.table(list, {name: {}, version: {}}, {'no-header':true})
+
+        let struct       = keyBy(getPHPStruct(), 'version');
+        let version           = args.version ? args.version : await this.io.ask.list('PHP Version', Object.keys(struct), '7.3');
+        let php = struct[version];
+        let sapi = args.sapi ? args.sapi : await this.io.ask.list('PHP Sapi', php.sapis, 'fpm')
+
+        this.io.info(`/etc/php/${version}/${sapi}/php.ini`);
+        if(!await modifyConfigFile(this, `/etc/php/${version}/${sapi}/php.ini`)){
+            return this.io.warn('Made no changes');
         }
-
-        let sites = await filterSites(this.sites.enabled(), args.name);
-        let version = args.version ? args.version : await Input.list('PHP Version',['7.2','7.3','7.4'])
-
-        for(const site of sites){
-            const config = await site.getConfig();
-            config.on('flushed', _=>out.info(`Config modified for ${site.name}`))
-            await site.setPhpVersion(version);
-            config.flush()
-        }
-
-
-        setTimeout(_=> this.restartServices(), 2000);
+        this.io.success('Modified PHP Configuration')
+        this.restartServices();
     }
 }
