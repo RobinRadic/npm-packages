@@ -1,0 +1,47 @@
+{
+    "name": "@radic/reset-evals",
+    "license": "MIT",
+    "version": "1.0.2",
+    "main": "src/index.js",
+    "module": "src/index.ts",
+    "jsnext:main": "lib/index.ts",
+    "typings": "lib/index.d.ts",
+    "bin": {
+        "reset-evals": "src/cli.js"
+    },
+    "scripts": {
+        "start": "npm-run-all clean:build build",
+        "test": "echo \"test not implemented\" && exit 0",
+        "build": "tsc --project tsconfig.build.json",
+        "watch": "tsc --project tsconfig.build.json --watch",
+        "clean:build": "rm -rf lib",
+        "clean:yarn": "rm yarn.lock node_modules/",
+        "prepare": "npm-run-all clean:build build",
+        "postpublish": "git pull",
+        "login": "yarn login",
+        "release": "npm-run-all clean:build build login && np --yolo --no-yarn",
+        "postbuild": "chmod +x lib/cli.js"
+    },
+    "engines": {
+        "node": ">=8",
+        "npm": ">=5"
+    },
+    "dependencies": {
+        "glob": "^7.1.3",
+        "shelljs":"^0.8.2",
+        "inquirer": "^6.2.0"
+    },
+    "peerDependencies": {
+    },
+    "devDependencies": {
+        "@types/glob": "^7.1.1",
+        "@types/shelljs": "^0.7.0",
+        "@types/lodash": "^4.14.117",
+        "@types/inquirer": "^0.0.43",
+        "rimraf": "^2.6.2",
+        "lodash": "^4.17.11",
+        "npm-run-all": "^4.1.3",
+        "ts-node": "^7.0.1",
+        "typescript": "^3.1.3"
+    }
+}

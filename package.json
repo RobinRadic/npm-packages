@@ -21,6 +21,7 @@
         "observable": "cd packages/observable && yarn",
         "publisher": "cd packages/publisher && yarn",
         "supermenu": "cd packages/supermenu && yarn",
+        "reset-evals": "cd packages/reset-evals && yarn",
         "tree": "cd packages/tree && yarn",
         "idea-sync": "cd packages/idea-sync && yarn",
         "util": "cd packages/util && yarn",
