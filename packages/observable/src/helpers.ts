@@ -1,15 +1,17 @@
-import { OBSERVER } from './constants';
-import { ObserverChangedFunction } from './types';
-import { Observable } from './Observable';
+import { OBSERVER }                             from './constants';
+import { IObservable, ObserverChangedFunction } from './types';
+import { Observable }                           from './Observable';
 
-export function observable<T extends object>(object: T): T & { [ OBSERVER ]: Observable<T> } {
-    return Observable.create(object);
+export function observable<T extends object>(object: T): IObservable<T> {//: T & { [ OBSERVER ]: Observable<T> } {
+    let observable       = new Observable<T>(object);
+    let observableObject = observable.proxy;
+    return observable.proxy as any;
 }
 
-export function observer<T extends object>(object: T): Observable<T> {
-    return Observable.observer(object);
-}
+// export function observe<T extends object>(object: T & { [ OBSERVER ]?: Observable<T> }, changeCallback: ObserverChangedFunction) {
+export function observe<T extends object>(object: IObservable<T>, changeCallback: ObserverChangedFunction) {
+    if ( object[ OBSERVER ] ) {
 
-export function observe<T extends object>(object: T & { [ OBSERVER ]?: Observable<T> }, changeCallback: ObserverChangedFunction) {
-    return Observable.observe(object, changeCallback);
+    }
+    return object[ OBSERVER ].subscribe(changeCallback);
 }

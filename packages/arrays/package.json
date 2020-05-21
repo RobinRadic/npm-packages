@@ -1,6 +1,6 @@
 {
     "name": "@radic/arrays",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "arrays",
     "private": false,
     "author": {
@@ -26,11 +26,8 @@
         "prepublish": "npm-run-all clean:build build",
         "release": "np --yolo --no-yarn"
     },
-    "dependencies": {
-    },
-    "devDependencies": {
-    },
+    "dependencies": {},
+    "devDependencies": {},
     "optionalDependencies": {},
-    "peerDependencies": {
-    }
+    "peerDependencies": {}
 }

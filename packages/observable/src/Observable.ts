@@ -13,11 +13,6 @@ export class Observable<T extends object> {
                 return self;
             },
         });
-        // Object.defineProperty(this.proxy, OBSERVER, {
-        //     get(): any {
-        //         return self
-        //     },
-        // })
     }
 
     subscribe(change: ObserverChangedFunction): ObserverSubscription {
@@ -37,17 +32,16 @@ export class Observable<T extends object> {
         });
     }
 
-    applyProxy<O extends object>(object: O, parents: string[] = []): O {
+    applyProxy<O extends object>(object: O, parent = null): O {
         const self  = this;
         const proxy = new Proxy<O>(object, {
             get(target: any, p: string | number | symbol, receiver: any): any {
                 let value = Reflect.get(target, p, receiver);
-                let name  = p.toString().split('.');
                 if ( p === OBSERVER ) {
                     return target[ OBSERVER ];
                 }
                 if ( typeof value === 'object' ) {
-                    value = self.applyProxy(value, parents.concat(p.toString()));
+                    value = self.applyProxy(value, parent ? `${parent}.${p.toString()}` : p.toString());
                 }
                 return value;
             },
@@ -57,8 +51,7 @@ export class Observable<T extends object> {
                 let res      = Reflect.set(target, p, value, receiver);
                 if ( res ) {
                     let type: ObserverChangedType = has ? 'update' : 'add';
-                    let name                      = parents.concat(p.toString()).join('.');
-                    self.callSubscribers(self.createChanged(type, target, name, value, oldValue));
+                    self.callSubscribers(self.createChanged(type, target, (parent ? `${parent}.${p.toString()}` : p.toString()), value, oldValue));
                 }
                 return res;
             },
@@ -74,18 +67,5 @@ export class Observable<T extends object> {
             },
         });
         return proxy;
-    }
-
-    static create<T extends object>(object: T): T & { [ OBSERVER ]: Observable<T> } {
-        let observable = new Observable<T>(object);
-        return observable.proxy as any;
-    }
-
-    static observer<T extends object>(object: T): Observable<T> {
-        return object[ OBSERVER ];
-    }
-
-    static observe<T extends object>(object: T & { [ OBSERVER ]?: Observable<T> }, changeCallback: ObserverChangedFunction) {
-        return object[ OBSERVER ].subscribe(changeCallback);
     }
 }
