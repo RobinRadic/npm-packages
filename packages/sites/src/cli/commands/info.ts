@@ -30,7 +30,7 @@ export default class InfoCommand extends BaseCommand {
         await this.setup();
         const { args, flags } = this.parse(this.constructor);
 
-        let sites:SiteArray = new SiteArray;
+        let sites:SiteArray|any = new SiteArray;
         if(flags.all) {
             sites = this.sites;
         } else if(flags.enabled || flags.disabled){

@@ -13,6 +13,7 @@ import { Site }            from '../Site';
 import { restartServices } from './helpers';
 import { Services }        from '../Services';
 import { out }             from './Output';
+import { Application }     from '../core/Application';
 
 export interface BaseCommand {
     constructor: typeof BaseCommand
@@ -26,6 +27,7 @@ export abstract class BaseCommand extends Command {
 
     protected get sites(): SiteArray {return new SiteArray(...glob.sync(resolve('/etc/nginx/sites-available/*')).map(path => new Site(path))); }
 
+    public app:Application = Application.instance;
     public io: IO;
 
     protected dump(...args) {

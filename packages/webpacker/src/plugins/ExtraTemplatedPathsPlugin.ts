@@ -1,18 +1,15 @@
-///<reference path="../globals.d.ts"/>
-
-import { ChunkData, compilation } from 'webpack';
-import { SyncBailHook, SyncHook, SyncWaterfallHook, Tapable } from 'tapable';
-import _ from 'lodash';
+import { ChunkData, compilation, Compiler } from 'webpack';
+import _                                    from 'lodash';
 
 
 const NAME = 'ExtraTemplatedPathsPlugin';
 
 
-export = ExtraTemplatedPathsPlugin
+export namespace ExtraTemplatedPathsPlugin {
 
-namespace ExtraTemplatedPathsPlugin {
+
     export interface ReplacerContext {
-        compilation: Compilation
+        compilation: compilation.Compilation
         path: string
         module?: compilation.Module
         chunk: compilation.Chunk
@@ -45,7 +42,7 @@ namespace ExtraTemplatedPathsPlugin {
     }
 }
 
-class ExtraTemplatedPathsPlugin {
+export class ExtraTemplatedPathsPlugin {
     templates: Array<{ parser: TemplatedPathParser, key: string, replace: ExtraTemplatedPathsPlugin.ReplacerCallbackValue }> = [];
 
     constructor(options: ExtraTemplatedPathsPlugin.Options) {
@@ -55,7 +52,7 @@ class ExtraTemplatedPathsPlugin {
         });
     }
 
-    apply(compiler: Compiler) {
+    apply(compiler: Compiler | any) {
         compiler.hooks.compilation.tap(NAME, compilation => {
             const mainTemplate = compilation.mainTemplate;
 
@@ -69,24 +66,24 @@ class ExtraTemplatedPathsPlugin {
 
             mainTemplate.hooks.assetPath.tap({ name: NAME, stage: 2 } as any, (path, data: ChunkData, assetInfo) => {
                 // mainTemplate.hooks.assetPath.tap(NAME, (path, data: ChunkData, assetInfo) => {
-                const chunk                 = data.chunk;
-                const chunkId               = chunk && chunk.id;
-                const chunkName             = chunk && (chunk.name || chunk.id);
-                const chunkHash             = chunk && (chunk.renderedHash || chunk.hash);
-                const chunkHashWithLength   = chunk && chunk.hashWithLength;
-                const contentHashType       = data.contentHashType;
-                const contentHash           = (chunk && chunk.contentHash && chunk.contentHash[ contentHashType ]) || data.contentHash;
-                const contentHashWithLength =
+                const chunk                     = data.chunk;
+                const chunkId                   = chunk && chunk.id;
+                const chunkName                 = chunk && (chunk.name || chunk.id);
+                const chunkHash                 = chunk && (chunk.renderedHash || chunk.hash);
+                const chunkHashWithLength       = chunk && chunk.hashWithLength;
+                const contentHashType           = data.contentHashType;
+                const contentHash               = (chunk && chunk.contentHash && chunk.contentHash[ contentHashType ]) || data.contentHash;
+                const contentHashWithLength     =
                           (chunk &&
                               chunk.contentHashWithLength &&
                               chunk.contentHashWithLength[ contentHashType ]) ||
                           data.contentHashWithLength;
-                const module               :any = data.module;
-                const moduleId             :any = module && module.id;
-                const moduleHash           :any = module && (module.renderedHash || module.hash);
-                const moduleHashWithLength :any = module && module.hashWithLength;
+                const module: any               = data.module;
+                const moduleId: any             = module && module.id;
+                const moduleHash: any           = module && (module.renderedHash || module.hash);
+                const moduleHashWithLength: any = module && module.hashWithLength;
 
-                let context: ExtraTemplatedPathsPlugin.ReplacerContext = <ExtraTemplatedPathsPlugin.ReplacerContext|any>{
+                let context: ExtraTemplatedPathsPlugin.ReplacerContext = <ExtraTemplatedPathsPlugin.ReplacerContext | any>{
                     compilation,
                     path,
                     chunk,
@@ -103,7 +100,7 @@ class ExtraTemplatedPathsPlugin {
                         if ( result === false && p.hasFallback ) {
                             result = p.fallbackType === 'templated' ? `[${p.fallback}]` : p.fallback.replace(/^"|'/, '').replace(/"|'$/, '');
                         }
-                        if ( result !== false ) {
+                        if ( result !== false ) { // JSON.parse(chunk.contentHashWithLength.javascript().replace(/^"\s\+\s/, '').replace(/\[chunkId\].*$/,''))
                             path = path.replace(p.template, result);
                         }
                     });
@@ -116,7 +113,7 @@ class ExtraTemplatedPathsPlugin {
 }
 
 
-class Parsed {
+export class Parsed {
     public template?: string;
     public arg?: string;
     public fallback?: string;
@@ -131,7 +128,7 @@ class Parsed {
     constructor(public string: string) {}
 }
 
-class TemplatedPathParser {
+export class TemplatedPathParser {
     matchers = {
         arg     : /^:[\w\d_-]+/gi,
         fallback: /^\|.+/gi,
@@ -178,116 +175,4 @@ class TemplatedPathParser {
     matches(string: string) {return string.match(this.exp());}
 }
 
-
-declare class MultiModule extends Module {}
-
-declare class Chunk extends compilation.Chunk {
-    filenameTemplate: string;
-    hash: string;
-    hashWithLength: string;
-    groupsIterable: WeakSet<compilation.ChunkGroup> | any;
-
-    entryModule: MultiModule;
-}
-
-declare interface ChunkTemplateHooks {
-    hash: SyncHook
-    hashForChunk: SyncHook
-    modules: SyncWaterfallHook
-    render: SyncWaterfallHook
-    renderManifest: SyncWaterfallHook
-    renderWithEntry: SyncWaterfallHook
-}
-
-declare class ChunkTemplate extends compilation.ChunkTemplate {
-    hooks: ChunkTemplateHooks;
-}
-
-declare interface MainTemplateHooks {
-    renderManifest: SyncWaterfallHook
-    modules: SyncWaterfallHook
-    moduleObj: SyncWaterfallHook
-    requireEnsure: SyncWaterfallHook
-    bootstrap: SyncWaterfallHook
-    localVars: SyncWaterfallHook
-    require: SyncWaterfallHook
-    requireExtensions: SyncWaterfallHook
-    beforeStartup: SyncWaterfallHook
-    startup: SyncWaterfallHook
-    render: SyncWaterfallHook
-    renderWithEntry: SyncWaterfallHook
-    moduleRequire: SyncWaterfallHook
-    addModule: SyncWaterfallHook
-    currentHash: SyncWaterfallHook
-    assetPath: SyncWaterfallHook
-    hash: SyncWaterfallHook
-    hashForChunk: SyncHook
-    globalHashPaths: SyncWaterfallHook
-    globalHash: SyncBailHook
-    hotBootstrap: SyncWaterfallHook
-    jsonpScript: SyncWaterfallHook
-}
-
-declare class ChunkGroup extends compilation.ChunkGroup {
-    name: string;
-
-    getParents(): ChunkGroup[]
-}
-
-declare class MainTemplate extends compilation.MainTemplate {
-    hooks: MainTemplateHooks;
-    outputOptions: {
-        publicPath: string
-        filename: string
-        chunkFilename: string
-    };
-}
-
-interface CompilationHooks extends compilation.CompilationHooks {
-    compilation: SyncHook<Compilation>
-}
-
-
-declare class Compiler extends Tapable {
-    hooks?: CompilationHooks;
-}
-
-declare class Compilation extends compilation.Compilation {
-    chunkTemplate: ChunkTemplate;
-    mainTemplate: MainTemplate;
-}
-
-
-type OptionsItemCallback<T> = (chunk: Chunk) => T
-type OptionsItemTest = string | RegExp | OptionsItemCallback<boolean>
-type OptionsItemFilenameTemplate = string | OptionsItemCallback<string>
-
-interface OptionsItem {
-    test: OptionsItemTest
-    filenameTemplate?: OptionsItemFilenameTemplate
-    custom?: OptionsItemCallback<void>
-}
-
-interface Options {
-    items?: OptionsItem[]
-}
-
-declare class Module extends compilation.Module {
-    id: string;
-    renderedHash: string;
-    hash: string;
-    hashWithLength: string;
-    name: string;
-}
-
-
-declare interface IData {
-    chunk?: Chunk
-    module?: Module
-    hash: string
-    hashWithLength: string
-    filename: string
-    basename: string
-    noChunkHash?: boolean
-    query?: string
-}
+export default ExtraTemplatedPathsPlugin;

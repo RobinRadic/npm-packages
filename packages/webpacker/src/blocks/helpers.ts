@@ -1,5 +1,5 @@
-import { Webpacker }           from '../Webpacker';
-import morgan                  from 'morgan';
+import { Webpacker } from '../core/Webpacker';
+import morgan        from 'morgan';
 import { TerserPluginOptions } from 'terser-webpack-plugin';
 import { merge }               from 'lodash';
 import { Rule }                from 'webpack-chain';

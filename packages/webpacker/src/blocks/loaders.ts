@@ -1,5 +1,5 @@
-import { Webpacker } from '../Webpacker';
-import { Rule } from 'webpack-chain';
+import { Webpacker } from '../core/Webpacker';
+import { Rule }      from 'webpack-chain';
 import { SaveContentLoaderOptions } from '../loaders/save-content-loader';
 import { CustomLoaders } from '../loaders';
 

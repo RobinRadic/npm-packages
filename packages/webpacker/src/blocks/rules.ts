@@ -1,4 +1,4 @@
-import { Webpacker } from '../Webpacker';
+import { Webpacker }              from '../core/Webpacker';
 import { Options as SassOptions } from 'node-sass';
 import { BabelLoaderOptions, CacheLoaderOptions, CssLoaderOptions, ExposeLoaderOptions, FileLoaderOptions, PugLoaderOptions, StyleLoaderOptions, StylusLoaderOptions, ThreadLoaderOptions } from '../interfaces';
 import { Options as TypescriptLoaderOptions } from 'ts-loader';
@@ -9,7 +9,7 @@ import tsImportPlugin from 'ts-import-plugin';
 import { basename, join } from 'path';
 import { camel2Dash } from '../utils/camel2dash';
 
-export const images               = Webpacker.rule<FileLoaderOptions>('images', (w, r, o) => {
+export const images               = Webpacker.defineRule<FileLoaderOptions>('images', (w, r, o) => {
     return r.depends('file-loader')
         .test(/\.(png|jpg|gif|svg)$/)
         .use('file-loader').loader('file-loader')
@@ -18,7 +18,7 @@ export const images               = Webpacker.rule<FileLoaderOptions>('images', 
             ...o,
         })
 });
-export const fonts                = Webpacker.rule<FileLoaderOptions>('fonts', (w, r, o) => {
+export const fonts                = Webpacker.defineRule<FileLoaderOptions>('fonts', (w, r, o) => {
     return r.depends('file-loader')
         .test(/\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/)
         .use('file-loader').loader('file-loader')
@@ -28,13 +28,13 @@ export const fonts                = Webpacker.rule<FileLoaderOptions>('fonts', (
             ...o,
         })
 });
-export const css                  = Webpacker.rule<{ style?: StyleLoaderOptions, css?: CssLoaderOptions }>('css', (w, r, o) => {
+export const css                  = Webpacker.defineRule<{ style?: StyleLoaderOptions, css?: CssLoaderOptions }>('css', (w, r, o) => {
     return r.depends('style-loader', 'css-loader')
         .test(/\.css/)
         .use('style-loader').loader('style-loader').options({ ...w.settings.styleLoader, ...(o.style || {}) }).end()
         .use('css-loader').loader('css-loader').options({ ...w.settings.cssLoader, ...(o.css || {}) }).end()
 });
-export const scss                 = Webpacker.rule<{ style?: StyleLoaderOptions, css?: CssLoaderOptions, scss?: SassOptions }>('scss', (w, r, o) => {
+export const scss                 = Webpacker.defineRule<{ style?: StyleLoaderOptions, css?: CssLoaderOptions, scss?: SassOptions }>('scss', (w, r, o) => {
     return r.depends('style-loader', 'css-loader', 'node-sass', 'sass-loader', '@types/node-sass')
         .test(/\.scss/)
         .use('style-loader').loader('style-loader').options({ ...w.settings.styleLoader, ...(o.style || {}) }).end()
@@ -46,7 +46,7 @@ export const scss                 = Webpacker.rule<{ style?: StyleLoaderOptions,
             ...(o.scss || {}),
         }).end()
 });
-export const stylus               = Webpacker.rule<{ style?: StyleLoaderOptions, css?: CssLoaderOptions, stylus?: StylusLoaderOptions }>('stylus', (w, r, o) => {
+export const stylus               = Webpacker.defineRule<{ style?: StyleLoaderOptions, css?: CssLoaderOptions, stylus?: StylusLoaderOptions }>('stylus', (w, r, o) => {
     return r.depends('style-loader', 'css-loader', 'stylus', 'stylus-loader', '@types/stylus')
         .test(/\.styl(us)?$/)
         .use('style-loader').loader('style-loader').options({ ...w.settings.styleLoader, ...(o.style || {}) }).end()
@@ -57,7 +57,7 @@ export const stylus               = Webpacker.rule<{ style?: StyleLoaderOptions,
             ...(o.stylus || {}),
         }).end()
 });
-export const sourceMaps           = Webpacker.rule('source-map', (w, r, o) => {
+export const sourceMaps           = Webpacker.defineRule('source-map', (w, r, o) => {
     return r.depends('source-map-loader')
         .test(/\.js$/)
         // .include.merge([ /vue/ ]).end()
@@ -69,7 +69,7 @@ export const addSourceMapIncludes = Webpacker.wrap((wp: Webpacker, includes: any
     wp.module.rule('source-map').include.merge(includes).end();
 });
 
-export const vue    = Webpacker.rule<VueLoaderOptions>('vue', (w, r, o) => {
+export const vue    = Webpacker.defineRule<VueLoaderOptions>('vue', (w, r, o) => {
     return r.depends('vue-loader', 'vue-template-compiler')
         .test(/\.vue$/)
         .use('vue-loader')
@@ -82,7 +82,7 @@ export const vue    = Webpacker.rule<VueLoaderOptions>('vue', (w, r, o) => {
             ...o,
         })
 });
-export const pug    = Webpacker.rule<PugLoaderOptions>('pug', (w, r, o) => {
+export const pug    = Webpacker.defineRule<PugLoaderOptions>('pug', (w, r, o) => {
     return r.depends('pug', '@types/pug')
         .test(/\.pug$/)
         .oneOf('pugp')
@@ -99,7 +99,7 @@ export const pug    = Webpacker.rule<PugLoaderOptions>('pug', (w, r, o) => {
             ...o,
         }) as any
 });
-export const expose = Webpacker.rule<ExposeLoaderOptions>('expose', (w, r, o) => {
+export const expose = Webpacker.defineRule<ExposeLoaderOptions>('expose', (w, r, o) => {
     if ( typeof o === 'string' ) {
         o = { name: o }
     }
@@ -110,7 +110,7 @@ export const expose = Webpacker.rule<ExposeLoaderOptions>('expose', (w, r, o) =>
         .loader('expose-loader')
         .options((o.as ? o.as : o.name) as any)
 });
-export const thread = Webpacker.rule<ThreadLoaderOptions>('thread', (w, r, o) => {
+export const thread = Webpacker.defineRule<ThreadLoaderOptions>('thread', (w, r, o) => {
     return r
         .depends('thread-loader')
         .use('thread-loader')
@@ -119,7 +119,7 @@ export const thread = Webpacker.rule<ThreadLoaderOptions>('thread', (w, r, o) =>
             ...o,
         })
 });
-export const cache = Webpacker.rule<CacheLoaderOptions>('cache', (w, r, o) => {
+export const cache = Webpacker.defineRule<CacheLoaderOptions>('cache', (w, r, o) => {
     return r
         .depends('cache-loader')
         .use('cache-loader')
@@ -129,7 +129,7 @@ export const cache = Webpacker.rule<CacheLoaderOptions>('cache', (w, r, o) => {
         })
 });
 
-export const babel              = Webpacker.rule<BabelLoaderOptions>('babel', (w, r, o) => {
+export const babel              = Webpacker.defineRule<BabelLoaderOptions>('babel', (w, r, o) => {
     return r.depends(...[
         '@types/babel-core',
         '@babel/core',
@@ -159,7 +159,7 @@ export const babelImportPresets = {
     lodash: { libraryName: 'lodash', libraryDirectory: null, camel2DashComponentName: false },
 }
 
-export const typescript              = Webpacker.rule<Partial<TypescriptLoaderOptions>>('typescript', (w, r, o) => {
+export const typescript              = Webpacker.defineRule<Partial<TypescriptLoaderOptions>>('typescript', (w, r, o) => {
     return r.depends('typescript', 'ts-node', '@types/node', 'ts-import-plugin')
         .use('ts-loader').loader('ts-loader')
         .loader('ts-loader')
@@ -177,14 +177,35 @@ export const typescript              = Webpacker.rule<Partial<TypescriptLoaderOp
             },
         } as any, o || {}))
 });
-export const typescriptImport        = Webpacker.wrap((wp: Webpacker, _options?: Partial<TsImportOptions> | Array<Partial<TsImportOptions>>, ruleName = 'typescript') => {
+
+// export const typescriptImport        = Webpacker.wrap((wp: Webpacker, _options?: Partial<TsImportOptions> | Array<Partial<TsImportOptions>>, ruleName = 'typescript') => {
+//     // options = [ { libraryName: 'lodash', libraryDirectory: null, camel2DashComponentName: false } ];
+//     return wp.module.rule(ruleName)
+//         .use('ts-loader')
+//         .tap((options: TypescriptLoaderOptions) => {
+//             options.getCustomTransformers = () => ({
+//                 before: [ tsImportPlugin(_options) ],
+//             });
+//             return options;
+//         });
+// });
+export const typescriptImport        = Webpacker.wrap((wp: Webpacker, importOptions?: Partial<TsImportOptions> | Array<Partial<TsImportOptions>>, ruleName = 'typescript') => {
     // options = [ { libraryName: 'lodash', libraryDirectory: null, camel2DashComponentName: false } ];
     return wp.module.rule(ruleName)
         .use('ts-loader')
         .tap((options: TypescriptLoaderOptions) => {
-            options.getCustomTransformers = () => ({
-                before: [ tsImportPlugin(_options) ],
-            });
+            let otherTransformers: any = (): any => ({});
+            if ( typeof options.getCustomTransformers === 'function' ) {
+                otherTransformers = options.getCustomTransformers;
+            }
+            options.getCustomTransformers = (...params) => {
+                let { before, after, afterDeclarations } = otherTransformers(...params);
+                return {
+                    before           : [ ...(before || []), tsImportPlugin(importOptions) ],
+                    after            : [ ...(after || []) ],
+                    afterDeclarations: [ ...(afterDeclarations || []) ],
+                };
+            };
             return options;
         });
 });

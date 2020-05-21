@@ -1,0 +1,87 @@
+{
+    "name": "@radic/slacker",
+    "version": "1.0.0",
+    "description": "Slack Helper",
+    "private": false,
+    "author": {
+        "name": "Robin Radic"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "license": "MIT",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "typings": "lib/index.d.ts",
+    "bin": {
+        "slacker": "bin/slacker"
+    },
+    "scripts": {
+        "start": "npm-run-all clean:build build",
+        "build": "tsc --project tsconfig.build.json",
+        "watch": "tsc --project tsconfig.build.json --watch",
+        "clean:build": "rm -rf lib",
+        "clean:yarn": "rm yarn.lock node_modules/",
+        "prepare": "npm-run-all clean:build build",
+        "postpublish": "git pull",
+        "postpack": "rm -f oclif.manifest.json",
+        "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+        "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+        "version": "oclif-dev readme && git add README.md",
+        "login": "yarn login",
+        "release": "npm-run-all clean:build build login && np --yolo --no-yarn",
+        "ngrok": "ngrok http 4391"
+    },
+    "dependencies": {
+        "@oclif/command": "^1",
+        "@oclif/config": "^1",
+        "@oclif/plugin-commands": "^1.2.3",
+        "@oclif/plugin-help": "^2",
+        "@oclif/plugin-not-found": "^1.2.3",
+        "@oclif/plugin-update": "^1.3.9",
+        "@oclif/plugin-warn-if-update-available": "^1.7.0",
+        "@slack/bolt": "^1.5.0",
+        "@slack/events-api": "^2.3.1",
+        "@slack/interactive-messages": "^1.4.1",
+        "@slack/types": "^1.3.0",
+        "@slack/web-api": "^5.7.0",
+        "@atlassian/jira": "^0.1.0",
+        "axios": "^0.19.0",
+        "debug": "^4.1.1",
+        "@radic/apis": "^1.0.0",
+        "cross-spawn": "^6.0.5",
+        "dotenv": "^8.0.0",
+        "lodash": "^4.17.15",
+        "tapable": "^1.1.3",
+        "npm-run-all": "^4.1.5",
+        "ts-node": "^8.3.0",
+        "typescript": "^3.7.5",
+        "@types/debug": "^4.1.1",
+        "@types/sprintf-js": "^1.1.2",
+        "@types/tapable": "^1.0.5",
+        "@types/cross-spawn": "^6.0.0",
+        "@types/dotenv": "^6.1.1",
+        "@types/inquirer": "^6.5.0",
+        "@types/lodash": "^4.14.136",
+        "@types/node": "^12.6.9",
+        "@types/npm": "^2.0.30",
+        "@types/semver": "^6.0.2",
+        "@types/yargs": "^13.0.2"
+    },
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "files": [
+        "/bin",
+        "/lib",
+        "/npm-shrinkwrap.json",
+        "/oclif.manifest.json"
+    ],
+    "oclif": {
+        "commands": "./lib/cli/commands",
+        "bin": "sites",
+        "plugins": [
+            "@oclif/plugin-help"
+        ]
+    }
+}

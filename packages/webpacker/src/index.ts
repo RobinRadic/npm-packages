@@ -1,24 +1,30 @@
-///<reference path="globals.d.ts"/>
-///<reference path="modules.d.ts"/>
+///<reference path="../typings/webpack.d.ts"/>
+///<reference path="../typings/webpack-chain.d.ts"/>
+///<reference path="../typings/modules.d.ts"/>
+///<reference path="../typings/globals.d.ts"/>
 
-import { CustomLoaders } from './loaders';
-import SizePlugin from './plugins/SizePlugin';
-import ScssVariableToTypescript from './plugins/scss-variables-to-typescript';
-import JsonPlugin from './plugins/JsonPlugin';
-import ExtraTemplatedPathsPlugin from './plugins/ExtraTemplatedPathsPlugin';
-import { blocks } from './blocks';
+import 'reflect-metadata'
 import * as interfaces from './interfaces';
+import { Webpacker }   from './core/Webpacker';
 
-export * from './Webpacker';
-export * from './Log';
-export * from './yarn';
+export * from './core/Webpacker';
+export * from './core/Log';
+export * from './core/Dependencies';
+export * from './core/Config';
 
-const { presets, rules, helpers, plugins, loaders } = blocks;
-export { blocks, presets, rules, helpers, plugins, loaders };
+export * from './blocks';
+export * from './loaders';
+export * from './plugins';
 
-export { CustomLoaders, SizePlugin, ScssVariableToTypescript, JsonPlugin, ExtraTemplatedPathsPlugin, interfaces };
+// const { presets, rules, helpers, plugins, loaders } = blocks;
+// export { blocks, presets, rules, helpers, plugins, loaders };
 
-export * from './utils/createConfig';
+export { interfaces };
+
 export * from './utils/camel2dash';
 export * from './utils/findUpAll';
 
+
+export default Webpacker
+
+// sdf

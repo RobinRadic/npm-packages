@@ -13,7 +13,12 @@
             "**/supermenu/font-awesome/**"
         ]
     },
+    "resolutions2": {
+        "before-after-hook": "1.4."
+    },
     "scripts": {
+        "apis": "cd packages/apis && yarn",
+        "arrays": "cd packages/arrays && yarn",
         "bitbucket": "cd packages/bitbucket && yarn",
         "bithub": "cd packages/bithub && yarn",
         "collections": "cd packages/collections && yarn",
@@ -71,20 +76,22 @@
         "nyc": "^14.1.1",
         "release-it": "^12.3.5",
         "rimraf": "^3.0.0",
+        "rollup": "^1.28.0",
+        "rollup-cli": "^1.0.9",
         "sinon": "^7.4.2",
         "sinon-chai": "^3.3.0",
         "superagent": "^5.1.0",
         "swagger-ts-generator": "^1.1.59",
         "tap-nyc": "^1.0.3",
         "ts-node": "^8.3.0",
-        "typescript": "^3.7.2",
+        "typescript": "^3.9.3",
         "typescript-lit-html-plugin": "^0.9.0",
         "webpack": "^4.40.2",
         "webpack-cli": "^3.3.5",
-        "rollup": "^1.28.0",
-        "rollup-cli": "^1.0.9",
-
         "webpack-dev-server": "^3.8.0",
         "webpackbar": "^4.0.0"
+    },
+    "devDependencies": {
+        "ts-mocha": "^7.0.0"
     }
 }

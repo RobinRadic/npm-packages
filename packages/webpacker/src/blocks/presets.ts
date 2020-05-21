@@ -1,5 +1,5 @@
-import { Webpacker } from '../Webpacker';
-import * as plugins from './plugins';
+import { Webpacker } from '../core/Webpacker';
+import * as plugins  from './plugins';
 import * as rules from './rules';
 import { BabelLoaderOptions } from '../interfaces';
 

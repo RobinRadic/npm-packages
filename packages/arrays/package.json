@@ -1,0 +1,36 @@
+{
+    "name": "@radic/arrays",
+    "version": "1.0.0",
+    "description": "arrays",
+    "private": false,
+    "author": {
+        "name": "Robin Radic"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "license": "MIT",
+    "main": "lib/index.js",
+    "esnext": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "typings": "lib/index.d.ts",
+    "scripts": {
+        "start": "npm-run-all clean:build build",
+        "test": "nyc mocha --opts test/mocha.opts && rm -rf .nyc_output node_modules/",
+        "build": "tsc --project tsconfig.build.json",
+        "watch": "tsc --project tsconfig.build.json --watch",
+        "clean:build": "rm -rf lib",
+        "clean:yarn": "rm -rf yarn.lock node_modules/",
+        "clean:test": "rm -rf .nyc_output coverage",
+        "clean": "yarn clean:build && yarn clean:yarn && yarn clean:test",
+        "prepublish": "npm-run-all clean:build build",
+        "release": "np --yolo --no-yarn"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+    },
+    "optionalDependencies": {},
+    "peerDependencies": {
+    }
+}

@@ -1,7 +1,7 @@
 {
     "name": "@radic/reset-evals",
     "license": "MIT",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "main": "src/index.js",
     "module": "src/index.ts",
     "jsnext:main": "lib/index.ts",

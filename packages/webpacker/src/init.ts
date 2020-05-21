@@ -1,6 +1,6 @@
 // called by webpacker constructor
-import { Webpacker } from './Webpacker';
-import { resolve } from 'path';
+import { Webpacker } from './core/Webpacker';
+import { resolve }   from 'path';
 
 export const init = (wp: Webpacker) => {
 
@@ -13,6 +13,7 @@ export const init = (wp: Webpacker) => {
     if ( wp.settings.workspacesEnabled && wp.settings.path !== wp.settings.workspacesDirectory ) {
         modules.push(resolve(wp.settings.workspacesDirectory, 'node_modules'));
     }
+
 
     wp.resolve
         .symlinks(true)

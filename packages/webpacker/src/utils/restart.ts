@@ -1,7 +1,7 @@
 import { spawn } from 'child_process';
 // import { writeFileSync, existsSync, unlinkSync } from 'fs';
 import { resolve } from 'path';
-import { Log } from '../Log';
+import { Log }     from '../core/Log';
 
 let filepath = {
     process: resolve(process.cwd(), 'process.id'),

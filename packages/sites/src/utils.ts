@@ -32,3 +32,6 @@ export function openNginxConfig(path): Promise<NginxConfFileInstance> {
         });
     });
 }
+
+
+export const toJS = (val) => JSON.parse(JSON.stringify(val));

@@ -3,7 +3,13 @@ import { shell } from './utils';
 export class Services {
     static log = false;
 
+    static async start(name: string) {return shell(`sudo service ${name} start`, this.log); }
+
+    static async stop(name: string) {return shell(`sudo service ${name} stop`, this.log); }
+
     static async restart(name: string) {return shell(`sudo service ${name} restart`, this.log); }
+
+    static async status(name: string) {return shell(`sudo service ${name} status`, this.log); }
 
     static async restartAll() {
         this.restartPhp72();
