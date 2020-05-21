@@ -23,7 +23,7 @@
         "clean:yarn": "rm -rf yarn.lock node_modules/",
         "clean:test": "rm -rf .nyc_output coverage",
         "clean": "yarn clean:build && yarn clean:yarn && yarn clean:test",
-        "prepublish": "npm-run-all clean:build build",
+        "prepublish": "npm-run-all test clean:test clean:build build",
         "release": "np --yolo --no-yarn"
     },
     "dependencies": {},

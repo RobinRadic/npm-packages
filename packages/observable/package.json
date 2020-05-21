@@ -20,7 +20,9 @@
         "watch": "tsc --project tsconfig.build.json --watch",
         "clean:build": "rm -rf lib",
         "clean:yarn": "rm yarn.lock node_modules/",
-        "prepare": "npm-run-all clean:build build"
+        "prepare": "npm-run-all clean:build build",
+        "prepublish": "npm-run-all clean:build build",
+        "release": "np --yolo --no-yarn"
     },
     "peerDependencies": {
         "reflect-metadata": "^0.1.13"
