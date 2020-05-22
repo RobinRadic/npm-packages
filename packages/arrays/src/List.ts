@@ -164,5 +164,40 @@ export class List<T> extends Array<T> implements Array<T> {
         return direction === 'asc' ? sorted : sorted.reverse() as any;
     }
 
+    split(numOfGroups: number, balanced: boolean = false): T[][] {
+
+        if ( numOfGroups < 2 )
+            return [ this ];
+
+        var len = this.length,
+            out = [],
+            i   = 0,
+            size;
+
+        if ( len % numOfGroups === 0 ) {
+            size = Math.floor(len / numOfGroups);
+            while ( i < len ) {
+                out.push(this.slice(i, i += size));
+            }
+        } else if ( balanced ) {
+            while ( i < len ) {
+                size = Math.ceil((len - i) / numOfGroups --);
+                out.push(this.slice(i, i += size));
+            }
+        } else {
+
+            numOfGroups --;
+            size = Math.floor(len / numOfGroups);
+            if ( len % size === 0 )
+                size --;
+            while ( i < size * numOfGroups ) {
+                out.push(this.slice(i, i += size));
+            }
+            out.push(this.slice(size * numOfGroups));
+
+        }
+
+        return out;
+    }
 }
 
