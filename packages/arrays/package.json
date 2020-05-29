@@ -1,6 +1,6 @@
 {
     "name": "@radic/arrays",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "arrays",
     "private": false,
     "author": {
@@ -11,15 +11,16 @@
     },
     "license": "MIT",
     "main": "lib/index.js",
-    "esnext": "lib/index.js",
+    "esnext": "es/index.js",
+    "module": "es/index.js",
     "types": "lib/index.d.ts",
     "typings": "lib/index.d.ts",
     "scripts": {
         "start": "npm-run-all clean:build build",
         "test": "nyc mocha --opts test/mocha.opts && rm -rf .nyc_output node_modules/",
-        "build": "tsc --project tsconfig.build.json",
+        "build": "tsc --project tsconfig.build.json && tsc --project tsconfig.build.es.json",
         "watch": "tsc --project tsconfig.build.json --watch",
-        "clean:build": "rm -rf lib",
+        "clean:build": "rm -rf lib es",
         "clean:yarn": "rm -rf yarn.lock node_modules/",
         "clean:test": "rm -rf .nyc_output coverage",
         "clean": "yarn clean:build && yarn clean:yarn && yarn clean:test",

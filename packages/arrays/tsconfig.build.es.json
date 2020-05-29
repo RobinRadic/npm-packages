@@ -1,12 +1,12 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "target": "es5",
-        "module": "CommonJS",
+        "target": "es6",
+        "module": "ES2015",
         "lib": ["es5", "es6", "es7", "es2018"],
         "moduleResolution": "node",
-        "outDir": "lib",
-        "declarationDir": "lib",
+        "outDir": "es",
+        "declarationDir": "es",
         "declaration": true,
         "suppressImplicitAnyIndexErrors": true,
         "strict": false,
