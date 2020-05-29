@@ -1,7 +1,7 @@
-export *          from './interfaces';
-export *          from './List';
-export *          from './Map';
-export *          from './BaseArray';
-export *          from './Node';
-export *          from './NodeList';
-export * as utils from './utils';
+export *                        from './interfaces';
+export { default as List }      from './List';
+export { default as Map }       from './Map';
+export { default as BaseArray } from './BaseArray';
+export { default as Node }      from './Node';
+export { default as NodeList }  from './NodeList';
+export * as utils               from './utils';
