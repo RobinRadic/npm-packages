@@ -1,6 +1,6 @@
 {
     "name": "@radic/utils",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "description": "Utils",
     "private": false,
     "author": {
@@ -13,8 +13,14 @@
     "main": "lib/index.js",
     "module": "es/radic.utils.es.js",
     "esnext": "src/index.ts",
-    "maintainers": [{"name": "Robin Radic","url": "https://github.com/RobinRadic/npm-packages","email": "rradic@hotmail.com"}],
-    "homepage":  "https://github.com/RobinRadic/npm-packages",
+    "maintainers": [
+        {
+            "name": "Robin Radic",
+            "url": "https://github.com/RobinRadic/npm-packages",
+            "email": "rradic@hotmail.com"
+        }
+    ],
+    "homepage": "https://github.com/RobinRadic/npm-packages",
     "readme": "README.md",
     "types": "types/index.d.ts",
     "typings": "types/index.d.ts",
@@ -28,8 +34,7 @@
         "postpublish": "git pull",
         "release": "yarn login && np --yolo --no-yarn"
     },
-    "dependencies": {
-    },
+    "dependencies": {},
     "devDependencies": {
         "@radic/roller": "^1.0.0",
         "@babel/core": "^7.7.7",
@@ -68,7 +73,6 @@
         "npm-gui": "^2.1.0",
         "release-it": "^12.3.5"
     },
-    "peerDependencies": {
-    },
+    "peerDependencies": {},
     "optionalDependencies": {}
 }
