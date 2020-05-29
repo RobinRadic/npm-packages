@@ -1,8 +1,8 @@
-import { NodeList } from './NodeList';
+import NodeList from './NodeList';
 import { INode }    from './interfaces';
 
 
-export class Node<C extends NodeList = NodeList> implements INode {
+export default class Node<C extends NodeList = NodeList> implements INode {
     protected children: INode[]                              = [];
     protected parent?: INode;
     protected listClass:any = NodeList as any

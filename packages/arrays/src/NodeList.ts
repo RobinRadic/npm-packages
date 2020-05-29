@@ -1,7 +1,7 @@
-import { List }  from './List';
+import List   from './List';
 import { INode } from './interfaces';
 
-export class NodeList<T extends INode = INode> extends List<T> {
+export default  class NodeList<T extends INode = INode> extends List<T> {
 
     depth(depth: number) {return this.filter(item => item.getDepth() === depth);}
 

@@ -1,16 +1,14 @@
-import { BaseArray }          from './BaseArray';
+import BaseArray              from './BaseArray';
 import { nestedValue }        from './utils/nestedValue';
 import { ComparisonOperator } from './interfaces';
 import { canAccessAsArray }   from './utils/canAccessAsArray';
 import { isArrayLike }        from './utils/isArrayLike';
 
-export const list = <T>(items: T[]) => new List<T>(...items);
-
 const isArrayInside = <T = any>(val: any): val is [ T[] ] => {
     return Array.isArray(val) && val.length === 1 && Array.isArray(val[ 0 ]);
 };
 
-export class List<T> extends Array<T> implements Array<T> {
+export default class List<T> extends Array<T> implements Array<T> {
     filter: (callbackfn: (value: T, index: number, array: T[]) => any, thisArg?: any) => this;
     map: <U>(callbackfn: (value: T, index: number, array: T[]) => U, thisArg?: any) => BaseArray<U>;
 
@@ -19,6 +17,8 @@ export class List<T> extends Array<T> implements Array<T> {
         super(...items);
         Object.setPrototypeOf(this, new.target.prototype);
     }
+
+    static make<T>(items: T[]) { return new this<T>(...items); };
 
     static wrap<T>(value: T[]) {
         if ( value instanceof this ) {
@@ -69,15 +69,15 @@ export class List<T> extends Array<T> implements Array<T> {
 
     whereNotIn(key: keyof T, values: any[]): this {return this.filter(item => values.includes(item[ key ]) === false); }
 
-    firstWhere<U = T>(key: keyof T|string, value: any): U
-    firstWhere<U = T>(key: keyof T|string, operator: ComparisonOperator, value: any): U
-    firstWhere<U = T>(key: keyof T|string, operator: any, value?: any): U {
+    firstWhere<U = T>(key: keyof T | string, value: any): U
+    firstWhere<U = T>(key: keyof T | string, operator: ComparisonOperator, value: any): U
+    firstWhere<U = T>(key: keyof T | string, operator: any, value?: any): U {
         return this.where(key, operator, value).first<U>();
     }
 
-    where(key: keyof T|string, value: any): this
-    where(key: keyof T|string, operator: ComparisonOperator, value: any): this
-    where(key: keyof T|string, operator: any, value?: any): this {
+    where(key: keyof T | string, value: any): this
+    where(key: keyof T | string, operator: ComparisonOperator, value: any): this
+    where(key: keyof T | string, operator: any, value?: any): this {
         let comparisonOperator: ComparisonOperator = operator;
         let comparisonValue: any                   = value;
 
