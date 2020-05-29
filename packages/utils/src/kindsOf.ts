@@ -12,8 +12,10 @@ export interface KindsOf {
 }
 
 
-export let kindsOf: KindsOf = {} as KindsOf;
+let kindsOf: KindsOf = {} as KindsOf;
 'Number String Boolean Function RegExp Array Date Error'.split(' ').forEach(function (k) {
     kindsOf[ '[object ' + k + ']' ] = k.toLowerCase()
 
 });
+
+export default kindsOf

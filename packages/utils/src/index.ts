@@ -1,10 +1,25 @@
-export * from './interfaces';
-export * from './kindOf';
-export * from './kindsOf';
-export * from './thenBy';
-
-
-export async function tester(){
-    let tb =  await import('./thenBy')
-    return tb.firstBy('a')
-}
+export *                               from './interfaces';
+export { default as copyObject }       from './copyObject';
+export { default as deepClone }        from './deepClone';
+export { default as dotize }           from './dotize';
+export { default as ensureLeft }       from './ensureLeft';
+export { default as ensureRight }      from './ensureRight';
+export { default as escapeRegExp }     from './escapeRegExp';
+export { default as exists }           from './exists';
+export { default as generateRandomId } from './generateRandomId';
+export { default as get }              from './get';
+export { default as getParts }         from './getParts';
+export { default as guid }             from './guid';
+export { default as guidSeg }          from './guidSeg';
+export { default as JSON }             from './JSON';
+export { default as kindOf }           from './kindOf';
+export { default as kindsOf }          from './kindsOf';
+export { default as lcfirst }          from './lcfirst';
+export { default as mixin }            from './mixin';
+export { default as recurse }          from './recurse';
+export { default as round }            from './round';
+export { default as set }              from './set';
+export { default as stripLeft }        from './stripLeft';
+export { default as stripRight }       from './stripRight';
+export { default as firstBy }          from './firstBy';
+export { default as ucfirst }          from './ucfirst';

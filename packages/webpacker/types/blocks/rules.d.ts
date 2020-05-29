@@ -1,6 +1,5 @@
 import { Webpacker } from '../core/Webpacker';
-import { Options as SassOptions } from 'node-sass';
-import { BabelLoaderOptions, CacheLoaderOptions, CssLoaderOptions, ExposeLoaderOptions, FileLoaderOptions, PugLoaderOptions, StyleLoaderOptions, StylusLoaderOptions, ThreadLoaderOptions } from '../interfaces';
+import { BabelLoaderOptions, CacheLoaderOptions, CssLoaderOptions, ExposeLoaderOptions, FileLoaderOptions, PugLoaderOptions, SassLoaderOptions, StyleLoaderOptions, StylusLoaderOptions, ThreadLoaderOptions } from '../interfaces';
 import { Options as TypescriptLoaderOptions } from 'ts-loader';
 import { VueLoaderOptions } from 'vue-loader';
 import { Options as TsImportOptions } from 'ts-import-plugin/lib/index';
@@ -13,7 +12,7 @@ export declare const css: import("../interfaces").RuleDefinitionBlockFunction<{
 export declare const scss: import("../interfaces").RuleDefinitionBlockFunction<{
     style?: StyleLoaderOptions;
     css?: CssLoaderOptions;
-    scss?: SassOptions;
+    scss?: SassLoaderOptions;
 }>;
 export declare const stylus: import("../interfaces").RuleDefinitionBlockFunction<{
     style?: StyleLoaderOptions;

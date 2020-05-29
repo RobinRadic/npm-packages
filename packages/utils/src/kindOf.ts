@@ -1,5 +1,5 @@
 import { ValueOf }          from './interfaces';
-import { kindsOf, KindsOf } from './kindsOf';
+import kindsOf,{ KindsOf } from './kindsOf';
 
 export type KindOf = ValueOf<KindsOf>
 
@@ -13,7 +13,7 @@ let entityMap  = {
     '/' : '&#x2F;',
 };
 
-export function kindOf(value: any): KindOf {
+function kindOf(value: any): KindOf {
     // Null or undefined.
     if ( value == null ) {
         return String(value) as any;
@@ -21,3 +21,4 @@ export function kindOf(value: any): KindOf {
     // Everything else.
     return kindsOf[ kindsOf.toString.call(value) ] || 'object';
 }
+export default kindOf

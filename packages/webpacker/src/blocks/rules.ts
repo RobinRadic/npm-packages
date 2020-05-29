@@ -1,13 +1,12 @@
-import { Webpacker }              from '../core/Webpacker';
-import { Options as SassOptions } from 'node-sass';
-import { BabelLoaderOptions, CacheLoaderOptions, CssLoaderOptions, ExposeLoaderOptions, FileLoaderOptions, PugLoaderOptions, StyleLoaderOptions, StylusLoaderOptions, ThreadLoaderOptions } from '../interfaces';
-import { Options as TypescriptLoaderOptions } from 'ts-loader';
-import { VueLoaderOptions } from 'vue-loader'
-import { Options as TsImportOptions } from 'ts-import-plugin/lib/index';
-import { merge } from 'lodash';
-import tsImportPlugin from 'ts-import-plugin';
-import { basename, join } from 'path';
-import { camel2Dash } from '../utils/camel2dash';
+import { Webpacker }                                                                                                                                                                                           from '../core/Webpacker';
+import { BabelLoaderOptions, CacheLoaderOptions, CssLoaderOptions, ExposeLoaderOptions, FileLoaderOptions, PugLoaderOptions, SassLoaderOptions, StyleLoaderOptions, StylusLoaderOptions, ThreadLoaderOptions } from '../interfaces';
+import { Options as TypescriptLoaderOptions }                                                                                                                                                                  from 'ts-loader';
+import { VueLoaderOptions }                                                                                                                                                                                    from 'vue-loader';
+import { Options as TsImportOptions }                                                                                                                                                                          from 'ts-import-plugin/lib/index';
+import { merge }                                                                                                                                                                                               from 'lodash';
+import tsImportPlugin                                                                                                                                                                                          from 'ts-import-plugin';
+import { basename, join }                                                                                                                                                                                      from 'path';
+import { camel2Dash }                                                                                                                                                                                          from '../utils/camel2dash';
 
 export const images               = Webpacker.defineRule<FileLoaderOptions>('images', (w, r, o) => {
     return r.depends('file-loader')
@@ -16,7 +15,7 @@ export const images               = Webpacker.defineRule<FileLoaderOptions>('ima
         .options({
             name: '[name].[ext]?[hash]',
             ...o,
-        })
+        });
 });
 export const fonts                = Webpacker.defineRule<FileLoaderOptions>('fonts', (w, r, o) => {
     return r.depends('file-loader')
@@ -26,25 +25,27 @@ export const fonts                = Webpacker.defineRule<FileLoaderOptions>('fon
             name      : '[name].[ext]',
             outputPath: 'fonts/',
             ...o,
-        })
+        });
 });
 export const css                  = Webpacker.defineRule<{ style?: StyleLoaderOptions, css?: CssLoaderOptions }>('css', (w, r, o) => {
     return r.depends('style-loader', 'css-loader')
         .test(/\.css/)
         .use('style-loader').loader('style-loader').options({ ...w.settings.styleLoader, ...(o.style || {}) }).end()
-        .use('css-loader').loader('css-loader').options({ ...w.settings.cssLoader, ...(o.css || {}) }).end()
+        .use('css-loader').loader('css-loader').options({ ...w.settings.cssLoader, ...(o.css || {}) }).end();
 });
-export const scss                 = Webpacker.defineRule<{ style?: StyleLoaderOptions, css?: CssLoaderOptions, scss?: SassOptions }>('scss', (w, r, o) => {
-    return r.depends('style-loader', 'css-loader', 'node-sass', 'sass-loader', '@types/node-sass')
+export const scss                 = Webpacker.defineRule<{ style?: StyleLoaderOptions, css?: CssLoaderOptions, scss?: SassLoaderOptions }>('scss', (w, r, o) => {
+    return r.depends('style-loader', 'css-loader', 'sass', 'sass-loader', '@types/sass', '@types/sass')
         .test(/\.scss/)
         .use('style-loader').loader('style-loader').options({ ...w.settings.styleLoader, ...(o.style || {}) }).end()
         .use('css-loader').loader('css-loader').options({ ...w.settings.cssLoader, ...(o.css || {}) }).end()
-        .use('sass-loader').loader('sass-loader').options({
-            precision  : 8,
-            outputStyle: w.isProd ? 'compressed' : 'expanded',
-            sourceMap  : w.settings.sourceMap,
-            ...(o.scss || {}),
-        }).end()
+        .use('sass-loader').loader('sass-loader').options(<SassLoaderOptions>
+            merge({
+                sassOptions: {
+                    outputStyle: w.isProd ? 'compressed' : 'expanded',
+                    sourceMap  : w.settings.sourceMap,
+                },
+            }, o.scss || {}),
+        ).end();
 });
 export const stylus               = Webpacker.defineRule<{ style?: StyleLoaderOptions, css?: CssLoaderOptions, stylus?: StylusLoaderOptions }>('stylus', (w, r, o) => {
     return r.depends('style-loader', 'css-loader', 'stylus', 'stylus-loader', '@types/stylus')
@@ -55,7 +56,7 @@ export const stylus               = Webpacker.defineRule<{ style?: StyleLoaderOp
             preferPathResolver: 'webpack',
             sourceMap         : w.settings.sourceMap,
             ...(o.stylus || {}),
-        }).end()
+        }).end();
 });
 export const sourceMaps           = Webpacker.defineRule('source-map', (w, r, o) => {
     return r.depends('source-map-loader')
@@ -63,7 +64,7 @@ export const sourceMaps           = Webpacker.defineRule('source-map', (w, r, o)
         // .include.merge([ /vue/ ]).end()
         .pre()
         .use('source-map-loader')
-        .loader('source-map-loader')
+        .loader('source-map-loader');
 });
 export const addSourceMapIncludes = Webpacker.wrap((wp: Webpacker, includes: any[]) => {
     wp.module.rule('source-map').include.merge(includes).end();
@@ -80,7 +81,7 @@ export const vue    = Webpacker.defineRule<VueLoaderOptions>('vue', (w, r, o) =>
                 preserveWhitespace: false,
             },
             ...o,
-        })
+        });
 });
 export const pug    = Webpacker.defineRule<PugLoaderOptions>('pug', (w, r, o) => {
     return r.depends('pug', '@types/pug')
@@ -97,18 +98,18 @@ export const pug    = Webpacker.defineRule<PugLoaderOptions>('pug', (w, r, o) =>
         .options({
             pretty: true,
             ...o,
-        }) as any
+        }) as any;
 });
 export const expose = Webpacker.defineRule<ExposeLoaderOptions>('expose', (w, r, o) => {
     if ( typeof o === 'string' ) {
-        o = { name: o }
+        o = { name: o };
     }
     return r
         .depends('expose-loader')
         .test(o.test ? o.test : require.resolve(o.name))
         .use('expose-loader')
         .loader('expose-loader')
-        .options((o.as ? o.as : o.name) as any)
+        .options((o.as ? o.as : o.name) as any);
 });
 export const thread = Webpacker.defineRule<ThreadLoaderOptions>('thread', (w, r, o) => {
     return r
@@ -117,16 +118,16 @@ export const thread = Webpacker.defineRule<ThreadLoaderOptions>('thread', (w, r,
         .loader('thread-loader')
         .options(<ThreadLoaderOptions>{
             ...o,
-        })
+        });
 });
-export const cache = Webpacker.defineRule<CacheLoaderOptions>('cache', (w, r, o) => {
+export const cache  = Webpacker.defineRule<CacheLoaderOptions>('cache', (w, r, o) => {
     return r
         .depends('cache-loader')
         .use('cache-loader')
         .loader('cache-loader')
         .options(<CacheLoaderOptions>{
             ...o,
-        })
+        });
 });
 
 export const babel              = Webpacker.defineRule<BabelLoaderOptions>('babel', (w, r, o) => {
@@ -142,7 +143,7 @@ export const babel              = Webpacker.defineRule<BabelLoaderOptions>('babe
     ])
         .use('babel-loader').loader('babel-loader')
         .loader('babel-loader')
-        .options(merge(w.settings.get('babel') as any, o || {}))
+        .options(merge(w.settings.get('babel') as any, o || {}));
 });
 export const babelImport        = Webpacker.wrap((wp: Webpacker, _options: Partial<TsImportOptions> | Array<Partial<TsImportOptions>>, ruleName = 'babel') => {
     // options = [ { libraryName: 'lodash', libraryDirectory: null, camel2DashComponentName: false } ];
@@ -157,9 +158,9 @@ export const babelImport        = Webpacker.wrap((wp: Webpacker, _options: Parti
 });
 export const babelImportPresets = {
     lodash: { libraryName: 'lodash', libraryDirectory: null, camel2DashComponentName: false },
-}
+};
 
-export const typescript              = Webpacker.defineRule<Partial<TypescriptLoaderOptions>>('typescript', (w, r, o) => {
+export const typescript = Webpacker.defineRule<Partial<TypescriptLoaderOptions>>('typescript', (w, r, o) => {
     return r.depends('typescript', 'ts-node', '@types/node', 'ts-import-plugin')
         .use('ts-loader').loader('ts-loader')
         .loader('ts-loader')
@@ -175,7 +176,7 @@ export const typescript              = Webpacker.defineRule<Partial<TypescriptLo
                 removeComments : w.isProd,
                 sourceMap      : w.isDev,
             },
-        } as any, o || {}))
+        } as any, o || {}));
 });
 
 // export const typescriptImport        = Webpacker.wrap((wp: Webpacker, _options?: Partial<TsImportOptions> | Array<Partial<TsImportOptions>>, ruleName = 'typescript') => {
@@ -217,4 +218,4 @@ export const typescriptImportPresets = {
         camel2DashComponentName: true,
         style                  : (path: string) => join('node_modules', 'element-theme-scss', 'lib', `${camel2Dash(basename(path, '.js'))}.css`),
     },
-}
+};

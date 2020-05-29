@@ -6,8 +6,8 @@
         "moduleResolution": "node",
         "lib": ["es5", "es6", "es7", "es2018", "es2018.promise"],
         "outDir": "lib",
-        "declarationDir": "lib",
         "declaration": true,
+        "declarationDir": "types",
         "rootDir": "src",
         "resolveJsonModule": true,
         "suppressImplicitAnyIndexErrors": true,
@@ -32,7 +32,7 @@
         "skipLibCheck": true,
         "inlineSourceMap": false,
         "inlineSources": false,
-        "sourceMap": true,
+        "sourceMap": false,
 
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,

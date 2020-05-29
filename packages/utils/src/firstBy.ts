@@ -49,4 +49,6 @@ export interface IThenBy<T> {
     thenBy(key: ((v1: T, v2?: T) => any) | keyof T, direction?: number | opt): IThenBy<T>;
 }
 
-export let firstBy:<T = any>(key: ((v1: T, v2?: T) => any) | keyof T, direction?: number | opt) => IThenBy<T> = tb as any
+let firstBy:<T = any>(key: ((v1: T, v2?: T) => any) | keyof T, direction?: number | opt) => IThenBy<T> = tb as any
+
+export default firstBy

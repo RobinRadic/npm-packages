@@ -2,6 +2,9 @@ import { TransformOptions } from 'babel-core';
 import { LoaderOptions } from 'webpack-chain';
 import { Options as PugOptions } from 'pug';
 import { Dictionary } from './general';
+import { Options as SassOptions } from 'sass';
+import webpack from 'webpack';
+import LoaderContext = webpack.loader.LoaderContext;
 export interface BabelLoaderOptions extends TransformOptions, LoaderOptions {
     customize?: string;
     cacheDirectory?: boolean;
@@ -49,6 +52,22 @@ export interface CssLoaderOptions extends LoaderOptions {
     localsConvention?: 'asIs' | 'camelCase' | 'camelCaseOnly' | 'dashes' | 'dashesOnly';
     /** Export only locals (https://github.com/webpack-contrib/css-loader#onlylocals) */
     onlyLocals?: boolean;
+}
+export interface SassLoaderOptions extends LoaderOptions {
+    /**
+     * The special implementation option determines which implementation of Sass to use.
+     *
+     * By default the loader resolve the implementation based on your dependencies. Just add required implementation to package.json (sass or node-sass package) and install dependencies.
+     */
+    implementation?: any;
+    /** defaults values for Sass implementation	Options for Sass. */
+    sassOptions?: SassOptions | ((loaderContext: LoaderContext) => SassOptions);
+    /** Enables/Disables generation of source maps. */
+    sourceMap?: boolean;
+    /** Prepends Sass / SCSS code before the actual entry file. */
+    prependData?: string | ((loaderContext: LoaderContext) => SassOptions);
+    /** Enables/Disables the default Webpack importer. (to resolve @import "~<module>" ) */
+    webpackImporter?: boolean;
 }
 export interface PugLoaderOptions extends PugOptions, LoaderOptions {
 }

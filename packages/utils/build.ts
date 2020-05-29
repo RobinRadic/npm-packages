@@ -1,5 +1,5 @@
-import { OutputOptions, rollup, RollupOptions } from 'rollup';
-import { IOptions }                             from 'rollup-plugin-typescript2/dist/ioptions';
+import { OutputOptions, rollup, RollupOptions }        from 'rollup';
+import { IOptions }                                    from 'rollup-plugin-typescript2/dist/ioptions';
 import cleanup                                         from 'rollup-plugin-cleanup';
 // noinspection ES6UnusedImports
 import commonjs, { RollupCommonJSOptions }             from 'rollup-plugin-commonjs';
@@ -14,9 +14,12 @@ import vue, { VuePluginOptions }                       from 'rollup-plugin-vue';
 import { CompilerOptions }                             from 'typescript';
 import typescript                                      from 'rollup-plugin-typescript2';
 import { merge }                                       from 'lodash';
+import gulpTs                                          from 'gulp-typescript';
+import { emptyDirSync, rmdirSync }                     from 'fs-extra';
+import { existsSync }                                  from 'fs';
+import { resolve }                                     from 'path';
 
-
-type TypescriptPluginCompilerOptionsOptions = Omit<CompilerOptions,'target'> & {
+type TypescriptPluginCompilerOptionsOptions = Omit<CompilerOptions, 'target'> & {
     target?:
         'es3' | // 'ES3'
         'es5' | // 'ES5'
@@ -83,7 +86,7 @@ const defaultOptions: DefaultRollupOptions = {
     },
 };
 
-export function createOptionsFromDefaults(options: DefaultRollupOptions[], plugins = {}): Omit<RollupOptions,'output'> & {output:OutputOptions[]} {
+export function createOptionsFromDefaults(options: DefaultRollupOptions[], plugins = {}): Omit<RollupOptions, 'output'> & { output: OutputOptions[] } {
     plugins                          = { cleanup, typescript, commonjs, copy, node_resolve, terser, vue, ...plugins };
     let rollupOptions: RollupOptions = merge({}, defaultOptions, ...options) as RollupOptions;
     rollupOptions.plugins            = Object.getOwnPropertyNames(rollupOptions.plugins).map(pluginName => {
@@ -91,59 +94,6 @@ export function createOptionsFromDefaults(options: DefaultRollupOptions[], plugi
     });
     return rollupOptions as any;
 }
-//
-// export async function buildNode() {}
-//
-// export async function buildUMD() {}
-//
-// class Config {
-//     public static async es6():Promise<DefaultRollupOptions> {
-//         return {
-//             plugins: {
-//                 typescript: {
-//                     clean:true,
-//                     include: './src/**/*.ts',
-//                     tsconfigOverride: {
-//                         compilerOptions: {
-//                             target: 'es2016',
-//                             module: 'esnext'
-//                         },
-//                     },
-//                 },
-//             },
-//             output : [
-//                 { dir: 'module', format: 'module',name: '@radic/utils' },
-//                 { dir: 'es', format: 'es',name: '@radic/utils' },
-//                 { dir: 'esm', format: 'esm',name: '@radic/utils' },
-//                 { dir: 'cjs', format: 'cjs',name: '@radic/utils' },
-//                 { dir: 'umd', format: 'umd',name: '@radic/utils' },
-//             ],
-//         };
-//     }
-// }
-//
-// class Build {
-//     public static async es6(overrides:DefaultRollupOptions={}){
-//         const options = createOptionsFromDefaults([await Config.es6(), overrides])
-//         const outputOptions = options.output
-//         const bundle = await rollup(options)
-//         const written = []
-//         for(const outputOption of outputOptions){
-//             written.push(
-//                 await bundle.write(outputOption)
-//             );
-//         }
-//         return {written, bundle}
-//     }
-// }
-//
-// export async function buildDTS() {}
-//
-//
-// export async function build(name:keyof typeof Build,overrides:DefaultRollupOptions={}) {
-//     let build = await Build[name as any](overrides)
-//     return build;
-// }
 
 async function build() {
     const bundle = await rollup(createOptionsFromDefaults([ {
@@ -153,25 +103,33 @@ async function build() {
                 include         : './src/**/*.ts',
                 tsconfigOverride: {
                     compilerOptions: {
-                        target: 'es2016',
-                        module: 'esnext'
+                        target     : 'es2016',
+                        module     : 'esnext',
+                        declaration: false,
                     },
                 },
             },
-        }
+        },
     } ]));
 
-    const outputs:OutputOptions[] = [
-              { dir: 'module', format: 'module',name: '@radic/utils' },
-              { dir: 'es', format: 'es',name: '@radic/utils' },
-              { dir: 'esm', format: 'esm',name: '@radic/utils' },
-              { dir: 'cjs', format: 'cjs',name: '@radic/utils' },
-              { dir: 'umd', format: 'umd',name: '@radic/utils' },
-          ];
+    const outputs: OutputOptions[] = [
+        { file: 'dist/radic.utils.es.js', format: 'es', name: '@radic/utils' },
+        { file: 'dist/radic.utils.umd.js', format: 'umd', name: '@radic/utils' },
+        { dir: 'lib' },
+    ];
 
-    for(const output of outputs) {
+    for ( const output of outputs ) {
+        const dirPath = 'dir' in output ? resolve(output.dir) : null;
+        if ( dirPath && existsSync(dirPath) ) {
+            emptyDirSync(dirPath);
+            rmdirSync(dirPath);
+            console.log(`- removed directory ${output.dir}.`);
+        }
+        // await bundle.generate(output);
         await bundle.write(output);
     }
+
+    gulpTs.createProject('tsconfig.build.json', {});
 }
 
 build();
