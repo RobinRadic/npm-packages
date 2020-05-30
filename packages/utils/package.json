@@ -1,6 +1,6 @@
 {
     "name": "@radic/utils",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "Utils",
     "private": false,
     "author": {
@@ -27,20 +27,19 @@
     "scripts": {
         "start": "npm-run-all clean:build build",
         "test": "echo \"test not implemented\" && exit 0",
-        "build": "ts-node build.ts",
-        "compile": "concurrently \"yarn compile:lib\" \"yarn compile:es\" \"yarn compile:types\"",
-        "compile:lib": "tsc -p tsconfig.build.json --outDir lib",
-        "compile:es": "tsc -p tsconfig.build.json --module esnext --outDir es",
-        "compile:types": "tsc -p tsconfig.build.json --declaration --emitDeclarationOnly --declarationDir types --outDir types",
-        "clean:build": "rm -rf dist es lib",
+        "build": "concurrently \"yarn build:rollup\" \"yarn build:lib\" \"yarn build:es\" \"yarn build:types\"",
+        "build:rollup": "ts-node build.ts",
+        "build:lib": "tsc -p tsconfig.build.json --outDir lib",
+        "build:es": "tsc -p tsconfig.build.json --module esnext --outDir es",
+        "build:types": "tsc -p tsconfig.build.json --declaration --emitDeclarationOnly --declarationDir types --outDir types",
+        "clean:build": "rm -rf dist es lib types",
         "clean:yarn": "rm yarn.lock node_modules/",
         "prepare": "npm-run-all clean:build build",
         "postpublish": "git pull",
         "release": "yarn login && np --yolo --no-yarn"
     },
     "dependencies": {},
-    "devDependencies": {
-    },
+    "devDependencies": {},
     "peerDependencies": {},
     "optionalDependencies": {}
 }
