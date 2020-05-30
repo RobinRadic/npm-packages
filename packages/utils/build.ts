@@ -133,8 +133,8 @@ async function build() {
     const outputs: OutputOptions[] = [
         { file: 'dist/utils.esm.js', format: 'esm', name: '@radic/utils' },
         { file: 'dist/utils.umd.js', format: 'umd', name: '@radic/utils' },
-        { file: 'dist/utils.esm.js', format: 'esm', name: '@radic/utils', plugins: {terser} },
-        { file: 'dist/utils.umd.js', format: 'umd', name: '@radic/utils' },
+        { file: 'dist/utils.esm.min.js', format: 'esm', name: '@radic/utils' },
+        { file: 'dist/utils.umd.min.js', format: 'umd', name: '@radic/utils' },
     ];
 
     for ( const output of outputs ) {
@@ -154,7 +154,7 @@ async function build() {
         gulp.task(name, () => gulp
             .src('src/**/*.ts')
             .pipe(gulpTs.createProject('tsconfig.build.json', settings)())
-            .pipe(gulp.dest(settings.outDir))
+            .pipe(gulp.dest(settings.outDir)),
         );
     }
 
