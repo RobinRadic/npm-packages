@@ -16,8 +16,9 @@ import typescript                                      from 'rollup-plugin-types
 import { merge }                                       from 'lodash';
 import gulpTs                                          from 'gulp-typescript';
 import { emptyDirSync, rmdirSync }                     from 'fs-extra';
-import { existsSync }                                  from 'fs';
+import { existsSync, statSync, unlinkSync }            from 'fs';
 import { resolve }                                     from 'path';
+import gulp                                            from 'gulp';
 
 type TypescriptPluginCompilerOptionsOptions = Omit<CompilerOptions, 'target'> & {
     target?:
@@ -112,24 +113,55 @@ async function build() {
         },
     } ]));
 
+    const cleanPaths = [ 'lib', 'es', 'dist', 'types' ];
+    for ( let cleanPath of cleanPaths ) {
+        cleanPath = resolve(cleanPath);
+        if ( !existsSync(cleanPath) ) {
+            continue;
+        }
+        if ( statSync(cleanPath).isDirectory() ) {
+            emptyDirSync(cleanPath);
+            rmdirSync(cleanPath);
+            console.log(`- removed directory ${cleanPath}.`);
+            continue;
+        }
+        unlinkSync(cleanPath);
+        console.log(`- removed file ${cleanPath}.`);
+    }
+
     const outputs: OutputOptions[] = [
-        { file: 'dist/radic.utils.es.js', format: 'es', name: '@radic/utils' },
-        { file: 'dist/radic.utils.umd.js', format: 'umd', name: '@radic/utils' },
-        { dir: 'lib' },
+        { file: 'dist/utils.esm.js', format: 'esm', name: '@radic/utils' },
+        { file: 'dist/utils.umd.js', format: 'umd', name: '@radic/utils' },
     ];
 
     for ( const output of outputs ) {
-        const dirPath = 'dir' in output ? resolve(output.dir) : null;
-        if ( dirPath && existsSync(dirPath) ) {
-            emptyDirSync(dirPath);
-            rmdirSync(dirPath);
-            console.log(`- removed directory ${output.dir}.`);
-        }
         // await bundle.generate(output);
         await bundle.write(output);
+        console.log(`- bundle written to ${output.file || output.dir}.`);
     }
 
-    gulpTs.createProject('tsconfig.build.json', {});
+    let projects: Record<string, gulpTs.Settings> = {
+        lib  : { outDir: 'lib' },
+        es   : { module: 'esnext', outDir: 'es' },
+        types: { declaration: true, declarationDir: 'types', outDir: 'types', emitDeclarationOnly: true },
+    };
+    let names                                     = Object.keys(projects);
+    for ( const name of names ) {
+        const settings = projects[ name ];
+        gulp.task(name, () => gulp
+            .src('src/**/*.ts')
+            .pipe(gulpTs.createProject('tsconfig.build.json', settings)())
+            .pipe(gulp.dest(settings.outDir))
+            .end(() => console.log(`Compiled ${name}`)),
+        );
+    }
+
+    const runGulp = async (tasks) => new Promise((resolve, reject) => gulp.parallel(tasks)(error => {
+        error ? reject(error) : resolve();
+    }));
+
+    await runGulp(names);
+
 }
 
 build();

@@ -2,18 +2,16 @@
     "compileOnSave": false,
     "compilerOptions": {
         "target": "es6",
-        "module": "commonjs",
+        "module": "CommonJS",
         "moduleResolution": "node",
-        "lib": ["es5", "es6", "es7", "es2018", "es2018.promise"],
-        "outDir": "lib",
-        "rootDir": "src",
+        "lib": ["es5", "es6", "es7", "es2018", "es2018.promise","dom"],
+        "declaration": false,
         "resolveJsonModule": true,
         "suppressImplicitAnyIndexErrors": true,
         "allowJs": false,
         "checkJs": false,
-        "jsx": "preserve",
-        "jsxFactory": "h",
         "strict": false,
+        "rootDir": "../",
         "noImplicitAny": false,
         "strictNullChecks": false,
         "strictFunctionTypes": false,
@@ -30,17 +28,18 @@
         "skipLibCheck": true,
         "inlineSourceMap": false,
         "inlineSources": false,
-        "sourceMap": false,
-
+        "sourceMap": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "typeRoots": [
-            "../../node_modules/@types"
-        ]
+            "../../../node_modules/@types"
+        ],
+        "baseUrl": "../"
     },
     "include": [
-        "src/**/*.ts",
-        "src/index.ts"
+        "../src",
+        "*",
+        "_support"
     ],
     "exclude": [
         "node_modules",
