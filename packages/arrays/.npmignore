@@ -1,5 +1,9 @@
-.nyc_output
-coverage
+.idea
 node_modules
-test
-.gitignore
+.git
+.tmp
+yarn.lock
+package-scripts.js
+release-it.js
+test.ts
+.editorconfig

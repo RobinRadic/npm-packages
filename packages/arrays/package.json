@@ -11,21 +11,33 @@
     },
     "license": "MIT",
     "main": "lib/index.js",
-    "esnext": "es/index.js",
-    "module": "es/index.js",
-    "types": "lib/index.d.ts",
-    "typings": "lib/index.d.ts",
+    "module": "es/arrays.es.js",
+    "esnext": "src/index.ts",
+    "types": "types/index.d.ts",
+    "typings": "types/index.d.ts",
+    "maintainers": [
+        {
+            "name": "Robin Radic",
+            "url": "https://github.com/RobinRadic/npm-packages",
+            "email": "rradic@hotmail.com"
+        }
+    ],
+    "homepage": "https://github.com/RobinRadic/npm-packages",
+    "readme": "README.md",
     "scripts": {
         "start": "npm-run-all clean:build build",
         "test": "nyc mocha --opts test/mocha.opts && rm -rf .nyc_output node_modules/",
-        "build": "tsc --project tsconfig.build.json && tsc --project tsconfig.build.es.json",
         "watch": "tsc --project tsconfig.build.json --watch",
-        "clean:build": "rm -rf lib es",
-        "clean:yarn": "rm -rf yarn.lock node_modules/",
+        "build": "ts-node build.ts",
+        "build:lib": "tsc -p tsconfig.build.json --outDir lib",
+        "build:es": "tsc -p tsconfig.build.json --module esnext --outDir es",
+        "build:types": "tsc -p tsconfig.build.json --declaration --emitDeclarationOnly --declarationDir types --outDir types",
+        "clean:build": "rm -rf dist es lib types",
+        "clean:yarn": "rm yarn.lock node_modules/",
         "clean:test": "rm -rf .nyc_output coverage",
-        "clean": "yarn clean:build && yarn clean:yarn && yarn clean:test",
-        "prepublish": "npm-run-all test clean:test clean:build build",
-        "release": "np --yolo --no-yarn"
+        "prepare": "npm-run-all test clean:test clean:build build",
+        "postpublish": "git pull",
+        "release": "yarn login && np --yolo --no-yarn"
     },
     "dependencies": {},
     "devDependencies": {},

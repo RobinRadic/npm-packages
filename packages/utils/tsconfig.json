@@ -27,9 +27,8 @@
         "noFallthroughCasesInSwitch": false,
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
-        "inlineSourceMap": false,
-        "inlineSources": false,
-        "sourceMap": true,
+        "inlineSourceMap": true,
+        "inlineSources": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "typeRoots": [

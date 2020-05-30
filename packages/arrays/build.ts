@@ -126,14 +126,11 @@ async function build() {
                     },
                 },
             },
-
         },
     } ]));
 
     const outputs: OutputOptions[] = [
         { file: 'dist/utils.esm.js', format: 'esm', name: '@radic/utils' },
-        { file: 'dist/utils.umd.js', format: 'umd', name: '@radic/utils' },
-        { file: 'dist/utils.esm.js', format: 'esm', name: '@radic/utils', plugins: {terser} },
         { file: 'dist/utils.umd.js', format: 'umd', name: '@radic/utils' },
     ];
 

@@ -12,7 +12,7 @@ function set(obj, parts, value) {
     parts = getParts(parts);
 
     var prop = parts.pop();
-    obj      = get(obj, parts, true);
+    obj      = get(obj, parts, undefined,true);
     if ( obj && typeof obj === 'object' ) {
         return (obj[ prop ] = value);
     }

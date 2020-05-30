@@ -1,5 +1,13 @@
-.nyc_output
-coverage
+.idea
 node_modules
+.tmp
+package-lock.json
+yarn-error.log
+yarn.lock
+test.ts
+dist
 lib
+
 es
+umd
+types

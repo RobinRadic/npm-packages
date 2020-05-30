@@ -26,9 +26,8 @@
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "inlineSourceMap": false,
-        "inlineSources": false,
-        "sourceMap": true,
+        "inlineSourceMap": true,
+        "inlineSources": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "typeRoots": [

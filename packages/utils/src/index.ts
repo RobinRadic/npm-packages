@@ -5,7 +5,7 @@ export { default as dotize }           from './dotize';
 export { default as ensureLeft }       from './ensureLeft';
 export { default as ensureRight }      from './ensureRight';
 export { default as escapeRegExp }     from './escapeRegExp';
-export { default as exists }           from './exists';
+export { default as exists }           from './has';
 export { default as generateRandomId } from './generateRandomId';
 export { default as get }              from './get';
 export { default as getParts }         from './getParts';
