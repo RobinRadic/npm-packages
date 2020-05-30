@@ -97,21 +97,6 @@ export function createOptionsFromDefaults(options: DefaultRollupOptions[], plugi
 }
 
 async function build() {
-    const bundle = await rollup(createOptionsFromDefaults([ {
-        plugins: {
-            typescript: {
-                clean           : true,
-                include         : './src/**/*.ts',
-                tsconfigOverride: {
-                    compilerOptions: {
-                        target     : 'es2016',
-                        module     : 'esnext',
-                        declaration: false,
-                    },
-                },
-            },
-        },
-    } ]));
 
     const cleanPaths = [ 'lib', 'es', 'dist', 'types' ];
     for ( let cleanPath of cleanPaths ) {
@@ -128,6 +113,21 @@ async function build() {
         unlinkSync(cleanPath);
         console.log(`- removed file ${cleanPath}.`);
     }
+    const bundle = await rollup(createOptionsFromDefaults([ {
+        plugins: {
+            typescript: {
+                clean           : true,
+                include         : './src/**/*.ts',
+                tsconfigOverride: {
+                    compilerOptions: {
+                        target     : 'es2016',
+                        module     : 'esnext',
+                        declaration: false,
+                    },
+                },
+            },
+        },
+    } ]));
 
     const outputs: OutputOptions[] = [
         { file: 'dist/utils.esm.js', format: 'esm', name: '@radic/utils' },
@@ -152,7 +152,6 @@ async function build() {
             .src('src/**/*.ts')
             .pipe(gulpTs.createProject('tsconfig.build.json', settings)())
             .pipe(gulp.dest(settings.outDir))
-            .end(() => console.log(`Compiled ${name}`)),
         );
     }
 

@@ -27,8 +27,7 @@
     "scripts": {
         "start": "npm-run-all clean:build build",
         "test": "echo \"test not implemented\" && exit 0",
-        "build": "concurrently \"yarn build:rollup\" \"yarn build:lib\" \"yarn build:es\" \"yarn build:types\"",
-        "build:rollup": "ts-node build.ts",
+        "build": "ts-node build.ts",
         "build:lib": "tsc -p tsconfig.build.json --outDir lib",
         "build:es": "tsc -p tsconfig.build.json --module esnext --outDir es",
         "build:types": "tsc -p tsconfig.build.json --declaration --emitDeclarationOnly --declarationDir types --outDir types",
