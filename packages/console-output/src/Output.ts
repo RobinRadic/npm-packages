@@ -1,4 +1,4 @@
-import { merge }                                                                                      from 'lodash';
+ import { merge }                                                                                      from 'lodash';
 import { ColumnsOptions, Figures, IParser, IParserConstructor, OutputOptions, TreeData, TreeOptions } from './interfaces';
 import { inspect }                                                                                    from 'util';
 import { OutputUtil }                                                                                 from './OutputUtil';
@@ -95,7 +95,7 @@ export class Output {
 
     protected setDefaultParsers() {
         this.parsers
-            .set('color', ColorsParser)
+            .set('colors', ColorsParser)
             .set('figures', FiguresParser)
         ;
     }
