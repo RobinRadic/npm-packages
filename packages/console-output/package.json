@@ -1,6 +1,6 @@
 {
     "name": "@radic/console-output",
-    "version": "1.0.2",
+    "version": "1.1.0",
     "description": "Console output",
     "private": false,
     "author": {
@@ -26,7 +26,7 @@
         "prepare": "npm-run-all clean:build build",
         "prepublish": "npm-run-all clean:build build",
         "login": "yarn login",
-        "release": "npm-run-all clean:build build login && np --yolo --no-yarn"
+        "release": "npm-run-all clean:build build login && commit \"upd console-output\" && np --yolo --no-yarn"
     },
     "dependencies": {
         "chalk": "^2.4.2",
