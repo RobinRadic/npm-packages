@@ -39,11 +39,11 @@
     "include": [
         "../src",
         "*",
+        "**/*",
         "_support"
     ],
     "exclude": [
         "node_modules",
-        "examples",
-        "dist"
+        "../lib"
     ]
 }

@@ -1,17 +1,21 @@
 import { ColorStyle, IParser }         from '../interfaces';
 import { Options, Trucolor, trucolor } from 'trucolor';
 import { Colors }                      from './Colors';
+import { Output }                      from '../Output';
 
-export interface ParserParsedTag {
+export interface ColorsParserParsedTag {
     colors: string[],
     replacements: { [ old: string ]: string }
     string: string
     replace: (text: string) => string
 }
 
-export class Parser implements IParser {
+export class ColorsParser implements IParser {
+    public colors: Colors;
 
-    constructor(public colors: Colors = new Colors()) {}
+    constructor(public output: Output) {
+        this.colors = new Colors(this);
+    }
 
     trucolorOptions: Options = { format: 'cli' };
 
@@ -70,7 +74,7 @@ export class Parser implements IParser {
         return matches;
     }
 
-    protected parseTag(tag: string[]): ParserParsedTag {
+    protected parseTag(tag: string[]): ColorsParserParsedTag {
         let replacements = {};
         tag[ 1 ].split('.').forEach((rawColor) => replacements[ rawColor ] = this.parseColor(rawColor));
 

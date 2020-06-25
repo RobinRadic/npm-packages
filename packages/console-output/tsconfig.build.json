@@ -28,6 +28,7 @@
         "noImplicitReturns": false,
         "noFallthroughCasesInSwitch": false,
         "allowSyntheticDefaultImports": true,
+        "importHelpers": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
         "inlineSourceMap": false,

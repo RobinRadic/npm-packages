@@ -1,19 +1,17 @@
-import { Output } from './Output';
-import { colors } from './colors';
+import { Output }     from './Output';
+import * as colors     from './colors';
+import * as ui        from './ui';
+import { Diff }       from './utils/diff';
+import { figures }    from './figures';
 
 export default Output;
-export *          from './interfaces';
-export *          from './figures';
-export *          from './Output';
-export *          from './OutputUtil';
-export *          from './';
-export *          from './';
-export *          from './';
+export *              from './interfaces';
+export { Output }     from './Output';
+export { OutputUtil } from './OutputUtil';
 
 export {
     colors,
     ui,
     Diff,
     figures,
-
 };

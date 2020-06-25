@@ -1,4 +1,3 @@
-import { inject, injectable, IOutput }                               from '@commando/core';
 import { Erasers }                                                   from './erase';
 import { Movers }                                                    from './move';
 import { Data, Options }                                             from 'columnify';
@@ -6,7 +5,8 @@ import { Data, Options }                                             from 'colum
 import ProgressBar, { ProgressBarOptions as BaseProgressBarOptions } from 'progress';
 import { OutputConfig }                                              from '../interfaces';
 
-import { Table, TableConstructorOptions } from 'cli-table3';
+import CliTable3, { Table, TableConstructorOptions } from 'cli-table3';
+import { Output }                                    from '../Output';
 
 function makeDoProxy(target, write, returnValue) {
     const proxy = new Proxy(target, {
@@ -28,7 +28,7 @@ function makeDoProxy(target, write, returnValue) {
 export class UiBase {
     constructor(protected ui: Ui) {}
 
-    protected get stdout(): typeof process.stdout { return this.ui.output.stdout;}
+    protected get stdout() { return this.ui.output.stdout;}
 
     get move(): UiMove {return this.ui.move;}
 
@@ -85,9 +85,8 @@ export interface ProgressBarOptions extends Partial<BaseProgressBarOptions> {
     output?: OutputConfig
 }
 
-@injectable()
 export class Progress {
-    @inject('cli.output') public readonly output: IOutput;
+    constructor(protected output: Output) {}
 
     bar(options: ProgressBarOptions = {}) {
 
@@ -121,19 +120,19 @@ export interface Ui {
 
 }
 
-@injectable()
 export class Ui {
-    @inject('cli.output') public readonly output: IOutput;
-    @inject('cli.output.ui.progress') public readonly progress: Progress;
+    constructor(readonly output: Output) {}
+
+    public readonly progress: Progress;
     public readonly move: UiMove   = new UiMove(this);
     public readonly erase: UiErase = new UiErase(this);
     public readonly text: UiText   = new UiText(this);
 
-    public get height() { return this.output.stdout.rows || require('term-size')().rows || 0; }
+    public get height() { return require('term-size')().rows || 0; }
 
-    public get width() { return this.output.stdout.columns || require('term-size')().columns || 0; }
+    public get width() { return require('term-size')().columns || 0; }
 
-    public get Table() { return require('cli-table3'); }
+    public get Table(): CliTable3 { return require('cli-table3'); }
 
     public table(opts?: TableConstructorOptions, borderStyle: 'default' | 'borderless' = 'default'): Table {
         if ( borderStyle === 'borderless' ) {

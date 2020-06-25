@@ -1,17 +1,15 @@
-import { merge }                                                                 from 'lodash';
-import { ColumnsOptions, OutputOptions, TreeData, TreeOptions }                  from './interfaces';
-import { inspect }                                                               from 'util';
-import { OutputUtil }                                                            from './OutputUtil';
-import * as Table                                                                from 'cli-table2';
-import { TableConstructorOptions }                                               from 'cli-table2';
-import { kindOf }                                                                from '@radic/util';
+import { merge }                                                                                      from 'lodash';
+import { ColumnsOptions, Figures, IParser, IParserConstructor, OutputOptions, TreeData, TreeOptions } from './interfaces';
+import { inspect }                                                                                    from 'util';
+import { OutputUtil }                                                                                 from './OutputUtil';
+import * as Table                                                                                     from 'cli-table2';
+import { TableConstructorOptions }                                                                    from 'cli-table2';
 // import { Colors, Parser } from '@radic/console-colors';
-import { Colors, Parser }                                                        from './colors';
-import { Diff }                                                                  from './utils/diff';
-import notifier, { NodeNotifier, Notification, NotificationCallback }            from 'node-notifier';
-import sparkly, { Options as SparklyOptions }                                    from 'sparkly';
-import { highlight, HighlightOptions }                                           from 'cli-highlight';
-import MultiSpinner, { Multispinner, MultispinnerOptions, MultispinnerSpinners } from 'multispinner';
+import { Diff }                                                                                       from './utils/diff';
+import notifier, { NodeNotifier, Notification, NotificationCallback }                                 from 'node-notifier';
+import sparkly, { Options as SparklyOptions }                                                         from 'sparkly';
+import { highlight, HighlightOptions }                                                                from 'cli-highlight';
+import MultiSpinner, { Multispinner, MultispinnerOptions, MultispinnerSpinners }                      from 'multispinner';
 
 import columnify from 'columnify';
 import { Ui }    from './ui';
@@ -20,41 +18,116 @@ import ora from 'ora';
 
 import archy from 'archy';
 
-import beeper from 'beeper';
+import beeper                     from 'beeper';
+import { Colors, ColorsParser }   from './colors';
+import { figures, FiguresParser } from './figures';
+import { Writable }               from 'stream';
 
 export class Output {
-    protected _parser: Parser;
+    public parsers: Map<string, IParserConstructor>;
+    public loaded_parsers: Map<string, IParser>;
     protected macros: { [ name: string ]: (...args: any[]) => string };
-    public options: OutputOptions = {
-        colors : true,
-        inspect: { showHidden: true, depth: 10 },
+    public options: OutputOptions               = {};
+    public static defaultOptions: OutputOptions = {
+        quiet         : false,
+        parsers       : {
+            colors : true,
+            figures: true,
+        },
+        resetOnNewline: true,
+        inspect       : { showHidden: true, depth: 10 },
+        styles        : {
+            title   : 'yellow bold',
+            subtitle: 'yellow',
+
+            success: 'green lighten 20 bold',
+            warning: 'orange lighten 20 bold',
+            error  : 'red lighten 20 bold',
+
+        },
+        tableStyle    : {
+            FAT : {
+                'top'         : '═',
+                'top-mid'     : '╤',
+                'top-left'    : '╔',
+                'top-right'   : '╗',
+                'bottom'      : '═',
+                'bottom-mid'  : '╧',
+                'bottom-left' : '╚',
+                'bottom-right': '╝',
+                'left'        : '║',
+                'left-mid'    : '╟',
+                'mid'         : '─',
+                'mid-mid'     : '┼',
+                'right'       : '║',
+                'right-mid'   : '╢',
+                'middle'      : '│',
+            },
+            SLIM: { 'mid': '', 'left-mid': '', 'mid-mid': '', 'right-mid': '' },
+            NONE: {
+                'top'     : '', 'top-mid': '', 'top-left': '', 'top-right': ''
+                , 'bottom': '', 'bottom-mid': '', 'bottom-left': '', 'bottom-right': ''
+                , 'left'  : '', 'left-mid': '', 'mid': '', 'mid-mid': ''
+                , 'right' : '', 'right-mid': '', 'middle': ' ',
+            },
+        },
     };
 
     public util: OutputUtil;
     public ui: Ui;
-    public stdout: NodeJS.WriteStream = process.stdout;
+    public figures: Figures;
+    public stdout: Writable = process.stdout;
 
-    get parser(): Parser { return this._parser; }
 
-    get colors(): Colors { return this._parser.colors; }
+    get colors(): Colors { return (this.loadParsers().get('colors') as ColorsParser).colors; }
 
     get nl(): this { return this.write('\n'); }
 
-    constructor() {
-        this._parser = new Parser();
-        this.util    = new OutputUtil(this);
+    constructor(options: OutputOptions = {}) {
+        this.options        = merge({}, new.target.defaultOptions, options);
+        this.util           = new OutputUtil(this);
+        this.ui             = new Ui(this);
+        this.figures        = figures;
+        this.parsers        = new Map();
+        this.loaded_parsers = new Map();
+        this.setDefaultParsers();
     }
 
-    parse(text: string, force?: boolean): string {return this._parser.parse(text); }
+    protected setDefaultParsers() {
+        this.parsers
+            .set('color', ColorsParser)
+            .set('figures', FiguresParser)
+        ;
+    }
 
-    clean(text: string): string { return this._parser.clean(text);}
+    mergeOptions(options: OutputOptions = {}) {
+        this.options = merge({}, this.options, options);
+        return this;
+    }
+
+    protected loadParsers() {
+        Array.from(this.parsers.keys())
+            .filter(key => !this.loaded_parsers.has(key))
+            .filter(key => key in this.options.parsers && this.options.parsers[ key ] !== false)
+            .forEach(key => {
+                const Parser = this.parsers.get(key);
+                this.loaded_parsers.set(key, new Parser(this));
+            });
+        return this.loaded_parsers;
+    }
+
+    parse(text: string, force?: boolean): string {
+        this.loadParsers().forEach(parser => text = parser.parse(text));
+        return text;
+    }
+
+    clean(text: string): string {
+        this.loadParsers().forEach(parser => text = parser.clean(text));
+        return text;
+    }
 
     write(text: string): this {
-        if ( this.options.colors ) {
-            text = this.parse(text);
-        } else {
-            text = this.clean(text);
-        }
+        text = this.parse(text);
         this.stdout.write(text);
         return this;
     }
@@ -64,7 +137,6 @@ export class Output {
     line(text: string = ''): this { return this.write(text + '\n');}
 
     dump(...args: any[]): this {
-        this.options.inspect.colors = this.options.colors;
         args.forEach(arg => this.line(inspect(arg, this.options.inspect)));
         return this;
     }
@@ -114,7 +186,7 @@ export class Output {
         Table.prototype[ 'addRow' ] = function (row: any[]) {
             this.push(
                 row.map(col => {
-                    if ( kindOf(col) === 'string' ) {
+                    if ( typeof (col) === 'string' ) {
                         col = self.parse(col);
                     }
                     return col;
@@ -131,8 +203,9 @@ export class Output {
      */
     table(options: TableConstructorOptions | string[] = {}): Table.Table {
         this.modifyTablePush();
+        new this.ui.Table({})
         return new (Table as any)(
-            kindOf(options) === 'array'
+            Array.isArray(options)
             ? { head: <string[]>options }
             : <TableConstructorOptions>options,
         );
@@ -146,7 +219,7 @@ export class Output {
             columnSplitter  : ' | ',
         };
         let iCol: number             = 0;
-        if ( kindOf(data) === 'array' && kindOf(data[ 0 ]) === 'object' ) {
+        if ( Array.isArray(data) && typeof (data[ 0 ]) === 'object' ) {
             iCol = Object.keys(data[ 0 ]).length;
         }
         if ( process.stdout.isTTY && iCol > 0 ) {

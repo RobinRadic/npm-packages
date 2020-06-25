@@ -2,7 +2,7 @@
 import * as supports               from 'supports-color';
 import { supportsColor }           from 'supports-color';
 import * as convert                from 'color-convert';
-import { Parser }                  from './Parser';
+import { ColorsParser }            from './ColorsParser';
 import { ColorStyle, ColorStyles } from '../interfaces';
 //import {startsWith } from 'lodash'
 
@@ -18,15 +18,18 @@ export interface AnsiRgbColors {
 }
 
 export class Colors {
-    protected styles: ColorStyles;
-    parser: Parser = new Parser(this);
+    protected styles: ColorStyles = {};
+    public parser: ColorsParser
+    constructor(parser?:ColorsParser) {
+        this.parser = parser ?? new ColorsParser(this)
+    }
 
     get convert(): typeof convert { return require('color-convert'); }
 
     get supports(): supportsColor.SupportsColor { return supports as any; }
 
     hasStyle(name: string) {
-        return typeof this.styles[ name ] !== 'undefined';
+        return name in this.styles
     }
 
     getStyle(name: string): string | string[] {

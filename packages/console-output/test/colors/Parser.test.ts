@@ -1,26 +1,20 @@
 /// <reference types="chai" />
 import { context, suite, test } from 'mocha-typescript';
-import { bootstrap }            from './_support/bootstrap';
 // import { assert, should } from 'chai'
-import { Parser }               from '../src';
+import { colors, Output } from '../../src';
+import { TestCase }       from '../TestCase';
 
-bootstrap();
-
-@suite
-class ParserTest {
+@suite()
+class ParserTest extends TestCase {
     @context mocha; // Set for instenace methods such as tests and before/after
     @context static mocha; // Set for static methods such as static before/after (mocha bdd beforeEach/afterEach)
     text: string;
-    parser: Parser;
-
-
-    static before() {
-
-    }
+    parser: colors.ColorsParser;
+output:Output
 
 
     before() {
-        this.parser = new Parser;
+        this.parser = new colors.ColorsParser(null);
 
         this.text = `
 {bold.red.underline}This is bold, red and underlined.{/red} But we dropped the red.{reset} And just resetted the rest.{b:blue.red}teetete

@@ -1,4 +1,5 @@
-import { Figures } from './interfaces';
+import { Figures, IParser } from './interfaces';
+import { Output }           from './Output';
 
 const escapeStringRegexp = require('escape-string-regexp');
 
@@ -146,3 +147,35 @@ const fn = str => {
 };
 Object.assign(fn, figures);
 export { figures, fn };
+
+const getFiguresExp = (): RegExp => /\[\[(.*?)\]\]/g;
+const hasFigures    = (text): boolean => getFiguresExp().test(text);
+
+export class FiguresParser implements IParser {
+    constructor(public output: Output) {}
+
+    public getFiguresExp(): RegExp { return /\[\[(.*?)\]\]/g; }
+
+    public hasFigures(text: string): boolean {return this.getFiguresExp().test(text); }
+
+    public clean(text: string): string {
+        if ( hasFigures(text) ) {
+            text.replace(this.getFiguresExp(), '');
+        }
+        return text;
+    }
+
+    public parse(text: string): string {
+        if ( !hasFigures(text) ) {
+            return text;
+        }
+        let match;
+        while ( (match = getFiguresExp().exec(text)) !== null ) {
+            if ( this.output.figures[ match[ 1 ] ] !== undefined ) {
+                text = text.replace(match[ 0 ], this.output.figures[ match[ 1 ] ]);
+            }
+        }
+        return text;
+    }
+
+}

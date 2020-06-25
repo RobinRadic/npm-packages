@@ -10,7 +10,7 @@ import { Output }                                from './Output';
 
 export class OutputUtil {
 
-    get useColors(): boolean {return this.output.options.colors; }
+    get useColors(): boolean {return this.output.options?.parsers?.colors === true; }
 
     get figures(): Figures { return figures;}
 

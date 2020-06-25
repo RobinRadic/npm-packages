@@ -1,4 +1,5 @@
 import { InspectOptions } from 'util';
+import { Output }         from './Output';
 
 
 export type TruncateFunction = (input: string, columns: number, options?: TruncateOptions) => string
@@ -65,7 +66,11 @@ export interface ColumnsOptions {
 
 
 export interface OutputOptions {
-    colors?: boolean
+    parsers?: {
+        colors?: boolean
+        figures?:boolean
+        [key:string]:boolean
+    }
     inspect?: InspectOptions
     quiet?: boolean,
     resetOnNewline?: boolean,
@@ -175,7 +180,14 @@ export interface OutputConfig {
     styles?: OutputStylesConfig
 }
 
+export interface IParserConstructor {
+    new(output: Output):IParser
+
+    prototype: IParser
+}
+
 export interface IParser {
+    output: Output
     parse(text: string): string
 
     clean(text: string): string
