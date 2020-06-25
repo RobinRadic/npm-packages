@@ -1,4 +1,4 @@
- import { merge }                                                                                      from 'lodash';
+import { merge }                                                                                      from 'lodash';
 import { ColumnsOptions, Figures, IParser, IParserConstructor, OutputOptions, TreeData, TreeOptions } from './interfaces';
 import { inspect }                                                                                    from 'util';
 import { OutputUtil }                                                                                 from './OutputUtil';
@@ -132,9 +132,16 @@ export class Output {
         return this;
     }
 
-    writeln(text: string = ''): this { return this.write(text + '\n'); }
+    writeln(text: string = ''): this {
+        this.write(text);
+        if ( this.options.resetOnNewline ) {
+            this.write('{reset}');
+        }
+        this.write('\n');
+        return this;
+    }
 
-    line(text: string = ''): this { return this.write(text + '\n');}
+    line(text: string = ''): this { return this.writeln(text);}
 
     dump(...args: any[]): this {
         args.forEach(arg => this.line(inspect(arg, this.options.inspect)));
@@ -203,7 +210,7 @@ export class Output {
      */
     table(options: TableConstructorOptions | string[] = {}): Table.Table {
         this.modifyTablePush();
-        new this.ui.Table({})
+        new this.ui.Table({});
         return new (Table as any)(
             Array.isArray(options)
             ? { head: <string[]>options }
