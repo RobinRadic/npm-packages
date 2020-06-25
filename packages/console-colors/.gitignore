@@ -1,0 +1,17 @@
+.vscode
+generated
+dist
+dev
+
+# Node
+node_modules
+npm-debug.log*
+lerna-debug.log
+package-lock.json
+yarn-error.log
+
+# Sass
+.sass-cache/
+
+.awcache
+.rpt2_cache

@@ -1,0 +1,96 @@
+{
+    "name": "@radic/console-output",
+    "version": "1.0.0",
+    "description": "Console output",
+    "private": false,
+    "author": {
+        "name": "Robin Radic"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "license": "MIT",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "typings": "lib/index.d.ts",
+    "bin": {
+        "sites": "./bin/run"
+    },
+    "scripts": {
+        "start": "npm-run-all clean:build build",
+        "build": "tsc --project tsconfig.build.json",
+        "watch": "tsc --project tsconfig.build.json --watch",
+        "clean:build": "rm -rf lib",
+        "clean:yarn": "rm yarn.lock node_modules/",
+        "prepare": "npm-run-all clean:build build",
+        "postpublish": "git pull",
+        "postpack": "rm -f oclif.manifest.json",
+        "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+        "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+        "version": "oclif-dev readme && git add README.md",
+        "login": "yarn login",
+        "release": "npm-run-all clean:build build login && np --yolo --no-yarn"
+    },
+    "dependencies": {
+        "@types/strip-ansi": "^3.0.0",
+        "@types/slice-ansi": "^2.0.0",
+        "slice-ansi": "^2.1.0",
+        "@types/wrap-ansi": "^3.0.0",
+        "@types/indent-string": "^3.2.0",
+        "@types/chalk": "^2.2.0",
+        "@types/listr": "^0.13.0",
+        "@types/ora": "^3.1.0",
+        "@types/progress": "^2.0.3",
+        "@types/d": "^1.0.0",
+        "@types/term-size": "^1.2.0",
+        "@types/cli-truncate": "^1.1.0",
+        "@types/supports-color": "^5.3.0",
+        "@types/color-convert": "^1.9.0",
+        "supports-color": "^6.1.0",
+        "color-convert": "^2.0.0",
+        "columnify": "^1.5.4",
+        "cli-table3": "^0.5.1",
+        "cli-truncate": "^1.1.0",
+        "term-size": "^1.2.0",
+        "d": "^1.0.0",
+        "trucolor": "^1.0.0",
+        "tslib": "^1.9.3",
+        "lodash": "^4.17.11",
+        "wrap-ansi": "^4.0.0",
+        "strip-ansi": "^5.0.0",
+        "indent-string": "^3.2.0",
+        "chalk": "^2.4.2"
+    },
+    "devDependencies": {
+        "@types/cross-spawn": "^6.0.0",
+        "@types/dotenv": "^6.1.1",
+        "@types/inquirer": "^6.5.0",
+        "@types/lodash": "^4.14.136",
+        "@types/node": "^12.6.9",
+        "@types/npm": "^2.0.30",
+        "@types/semver": "^6.0.2",
+        "@types/yargs": "^13.0.2",
+        "@types/glob": "^7.1.1",
+        "npm-run-all": "^4.1.5",
+        "nps": "^5.9.5",
+        "nps-utils": "^1.7.0",
+        "ts-node": "^8.3.0",
+        "typescript": "^3.5.3"
+    },
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "files": [
+        "/bin",
+        "/lib",
+        "/npm-shrinkwrap.json",
+        "/oclif.manifest.json"
+    ],
+    "oclif": {
+        "commands": "./lib/cli/commands",
+        "bin": "sites",
+        "plugins": [
+            "@oclif/plugin-help"
+        ]
+    }
+}

@@ -1,6 +1,6 @@
 import chalk, { Chalk } from 'chalk';
 
-
+export {chalk,Chalk}
 export type StyleCallback = (data: { msg: string, chalk: chalk.Chalk }) => string
 export interface OutputStyles {
     [ key: string ]: StyleCallback

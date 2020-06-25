@@ -1,0 +1,66 @@
+{
+    "name": "@radic/console-colors",
+    "version": "4.0.0",
+    "description": "Console Colors text parser. Apply colors to texts fast & easy. Use hex/rgb colors with auto (or custom) fallback for unsupported terminals.",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "jsnext:main": "dist/index.js",
+    "typings": "dist/index.d.ts",
+    "author": "Robin Radic <rradic@hotmail.com> (https://radic.dev/)",
+    "license": "MIT",
+    "scripts": {
+
+        "start": "npm-run-all clean:build build",
+        "build": "tsc --project tsconfig.build.json",
+        "watch": "tsc --project tsconfig.build.json --watch",
+        "clean:build": "rm -rf lib",
+        "clean:yarn": "rm yarn.lock node_modules/",
+        "prepare": "npm-run-all clean:build build",
+        "postpublish": "git pull",
+        "postpack": "rm -f oclif.manifest.json",
+        "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+        "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+        "version": "oclif-dev readme && git add README.md",
+        "login": "yarn login",
+        "release": "npm-run-all clean:build build login && np --yolo --no-yarn"
+    },
+    "engines": {
+        "node": ">=8",
+        "npm": ">=5"
+    },
+    "files": [
+        "dist"
+    ],
+    "nyc": {
+        "cache": false
+    },
+    "bugs": {
+        "email": "rradic@hotmail.com",
+        "url": "https://github.com/robinradic/npm-packages/issues"
+    },
+    "dependencies": {
+        "color-convert": "^2.0.1",
+        "lodash": "^4.15.0",
+        "supports-color": "^7.1.0",
+        "trucolor": "^2.0.2",
+        "term-ng": "^2.0.1"
+    },
+    "devDependencies": {
+        "@types/ansi": "^0.3.2",
+        "@types/color-convert": "^1.9.0",
+        "@types/supports-color": "^5.3.0",
+        "source-map-support": "^0.5.0",
+        "cross-env":"^5.2.0",
+        "rimraf": "^2.6.2",
+        "nyc": "^13.1.0",
+        "mocha": "^5.2.0",
+        "mocha-typescript": "^1.1.17",
+        "chai": "^4.2.0",
+        "sinon": "^7.1.1",
+        "sinon-chai": "^3.2.0",
+        "@types/mocha": "^5.2.5",
+        "@types/chai": "^4.1.7",
+        "@types/sinon": "^5.0.7",
+        "@types/sinon-chai": "^3.2.1"
+    }
+}

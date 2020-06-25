@@ -6,6 +6,8 @@ import apacheconf, { Config }            from 'apacheconf';
 
 export { Config };
 
+const confBaseName = (path) => basename(path, '.conf')
+
 export class Apache {
     constructor(public readonly app: Application) {
         return;
@@ -24,6 +26,10 @@ export class Apache {
     getModsConfigPaths(kind: 'available' | 'enabled' = 'available') {return glob.sync(this.path(`mods-${kind}/*.conf`));}
 
     getConfConfigPaths(kind: 'available' | 'enabled' = 'available') {return glob.sync(this.path(`conf-${kind}/*.conf`));}
+
+    getSites(kind: 'available' | 'enabled' = 'available'){return this.getSiteConfigPaths(kind).map(confBaseName)}
+    getMods(kind: 'available' | 'enabled' = 'available'){return this.getModsConfigPaths(kind).map(confBaseName)}
+    getConfs(kind: 'available' | 'enabled' = 'available'){return this.getConfConfigPaths(kind).map(confBaseName)}
 
     async parseConfigFile(file: string): Promise<Config> {
         const filePath = isAbsolute(file) ? file : this.path(file);

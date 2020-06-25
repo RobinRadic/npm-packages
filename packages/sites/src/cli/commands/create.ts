@@ -14,6 +14,9 @@ export default class CreateCommand extends BaseNginxCommand {
         await this.setup();
         const { args, flags } = this.parse(this.constructor);
 
+        const types = ['nginx','apache','nginx-apache'];
+        const type = await Input.list('Type', types);
+
         const templates          = readdirSync(Paths.package('templates'));
         const template           = Paths.package('templates', await Input.list('Choose base template', templates));
         const serverName: string = await Input.input('Server name');

@@ -1,0 +1,69 @@
+{
+    "name": "@radic/console-input",
+    "version": "1.0.0",
+    "description": "Console input",
+    "private": false,
+    "author": {
+        "name": "Robin Radic"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "license": "MIT",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "typings": "lib/index.d.ts",
+    "bin": {
+        "sites": "./bin/run"
+    },
+    "scripts": {
+        "start": "npm-run-all clean:build build",
+        "build": "tsc --project tsconfig.build.json",
+        "watch": "tsc --project tsconfig.build.json --watch",
+        "clean:build": "rm -rf lib",
+        "clean:yarn": "rm yarn.lock node_modules/",
+        "prepare": "npm-run-all clean:build build",
+        "postpublish": "git pull",
+        "postpack": "rm -f oclif.manifest.json",
+        "prepack": "rm -rf lib && tsc -b && oclif-dev manifest && oclif-dev readme",
+        "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
+        "version": "oclif-dev readme && git add README.md",
+        "login": "yarn login",
+        "release": "npm-run-all clean:build build login && np --yolo --no-yarn"
+    },
+    "dependencies": {
+
+    },
+    "devDependencies": {
+        "@types/cross-spawn": "^6.0.0",
+        "@types/dotenv": "^6.1.1",
+        "@types/inquirer": "^6.5.0",
+        "@types/lodash": "^4.14.136",
+        "@types/node": "^12.6.9",
+        "@types/npm": "^2.0.30",
+        "@types/semver": "^6.0.2",
+        "@types/yargs": "^13.0.2",
+        "@types/glob": "^7.1.1",
+        "npm-run-all": "^4.1.5",
+        "nps": "^5.9.5",
+        "nps-utils": "^1.7.0",
+        "ts-node": "^8.3.0",
+        "typescript": "^3.5.3"
+    },
+    "engines": {
+        "node": ">=8.0.0"
+    },
+    "files": [
+        "/bin",
+        "/lib",
+        "/npm-shrinkwrap.json",
+        "/oclif.manifest.json"
+    ],
+    "oclif": {
+        "commands": "./lib/cli/commands",
+        "bin": "sites",
+        "plugins": [
+            "@oclif/plugin-help"
+        ]
+    }
+}

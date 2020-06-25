@@ -29,6 +29,14 @@ export default class TestCommand extends BaseCommand {
     async run() {
         await this.setup();
         const { args, flags } = this.parse(this.constructor);
+        const {apache} = this.app
+        apache.getMods();
+        return;
+    }
+
+
+    async run2(){
+
         let config            = await this.app.apache.getApacheConf();
         let modConfigs: any      = {};
         let siteConfigs: any      = {};
@@ -44,6 +52,5 @@ export default class TestCommand extends BaseCommand {
             phpModVersion = this.app.apache.getPhpVersion()
         }
 
-        return;
     }
 }
