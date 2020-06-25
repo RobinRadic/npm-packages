@@ -1,96 +1,178 @@
-import chalk, { Chalk } from 'chalk';
+import { merge }                                                                 from 'lodash';
+import { ColumnsOptions, OutputOptions, TreeData, TreeOptions }                  from './interfaces';
+import { inspect }                                                               from 'util';
+import { OutputUtil }                                                            from './OutputUtil';
+import * as Table                                                                from 'cli-table2';
+import { TableConstructorOptions }                                               from 'cli-table2';
+import { kindOf }                                                                from '@radic/util';
+// import { Colors, Parser } from '@radic/console-colors';
+import { Colors, Parser }                                                        from './colors';
+import { Diff }                                                                  from './utils/diff';
+import notifier, { NodeNotifier, Notification, NotificationCallback }            from 'node-notifier';
+import sparkly, { Options as SparklyOptions }                                    from 'sparkly';
+import { highlight, HighlightOptions }                                           from 'cli-highlight';
+import MultiSpinner, { Multispinner, MultispinnerOptions, MultispinnerSpinners } from 'multispinner';
 
-export { chalk, Chalk };
-export type StyleCallback = (data: { msg: string, chalk: chalk.Chalk }) => string
+import columnify from 'columnify';
+import { Ui }    from './ui';
 
-export interface OutputStyles {
-    [ key: string ]: StyleCallback
+import ora from 'ora';
 
-    info?: StyleCallback
-    success?: StyleCallback
-    error?: StyleCallback
-    warn?: StyleCallback
-    header?: StyleCallback
-    section?: StyleCallback
-}
+import archy from 'archy';
 
-export type OutputStyleFunctions<OUTPUT> = {
-    [k in keyof OUTPUT]: (msg?: string) => OutputStyleFunctions<OUTPUT>
-} & {
-    [K in keyof OutputStyles]: (msg?: string) => OutputStyleFunctions<OUTPUT>
-} & {
-    chalk: Chalk
-}
+import beeper from 'beeper';
 
 export class Output {
-    styles: OutputStyles = {};
-    chalk: Chalk         = chalk;
-
-    write(msg, style = null) {
-        if ( style ) {
-            msg = this.getStyleCaller(style)(msg);
-        }
-        process.stdout.write(msg);
-        return this;
+    protected _parser: Parser;
+    protected macros: { [ name: string ]: (...args: any[]) => string };
+    public options: OutputOptions = {
+        colors : true,
+        inspect: { showHidden: true, depth: 10 },
     };
 
-    nl() {
-        this.write('\n');
-        return this;
+    public util: OutputUtil;
+    public ui: Ui;
+    public stdout: NodeJS.WriteStream = process.stdout;
+
+    get parser(): Parser { return this._parser; }
+
+    get colors(): Colors { return this._parser.colors; }
+
+    get nl(): this { return this.write('\n'); }
+
+    constructor() {
+        this._parser = new Parser();
+        this.util    = new OutputUtil(this);
     }
 
-    line(msg = '', style = null) {
-        return this.write(msg, style).nl();
-    }
+    parse(text: string, force?: boolean): string {return this._parser.parse(text); }
 
-    getStyle(style): StyleCallback {
-        if ( !(style in this.styles) ) {
-            throw new Error(`Style [${style}] does not exist`);
+    clean(text: string): string { return this._parser.clean(text);}
+
+    write(text: string): this {
+        if ( this.options.colors ) {
+            text = this.parse(text);
+        } else {
+            text = this.clean(text);
         }
-        return this.styles[ style ];
-    }
-
-    getStyleCaller(styleName: keyof OutputStyles, mode: 'return' | 'write' | 'line' = 'return') {
-        return msg => {
-            msg = this.getStyle(styleName)({ msg, chalk });
-            if ( mode === 'return' ) {
-                return msg;
-            }
-            this[ mode ](msg);
-            return this;
-        };
-    }
-
-    style(styleName, msg) {
-        let style = this.getStyle(styleName);
-        return style({ msg, chalk });
-    }
-
-    setStyle(name: string, callback: StyleCallback) {
-        this.styles[ name ] = callback;
+        this.stdout.write(text);
         return this;
+    }
+
+    writeln(text: string = ''): this { return this.write(text + '\n'); }
+
+    line(text: string = ''): this { return this.write(text + '\n');}
+
+    dump(...args: any[]): this {
+        this.options.inspect.colors = this.options.colors;
+        args.forEach(arg => this.line(inspect(arg, this.options.inspect)));
+        return this;
+    }
+
+    macro<T extends (...args: any[]) => string>(name: string): T {
+        return <T>((...args: any[]): string => {
+            return this.macros[ name ].apply(this, args);
+        });
+    }
+
+    setMacro<T extends (...args: any[]) => string>(name: string, macro?: T): any {
+        this.macros[ name ] = macro;
+        return this;
+    }
+
+    diff(o: object, o2: object): Diff { return new Diff(o, o2); }
+
+    spinner(text: string = '', options: ora.Options = {}): ora.Ora {
+        const spinner = ora(options);
+        spinner.text  = text;
+        return spinner;
+    }
+
+    spinners: any[];
+
+    beep(val?: number, cb?: Function): this {
+        beeper(val);
+        return this;
+    }
+
+    tree(obj: TreeData, opts: TreeOptions = {}, returnValue: boolean = false): string | this {
+        let prefix = opts.prefix;
+        delete opts.prefix;
+        let tree = archy(obj, prefix, opts);
+        return returnValue ? tree : this.line(tree);
+    }
+
+    protected modifiedTable: boolean = false;
+
+    /**
+     * Integrates the color parser for cells into the table
+     */
+    protected modifyTablePush() {
+        if ( this.modifiedTable ) return;
+        const _push                 = Table.prototype.push;
+        let self                    = this;
+        Table.prototype[ 'addRow' ] = function (row: any[]) {
+            this.push(
+                row.map(col => {
+                    if ( kindOf(col) === 'string' ) {
+                        col = self.parse(col);
+                    }
+                    return col;
+                }),
+            );
+        };
+        this.modifiedTable          = true;
+    }
+
+    /**
+     * Create a table
+     * @param {CliTable2.TableConstructorOptions | string[]} options Accepts a options object or header names as string array
+     * @returns {any[]}
+     */
+    table(options: TableConstructorOptions | string[] = {}): Table.Table {
+        this.modifyTablePush();
+        return new (Table as any)(
+            kindOf(options) === 'array'
+            ? { head: <string[]>options }
+            : <TableConstructorOptions>options,
+        );
+    }
+
+    columns(data: any, options: ColumnsOptions = {}, ret: boolean = false) {
+        let defaults: ColumnsOptions = {
+            minWidth        : 20,
+            maxWidth        : 120,
+            preserveNewLines: true,
+            columnSplitter  : ' | ',
+        };
+        let iCol: number             = 0;
+        if ( kindOf(data) === 'array' && kindOf(data[ 0 ]) === 'object' ) {
+            iCol = Object.keys(data[ 0 ]).length;
+        }
+        if ( process.stdout.isTTY && iCol > 0 ) {
+            // defaults.minWidth = (process.stdout[ 'getWindowSize' ]()[ 0 ] / 1.1) / iCol;
+            // defaults.minWidth = defaults.minWidth > defaults.maxWidth ? defaults.maxWidth : defaults.minWidth;
+        }
+        let res = columnify(data, merge({}, defaults, options));
+        if ( ret ) return res;
+        this.writeln(res);
+    }
+
+    notify(options: Notification, cb?: NotificationCallback): NodeNotifier {
+        return notifier.notify(options, cb);
+    }
+
+    sparkly(numbers: Array<number | ''>, options?: SparklyOptions, ret: boolean = false): string | this {
+        let s = sparkly(numbers, options);
+        return ret ? s : this.writeln(s);
+    }
+
+    highlight(code: string, options?: HighlightOptions, ret: boolean = false): string | this {
+        let h = highlight(code, options);
+        return ret ? h : this.writeln(h);
+    }
+
+    multispinner(spinners: MultispinnerSpinners, opts?: MultispinnerOptions): Multispinner {
+        return new MultiSpinner(spinners, opts);
     }
 }
-
-const output = new Output();
-output.setStyle('info', ({ chalk, msg }) => chalk.blue(msg));
-output.setStyle('success', ({ chalk, msg }) => chalk.green(msg));
-output.setStyle('warn', ({ chalk, msg }) => chalk.bold.yellow(msg));
-output.setStyle('error', ({ chalk, msg }) => chalk.bgRed.white(msg));
-output.setStyle('header', ({ chalk, msg }) => chalk.bold(msg) + '\n' + '-'.repeat(msg.length));
-output.setStyle('section', ({ chalk, msg }) => chalk.bold(msg));
-
-export const out: OutputStyleFunctions<Output> = new Proxy<OutputStyleFunctions<Output>>(output as any, {
-    get(target: any | Output, p: string | number | symbol, receiver: any): any {
-        if ( Reflect.has(target, p) ) {
-            return Reflect.get(target, p, receiver);
-        }
-
-        if ( Reflect.has(target.styles, p) ) {
-            return (msg) => {
-                target.getStyleCaller(p.toString(), 'line')(msg);
-                return out;
-            };
-        }
-    },
-});
