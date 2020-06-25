@@ -2,16 +2,16 @@
     "compileOnSave": false,
     "compilerOptions": {
         "target": "es6",
-        "module": "commonjs",
+        "module": "CommonJS",
         "moduleResolution": "node",
-        "lib": ["es5", "es6", "es7", "es2018", "es2018.promise"],
-        "outDir": "lib",
-        "declarationDir": "lib",
-        "declaration": true,
-        "rootDir": "src",
-        "jsx": "preserve",
-        "jsxFactory": "h",
+        "lib": ["es5","es6","es7","es2018","es2018.promise","dom"],
+        "declaration": false,
+        "resolveJsonModule": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "allowJs": false,
+        "checkJs": false,
         "strict": false,
+        "rootDir": "../",
         "noImplicitAny": false,
         "strictNullChecks": false,
         "strictFunctionTypes": false,
@@ -25,28 +25,27 @@
         "noFallthroughCasesInSwitch": false,
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
+        "skipLibCheck": true,
         "inlineSourceMap": false,
         "inlineSources": false,
         "sourceMap": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "typeRoots": [
-            "../../node_modules/@types",
-            "./types"
+            "../../../node_modules/@types",
+            "../types"
         ],
-        "baseUrl": ".",
-        "paths": {
-
-        }
+        "baseUrl": "../"
     },
     "include": [
-        "src",
-        "types",
-        "src/cli/index.ts"
+        "../src",
+        "../types",
+        "*",
+        "**/*",
+        "_support"
     ],
     "exclude": [
         "node_modules",
-        "dist",
-        "lib"
+        "../lib"
     ]
 }

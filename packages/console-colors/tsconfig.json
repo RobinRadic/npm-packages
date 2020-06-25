@@ -4,7 +4,7 @@
         "target": "es6",
         "module": "commonjs",
         "moduleResolution": "node",
-        "lib": ["es5", "es6", "es7", "es2018", "es2018.promise", "dom"],
+        "lib": ["es5", "es6", "es7", "es2018", "es2018.promise"],
         "outDir": "lib",
         "declarationDir": "lib",
         "declaration": true,

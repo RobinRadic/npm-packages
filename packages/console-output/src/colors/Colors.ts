@@ -21,7 +21,7 @@ export class Colors {
     protected styles: ColorStyles = {};
     public parser: ColorsParser
     constructor(parser?:ColorsParser) {
-        this.parser = parser ?? new ColorsParser(this)
+        this.parser = parser;
     }
 
     get convert(): typeof convert { return require('color-convert'); }

@@ -1,13 +1,15 @@
-///<reference path="../../types/inquirer.d.ts"/>
+///<reference path="../types/inquirer.d.ts"/>
 
-import { CheckboxChoiceMap, DirectoryQuestion, DistinctChoice, DistinctQuestion, EditorQuestion, ListChoiceMap, PathQuestion, prompt, registerPrompt } from 'inquirer';
+import { CheckboxChoiceMap, createPromptModule, DirectoryQuestion, DistinctChoice, DistinctQuestion, EditorQuestion, ListChoiceMap, PathQuestion, prompt, registerPrompt } from 'inquirer';
 
 registerPrompt('path', require('inquirer-fuzzy-path'));
 registerPrompt('directory', require('inquirer-directory'));
 
 export class Input {
+    public static prompt = createPromptModule();
+
     public static async question(question: DistinctQuestion) {
-        let answers = await prompt<any>({ name: 'question', ...question } as any);
+        let answers = await this.prompt<any>({ name: 'question', ...question } as any);
         return answers.question;
     }
 
