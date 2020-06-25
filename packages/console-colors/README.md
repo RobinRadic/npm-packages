@@ -24,5 +24,3 @@ Fairly advanced things are possible
 {b(green).f(red).bold.underline}Some text{/f.green./underline}greeen stuff{reset}    
 `))
 ```
-
- 
