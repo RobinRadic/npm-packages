@@ -1,6 +1,8 @@
 ///<reference path="../types/inquirer.d.ts"/>
 
-import { CheckboxChoiceMap, createPromptModule, DirectoryQuestion, DistinctChoice, DistinctQuestion, EditorQuestion, ListChoiceMap, PathQuestion, prompt, registerPrompt } from 'inquirer';
+import { CheckboxChoiceMap, createPromptModule, DirectoryQuestion, DistinctChoice, DistinctQuestion, EditorQuestion, ListChoiceMap, PathQuestion, registerPrompt } from 'inquirer';
+
+import { editAsync, IFileOptions } from 'external-editor';
 
 registerPrompt('path', require('inquirer-fuzzy-path'));
 registerPrompt('directory', require('inquirer-directory'));
@@ -37,17 +39,29 @@ export class Input {
         return await this.question({ type: 'directory', message, basePath, ...question });
     }
 
+    public static editorChoices: Array<{ name: string, value: string }> = [
+        { name: 'code', value: 'code --new-window --wait --file-uri' },
+        { name: 'xed', value: 'xed  --new-window --wait' },
+    ];
+
+    public static editorDefaultChoice: string = 'xed';
+
     public static async editor(message: string, question: Partial<EditorQuestion>) {
         // process.env.EDITOR = 'code --new-window --wait --file-uri';
         // process.env.EDITOR = 'idea-php --wait';
         // process.env.EDITOR = process.env.VISUAL || process.env.EDITOR || 'xed';
-        process.env.EDITOR = await this.list('Editor', [
-            { name: 'code', value: 'code --new-window --wait --file-uri' },
-            { name: 'idea-php', value: 'idea-php --wait' },
-            { name: 'idea-frontend', value: 'idea-frontend --wait' },
-            { name: 'xed', value: 'xed' },
-        ], 'xed');
+        process.env.EDITOR = await this.list('Editor', this.editorChoices, 'xed');
         return await this.question({ type: 'editor', message, ...question });
+    }
+
+    public static async edit(content: string, options?: IFileOptions) {
+        return new Promise((resolve, reject) => {
+            editAsync(content, (err, result) => {
+                if ( err ) return reject(err);
+                resolve(result);
+            }, { ...options })
+        });
+
     }
 
 }
