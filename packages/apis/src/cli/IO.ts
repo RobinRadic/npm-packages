@@ -1,8 +1,8 @@
-import {BaseCommand} from './BaseCommand';
-import chalk         from 'chalk'
+import {BaseCommand}                         from './BaseCommand';
+import chalk                                 from 'chalk'
 import { Input }                             from './Input';
 import { out, Output, OutputStyleFunctions } from './Output';
-
+import { Output as Out }                     from '@radic/console-output';
 export class IO {
     constructor(protected cmd: BaseCommand) {}
 
@@ -18,6 +18,8 @@ export class IO {
     warn = msg => this.out.warn(msg);
     error   = msg => this.out.error(msg);
 
-    out:OutputStyleFunctions<Output> = out
-    ask:typeof Input = Input
+    out: OutputStyleFunctions<Output> = out;
+    _out: Out                         = new Out;
+    ask: typeof Input                 = Input;
+
 }

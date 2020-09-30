@@ -142,7 +142,7 @@ export interface Figures {
     arrowRight: string
     radioOn: string
     radioOff: string
-    checkboxOn: string
+    dcheckboxOn: string
     checkboxOff: string
     checkboxCircleOn: string
     checkboxCircleOff: string

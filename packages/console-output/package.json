@@ -55,7 +55,9 @@
         "wrap-ansi": "^4.0.0",
         "archy": "^1.0.0",
         "beeper": "^2.0.0",
-        "cli-table2": "^0.2.0",
+        "cli-table2": "^0.2.0"
+    },
+    "optionalDependencies": {
         "node-notifier": "^7.0.1"
     },
     "devDependencies": {

@@ -1,0 +1,45 @@
+{
+    "name": "@radic/homey-web",
+    "version": "1.0.0",
+    "description": "homey-web",
+    "private": false,
+    "author": {
+        "name": "Robin Radic"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "license": "MIT",
+    "main": "lib/index.js",
+    "esnext": "src/index.ts",
+    "types": "lib/index.d.ts",
+    "typings": "lib/index.d.ts",
+    "maintainers": [
+        {
+            "name": "Robin Radic",
+            "url": "https://github.com/RobinRadic/npm-packages",
+            "email": "rradic@hotmail.com"
+        }
+    ],
+    "homepage": "https://github.com/RobinRadic/npm-packages",
+    "readme": "README.md",
+    "scripts": {
+        "start": "npm-run-all clean:build build",
+        "test": "nyc mocha --opts test/mocha.opts && rm -rf .nyc_output node_modules/",
+        "build": "tsc --project tsconfig.build.json",
+        "watch": "tsc --project tsconfig.build.json --watch",
+        "clean:build": "rm -rf dist es lib types",
+        "clean:yarn": "rm yarn.lock node_modules/",
+        "clean:test": "rm -rf .nyc_output coverage",
+        "prepare": "npm-run-all test clean:test clean:build build",
+        "postpublish": "git pull",
+        "release": "yarn login && np --yolo --no-yarn"
+    },
+    "dependencies": {
+        "@types/simple-oauth2": "^4.1.0",
+        "simple-oauth2": "^4.1.0"
+    },
+    "devDependencies": {},
+    "optionalDependencies": {},
+    "peerDependencies": {}
+}

@@ -1,0 +1,9 @@
+.idea
+node_modules
+.git
+.tmp
+yarn.lock
+package-scripts.js
+release-it.js
+test.ts
+.editorconfig

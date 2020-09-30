@@ -1,0 +1,48 @@
+{
+    "compileOnSave": true,
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "lib": ["es5","es6","es7","es2018"],
+        "outDir": "lib",
+        "declarationDir": "lib",
+        "resolveJsonModule": true,
+        "moduleResolution": "node",
+        "declaration": true,
+        "strict": false,
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "strictFunctionTypes": false,
+        "strictBindCallApply": false,
+        "strictPropertyInitialization": false,
+        "noImplicitThis": false,
+        "alwaysStrict": false,
+        "noUnusedLocals": false,
+        "noUnusedParameters": false,
+        "noImplicitReturns": false,
+        "noFallthroughCasesInSwitch": false,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "inlineSourceMap": false,
+        "inlineSources": false,
+        "sourceMap": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "typeRoots": [
+            "../../node_modules/@types"
+        ],
+        "baseUrl": ".",
+        "paths": {
+        }
+    },
+    "include": [
+        "src",
+        "src/index.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "test",
+        "lib"
+    ]
+}
