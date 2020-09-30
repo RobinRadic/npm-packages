@@ -6,10 +6,10 @@ import * as Table                                                               
 import { TableConstructorOptions }                                                                    from 'cli-table2';
 // import { Colors, Parser } from '@radic/console-colors';
 import { Diff }                                                                                       from './utils/diff';
-import notifier, { NodeNotifier, Notification, NotificationCallback }                                 from 'node-notifier';
 import sparkly, { Options as SparklyOptions }                                                         from 'sparkly';
 import { highlight, HighlightOptions }                                                                from 'cli-highlight';
 import MultiSpinner, { Multispinner, MultispinnerOptions, MultispinnerSpinners }                      from 'multispinner';
+import { NodeNotifier, Notification, NotificationCallback }                                           from 'node-notifier';
 
 import columnify from 'columnify';
 import { Ui }    from './ui';
@@ -239,7 +239,7 @@ export class Output {
     }
 
     notify(options: Notification, cb?: NotificationCallback): NodeNotifier {
-        return notifier.notify(options, cb);
+        return require('node-notifier').notify(options, cb);
     }
 
     sparkly(numbers: Array<number | ''>, options?: SparklyOptions, ret: boolean = false): string | this {
