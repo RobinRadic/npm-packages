@@ -4,11 +4,11 @@ node_modules
 package-lock.json
 yarn-error.log
 yarn.lock
-test.ts
+/test.ts
 /packages/collections/lib/
 /packages/util/lib/
 /packages/slack-helper-app
-dist
+/dist
 /.env
 /.supermenu
 /lib/
