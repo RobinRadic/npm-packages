@@ -43,7 +43,7 @@
         "@types/sprintf-js": "^1.1.2",
         "@yarnpkg/lockfile": "^1.1.0",
         "@radic/console-input": "^1.1.0",
-        "@radic/console-output": "^1.2.0",
+        "@radic/console-output": "^1.3.0",
         "chalk": "^3.0.0",
         "cross-spawn": "^6.0.5",
         "dotenv": "^8.0.0",

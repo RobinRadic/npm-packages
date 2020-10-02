@@ -26,7 +26,8 @@ import { Writable }               from 'stream';
 export class Output {
     public parsers: Map<string, IParserConstructor>;
     public loaded_parsers: Map<string, IParser>;
-    protected macros: { [ name: string ]: (...args: any[]) => string };
+    protected macros: { [ name: string ]: (...args: any[]) => string } = {};
+
     public options: OutputOptions               = {};
     public static defaultOptions: OutputOptions = {
         quiet         : false,
@@ -148,13 +149,13 @@ export class Output {
         return this;
     }
 
-    macro<T extends (...args: any[]) => string>(name: string): T {
-        return <T>((...args: any[]): string => {
+    macro<T extends (...args: any[]) => any>(name: string): T {
+        return <T>((...args: any[]): any => {
             return this.macros[ name ].apply(this, args);
         });
     }
 
-    setMacro<T extends (...args: any[]) => string>(name: string, macro?: T): any {
+    setMacro<T extends (...args: any[]) => any>(name: string, macro?: T): any {
         this.macros[ name ] = macro;
         return this;
     }
@@ -258,15 +259,14 @@ export class Output {
         return new MultiSpinner(spinners, opts);
     }
 
-    static macroProxy<T>(output: Output) {
+    static macroProxy<T>(output: Output): Output & T {
         return new Proxy(output, {
             get(target: any | Output, p: string | number | symbol, receiver: any): any {
                 if ( Reflect.has(target, p) ) {
                     return Reflect.get(target, p, receiver);
                 }
-
-                if ( Reflect.has(target.macros, p) ) {
-                    return target.macros[ p.toString() ];
+                if ( target.hasMacro(p.toString()) ) {
+                    return (...args) => target.macro(p.toString())(...args);
                 }
             },
         });
