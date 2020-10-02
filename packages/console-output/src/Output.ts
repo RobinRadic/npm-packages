@@ -159,6 +159,8 @@ export class Output {
         return this;
     }
 
+    hasMacro(name: string) {return Object.keys(this.macros).includes(name); }
+
     diff(o: object, o2: object): Diff { return new Diff(o, o2); }
 
     spinner(text: string = '', options: ora.Options = {}): ora.Ora {
@@ -254,5 +256,19 @@ export class Output {
 
     multispinner(spinners: MultispinnerSpinners, opts?: MultispinnerOptions): Multispinner {
         return new MultiSpinner(spinners, opts);
+    }
+
+    static macroProxy<T>(output: Output) {
+        return new Proxy(output, {
+            get(target: any | Output, p: string | number | symbol, receiver: any): any {
+                if ( Reflect.has(target, p) ) {
+                    return Reflect.get(target, p, receiver);
+                }
+
+                if ( Reflect.has(target.macros, p) ) {
+                    return target.macros[ p.toString() ];
+                }
+            },
+        });
     }
 }
