@@ -1,0 +1,11 @@
+.idea
+node_modules
+.git
+.tmp
+yarn.lock
+tsconfig.build.json
+tsconfig.json
+package-scripts.js
+release-it.js
+.editorconfig
+/src

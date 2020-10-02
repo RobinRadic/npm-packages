@@ -26,6 +26,7 @@
         "console-output": "cd packages/console-output && yarn",
         "homey-web": "cd packages/homey-web && yarn",
         "homey": "cd packages/homey-web && yarn",
+        "hoster": "cd packages/hoster && yarn",
         "collections": "cd packages/collections && yarn",
         "idea": "cd packages/idea && yarn",
         "observable": "cd packages/observable && yarn",

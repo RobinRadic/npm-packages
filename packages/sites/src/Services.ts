@@ -11,6 +11,10 @@ export class Services {
 
     static async status(name: string) {return shell(`sudo service ${name} status`, this.log); }
 
+    static async statusAll(names: string[]) {
+        return Promise.all(names.map(name => shell(`sudo service ${name} status`, this.log)))
+    }
+
     static async restartAll() {
         this.restartPhp72();
         this.restartPhp73();
