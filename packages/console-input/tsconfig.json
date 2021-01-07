@@ -1,10 +1,10 @@
 {
-    "compileOnSave": false,
+    "compileOnSave": true,
     "compilerOptions": {
         "target": "es6",
         "module": "commonjs",
         "moduleResolution": "node",
-        "lib": ["es5", "es6", "es7", "es2018", "es2018.promise"],
+        "lib": ["es5","es6","es7","es2018","es2018.promise"],
         "outDir": "lib",
         "declarationDir": "lib",
         "declaration": true,
@@ -34,19 +34,15 @@
             "../../node_modules/@types",
             "./types"
         ],
-        "baseUrl": ".",
-        "paths": {
-
-        }
+        "baseUrl": "."
     },
     "include": [
-        "src",
-        "types",
-        "src/cli/index.ts"
+        "src"
     ],
     "exclude": [
         "node_modules",
         "dist",
-        "lib"
+        "lib",
+        "src/examples.ts"
     ]
 }

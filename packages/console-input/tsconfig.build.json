@@ -8,7 +8,6 @@
         "outDir": "lib",
         "declarationDir": "lib",
         "declaration": true,
-        "rootDir": "src",
         "resolveJsonModule": true,
         "suppressImplicitAnyIndexErrors": true,
         "allowJs": false,
@@ -41,12 +40,12 @@
         ]
     },
     "include": [
-        "src",
-        "src/index.ts"
+        "src"
     ],
     "exclude": [
         "node_modules",
         "examples",
-        "dist"
+        "dist",
+        "src/examples.ts"
     ]
 }
