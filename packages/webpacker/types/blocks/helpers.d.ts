@@ -1,16 +1,19 @@
 /// <reference types="webpack" />
-import { Webpacker } from '../core/Webpacker';
 import { TerserPluginOptions } from 'terser-webpack-plugin';
-import { Rule } from 'webpack-chain';
+import { Rule }                from 'webpack-chain';
 import { SpeedMeasureOptions } from '../interfaces';
+import dotenv                  from 'dotenv';
+import { Webpacker }           from '../core/Webpacker';
+
+export declare const getDotEnv: (path?: any) => dotenv.DotenvParseOutput;
 export declare const devServer: ((wp: Webpacker) => any) & {
     hooks?: {
-        params: import("tapable").SyncWaterfallHook<any[], any, any>;
+        params: import('tapable').SyncWaterfallHook<any[], any, any>;
     };
 };
 export declare const setServerLocation: ((wp: Webpacker, protocol: 'http' | 'https', host?: any, port?: number) => void) & {
     hooks?: {
-        params: import("tapable").SyncWaterfallHook<any[], any, any>;
+        params: import('tapable').SyncWaterfallHook<any[], any, any>;
     };
 };
 export declare const minimizer: ((wp: Webpacker, options?: TerserPluginOptions) => import("webpack-chain").Plugin<import("webpack-chain").Optimization & {

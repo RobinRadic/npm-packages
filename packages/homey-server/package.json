@@ -1,7 +1,7 @@
 {
-    "name": "@radic/homey-web",
+    "name": "@radic/homey-server",
     "version": "1.0.0",
-    "description": "homey-web",
+    "description": "homey-server",
     "private": false,
     "author": {
         "name": "Robin Radic"
@@ -14,6 +14,9 @@
     "esnext": "src/index.ts",
     "types": "lib/index.d.ts",
     "typings": "lib/index.d.ts",
+    "bin": {
+        "homey-server": "bin/homey-server"
+    },
     "maintainers": [
         {
             "name": "Robin Radic",
@@ -37,7 +40,8 @@
     },
     "dependencies": {
         "@types/simple-oauth2": "^4.1.0",
-        "simple-oauth2": "^4.1.0"
+        "simple-oauth2": "^4.1.0",
+        "moment": "^2.29.1"
     },
     "devDependencies": {},
     "optionalDependencies": {},

@@ -11,7 +11,6 @@ import { SyncHook, SyncWaterfallHook }                   from 'tapable';
 import { Dependencies }                                  from './Dependencies';
 import { Config }                                        from './Config';
 import { PackageJSON }                                   from 'gluegun/build/types/toolbox/meta-types';
-import { Log }                                           from './Log';
 
 import { BabelLoaderOptions, Blocks, Mode, PluginBlockFunction, PluginDefinition, PluginDefinitionFunction, RuleDefinition, RuleDefinitionBlockFunction, RuleDefinitionFunction } from '../interfaces';
 
@@ -236,23 +235,6 @@ export class Webpacker extends Chain {
     }
 
     public toConfig(): Configuration {
-        if ( this.settings.checkDependencies ) {
-            let missing = this._depends.getMissingPackages(this.getInstalledPackages());
-            if ( missing.hasMissing ) {
-                const { cyan } = Log.color;
-                let msg        = '';
-                Log.write(msg += 'Missing Dependencies\n', 'errorName');
-                Log.write(msg += `You are missing several required dependencies:\n- ${missing.all.join('\n- ')}\n`, 'errorMessage');
-                let command = 'yarn add ' + missing.all.join(' ');
-                if ( this.settings.workspacesEnabled ) {
-                    command += ' -W';
-                }
-                Log.write(msg += `Run\n    ${cyan(command)}\n`, 'errorMessage');
-
-                throw new Error(msg);
-            }
-        }
-
         for ( const cb of this.beforeStartCallbacks ) {
             cb(this);
         }

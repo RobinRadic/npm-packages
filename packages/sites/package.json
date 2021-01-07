@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "glob": "^7.1.6",
+        "@radic/roller": "^1.0.0",
         "@oclif/command": "^1",
         "@oclif/config": "^1",
         "@oclif/plugin-commands": "^1.2.3",

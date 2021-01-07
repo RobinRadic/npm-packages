@@ -1,23 +1,30 @@
-import { Webpacker } from '../core/Webpacker';
-import morgan        from 'morgan';
+import morgan                  from 'morgan';
 import { TerserPluginOptions } from 'terser-webpack-plugin';
 import { merge }               from 'lodash';
 import { Rule }                from 'webpack-chain';
 import MiniCssExtractPlugin    from 'mini-css-extract-plugin';
 import { SpeedMeasureOptions } from '../interfaces';
 import { inspect }             from 'util';
+import { join }                from 'path';
+import dotenv                  from 'dotenv';
+import { Webpacker }           from '../core/Webpacker';
 
+export const getDotEnv = (path?) => dotenv.config({
+    path: path ?? join(process.cwd(), '.env'),
+}).parsed;
+
+let ENV = getDotEnv();
 
 export const devServer = Webpacker.wrap((wp: Webpacker) => {
-    return wp.devServer.depends('@@webpack-dev-server','launch-editor-middleware','morgan')
+    return wp.devServer.depends('@@webpack-dev-server', 'launch-editor-middleware', 'morgan')
         .headers({ 'Access-Control-Allow-Origin': '*' })
         .contentBase(__dirname + '/.tmp/out')
         .historyApiFallback(true)
         .noInfo(false)
         .compress(true)
         .quiet(false)
-        .host('pycrvs.local')
-        .port(8079)
+        .host(ENV.WEBPACK_HOST)
+        .port(parseInt(ENV.WEBPACK_PORT))
         .disableHostCheck(true)
         .stats('none')
         .before(app => {
@@ -33,7 +40,6 @@ export const devServer = Webpacker.wrap((wp: Webpacker) => {
 });
 
 export const setServerLocation = Webpacker.wrap((wp: Webpacker, protocol: 'http' | 'https', host = 'localhost', port: number = 8079) => {
-    wp.settings.set('hmr', true);
     wp.devServer
         .host(host)
         .port(port)

@@ -14,3 +14,5 @@ yarn.lock
 /lib/
 
 /sites
+
+/.run

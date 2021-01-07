@@ -1,10 +1,17 @@
-import Conf from 'conf';
+import { IConfig } from '@oclif/config';
 
-
-export interface PersistanceData {
+declare module '@oclif/config' {
+    export interface IConfig {
+        phpPath?: string
+        apache2Path?: string
+        nginxPath?: string
+        linkDir?: string
+    }
 }
 
-export const config = new Conf<PersistanceData>({
-    defaults: {
-    },
-});
+export const config: Partial<IConfig> = {
+    phpPath    : '/etc/php',
+    apache2Path: '/etc/apache2',
+    nginxPath  : '/etc/nginx',
+    linkDir    : 'sites',
+};
