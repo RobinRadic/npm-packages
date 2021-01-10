@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="sites index.ts" type="NodeJSConfigurationType" path-to-node="$USER_HOME$/.nvm/versions/node/v13.7.0/bin/node" node-parameters="-r ts-node/register/transpile-only" path-to-js-file="src/index.ts" working-dir="$PROJECT_DIR$/packages/arrays">
+    <method v="2" />
+  </configuration>
+</component>

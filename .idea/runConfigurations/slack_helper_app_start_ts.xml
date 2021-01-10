@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="slack-helper-app start.ts" type="NodeJSConfigurationType" path-to-node="$USER_HOME$/.nvm/versions/node/v13.7.0/bin/node" node-parameters="-r ts-node/register/transpile-only" path-to-js-file="packages/slack-helper-app/src/start.ts" working-dir="$PROJECT_DIR$/">
+    <envs>
+      <env name="DEBUG" value="*" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>

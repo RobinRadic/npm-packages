@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="apis info" type="NodeJSConfigurationType" application-parameters="info" path-to-node="$USER_HOME$/.nvm/versions/node/v13.7.0/bin/node" path-to-js-file="packages/apis/bin/apis" working-dir="$PROJECT_DIR$">
+    <method v="2" />
+  </configuration>
+</component>

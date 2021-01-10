@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="hoster test" type="NodeJSConfigurationType" application-parameters="tester" path-to-node="$USER_HOME$/.nvm/versions/node/v14.15.1/bin/node" path-to-js-file="packages/hoster/bin/run" working-dir="$PROJECT_DIR$">
+    <method v="2" />
+  </configuration>
+</component>

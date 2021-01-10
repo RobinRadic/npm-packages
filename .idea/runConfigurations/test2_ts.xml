@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="test2.ts" type="NodeJSConfigurationType" node-parameters="-r ts-node/register/transpile-only" path-to-js-file="$PROJECT_DIR$/test/examples/test2.ts" working-dir="$PROJECT_DIR$/packages/test">
+    <method v="2" />
+  </configuration>
+</component>

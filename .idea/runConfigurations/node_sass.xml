@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="node-sass" type="NodeJSConfigurationType" application-parameters="scss/test.scss css/test.css --functions scss/test-functions.js" nameIsGenerated="true" path-to-js-file="../../node_modules/.bin/node-sass" working-dir="$PROJECT_DIR$/packages/supermenu">
+    <method v="2" />
+  </configuration>
+</component>

@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="sites xdebug status -s all" type="NodeJSConfigurationType" application-parameters="xdebug status -s all" path-to-node="$USER_HOME$/.nvm/versions/node/v10.16.0/bin/node" path-to-js-file="packages/sites/bin/run" working-dir="$PROJECT_DIR$">
+    <method v="2" />
+  </configuration>
+</component>

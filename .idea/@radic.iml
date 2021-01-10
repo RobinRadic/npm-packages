@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/packages/bitbucket/src" isTestSource="false" packagePrefix="@radic.bitbucket" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/observable/src" isTestSource="false" packagePrefix="@radic.observable" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/publisher/src" isTestSource="false" packagePrefix="@radic.publisher" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/supermenu/src" isTestSource="false" packagePrefix="@radic.supermenu" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/tree/src" isTestSource="false" packagePrefix="@radic.tree" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/util/src" isTestSource="false" packagePrefix="@radic.util" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/webpacker/src" isTestSource="false" packagePrefix="@radic.webpacker" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/collections/src" isTestSource="false" packagePrefix="@radic.collections" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/bithub/src" isTestSource="false" packagePrefix="@radic.bithub" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/util/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/idea/src" isTestSource="false" packagePrefix="@radic.idea" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/utils/src" isTestSource="false" packagePrefix="@radic.utils" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/dev/src" isTestSource="false" packagePrefix="@apps.dev" />
+      <sourceFolder url="file://$MODULE_DIR$/apps/node/src" isTestSource="false" packagePrefix="a" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/jira-notifier/src" isTestSource="false" packagePrefix="@radic.jira-notifier" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/idea-sync/src" isTestSource="false" packagePrefix="@radic.idea-sync" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/sites/src" isTestSource="false" packagePrefix="@radic\sites" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/slack-helper-app/src" isTestSource="false" packagePrefix="@radic.slack-helper-app" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/reset-evals/src" isTestSource="false" packagePrefix="@radic.reset-evals" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/apis/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/arrays/src" isTestSource="false" packagePrefix="@radic/arrays" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/arrays/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/utils/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/console-input/src" isTestSource="false" packagePrefix="@radic/console-input" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/console-output/src" isTestSource="false" packagePrefix="@radic\console-output" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/console-colors/src" isTestSource="false" packagePrefix="@radic\console-colors" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/console-output/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/console-input/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/console-input/types" isTestSource="false" generated="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/hoster/src" isTestSource="false" packagePrefix="@radic/hoster" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/test/src" isTestSource="false" packagePrefix="@radic/test" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/test/tests" isTestSource="true" packagePrefix="@radic/test/tests" />
+      <excludeFolder url="file://$MODULE_DIR$/.run" />
+      <excludeFolder url="file://$MODULE_DIR$/.supermenu" />
+      <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/dev/dev" />
+      <excludeFolder url="file://$MODULE_DIR$/apps/node/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/apis/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/arrays/es" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/arrays/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/bitbucket/.git2" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/bitbucket/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/bithub/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/collections/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/console-output/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/homey-web/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/hoster/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/idea-sync/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/idea/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/jira-notifier/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/observable/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/publisher/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/reset-evals/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/roller/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/sites/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/slack-helper-app/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/supermenu/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/supermenu/dev" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/supermenu/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/supermenu/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/supermenu/loader" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/tree/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/util/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/utils/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/utils/es" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/utils/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/webpacker/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/sites" />
+      <excludeFolder url="file://$MODULE_DIR$/test/examples" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/test/lib" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

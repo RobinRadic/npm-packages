@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="repo:packagist radic-pyro/streams-module" type="NodeJSConfigurationType" application-parameters="repo:packagist radic-pyro/streams-module" path-to-node="$USER_HOME$/.nvm/versions/node/v10.16.0/bin/node" path-to-js-file="packages/bitbucket/bin/run" working-dir="$PROJECT_DIR$">
+    <envs>
+      <env name="DEBUG" value="*" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>

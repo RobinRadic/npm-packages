@@ -1,7 +1,8 @@
-import { argument, command, Commands, option } from './rc';
+#!/usr/bin/env ts-node
+import { argument, command, BaseCommand, option } from './parsing';
 
-@Commands.command({ handler: 'handle' })
-export class LaravelClearLogs extends Commands.BaseCommand {
+@command({ handler: 'handle' })
+export class LaravelClearLogs extends BaseCommand {
     // @option('a') all: boolean;
     // @option('f') force: boolean;
     // @option('s') strs: string[];

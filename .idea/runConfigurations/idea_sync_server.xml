@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="idea-sync server" type="NodeJSConfigurationType" application-parameters="server" path-to-node="$USER_HOME$/.nvm/versions/node/v10.16.0/bin/node" path-to-js-file="packages/idea-sync/bin/run" working-dir="$PROJECT_DIR$">
+    <method v="2" />
+  </configuration>
+</component>

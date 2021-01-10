@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="compile" pattern="file[@radic]:packages/idea-sync/*||file[@radic]:packages/idea-sync/src//*||file[@radic]:packages/sites//*||file[@radic]:packages/utils/src//*||file:packages/utils/tsconfig.json||file:packages/utils/tsconfig.build.json||file[@radic]:packages/reset-evals//*||file[@radic]:packages/webpacker//*||file[@radic]:packages/apis//*||file[@radic]:packages/arrays/src//*||file:packages/arrays/tsconfig.json||file:packages/arrays/package.json||file[@radic]:packages/homey-server/src//*||file[@radic]:packages/hoster//*||file[@radic]:packages/console-input//*" />
+</component>

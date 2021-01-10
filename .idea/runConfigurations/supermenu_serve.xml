@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="supermenu serve" type="NodeJSConfigurationType" application-parameters="--inline --hot --config webpack.config.ts" path-to-node="$USER_HOME$/.nvm/versions/node/v10.16.0/bin/node" path-to-js-file="../../node_modules/.bin/webpack-dev-server" working-dir="$PROJECT_DIR$/packages/supermenu">
+    <envs>
+      <env name="NODE_ENV" value="development" />
+    </envs>
+    <method v="2" />
+  </configuration>
+</component>
