@@ -4,15 +4,14 @@
         "target": "es6",
         "module": "CommonJS",
         "moduleResolution": "node",
-        "lib": ["es5","es6","es7","es2018","es2018.promise","ES2019.Object","dom"],
+        "lib": ["es5", "es6", "es7", "es2018", "es2018.promise","dom"],
         "declaration": false,
         "resolveJsonModule": true,
         "suppressImplicitAnyIndexErrors": true,
         "allowJs": false,
         "checkJs": false,
-        "jsx": "preserve",
-        "jsxFactory": "h",
         "strict": false,
+        "rootDir": "../",
         "noImplicitAny": false,
         "strictNullChecks": false,
         "strictFunctionTypes": false,
@@ -33,11 +32,14 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "typeRoots": [
-            "../../node_modules/@types"
-        ]
+            "../../../node_modules/@types"
+        ],
+        "baseUrl": "../"
     },
     "include": [
-        "src",
+        "../src",
+        "*",
+        "_support"
     ],
     "exclude": [
         "node_modules",
