@@ -84,7 +84,17 @@ export class Input {
         return await this.question({ type: 'file-path', message, basePath, ...question });
     }
 
-    public static async filetree(message: string, root: string = process.cwd(), question: Partial<FileTreePathSelectorQuestion> = {}) {
+    public static async fsTree(message: string, root: string = process.cwd(), question: Partial<FileTreePathSelectorQuestion> = {}) {
+        return await this.question({ type: 'file-tree-selection', message, root, ...question });
+    }
+
+    public static async fileTree(message: string, root: string = process.cwd(), question: Partial<FileTreePathSelectorQuestion> = {}) {
+        question.selectionType='file';
+        return await this.fsTree(message,root,question)
+    }
+
+    public static async directoryTree(message: string, root: string = process.cwd(), question: Partial<FileTreePathSelectorQuestion> = {}) {
+        question.selectionType='folder';
         return await this.question({ type: 'file-tree-selection', message, root, ...question });
     }
 

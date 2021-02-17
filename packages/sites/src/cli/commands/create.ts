@@ -20,8 +20,8 @@ export default class CreateCommand extends BaseNginxCommand {
         const templates          = readdirSync(Paths.package('templates'));
         const template           = Paths.package('templates', await Input.list('Choose base template', templates));
         const serverName: string = await Input.input('Server name');
-        const rootDir            = Paths.cwd(await Input.directory('Root directory'));
-        const logDir             = Paths.cwd(await Input.directory('Log directory'));
+        const rootDir            = Paths.cwd(await Input.directoryTree('Root directory'));
+        const logDir             = Paths.cwd(await Input.directoryTree('Log directory'));
         const configFilePath     = resolve('/etc/nginx/sites-available', serverName + '.conf');
 
         if ( existsSync(configFilePath) ) {
