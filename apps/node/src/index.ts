@@ -6,6 +6,8 @@ import { resolve } from 'path';
 
 async function run() {
 
+
+
     config({
         path: resolve(__dirname, '../../../.env'),
     });

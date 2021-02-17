@@ -73,6 +73,7 @@
       <excludeFolder url="file://$MODULE_DIR$/sites" />
       <excludeFolder url="file://$MODULE_DIR$/test/examples" />
       <excludeFolder url="file://$MODULE_DIR$/packages/test/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/lib" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

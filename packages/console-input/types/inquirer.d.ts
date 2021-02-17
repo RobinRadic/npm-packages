@@ -1,5 +1,6 @@
 // noinspection ES6UnusedImports
 import inquirer, { Answers, Question } from 'inquirer';
+import { FileTreeSelectionQuestion }   from 'inquirer-file-tree-selection-prompt';
 
 declare module 'inquirer' {
 
@@ -27,31 +28,10 @@ declare module 'inquirer' {
          */
         transformer?(input: any, answers: T, flags: { isFinal?: boolean }): string | Promise<string>;
 
-        excludePath?: any// nodePath => nodePath.startsWith('node_modules'),
-        // excludePath :: (String) -> Bool
-        // excludePath to exclude some paths from the file-system scan
-        excludeFilter?: any//: nodePath => nodePath == '.',
-        // excludeFilter :: (String) -> Bool
-        // excludeFilter to exclude some paths from the final list, e.g. '.'
-        itemType?: any//: 'any',
-        // itemType :: 'any' | 'directory' | 'file'
-        // specify the type of nodes to display
-        // default value: 'any'
-        // example: itemType: 'file' - hides directories from the item list
-        rootPath?: any//: 'app',
-        // rootPath :: String
-        // Root search directory
-        suggestOnly?: any//: false,
-        // suggestOnly :: Bool
-        // Restrict prompt answer to available choices or use them as suggestions
-        depthLimit?: any//: 5,
-        // depthLimit :: integer >= 0
-        // Limit the depth of sub-folders to scan
-        // Defaults to infinite depth if undefined
     }
 
     /**
-     * Provides options for a question for the `InputPrompt`.
+     * Provides options for a question for the `inquirer-path`.
      *
      * @template T
      * The type of the answers.
@@ -61,6 +41,96 @@ declare module 'inquirer' {
          * @inheritdoc
          */
         type?: 'path';
+        default?: string | string[] //cwd
+        multi?: boolean
+        directoryOnly?: boolean
+    }
+
+    /**
+     * Provides options for a question for the `inquirer-fuzzy-path`.
+     *
+     * @template T
+     * The type of the answers.
+     */
+    export interface FuzzypathQuestion<T extends Answers = Answers> extends PathQuestionOptions<T> {
+        /**
+         * @inheritdoc
+         */
+        type?: 'fuzzypath';
+        excludePath?: (nodePath) => boolean,
+        // excludePath :: (String) -> Bool
+        // excludePath to exclude some paths from the file-system scan
+        excludeFilter?: (nodePath) => boolean,
+        // excludeFilter :: (String) -> Bool
+        // excludeFilter to exclude some paths from the final list, e.g. '.'
+        itemType?: 'any' | 'directory' | 'file'
+        // itemType :: 'any' | 'directory' | 'file'
+        // specify the type of nodes to display
+        // default value: 'any'
+        // example: itemType: 'file' - hides directories from the item list
+        rootPath?: string
+        // rootPath :: String
+        // Root search directory
+        default?: string
+        suggestOnly?: boolean
+        // suggestOnly :: Bool
+        // Restrict prompt answer to available choices or use them as suggestions
+        depthLimit?: number
+        // depthLimit :: integer >= 0
+        // Limit the depth of sub-folders to scan
+        // Defaults to infinite depth if undefined
+    }
+
+    /**
+     * Provides options for a question for the `inquirer-file-path`.
+     *
+     * @template T
+     * The type of the answers.
+     */
+    export interface FilePathQuestion<T extends Answers = Answers> extends PathQuestionOptions<T> {
+        /**
+         * @inheritdoc
+         */
+        type?: 'file-path';
+        basePath?: string //cwd
+    }
+
+    /**
+     * Provides options for a question for the `InputPrompt`.
+     *
+     * @template T
+     * The type of the answers.
+     */
+    export interface FileTreePathSelectorQuestion<T extends Answers = Answers> extends PathQuestionOptions<T> {
+        /**
+         * @inheritdoc
+         */
+        type?: 'file-tree-selector';
+        path?: string
+        extensions?: string[]
+        selectionType?: 'file' | 'folder' | 'either',
+        onlyShowMatchingExtensions?: boolean
+    }
+
+
+    /**
+     * Provides options for a question for the `InputPrompt`.
+     *
+     * @template T
+     * The type of the answers.
+     */
+    export interface FileFolderQuestion<T extends Answers = Answers> extends PathQuestionOptions<T> {
+        /**
+         * @inheritdoc
+         */
+        type?: 'filefolder-prompt';
+        dialog?: {
+            type?: string,
+            config?: {
+                title?: string,
+                [ key: string ]: any
+            }
+        }
     }
 
     /**
@@ -134,35 +204,6 @@ declare module 'inquirer' {
      *
      * @template T
      * The type of the answers.
-     */
-    export interface FiletreeQuestionOptions<T extends Answers = Answers> extends Question<T> {
-        onlyShowDir?: boolean // default: false
-        root?: string //default: processs.cwd()
-        onlyShowValid?: boolean // if true, will only show valid files (if validate is provided). Default: false.
-        hideChildrenOfValid?: boolean // if true, will hide children of valid directories (if validate is provided). Default: false.
-        transformer?: Function // a hook function to transform the display of directory or file name.
-        multiple?: boolean // if true, will enable to select multiple files. Default: false.
-    }
-
-    /**
-     * Provides options for a question for the `InputPrompt`.
-     *
-     * @template T
-     * The type of the answers.
-     */
-    export interface FiletreeQuestion<T extends Answers = Answers> extends FiletreeQuestionOptions<T> {
-        /**
-         * @inheritdoc
-         */
-        type?: 'file-tree-selection';
-    }
-
-
-    /**
-     * Provides options for a question for the `InputPrompt`.
-     *
-     * @template T
-     * The type of the answers.
      * @see https://github.com/DerekTBrown/inquirer-datepicker-prompt#inquirer-datepicker-prompt
      */
     export interface DatepickerQuestionOptions<T extends Answers = Answers> extends Question<T> {
@@ -226,9 +267,12 @@ declare module 'inquirer' {
 
     interface QuestionMap<T extends Answers = Answers> {
         path: PathQuestion<T>
+        fuzzypath: FuzzypathQuestion<T>
+        'file-path': FilePathQuestion<T>
+        filefolder: FileFolderQuestion<T>
         directory: DirectoryQuestion<T>
         autocomplete: AutocompleteQuestion<T>;
-        'file-tree-selection': FiletreeQuestion<T>
+        'file-tree-selection': FileTreeSelectionQuestion<T>
         datetime: DatepickerQuestion<T>
         'maxlength-input': MaxinputQuestion<T>
     }

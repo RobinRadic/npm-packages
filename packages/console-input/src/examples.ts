@@ -1,5 +1,12 @@
-import { Input } from '../lib';
+#!/usr/bin/env ts-node
+import { Input }     from '../lib';
+import * as inquirer from 'inquirer';
 
+const example = fileTreeSelectionPrompt;
+
+async function fileTreeSelectionPrompt(){
+    console.log(await Input.filetree('fileTreeSelectionPrompt'));
+}
 
 async function basics() {
 
@@ -104,3 +111,11 @@ async function autocomplete() {
     console.dir(answer);
 
 }
+
+async function run() {
+
+    await example();
+}
+
+
+run();

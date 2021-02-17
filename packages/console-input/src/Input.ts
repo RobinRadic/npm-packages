@@ -1,14 +1,20 @@
-import inquirer, { Answers, AutocompleteQuestion, CheckboxChoiceMap, CheckboxQuestion, ConfirmQuestion, DatepickerQuestion, DirectoryQuestion, DistinctChoice, DistinctQuestion, EditorQuestion, FiletreeQuestion, InputQuestion, ListChoiceMap, ListQuestion, MaxinputQuestion, PathQuestion } from 'inquirer';
+import inquirer, { Answers, AutocompleteQuestion, CheckboxChoiceMap, CheckboxQuestion, ConfirmQuestion, DatepickerQuestion, DirectoryQuestion, DistinctChoice, DistinctQuestion, EditorQuestion, FileFolderQuestion, FilePathQuestion, FileTreePathSelectorQuestion, FuzzypathQuestion, InputQuestion, ListChoiceMap, ListQuestion, MaxinputQuestion, PathQuestion } from 'inquirer';
 
 import { editAsync, IFileOptions } from 'external-editor';
 import PromptConstructor = inquirer.prompts.PromptConstructor;
 
-inquirer.registerPrompt('path', require('inquirer-fuzzy-path'));
+inquirer.registerPrompt('path', require('inquirer-path'));
+inquirer.registerPrompt('fuzzypath', require('inquirer-fuzzy-path'));
 inquirer.registerPrompt('directory', require('inquirer-directory'));
 inquirer.registerPrompt('autocomplete', require('inquirer-autocomplete-prompt'));
-inquirer.registerPrompt('datetime', require('inquirer-datepicker-prompt'));
-inquirer.registerPrompt('file-tree-selection', require('inquirer-file-tree-selection-prompt'));
+inquirer.registerPrompt('datetime', require('inquirer-datepicker'));
 inquirer.registerPrompt('maxlength-input', require('@matti-o7/inquirer-maxlength-input-prompt'));
+
+inquirer.registerPrompt('file-path', require('inquirer-file-path'));
+inquirer.registerPrompt('file-tree-selection', require('inquirer-file-tree-selection-prompt'));
+inquirer.registerPrompt('file-selector', require('inquirer-file-selector-prompt'));
+
+
 //
 //
 // export interface Input {
@@ -50,14 +56,6 @@ export class Input {
         return await this.question({ type: 'list', message, choices, default: defaultChoice, ...question });
     }
 
-    public static async path(message: string, question: Partial<PathQuestion> = {}) {
-        return await this.question({ type: 'path', message, ...question });
-    }
-
-    public static async directory(message: string, basePath: string = process.cwd(), question: Partial<DirectoryQuestion> = {}) {
-        return await this.question({ type: 'directory', message, basePath, ...question });
-    }
-
     public static async autocomplete(message: string, source: (answersSoFar: Answers, input: string) => Promise<Array<string>>, question: Partial<AutocompleteQuestion> = {}) {
         return await this.question({ type: 'autocomplete', message, source, ...question });
     }
@@ -66,13 +64,34 @@ export class Input {
         return await this.question({ type: 'datetime', message, ...question });
     }
 
-    public static async filetree(message: string, root: string = process.cwd(), question: Partial<FiletreeQuestion> = {}) {
-        return await this.question({ type: 'file-tree-selection', message, root, ...question });
-    }
-
     public static async maxinputlength(message: string, maxLength: number, question: Partial<MaxinputQuestion> = {}) {
         return await this.question({ type: 'maxlength-input', message, maxLength, ...question });
     }
+
+    public static async path(message: string, question: Partial<PathQuestion> = {}) {
+        return await this.question({ type: 'path', message, ...question });
+    }
+
+    public static async directory(message: string, basePath: string = process.cwd(), question: Partial<DirectoryQuestion> = {}) {
+        return await this.question({ type: 'directory', message, basePath, ...question });
+    }
+
+    public static async fuzzypath(message: string, def: string = process.cwd(), question: Partial<FuzzypathQuestion> = {}) {
+        return await this.question({ type: 'fuzzypath', message, default:def, ...question });
+    }
+
+    public static async filePath(message: string, basePath: string = process.cwd(), question: Partial<FilePathQuestion> = {}) {
+        return await this.question({ type: 'file-path', message, basePath, ...question });
+    }
+
+    public static async filetree(message: string, root: string = process.cwd(), question: Partial<FileTreePathSelectorQuestion> = {}) {
+        return await this.question({ type: 'file-tree-selection', message, root, ...question });
+    }
+
+    // inquirer.registerPrompt('path', require('inquirer-path'));
+    // inquirer.registerPrompt('file-path', require('inquirer-file-path'));
+    // inquirer.registerPrompt('file-selector-prompt', require('inquirer-file-selector-prompt'));
+    // inquirer.registerPrompt('filefolder-prompt', require('inquirer-filefolder-prompt'));
 
     public static editorChoices: Array<{ name: string, value: string }> = [
         { name: 'code', value: 'code --new-window --wait --file-uri' },
