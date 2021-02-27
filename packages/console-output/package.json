@@ -26,7 +26,7 @@
         "prepare": "npm-run-all clean:build build",
         "prepublish": "npm-run-all clean:build build",
         "login": "yarn login",
-        "release": "npm-run-all clean:build build login && commit \"upd console-output\" && np --yolo --no-yarn"
+        "release": "npm-run-all clean:build build login && np --yolo --no-yarn"
     },
     "dependencies": {
         "chalk": "^4.1.0",
