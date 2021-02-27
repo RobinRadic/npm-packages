@@ -17,6 +17,7 @@ export default class LinkCommand extends BaseCommand {
             symlinkSync('/etc/php/7.3', Paths.cwd('sites/php73'));
             symlinkSync('/etc/php/7.2', Paths.cwd('sites/php72'));
         }
+
         this.io.success('Sites linked in local directory "./sites"');
     }
 }

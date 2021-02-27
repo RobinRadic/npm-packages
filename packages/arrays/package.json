@@ -13,8 +13,8 @@
     "main": "lib/index.js",
     "module": "es/arrays.es.js",
     "esnext": "src/index.ts",
-    "types": "types/index.d.ts",
-    "typings": "types/index.d.ts",
+    "types": "lib/index.d.ts",
+    "typings": "lib/index.d.ts",
     "maintainers": [
         {
             "name": "Robin Radic",

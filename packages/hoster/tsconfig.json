@@ -2,14 +2,13 @@
     "compileOnSave": true,
     "compilerOptions": {
         "target": "es6",
-        "module": "UMD",
+        "module": "CommonJS",
         "moduleResolution": "node",
-        "lib": ["es5","es6","es7","es2018","es2018.promise","dom"],
+        "lib": ["es2018","dom"],
         "outDir": "lib",
         "declarationDir": "lib",
         "declaration": true,
-        "jsx": "preserve",
-        "jsxFactory": "h",
+        "jsx": "react",
         "strict": false,
         "noImplicitAny": false,
         "strictNullChecks": false,
@@ -31,16 +30,17 @@
         "emitDecoratorMetadata": true,
         "typeRoots": [
             "../../node_modules/@types",
+            "node_modules/@types",
             "./types"
         ],
-        "baseUrl": "."
+        "baseUrl": ".",
+        "paths": {
+            "*": ["node_modules/*"]
+        }
     },
     "include": [
         "src",
-        "types",
-        "src/index.ts",
-        "src/rc.ts",
-        "src/test.ts"
+        "types"
     ],
     "exclude": [
         "node_modules",

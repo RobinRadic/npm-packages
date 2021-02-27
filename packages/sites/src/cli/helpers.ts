@@ -15,14 +15,14 @@ export interface FilterSitesFn {
 export const filterSites:FilterSitesFn = async (sites: SiteArray, name?: string, multiple:boolean=true) => {
 
     if ( sites.length === 0 ) {
-        return this.error('No sites available to enable');
+        return console.error('No sites available to enable');
     }
 
     const optionsMapper = site => ({ name : site.prettyName,        value: site,    })
     if ( name ) {
         sites = sites.search(name);
         if ( sites.length === 0 ) {
-            this.error('No sites found');
+            console.error('No sites found');
         }
         if ( sites.length > 1 ) {
             return await Input[multiple?'checkbox':'list']('select site(s)', sites.map(optionsMapper));

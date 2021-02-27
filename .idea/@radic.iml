@@ -23,7 +23,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/slack-helper-app/src" isTestSource="false" packagePrefix="@radic.slack-helper-app" />
       <sourceFolder url="file://$MODULE_DIR$/packages/reset-evals/src" isTestSource="false" packagePrefix="@radic.reset-evals" />
       <sourceFolder url="file://$MODULE_DIR$/packages/apis/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/packages/arrays/src" isTestSource="false" packagePrefix="@radic/arrays" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/arrays/src" isTestSource="false" packagePrefix="@radic\arrays" />
       <sourceFolder url="file://$MODULE_DIR$/packages/arrays/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/packages/utils/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/packages/console-input/src" isTestSource="false" packagePrefix="@radic/console-input" />
@@ -74,6 +74,7 @@
       <excludeFolder url="file://$MODULE_DIR$/test/examples" />
       <excludeFolder url="file://$MODULE_DIR$/packages/test/lib" />
       <excludeFolder url="file://$MODULE_DIR$/lib" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/hoster/.webpack" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

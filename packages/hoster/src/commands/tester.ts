@@ -1,23 +1,15 @@
-import { BaseCommand } from '../lib';
+import { BaseCommand, findPhpBinaries, getPhpBinaryData, whatis } from '../lib';
+import { execSync }                                               from 'child_process';
 
 export default class TesterCommand extends BaseCommand {
     static description = 'Restart the services';
 
     async run() {
-        this.out.line('tester starting');
-
-        const self = this;
-
-        let answers = await this.ask.datetime('Select Files', {
-
-            message: 'When would you like a table?',
-            initial: new Date('2017-01-01 12:30'),
-
-        });
-
-        console.dir({ answers, self });
-
-
+        let phpBinaries = findPhpBinaries();
+        let phpVersions = phpBinaries.map(path => getPhpBinaryData(path))
+        phpVersions.forEach(version => {
+            this.out.line(` - ${version.version}`);
+        })
         return;
     }
 }
